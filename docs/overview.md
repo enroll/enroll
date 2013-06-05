@@ -1,6 +1,28 @@
 # Workshop Planner
 
-A one-pager for powering and promoting your workshop.
+## Meta-Goals
+
+- Develop a habit of shipping.
+- Ship in 4-8 weeks of part-time work.
+- Evaluate how well we all work together.
+- Test a market by shipping and see what comes next.
+- Spend no more than $500 per person.  If we go to $1000, we’ll talk first.
+
+## Meta Non-goals
+
+- Making lots of money
+- Finding the "next big thing"
+
+## Product Goals
+
+A one-pager site for powering and promoting your workshop.
+
+## Schedule
+
+**Release date: July 23, 2013**
+
+- "Fix Time and Budget, Flex Scope" -37 Signals
+- "Always launch on a Tuesday." -Jess
 
 ## Potential Names
 
@@ -27,27 +49,3 @@ A one-pager for powering and promoting your workshop.
 - Name and tagline
 - Wireframes
 
-## Potential Customers
-
-### Companies Offering Workshops
-
-- http://workshops.squarespace.com/
-- http://therubyworkshop.com/
-- http://workshops.railsbridge.org/
-  - Notice how they use EventBrite to manage ticket sales... [Example Workshop Listing](http://workshops.railsbridge.org/ai1ec_event/nyc-railsbridge-workshop/?instance_id=223)
-- http://workshop.bostonrb.org/
-
-## Competitors / Co-opitors
-
-**SkillShare** - http://www.skillshare.com/ 
-
-- Great platform, but they are also trying to be a course marketplace
-- It seems like they are phasing out local courses and focusing on online only
-  - http://help.skillshare.com/customer/portal/topics/444715-teaching-a-local-class/articles
-  - You can't even search for local courses anymore - they've removed it from the search engine
-- Founder has a nice blog: http://www.mikekarnj.com/blog/
-- We should definitely look at their course creation tool: http://www.skillshare.com/classes/local/new/basic-info
-- Check out my fake course: http://skl.sh/18G6Yxr
-- Here's a few local course examples (I had to DIG to find these):
-  - http://www.skillshare.com/How-to-Build-an-Awesome-Professional-Network/168031227/1758500734?via=similar-classes
-  - http://www.skillshare.com/Startup-Marketing-for-Dummies-Acquisition-Retention-and-Revenue/1783431596/1053709570?via=similar-classes

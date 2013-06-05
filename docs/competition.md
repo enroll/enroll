@@ -1,0 +1,20 @@
+## Competitors / Co-opitors
+
+**SkillShare** - http://www.skillshare.com/ 
+
+- Great platform, but they are also trying to be a course marketplace
+- It seems like they are phasing out local courses and focusing on online only
+  - http://help.skillshare.com/customer/portal/topics/444715-teaching-a-local-class/articles
+  - You can't even search for local courses anymore - they've removed it from the search engine
+- Founder has a nice blog: http://www.mikekarnj.com/blog/
+- We should definitely look at their course creation tool: http://www.skillshare.com/classes/local/new/basic-info
+- Check out my fake course: http://skl.sh/18G6Yxr
+- Here's a few local course examples (I had to DIG to find these):
+  - http://www.skillshare.com/How-to-Build-an-Awesome-Professional-Network/168031227/1758500734?via=similar-classes
+  - http://www.skillshare.com/Startup-Marketing-for-Dummies-Acquisition-Retention-and-Revenue/1783431596/1053709570?via=similar-classes
+
+**EventBrite**
+
+- Many people hosting workshops put together a custom website and use
+  EventBrite for ticketing
+
