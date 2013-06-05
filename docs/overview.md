@@ -19,7 +19,7 @@ A one-pager site for powering and promoting your workshop.
 
 ## Schedule
 
-**Release date: July 23, 2013**
+**Release date: Tuesday, July 23, 2013**
 
 - "Fix Time and Budget, Flex Scope" -37 Signals
 - "Always launch on a Tuesday." -Jess
