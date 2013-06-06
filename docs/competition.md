@@ -13,8 +13,25 @@
   - http://www.skillshare.com/How-to-Build-an-Awesome-Professional-Network/168031227/1758500734?via=similar-classes
   - http://www.skillshare.com/Startup-Marketing-for-Dummies-Acquisition-Retention-and-Revenue/1783431596/1053709570?via=similar-classes
 
-**EventBrite**
+**Custom website + EventBrite**
 
 - Many people hosting workshops put together a custom website and use
   EventBrite for ticketing
+
+**SkillsMatter**
+
+- http://skillsmatter.com/
+- Holy crap, look at the sheer number of workshops and the costs. Crazy.
+- We can definitely do better than this.
+
+**GathersUs**
+
+- http://gathers.us/
+- Once again, we can do better
+
+**The Intro**
+
+- http://theint.ro/
+- Nicely designed, but the workshop view pages could use a little more
+  oomph
 
