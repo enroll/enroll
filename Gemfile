@@ -42,7 +42,7 @@ gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
