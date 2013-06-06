@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/anjlab/bootstrap-rails.git
+  revision: 4b5e76dc0d9fe8700ed28cd6f7307d0dc1972525
+  branch: 3.0.0
+  specs:
+    anjlab-bootstrap-rails (3.0.0.0.alpha1)
+      railties (>= 3.0)
+      sass (>= 3.2)
+
+GIT
   remote: git://github.com/heroku/rails3_serve_static_assets.git
   revision: 84910ceb4ca2851d650e66d3b22f5008acf253f8
   specs:
@@ -133,6 +142,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anjlab-bootstrap-rails!
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.0.1)
   jquery-rails
