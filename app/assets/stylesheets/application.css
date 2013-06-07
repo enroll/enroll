@@ -43,6 +43,18 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #bdc3c7;
 }
 
+.jumbotron.front-page {
+  margin-top: 18px;
+  color: #ecf0f1;
+  background: url(/assets/images/banner-image-large.jpg) top left no-repeat;
+  height: 650px;
+  box-shadow: inset 0px 0px 30px 0px #000;
+  border-radius: 0;
+}
+.jumbotron.front-page h1, .jumbotron.front-page p {
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+}
+
 .jumbotron h1 {
   font-weight: 700;
   text-transform: uppercase;
