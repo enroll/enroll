@@ -18,6 +18,9 @@ body {
   padding-top: 50px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
 
 .navbar {
   padding-top: 20px;
@@ -46,7 +49,25 @@ body {
   font-size: 30pt;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+.completion {
+  background-color: #222;
+  color: #ecf0f1;
 }
+
+.thats-it {
+  font-family: 'Love Ya Like A Sister', cursive;
+}
+.row.calculate {
+  font-size: 220%;
+}
+span.times {
+  font-size: 150%;
+}
+span.equals {
+  font-size: 150%;
+}
+span.dollar {
+  float: right;
+}
+
 
