@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <p class="lead text-right">
-        Only $199
+        Only $<span class="workshop-cost">50</span>
         <a href="#try" class="btn btn-primary reserve upcase">Reserve your seat</a>
       </p>
     </div>
@@ -72,7 +72,7 @@
         <br>
         <div class="row calculate">
           <div class="col col-lg-2 col-offset-2">
-            <input id="input-seats" class="input-large" type="text" placeholder="15">
+            <input id="input-seats" class="input-large" type="text" value="15">
           </div>
             
           <div class="col col-lg-1">
@@ -83,10 +83,10 @@
             <span class="dollar">$</span>
           </div>
           <div class="col col-lg-2">
-            <input class="input-large" type="text" placeholder="50"> 
+            <input id="input-cost" class="input-large" type="text" value="50"> 
           </div>
           <div class="col col-lg-3">
-            = $750
+            = <span id="revenue">$750</span>
           </div>
         </div>
 
