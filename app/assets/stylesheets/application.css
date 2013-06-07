@@ -13,7 +13,10 @@
  *= require_tree .
  */
 
-body { padding-top: 50px; }
+body { 
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 50px;
+}
 
 
 .navbar {
@@ -24,6 +27,7 @@ body { padding-top: 50px; }
 
 .upcase {
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 .btn.reserve {
@@ -35,3 +39,14 @@ body { padding-top: 50px; }
 .jumbotron {
   background-color: #bdc3c7;
 }
+
+.jumbotron h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 30pt;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
