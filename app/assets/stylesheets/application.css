@@ -13,5 +13,25 @@
  *= require_tree .
  */
 
-body { padding-top: 80px; }
-.navbar {padding-top: 10px; }
+body { padding-top: 50px; }
+
+
+.navbar {
+  padding-top: 20px;
+  background-color: #34495e;
+  color: #ecf0f1;
+}
+
+.upcase {
+  text-transform: uppercase;
+}
+
+.btn.reserve {
+  background-color: #16a085;
+  font-weight: bold;
+  border: 1px solid #16a085;
+}
+
+.jumbotron {
+  background-color: #bdc3c7;
+}
