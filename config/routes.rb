@@ -1,5 +1,5 @@
 WorkshopPlatform::Application.routes.draw do
-  root 'welcome#index'
-
   resources :workshops
+
+  root 'welcome#index'
 end
