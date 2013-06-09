@@ -15,4 +15,14 @@
 - http://ruby201.eventbrite.com/
 - http://www.meetup.com/Chicago-Python-Workshop/events/91720342/
 - http://www.appworkshops.com/
--  
+- http://2012.leanstartup.co/workshops
+- http://www.enterpriseleanstartup.com/
+
+## People To Reach Out To For Feedback
+
+- Jason Dimambro
+- Aaron Bedra
+- geeks@thinkrelevance.com
+- Amy Hoy
+- Nathan Barry
+
