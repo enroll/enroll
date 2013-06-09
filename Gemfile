@@ -49,6 +49,9 @@ gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Process management / launcher
+gem 'foreman'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
