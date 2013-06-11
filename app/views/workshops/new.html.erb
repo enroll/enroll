@@ -69,28 +69,94 @@
           <span class="content">Your description here. Tell people a little about the workshop.</span>
           <span class="glyphicon glyphicon-pencil"></span>
 
-          <textarea class="workshop-input col-9" rows="3" placeholder="Your description here"></textarea>
+          <textarea class="workshop-input" rows="3" placeholder="Your description here"></textarea>
           <span class="glyphicon glyphicon-ok"></span>
         </span>
       </p>
 
       <h2>What you will learn</h2>
       <p>
-        Help motivate people to take your course by telling them a little about what they will learn in the course.
+        <span class="workshop-motivation editable edit-ready">
+          <span class="content">
+            Help motivate people to take your course by telling them a little about what they will learn in the course.
+          </span>
+          <span class="glyphicon glyphicon-pencil"></span>
+
+          <textarea class="workshop-input" rows="3" placeholder="Tell people what they will learn"></textarea>
+          <span class="glyphicon glyphicon-ok"></span>
+        </span>
       </p>
 
       <h2>Who this is for</h2>
-      <ul>
-        <li>Your target audience goes here</li>
-      </ul>
+      <p>
+        <span class="workshop-who editable edit-ready">
+          <span class="content">Your target audience goes here</span>
+          <span class="glyphicon glyphicon-pencil"></span>
+
+          <textarea class="workshop-input" rows="3" placeholder="Your target audience goes here"></textarea>
+          <span class="glyphicon glyphicon-ok"></span>
+        </span>
+      </p>
 
       <h2>Where</h2>
 
       <address>
-        <strong>Your Location Name</strong><br>
-        Your Location Street Address<br>
-        Your Location City, State and Zip Code<br>
-        <abbr title="Phone">P:</abbr>Your Phone Number
+        <span class="workshop-location-name editable edit-ready">
+          <strong>
+            <span class="content"> Your Location Name</span>
+          </strong>
+          <span class="glyphicon glyphicon-pencil"></span>
+
+          <input type="text" class="workshop-input" placeholder="Your Location Name">
+          <span class="glyphicon glyphicon-ok"></span>
+        </span>
+        <br>
+        <span class="workshop-location-street-address editable edit-ready">
+          <span class="content">
+            Your Location Street Address
+          </span>
+          <span class="glyphicon glyphicon-pencil"></span>
+
+          <input type="text" class="workshop-input" placeholder="Your Location Street Address">
+          <span class="glyphicon glyphicon-ok"></span>
+        </span>
+        <br>
+        <span class="workshop-location-city editable edit-ready">
+          <span class="content">Your Location City</span>,
+          <span class="glyphicon glyphicon-pencil"></span>
+
+          <input type="text" class="workshop-input" placeholder="Your Location City">
+          <span class="glyphicon glyphicon-ok"></span>
+        </span>
+        <span class="workshop-location-state editable edit-ready">
+          <span class="content">
+            State
+          </span>
+          <span class="glyphicon glyphicon-pencil"></span>
+
+          <input type="text" class="workshop-input" placeholder="Your Location State">
+          <span class="glyphicon glyphicon-ok"></span>
+        </span>
+        <span class="workshop-location-zip-code editable edit-ready">
+          <span class="content">
+            Zip Code
+          </span>
+          <span class="glyphicon glyphicon-pencil"></span>
+
+          <input type="text" class="workshop-input" placeholder="Your Location Zip Code">
+          <span class="glyphicon glyphicon-ok"></span>
+        </span>
+        <br>
+        <span class="workshop-location-phone editable edit-ready">
+          <abbr title="Phone">P:</abbr>
+          <span class="content">
+            Your Phone Number
+          </span>
+          <span class="glyphicon glyphicon-pencil"></span>
+
+          <input type="text" class="workshop-input" placeholder="Your Phone Number">
+          <span class="glyphicon glyphicon-ok"></span>
+        </span>
       </address>
 
     </div>
@@ -104,6 +170,8 @@
       <div class="col col-lg-10 col-sm-12 col-offset-1"</div>
         <h3 class="thats-it text-center"><span class="glyphicon glyphicon-thumbs-up"></span> And that's it!</h3>
 
+        <p class="text-center">You just created a workshop.  What you see above is what potential students will see.</p>
+
         <p class="text-center"><em>You're almost there!</em>&nbsp; Just a few more steps and you'll be hosting your own workshop.</p>
         <br>
         <br>
@@ -111,7 +179,7 @@
           <div class="col col-lg-2 col-sm-2 col-offset-2">
             <input id="input-seats" class="input-large" type="text" value="15">
           </div>
-            
+
           <div class="col col-lg-1 col-sm-2">
             <label class="seats" for="input-seats">seats</label>
           </div>
