@@ -15,7 +15,7 @@
 
 body { 
   font-family: 'Montserrat', sans-serif;
-  padding-top: 50px;
+  padding-top: 80px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar {
   padding-top: 20px;
-  background-color: #34495e;
+  background-color: rgba(44, 62, 80, 0.95);
   color: #ecf0f1;
 }
 
@@ -83,3 +83,122 @@ span.dollar {
 }
 
 
+/* Editable content */
+@-webkit-keyframes EDIT-ME {
+  from {
+    background-color: inherit;
+    border-bottom: inherit;
+    padding: inherit;
+  }
+  to {
+    background-color: rgba(0,0,0,0.1);
+    border-bottom: 2px solid rgba(0,0,0,0.15);
+    padding: 5px 15px;
+  }
+}
+
+@-webkit-keyframes UN-EDIT-ME {
+  from {
+    background-color: rgba(0,0,0,0.1);
+    border-bottom: 2px solid rgba(0,0,0,0.15);
+    padding: 5px 15px;
+  }
+  to {
+    background-color: inherit;
+    border-bottom: inherit;
+    padding: inherit;
+  }
+}
+
+.editable.edit-ready {
+  -webkit-animation: UN-EDIT-ME 0.05s ease-in-out 0 1;
+}
+
+.editable.edit-ready:hover, .editable.editing {
+  -webkit-animation: EDIT-ME 0.1s ease-in-out 0 1;
+  background-color: rgba(0,0,0,0.1);
+  border-bottom: 2px solid rgba(0,0,0,0.15);
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.editable.editing {
+  display: inline-block;
+}
+
+.editable .glyphicon {
+  display: inline-block;
+  font-size: 70%;
+  padding-left: 10px;
+  animation: UN-COLOR-IT-GREEN 0.2s ease-in-out 0 1;
+  -webkit-animation: UN-COLOR-IT-GREEN 0.2s ease-in-out 0 1;
+}
+
+@-webkit-keyframes COLOR-IT-GREEN {
+  from { color: inherit; }
+  to { color: #16a085; }
+}
+@-webkit-keyframes UN-COLOR-IT-GREEN {
+  from { color: #16a085; }
+  to { color: inherit; }
+}
+@keyframes COLOR-IT-GREEN {
+  from { color: inherit; }
+  to { color: #16a085; }
+}
+@keyframes UN-COLOR-IT-GREEN {
+  from { color: #16a085; }
+  to { color: inherit; }
+}
+
+.editable .glyphicon:hover {
+  animation: COLOR-IT-GREEN 0.2s ease-in-out 0 1;
+  -webkit-animation: COLOR-IT-GREEN 0.2s ease-in-out 0 1;
+  color: #16a085;
+}
+
+.editable .glyphicon-pencil {
+  display:none;
+}
+
+.editable:hover .glyphicon-pencil {
+  display: inline-block;
+}
+
+.editable .workshop-input {
+  width: auto;
+  display: inline-block;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  border-bottom: 2px dashed rgba(0,0,0,0.25);
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+  margin-top: -10px;
+}
+
+.editable textarea.workshop-input {
+  height: auto;
+  border: none;
+  padding: 15px 0;
+}
+
+.editable textarea.workshop-input + .glyphicon-ok {
+  font-size: 200%;
+}
+
+.editable.right .workshop-input {
+  text-align: right;
+}
+
+.editable.edit-ready .glyphicon-ok,
+.editable.edit-ready .workshop-input {
+  display: none;
+}
+
+.editable.editing .glyphicon-pencil,
+.editable.editing .content {
+  display: none;
+}
