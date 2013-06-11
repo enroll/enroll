@@ -18,6 +18,11 @@
 - http://2012.leanstartup.co/workshops
 - http://www.enterpriseleanstartup.com/
 - http://railsgirls.com/clt
+- http://hackeryou.com/workshops/
+  - Using ShopLocket to charge and a custom designed site
+  - https://www.shoplocket.com/products/0VJ73-storytelling-with-data-introduction-to-data-visualization-best-practices
+- http://course.daeken.com/
+  - Using PageWiz for the landing page and EventBee for ticketing
 
 ## People To Reach Out To For Feedback
 
