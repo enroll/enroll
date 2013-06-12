@@ -41,3 +41,26 @@ give them a better idea of what each feature represents.*
 - Advanced theming
 - Drip marketing tools
 
+## Recipients
+
+*I'm thinking of people who either a) have taught courses/workshops
+before or b) have good product or design sense or c) both.*
+
+*Would be nice to have some people on this list who are not teaching
+on technical subjects.*
+
+- Glenn Vanderburg
+- Stuart Halloway
+- Luke Vanderhart
+- Michael Parenteau
+- Jason Rudolph
+- Rob Sanheim
+- Ben Scofield
+- Aaron Bedra
+- Justin Gehtland
+- Don Mullen
+- Adam Klein
+- Nate Massey
+- Eric Burns
+- Luv Kohli 
+
