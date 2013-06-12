@@ -20,24 +20,22 @@ We're busy little bees building this tool.  We're hoping to launch the basic too
 
 ## Possible Features
 
-*I'm planning to sketch an image or put together a single balsamiq
-mockup for each of these features and also potentially rename them to
-give them a better idea of what each feature represents.*
+Check out the [feature sketches](https://www.dropbox.com/sh/miiuyqsfnht2wwg/XdhEsTJSzq).
 
-- "Early Bird" Ticket Pricing
-- Mobile-Targeted Layouts
-- "Ask the Instructor" section for students
-- Hosted Course Materials (like slides, etc)
-- Student feedback to instructor
-- No-risk money-back tickets
-- Social media promotion tools
-- Custom domain name
-- "Reteach" this course
-- Waiting List for full courses
-- Course email aliases
-- "Request this workshop" for students
-- "Take me there!" mapping tool for students on their mobiles
-- Auto-magic Testimonials constructed from previous student feedback
+- "Early Bird" Ticket Pricing @done
+- Mobile-Targeted Layouts @done
+- "Ask the Instructor" section for students @done
+- Hosted Course Materials (like slides, etc) @done
+- Student feedback to instructor @done
+- "Take me there!" mapping tool for students on their mobiles @done
+- Waiting List for full courses @done
+- Custom domain name @done
+- "Reteach" this course @done
+- Request refunds @done
+- Social media promotion tools @done
+- Auto-magic Testimonials constructed from previous student feedback @done
+- "Request this workshop" for students @done
+- Course email aliases 
 - Advanced theming
 - Drip marketing tools
 
