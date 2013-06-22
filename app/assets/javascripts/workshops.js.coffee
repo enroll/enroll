@@ -11,6 +11,19 @@ updateWorkshopCost = ->
   $cost = $("#input-cost").val()
   $(".workshop-cost").text($cost)
 
+finishEditing = (event) ->
+  $editable = $(event.target).first().parents(".editable")
+  $editable.removeClass "editing"
+  $editable.addClass "edit-ready"
+  $editableInput = $editable.find(".workshop-input")
+  $newText = ""
+  if $editableInput.val() == ""
+    $newText = $editableInput.attr("placeholder")
+  else
+    $newText = $editableInput.val()
+  $editable.find(".content").text($newText)
+  event.stopPropagation()
+
 $(document).ready ->
   $("#input-seats").keyup calculateRevenue
   $("#input-cost").keyup calculateRevenue
@@ -19,4 +32,16 @@ $(document).ready ->
 
   $("#input-cost").keyup updateWorkshopCost
   $("#input-cost").blur updateWorkshopCost
-  
+
+  $(".editable").click ->
+    if $(this).hasClass "edit-ready"
+      $(this).removeClass "edit-ready"
+      $(this).addClass "editing"
+      $(".editable").find(".workshop-input").focus()
+
+  $("input.workshop-input").keypress (event) ->
+    if event.which is 13
+      finishEditing(event)
+
+  $(".glyphicon-ok").click finishEditing
+
