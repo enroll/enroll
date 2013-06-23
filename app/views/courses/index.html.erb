@@ -1,9 +1,11 @@
+<% @course = @courses.first # Temporary hack %>
+
 <div class="navbar navbar-fixed-top">
   <div class="container">
     <div class="row">
       <p class="lead text-right">
         Only $<span class="workshop-cost">50</span>
-        <a href="#try" class="btn btn-primary reserve upcase">Reserve your seat</a>
+        <%= course_reservation_link(@course, :class => "btn btn-primary reserve upcase") %>
       </p>
     </div>
   </div>
@@ -15,7 +17,7 @@
 
   <p class="upcase location">San Francisco, CA</p>
   <p class="date upcase">June 6, 2013  |  8:30AM - 4:30PM</p>
-  <a href="#try" class="btn btn-primary btn-large reserve upcase">Reserve your seat</a>
+  <%= course_reservation_link(@course) %>
 </div>
 
 <div class="container">
