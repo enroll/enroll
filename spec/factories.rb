@@ -4,6 +4,6 @@ FactoryGirl.define do
   end
 
   factory :reservation do
-    workshop
+    course
   end
 end
