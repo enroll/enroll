@@ -30,6 +30,7 @@ group :development, :test do
   gem 'capybara'
   gem 'turn'
   gem 'factory_girl_rails'
+  gem 'mocha', '~> 0.13.3', :require => false
 end
 
 group :development do
