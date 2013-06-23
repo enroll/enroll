@@ -17,6 +17,15 @@
 - http://www.appworkshops.com/
 - http://2012.leanstartup.co/workshops
 - http://www.enterpriseleanstartup.com/
+- http://railsgirls.com/clt
+- http://hackeryou.com/workshops/
+  - Using ShopLocket to charge and a custom designed site
+  - https://www.shoplocket.com/products/0VJ73-storytelling-with-data-introduction-to-data-visualization-best-practices
+- http://course.daeken.com/
+  - Using PageWiz for the landing page and EventBee for ticketing
+- Rackspace Traveling Workshops - http://unlocked.io/
+  - Designed a custom website that looks really nice...
+  - But using the TERRIBLE cvent site for selling tickets.  Wow it's ugly.
 
 ## People To Reach Out To For Feedback
 
