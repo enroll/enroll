@@ -33,4 +33,6 @@ WorkshopPlatform::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  Stripe.api_key = ENV["STRIPE_API_KEY"]
 end
