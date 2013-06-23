@@ -1,0 +1,12 @@
+<%= form_for(@reservation, :url => course_reservations_path) do |f| %>
+  <fieldset>
+    <legend>Reserve your seat</legend>
+
+    <%= f.label :course_id, "Course" %>
+    <%= f.text_field :course_id %>
+
+    <span class="help-block">Time remaining: 4 minutes, 30 seconds</span>
+
+    <button class="btn-primary" type="submit">Confirm reservation</button>
+  </fieldset>
+<% end %>
