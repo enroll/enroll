@@ -29,6 +29,7 @@ group :development, :test do
   gem 'minitest-rails'
   gem 'capybara'
   gem 'turn'
+  gem 'factory_girl_rails'
 end
 
 group :development do
