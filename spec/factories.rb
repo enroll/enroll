@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :workshop do
+  factory :course do
     name "Space Monkeys Learn Java"
   end
 
