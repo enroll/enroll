@@ -11,6 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20130623194532) do
+
+
+  create_table "reservations", force: true do |t|
+    t.integer "workshop_id"
+  end
+
+  add_index "reservations", ["workshop_id"], name: "index_reservations_on_workshop_id", using: :btree
+
+  create_table "workshops", force: true do |t|
+    t.string "name"
+  end
 
 end
