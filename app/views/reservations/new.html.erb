@@ -1,12 +1,32 @@
 <%= form_for(@reservation, :url => course_reservations_path) do |f| %>
+  <h2><%= @course.name %></h2>
+
   <fieldset>
     <legend>Reserve your seat</legend>
+    <form action="" method="POST">
+      <script
+        src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+        data-key="pk_test_1dGqIW80J3bz620Ylp8FbCLJ"
+        data-amount="19900"
+        data-name="<%= @course.name %>"
+        data-description="1 seat ($199.00)"
+        data-image="/placeholder.png">
+      </script>
+    </form>
+  </fieldset>
 
-    <%= f.label :course_id, "Course" %>
-    <%= f.text_field :course_id %>
+  <br />
 
-    <span class="help-block">Time remaining: 4 minutes, 30 seconds</span>
+  <fieldset>
+    <legend>Complete other details</legend>
+    <%= label_tag :detail_1 %>
+    <%= text_field_tag :detail_1 %>
 
-    <button class="btn-primary" type="submit">Confirm reservation</button>
+    <%= label_tag :detail_2 %>
+    <%= text_field_tag :detail_2 %>
+
+    <br />
+    <button class="btn" type="submit" disabled=disabled>Confirm reservation</button>
   </fieldset>
 <% end %>
+
