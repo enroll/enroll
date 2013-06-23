@@ -1,4 +1,4 @@
-require "test_helper"
+require "spec_helper"
 
 describe WorkshopsController do
   it "displays a directory of workshops" do
