@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130623194532) do
+ActiveRecord::Schema.define(version: 20130623223733) do
 
 
   create_table "courses", force: true do |t|
     t.string "name"
   end
+
+  create_table "payouts", force: true do |t|
+    t.integer "stripe_transfer_id"
+    t.integer "stripe_recipient_id"
+    t.string  "status"
+    t.string  "description"
+    t.integer "amount_in_cents"
+  end
+
+  add_index "payouts", ["status"], name: "index_payouts_on_status", using: :btree
 
   create_table "reservations", force: true do |t|
     t.integer "course_id"
