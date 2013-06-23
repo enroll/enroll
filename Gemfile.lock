@@ -87,6 +87,11 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     ffi (1.9.0)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -192,6 +197,7 @@ DEPENDENCIES
   anjlab-bootstrap-rails!
   capybara
   coffee-rails (~> 4.0.0)
+  factory_girl_rails
   foreman
   guard
   guard-bundler

@@ -19,6 +19,10 @@ module MiniTest::Expectations
   infect_an_assertion :assert_response, :must_respond_with
 end
 
+class MiniTest::Unit::TestCase
+  include FactoryGirl::Syntax::Methods
+end
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   fixtures :all
