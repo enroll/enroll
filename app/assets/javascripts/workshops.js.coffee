@@ -22,6 +22,7 @@ finishEditing = (event) ->
   else
     $newText = $editableInput.val()
   $editable.find(".content").text($newText)
+  $editable.find("label").text($newText)
   event.stopPropagation()
 
 $(document).ready ->
