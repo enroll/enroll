@@ -40,4 +40,36 @@ describe CoursesController do
       assigns[:courses].wont_be_nil
     end
   end
+
+  context "POST create" do
+    it "creates a course" do
+      assert_difference "Course.count" do
+        post :create, course: course_attributes
+      end
+    end
+
+    it "redirects to the reservation" do
+      post :create, course: course_attributes
+      must_redirect_to course_path(assigns[:course])
+    end
+
+    it "sets the success flash" do
+      post :create, course: course_attributes
+      flash[:success].wont_be_nil
+    end
+
+    context "when submitting invalid data" do
+      before { Course.any_instance.stubs(:save).returns(false) }
+
+      it "renders the new page" do
+        post :create, course: { junk: '1' }
+        must_render_template :new
+      end
+
+      it "sets the error flash" do
+        post :create, course: { junk: '1' }
+        flash[:error].wont_be_nil
+      end
+    end
+  end
 end
