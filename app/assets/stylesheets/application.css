@@ -166,6 +166,10 @@ span.dollar {
   display: inline-block;
 }
 
+.editable .control-group, .editable .controls {
+  display: inline;
+}
+
 .editable .workshop-input {
   width: auto;
   display: inline-block;
@@ -200,6 +204,6 @@ span.dollar {
 }
 
 .editable.editing .glyphicon-pencil,
-.editable.editing .content {
+.editable.editing .content, .editable.editing label {
   display: none;
 }

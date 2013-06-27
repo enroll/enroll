@@ -10,6 +10,12 @@ describe Course do
     course.name.must_equal "Cow Tipping 101"
   end
 
+  it "requires a name" do
+    course.name = nil
+    course.valid?
+    course.errors[:name].must_include "can't be blank"
+  end
+
   context "#reservations" do
     before { course.save! }
 
