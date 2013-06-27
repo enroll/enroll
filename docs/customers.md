@@ -7,6 +7,8 @@
 - http://workshops.railsbridge.org/
   - Notice how they use EventBrite to manage ticket sales... [Example Workshop Listing](http://workshops.railsbridge.org/ai1ec_event/nyc-railsbridge-workshop/?instance_id=223)
 - http://workshop.bostonrb.org/
+- Github: http://training.github.com/in-person/git-foundations/
+  - They should totally be using WP for their in-person courses
 
 ## Example Workshops
 
@@ -26,6 +28,8 @@
 - Rackspace Traveling Workshops - http://unlocked.io/
   - Designed a custom website that looks really nice...
   - But using the TERRIBLE cvent site for selling tickets.  Wow it's ugly.
+- http://skillcrush.com/classes/skillcrush-101-create-your-own-website/
+  - Awesome page advertising her workshop!
 
 ## People To Reach Out To For Feedback
 
