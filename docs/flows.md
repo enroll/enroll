@@ -6,35 +6,36 @@
 
 - Landing page
 - Quick Course Creation
-    - Title*
-    - Short URL*
-    - Tagline
-    - Date
-    - Location
-    - Instructor Bio
-    - Description
-    - Free or paid?
-    - Number of seats (minimum vs maximum capacity, 'kickstarter-esque')
-    - Ticket price
+  - Title*
+  - Short URL*
+  - Tagline
+  - Date
+  - Location
+  - Instructor Bio
+  - Description
+  - Free or paid?
+  - Number of seats (minimum vs maximum capacity, 'kickstarter-esque')
+  - Ticket price
 - Sign-up
-    - Email
-    - Password
-    - Sign up with Facebook/other social services
+  - Email
+  - Password
+  - Sign up with Facebook/other social services
 - Course Management
-    - View Enrolled Students
-    - Edit Course Landing Page
-    - Contact Enrolled Students
+  - View Enrolled Students
+  - Edit Course Landing Page
+  - Contact Enrolled Students
 - Payment details
-    - How to get 
+  - How to get 
 - Get the Word Out (and modify your incentives)
-    - Connect with Facebook
-    - Connect with Twitter
-    - Connect with Github
-    - Connect with Google+
+  - Connect with Facebook
+  - Connect with Twitter
+  - Connect with Github
+  - Connect with Google+
 
-* = required
+ * = required
 
 ## Student
+
 ### Enrolling in a course
 
 - Workshop landing page for course
@@ -54,18 +55,19 @@
   - Connect and authorize with any of these social services (and we'll pull your info in ;-)
   - Emailed receipt
 
-- Classroom "experience"
-  - Event summary
-    - Days until event
-    - How do I get there (navigate me there)
-    - What do I need?
-    - Your profile is ___% complete
-  - Edit profile
-    - Connect to facebook, github, linkedin, etc
-    - Attempt to auto-fill your bio and background, allow edits
-  - Ask a question
-  - Promote event with link / social connections
-  - More (TBD)
+### Classroom Experience
+
+- Event summary
+  - Days until event
+  - How do I get there (navigate me there)
+  - What do I need?
+  - Your profile is XX% complete
+- Edit profile
+  - Connect to facebook, github, linkedin, etc
+  - Attempt to auto-fill your bio and background, allow edits
+- Ask a question
+- Promote event with link / social connections
+- More (TBD)
 
 
 
