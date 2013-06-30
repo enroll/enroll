@@ -51,62 +51,23 @@
         <h2>Where</h2>
 
         <address>
-          <span class="workshop-location-name editable edit-ready">
-            <strong>
-              <span class="content"> Your Location Name</span>
-            </strong>
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <input type="text" class="workshop-input" placeholder="Your Location Name">
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
-          <br>
-          <span class="workshop-location-street-address editable edit-ready">
-            <span class="content">
-              Your Location Street Address
-            </span>
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <input type="text" class="workshop-input" placeholder="Your Location Street Address">
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
-          <br>
-          <span class="workshop-location-city editable edit-ready">
-            <span class="content">Your Location City</span>,
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <input type="text" class="workshop-input" placeholder="Your Location City">
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
-          <span class="workshop-location-state editable edit-ready">
-            <span class="content">
-              State
-            </span>
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <input type="text" class="workshop-input" placeholder="Your Location State">
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
-          <span class="workshop-location-zip-code editable edit-ready">
-            <span class="content">
-              Zip Code
-            </span>
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <input type="text" class="workshop-input" placeholder="Your Location Zip Code">
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
-          <br>
-          <span class="workshop-location-phone editable edit-ready">
+          <div class="form-element">
+            <%= editable_input(f, :location_name, label: 'Your Location Name') %>
+          </div>
+          <div class="form-element">
+            <%= editable_input(f, :location_street_address, label: 'Your Location Street Address') %>
+          </div>
+          <div class="form-element">
+            <%= editable_input(f, :location_city, label: "City") %>
+            <span>,</span>
+            <%= editable_input(f, :location_state, label: "Your Location State") %>
+            <span>,</span>
+            <%= editable_input(f, :location_zip, label: "Zip Code") %>
+          </div>
+          <div class="form-element">
             <abbr title="Phone">P:</abbr>
-            <span class="content">
-              Your Phone Number
-            </span>
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <input type="text" class="workshop-input" placeholder="Your Phone Number">
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
+            <%= editable_input(f, :location_phone, label: "Your Phone Number") %>
+          </div>
         </address>
 
       </div>

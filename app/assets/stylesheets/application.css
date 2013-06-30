@@ -220,3 +220,11 @@ span.dollar {
 .workshop-tagline label {
   font-weight: normal;
 }
+
+address .form-element {
+  margin-bottom: 3px;
+}
+
+address .form-element label {
+  font-weight: normal;
+}
