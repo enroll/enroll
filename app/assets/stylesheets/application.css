@@ -190,11 +190,20 @@ span.dollar {
   width: 600px;
 }
 
-.editable textarea.workshop-input + .glyphicon-ok {
+.editable .text + .glyphicon-ok {
   font-size: 200%;
 }
 
-.editable.right .workshop-input {
+.form-element {
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.editable label {
+  margin-bottom: 0;
+}
+
+.editable .workshop-input input[type=text] {
   text-align: right;
 }
 
@@ -206,4 +215,8 @@ span.dollar {
 .editable.editing .glyphicon-pencil,
 .editable.editing .content, .editable.editing label {
   display: none;
+}
+
+.workshop-tagline label {
+  font-weight: normal;
 }

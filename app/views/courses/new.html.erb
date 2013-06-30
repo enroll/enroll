@@ -13,51 +13,20 @@
   <%= f.error_notification %>
 
   <div class="jumbotron text-right">
-    <h1>
-      <span class="workshop-title editable right edit-ready">
-        <%= f.input(:name, input_html: { class: 'workshop-input' }, label: 'Your workshop title here') %>
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="glyphicon glyphicon-ok"></span>
-      </span>
-    </h1>
+    <h1><%= editable_input(f, :name, label: 'Your workshop title here') %></h1>
+    <div class="form-element">
+      <%= editable_input(f, :tagline, label: 'Your workshop tagline here') %>
+    </div>
 
-    <p>
-      <span class="workshop-tagline editable right edit-ready">
-        <span class="content">Your Workshop Tagline Here</span>
-        <span class="glyphicon glyphicon-pencil"></span>
+    <div class="form-element upcase location">
+      <%= editable_input(f, :location, label: 'Your location here') %>
+    </div>
 
-        <input class="workshop-input" type="text" placeholder="Your workshop tagline here">
-        <span class="glyphicon glyphicon-ok"></span>
-      </span>
-    </p>
-
-    <p class="upcase location">
-      <span class="workshop-location editable right edit-ready">
-        <span class="content">Your location here</span>
-        <span class="glyphicon glyphicon-pencil"></span>
-
-        <input class="workshop-input" type="text" placeholder="Your location here">
-        <span class="glyphicon glyphicon-ok"></span>
-      </span>
-    </p>
-
-    <p class="upcase date-and-time">
-      <span class="workshop-date editable right edit-ready">
-        <span class="content">Your Workshop Date</span>
-        <span class="glyphicon glyphicon-pencil"></span>
-
-        <input class="workshop-input" type="text" placeholder="Your Workshop Date">
-        <span class="glyphicon glyphicon-ok"></span>
-      </span> 
+    <div class="form-element upcase date-and-time">
+      <%= editable_input(f, :start_date, label: 'Your workshop date') %>
       &nbsp;| 
-      <span class="workshop-time editable right edit-ready">
-        <span class="content">Your Workshop Time</span>
-        <span class="glyphicon glyphicon-pencil"></span>
-
-        <input class="workshop-input" type="text" placeholder="Your Workshop Time">
-        <span class="glyphicon glyphicon-ok"></span>
-      </span> 
-    </p>
+      <%= editable_input(f, :start_time, label: 'Your workshop time') %>
+    </div>
 
     <a href="#try" class="btn btn-primary btn-large reserve upcase">Reserve your seat</a>
   </div>
@@ -65,39 +34,19 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <p>
-          <span class="workshop-description editable edit-ready">
-            <span class="content">Your description here. Tell people a little about the workshop.</span>
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <textarea class="workshop-input" rows="3" placeholder="Your description here"></textarea>
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
-        </p>
+        <div class="form-element">
+          <%= editable_input(f, :description, label: 'Your description here. Tell people a little about the workshop.', as: :text, input_html: { rows: 3, placeholder: 'Your description here' }) %>
+        </div>
 
         <h2>What you will learn</h2>
-        <p>
-          <span class="workshop-motivation editable edit-ready">
-            <span class="content">
-              Help motivate people to take your course by telling them a little about what they will learn in the course.
-            </span>
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <textarea class="workshop-input" rows="3" placeholder="Tell people what they will learn"></textarea>
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
-        </p>
+        <div class="form-element">
+          <%= editable_input(f, :motivation, label: 'Help motivate people to take your course by telling them a little about what they will learn in the course.', as: :text, input_html: { rows: 3, placeholder: 'Tell people what they will learn' }) %>
+        </div>
 
         <h2>Who this is for</h2>
-        <p>
-          <span class="workshop-who editable edit-ready">
-            <span class="content">Your target audience goes here</span>
-            <span class="glyphicon glyphicon-pencil"></span>
-
-            <textarea class="workshop-input" rows="3" placeholder="Your target audience goes here"></textarea>
-            <span class="glyphicon glyphicon-ok"></span>
-          </span>
-        </p>
+        <div class="form-element">
+          <%= editable_input(f, :audience, label: 'Your target audience goes here', as: :text, input_html: { rows: 3 }) %>
+        </div>
 
         <h2>Where</h2>
 
