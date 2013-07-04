@@ -1,0 +1,79 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 70px;
+  background-color: #ECF0F1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+.navbar {
+  padding-top: 20px;
+  background-color: #1A1A1A;
+  color: #ecf0f1;
+}
+
+.upcase {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.btn.reserve {
+  background-color: #16a085;
+  font-weight: bold;
+  border: 1px solid #16a085;
+}
+
+.jumbotron {
+  background-color: #95A5A6;
+}
+
+.jumbotron.front-page {
+  text-align: center;
+  color: #ecf0f1;
+  /*background-color: #27ae60;*/
+  background-color: #232323;
+  border-radius: 0;
+}
+
+.jumbotron.front-page h1.logo {
+  width: 546px;
+  height: 116px;
+  text-indent: -9000px;
+  margin: 0 auto 1em;
+  background: transparent url(/assets/images/enroll-io-logo-white.png) top left no-repeat;
+}
+
+.jumbotron.front-page p + p {
+  line-height: 0.8em;
+  margin-bottom: 2em;
+}
+
+.jumbotron h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 30pt;
+}
+
+.completion {
+  background-color: #222;
+  color: #ecf0f1;
+}
+
+.thats-it {
+  font-family: 'Love Ya Like A Sister', cursive;
+}
+.row.calculate {
+  font-size: 220%;
+}
+span.times {
+  font-size: 150%;
+}
+span.equals {
+  font-size: 150%;
+}
+span.dollar {
+  float: right;
+}
+
