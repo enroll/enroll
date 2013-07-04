@@ -8,11 +8,6 @@ require 'mocha/setup'
 # to the test group in the Gemfile and uncomment the following:
 # require "minitest/rails/capybara"
 
-# Uncomment for awesome colorful output
-require "minitest/pride"
-
-Turn.config.format = :pretty
-
 # Matchers
 module MiniTest::Expectations
   infect_an_assertion :assert_redirected_to, :must_redirect_to
