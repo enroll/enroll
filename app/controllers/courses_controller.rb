@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    @course.build_location
   end
 
   def index
@@ -18,6 +19,7 @@ class CoursesController < ApplicationController
       flash[:success] = "Course created successfully."
       redirect_to course_path(@course)
     else
+      @location = @course.location
       flash[:error] = "Course failed to be created."
       render :new
     end
@@ -26,6 +28,11 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:name)
+    params.require(:course).permit(
+      :name, :tagline, :course_starts_at, :course_ends_at, :description,
+      location_attributes: [
+        :name, :address, :city, :state, :zip, :phone
+      ]
+    )
   end
 end
