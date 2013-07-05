@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CoursesController do
   let(:course) { build(:course) }
-  let(:course_attributes) { attributes_for(:course) }
+  let(:course_attributes) { attributes_for(:course).merge({ location_attributes: attributes_for(:location)}) }
 
   context "GET new" do
     it "renders the new page" do

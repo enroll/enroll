@@ -133,6 +133,12 @@
 .form-element {
   line-height: 1.4;
   margin-bottom: 10px;
+
+  .date-and-time {
+    input {
+      display: none;
+    }
+  }
 }
 
 .workshop-tagline label {

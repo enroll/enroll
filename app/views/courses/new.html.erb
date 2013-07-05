@@ -19,13 +19,24 @@
     </div>
 
     <div class="form-element upcase location">
-      <%= editable_input(f, :location, label: 'Your location here') %>
+      <%= f.simple_fields_for(:location_attributes) do |lf| %>
+        <%= editable_input(lf, :name, label: 'Your location here') %>
+      <% end %>
     </div>
 
     <div class="form-element upcase date-and-time">
-      <%= editable_input(f, :start_date, label: 'Your workshop date') %>
+      <%= f.input(:course_starts_at, as: :hidden) %>
+      <span class="workshop-datetime editable edit-ready">
+        <span class="datepicker-date content">Your workshop date</span>
+        <span class="glyphicon glyphicon-ok"></span>
+        <span class="glyphicon glyphicon-pencil datepicker"></span>
+      </span>
       &nbsp;| 
-      <%= editable_input(f, :start_time, label: 'Your workshop time') %>
+      <span class="workshop-datetime editable edit-ready">
+        <span class="datepicker-time content">Your workshop time</span>
+        <span class="glyphicon glyphicon-ok"></span>
+        <span class="glyphicon glyphicon-pencil datepicker"></span>
+      </span>
     </div>
 
     <a href="#try" class="btn btn-primary btn-large reserve upcase">Reserve your seat</a>
@@ -50,25 +61,27 @@
 
         <h2>Where</h2>
 
-        <address>
-          <div class="form-element">
-            <%= editable_input(f, :location_name, label: 'Your Location Name') %>
-          </div>
-          <div class="form-element">
-            <%= editable_input(f, :location_street_address, label: 'Your Location Street Address') %>
-          </div>
-          <div class="form-element">
-            <%= editable_input(f, :location_city, label: "City") %>
-            <span>,</span>
-            <%= editable_input(f, :location_state, label: "Your Location State") %>
-            <span>,</span>
-            <%= editable_input(f, :location_zip, label: "Zip Code") %>
-          </div>
-          <div class="form-element">
-            <abbr title="Phone">P:</abbr>
-            <%= editable_input(f, :location_phone, label: "Your Phone Number") %>
-          </div>
-        </address>
+        <%= f.simple_fields_for(:location_attributes) do |lf| %>
+          <address>
+            <div class="form-element">
+              <%= editable_input(lf, :name, label: 'Your Location Name') %>
+            </div>
+            <div class="form-element">
+              <%= editable_input(lf, :address, label: 'Your Location Street Address') %>
+            </div>
+            <div class="form-element">
+              <%= editable_input(lf, :city, label: "City") %>
+              <span>,</span>
+              <%= editable_input(lf, :state, label: "Your Location State") %>
+              <span>,</span>
+              <%= editable_input(lf, :zip, label: "Zip Code") %>
+            </div>
+            <div class="form-element">
+              <abbr title="Phone">P:</abbr>
+              <%= editable_input(lf, :phone, label: "Your Phone Number") %>
+            </div>
+          </address>
+        <% end %>
 
       </div>
     </div>

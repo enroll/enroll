@@ -36,8 +36,9 @@ $(document).ready ->
 
   $(".editable").click ->
     if $(this).hasClass "edit-ready"
-      $(this).removeClass "edit-ready"
-      $(this).addClass "editing"
+      unless $(this).hasClass "workshop-datetime"
+        $(this).removeClass "edit-ready"
+        $(this).addClass "editing"
       $(".editable").find(".workshop-input").focus()
 
   $("input.workshop-input").keypress (event) ->
@@ -45,4 +46,16 @@ $(document).ready ->
       finishEditing(event)
 
   $(".glyphicon-ok").click finishEditing
+
+  $('.datepicker').datepicker(
+    format: "yyyy-mm-dd"
+    todayHighlight: true
+    todayBtn: 'linked'
+    autoclose: true
+  ).on 'changeDate', (ev) ->
+    $('#course_course_starts_at').val(ev.date)
+    date = new Date(ev.date)
+    $('.datepicker-date').text date.toDateString()
+    $('.datepicker-time').text date.toLocaleTimeString()
+
 
