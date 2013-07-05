@@ -23,6 +23,10 @@ class CoursesController < ApplicationController
     end
   end
 
+  def edit
+    @course = Course.find(params[:id])
+  end
+
   private
 
   def course_params
