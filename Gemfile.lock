@@ -91,6 +91,8 @@ GEM
       guard (>= 0.4)
     guard-shell (0.5.1)
       guard (>= 1.1.0)
+    haml (4.0.3)
+      tilt
     hike (1.2.3)
     i18n (0.6.4)
     jbuilder (1.0.2)
@@ -202,6 +204,7 @@ DEPENDENCIES
   guard-bundler
   guard-minitest
   guard-shell
+  haml (~> 4.0.3)
   jbuilder (~> 1.0.1)
   jquery-rails
   minitest-rails

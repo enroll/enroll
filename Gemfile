@@ -6,6 +6,7 @@ gem 'rails', '~> 4.0.0'
 
 # Standard gems
 gem 'coffee-rails', '~> 4.0.0'
+gem 'haml', '~> 4.0.3'
 gem 'jbuilder', '~> 1.0.1'
 gem 'jquery-rails'
 gem 'pg'

@@ -1,0 +1,12 @@
+%header.navbar.navbar-fixed-top
+  %nav.navbar-inner
+    .container-fluid
+      = render 'layouts/navigation'
+#main{:role => "main"}
+  .container
+    .content
+      .row
+        .span12
+          = render 'layouts/messages'
+          = yield
+
