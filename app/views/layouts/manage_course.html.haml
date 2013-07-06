@@ -1,0 +1,39 @@
+!!!
+%html
+  %head
+    = render 'layouts/head'
+  %body{class: "#{controller_name} #{action_name}"}
+    %header.navbar.navbar-fixed-top
+      %nav.navbar-inner
+        .container-fluid
+          = link_to "enroll", root_path, :class => 'navbar-brand'
+          .btn-group
+            %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+              %span.title Ruby for Newbiews
+              %span.course-date July 13, 2013
+              %span.caret
+            %ul.dropdown-menu{role: "menu"}
+              %li
+                %a{href: "#"}
+                  %span.title Ruby for Newbiews
+                  %span.course-date July 13, 2013
+              %li
+                %a{href: "#"}
+                  %span.title HTML for Beginners
+                  %span.course-date August 13, 2013
+              %li
+                %a{href: "#"}
+                  %span.glyphicon.glyphicon-plus
+                  Create a new course
+          .btn-group.pull-right
+            %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+              %img{src: "/assets/images/profile-default-small.jpg"}
+              %span.title Jess Martin
+              %span.caret
+            %ul.dropdown-menu{role: "menu"}
+              %li
+                %a{href: "#"}
+                  Payment Settings
+    #main{role: "main"}
+      = yield
+    %footer

@@ -1,12 +1,29 @@
-%header.navbar.navbar-fixed-top
-  %nav.navbar-inner
-    .container-fluid
-      = render 'layouts/navigation'
-#main{:role => "main"}
-  .container
-    .content
-      .row
-        .span12
-          = render 'layouts/messages'
-          = yield
+.manage-sidebar
+  .panel
+    .panel-heading
+      %p 5 enrolled
+    %ul.list-group
+      %li.list-group-item
+        %a{href: "#"}
+          %span.glyphicon.glyphicon-home
+          Dashboard
+      %li.list-group-item
+        %a{href: "#"}
+          %span.glyphicon.glyphicon-user
+          Students
+      %li.list-group-item
+        %a{href: "#"}
+          %span.glyphicon.glyphicon-tags
+          Tickets
+      %li.list-group-item
+        %a{href: "#"}
+          %span.glyphicon.glyphicon-file
+          Landing Page
+      %li.list-group-item
+        %a{href: "#"}
+          %span.glyphicon.glyphicon-cog
+          Settings
 
+.manage-content
+  = render 'layouts/messages'
+  Body

@@ -27,6 +27,7 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
+    render :layout => "manage_course"
   end
 
   private

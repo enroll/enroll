@@ -34,6 +34,8 @@ $(document).ready ->
   $("#input-cost").keyup updateWorkshopCost
   $("#input-cost").blur updateWorkshopCost
 
+  $('.manage-sidebar').affix();
+
   $(".editable").click ->
     if $(this).hasClass "edit-ready"
       unless $(this).hasClass "workshop-datetime"

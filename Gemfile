@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Try out bootstrap 3
 gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', branch: '3.0.0', require: 'bootstrap-rails'
+gem 'bootstrap-glyphicons'
 
 # Gems for Heroku
 gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'

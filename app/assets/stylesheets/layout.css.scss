@@ -1,7 +1,10 @@
+$dark-gray: #232323;
+$light-gray: #EBE7DF;
+
 body {
   font-family: 'Montserrat', sans-serif;
   padding-top: 64px;
-  background-color: #ECF0F1;
+  background-color: $light-gray;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -9,8 +12,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-  padding-top: 20px;
-  background-color: #1A1A1A;
+  background-color: $dark-gray;
   color: #ecf0f1;
 }
 
@@ -77,3 +79,17 @@ span.dollar {
   float: right;
 }
 
+.manage-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin-top: 50px;
+  width: 240px;
+  overflow-y: scroll;
+  background-color: $dark-gray;
+}
+
+.manage-content {
+  
+}
