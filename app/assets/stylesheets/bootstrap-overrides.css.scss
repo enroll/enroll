@@ -1,6 +1,89 @@
+$dark-border: rgba(255,255,255,0.05);
+$dark-gray: #232323;
+$light-gray: #EBE7DF;
+$dark-green: #19664A;
+$light-green: #1F7F5C;
+$dark-red: #B75654;
+$light-red: #E56C69;
+$dark-yellow: #AF845A;
+$light-yellow: #DBA571;
+$dark-blue: #487B86;
+$light-blue: #5A9AA8;
+$dark-turquoise: #204246;
+$light-turquoise: #28545B;
+$dark-purple: #554870;
+$light-purple: #6A5A8C;
+$dark-lilac: #704A61;
+$light-lilac: #8C5D79;
+
 .navbar {
   height: 60px;
 }
 .navbar-brand {
   line-height: 30px;
+}
+
+.btn {
+  padding: 8px 26px;
+  border-radius: 0;
+  height: 60px;
+}
+
+.caret {
+  font-size: 200%;
+  border-top: 6px solid #000;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+
+.btn .caret {
+  margin-left: 10px;
+  border-top-color: rgba(255,255,255,0.3);
+}
+
+.btn-navbar {
+  border-left: 1px solid $dark-border;
+  border-right: 1px solid $dark-border;
+  background-color: transparent;
+  color: #fff;
+}
+
+.btn-navbar:hover,
+.btn-navbar:focus {
+  background-color: $dark-lilac;
+}
+
+.btn-navbar:active{
+  background-color: $light-lilac;
+}
+
+.btn-group.open {
+  .btn-navbar {
+    background-color: $light-lilac;
+  }
+
+  .dropdown-menu {
+    background-color: $light-lilac;
+  }
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus {
+    background-color: $dark-lilac;
+  }
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: $dark-gray;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  color: #fff;
+}
+
+.dropdown-menu > li > a {
+  color: #fff;
+  padding: 10px 20px;
+  border-top: 1px solid $dark-border;
 }

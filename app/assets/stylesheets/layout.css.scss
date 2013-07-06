@@ -3,7 +3,7 @@ $light-gray: #EBE7DF;
 
 body {
   font-family: 'Montserrat', sans-serif;
-  padding-top: 64px;
+  padding-top: 60px;
   background-color: $light-gray;
 }
 
@@ -84,12 +84,30 @@ span.dollar {
   top: 0;
   left: 0;
   bottom: 0;
-  margin-top: 50px;
+  margin-top: 60px;
   width: 240px;
-  overflow-y: scroll;
   background-color: $dark-gray;
 }
 
 .manage-content {
   
+}
+
+.course-info {
+  text-align: left;
+  display: inline-block;
+  padding: 4px 0;
+
+  .course-title {
+    font-size: 14px;
+  }
+  .course-date {
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.course-info + .caret {
+  margin-bottom: 20px;
 }
