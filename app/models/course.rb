@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
   belongs_to :location
 
   validates :name, presence: true
-  validates :location, presence: true, associated: true
+  validates :location, associated: true
 
   after_save :set_defaults
 
@@ -26,7 +26,10 @@ class Course < ActiveRecord::Base
   end
 
   def location_attributes=(location_attributes)
-    self.location = Location.where(location_attributes).first_or_create
+    location_attributes.delete_if { |k, v| v.blank? }
+    if location_attributes.any?
+      self.location = Location.where(location_attributes).first_or_create
+    end
   end
 
   private
