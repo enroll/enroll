@@ -17,6 +17,29 @@ $light-purple: #6A5A8C;
 $dark-lilac: #704A61;
 $light-lilac: #8C5D79;
 
+
+/* Bootstrap Variables */
+$border-radius-base:             0px;
+$border-radius-large:            0px;
+$border-radius-small:            0px;
+
+$list-group-bg:               $dark-gray;
+$list-group-border:           $dark-border;
+$list-group-border-radius:    $border-radius-base;
+
+$list-group-hover-bg:         #f5f5f5 !default;
+$list-group-active-color:     #fff !default;
+
+$panel-bg:                    $dark-gray;
+$panel-border:                $dark-border;
+$panel-border-radius:         $border-radius-base;
+$panel-heading-bg:            $dark-gray;
+$panel-footer-bg:             $dark-gray;
+
+@import 'twitter/bootstrap';
+
+/* Bootstrap Styles */
+
 .navbar {
   height: 60px;
 }
@@ -167,3 +190,26 @@ $light-lilac: #8C5D79;
 .dropdown-menu > li.course > a > span.glyphicon.pull-right {
   padding-top: 10px;
 }
+
+.panel {
+  border-radius: 0px;
+  padding: 0;
+}
+
+.panel-heading {
+  padding: 0;
+  margin: 0;
+}
+
+.list-group-item:first-child {
+}
+
+.list-group-item:last-child {
+}
+
+.list-group-flush {
+  margin: 0;
+  padding: 0;
+}
+
+
