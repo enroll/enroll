@@ -14,29 +14,57 @@
                 .course-date July 13, 2013
               %span.caret
             %ul.dropdown-menu{role: "menu"}
-              %li
+              %li.title
+                %span Upcoming
+              %li.course
                 %a{href: "#"}
                   .course-info
                     .course-title Ruby for Newbies
                     .course-date July 13, 2013
-              %li
+                  %span.glyphicon.glyphicon-chevron-right
+              %li.course
                 %a{href: "#"}
                   .course-info
                     .course-title Intro to HTML
                     .course-date August 23, 2013
+                  %span.glyphicon.glyphicon-chevron-right
               %li
                 %a{href: "#{new_course_path}"}
-                  %span.glyphicon.glyphicon-plus
                   Create a new course
+                  %span.glyphicon.glyphicon-plus.pull-right
+              %li.past.title
+                %span Past
+              %li.past.course
+                %a{href: "#"}
+                  .course-info
+                    .course-title Ruby for Newbies
+                    .course-date February 13, 2013
+                  %span.glyphicon.glyphicon-chevron-right
+              %li.past.course
+                %a{href: "#"}
+                  .course-info
+                    .course-title Intro to HTML
+                    .course-date January 10, 2013
+                  %span.glyphicon.glyphicon-chevron-right
+
           .btn-group.pull-right
             %button.btn.btn-navbar.dropdown-toggle{"data-toggle" => "dropdown"}
-              %img{src: "/assets/images/profile-default-small.jpg"}
+              %img.img-rounded{src: "/assets/images/profile-default-small.jpg"}
               %span.title Jess Martin
               %span.caret
             %ul.dropdown-menu{role: "menu"}
               %li
                 %a{href: "#"}
-                  Payment Settings
+                  %span.glyphicon.glyphicon-usd
+                  %span Payment Settings
+              %li
+                %a{href: "#"}
+                  %span.glyphicon.glyphicon-user
+                  Personal Info
+              %li
+                %a{href: "#"}
+                  %span.glyphicon.glyphicon-remove
+                  Logout
     #main{role: "main"}
       = yield
     %footer

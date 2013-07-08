@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: bd3d868f9319abd70ed9ce2839b057874598ee58
+  revision: da8116db27c4f5379545f4c8164508c069494cda
   branch: 3.0.0
   specs:
     anjlab-bootstrap-rails (3.0.0.0.alpha1)
@@ -115,7 +115,7 @@ GEM
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.23)
-    mini_portile (0.5.0)
+    mini_portile (0.5.1)
     minitest (4.7.5)
     minitest-rails (0.9.2)
       minitest (~> 4.7)

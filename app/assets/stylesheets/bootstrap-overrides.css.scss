@@ -9,6 +9,7 @@ $dark-yellow: #AF845A;
 $light-yellow: #DBA571;
 $dark-blue: #487B86;
 $light-blue: #5A9AA8;
+$bright-blue: #0C8AC8;
 $dark-turquoise: #204246;
 $light-turquoise: #28545B;
 $dark-purple: #554870;
@@ -27,6 +28,12 @@ $light-lilac: #8C5D79;
   padding: 8px 26px;
   border-radius: 0;
   height: 60px;
+}
+
+.btn-large {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 40px;
 }
 
 .caret {
@@ -48,26 +55,70 @@ $light-lilac: #8C5D79;
   color: #fff;
 }
 
-.btn-navbar:hover,
-.btn-navbar:focus {
-  background-color: $dark-lilac;
+.btn-navbar > img {
+  margin-right: 10px;
+}
+
+.btn-navbar > .title {
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+
+.btn-navbar:hover {
+  background-color: $light-blue;
 }
 
 .btn-navbar:active{
-  background-color: $light-lilac;
+  background-color: $dark-blue;
 }
 
 .btn-group.open {
+  font-size: 16px;
+
   .btn-navbar {
-    background-color: $light-lilac;
+    background-color: $dark-blue;
+  }
+}
+
+.btn-group {
+  .dropdown-menu {
+    background-color: $dark-blue;
   }
 
-  .dropdown-menu {
-    background-color: $light-lilac;
+  .dropdown-menu > li > a {
+    padding-top: 18px;
+    height: 60px;
+    vertical-align: text-bottom;
   }
-  .dropdown-menu > li > a:hover,
-  .dropdown-menu > li > a:focus {
-    background-color: $dark-lilac;
+
+  .dropdown-menu > li.course > a {
+    padding-top: 7px;
+    height: 60px;
+  }
+
+  .dropdown-menu > li > a:hover {
+    background-image: none;
+    background-color: $light-blue;
+  }
+
+  .dropdown-menu > li.title > span {
+    border-top: none;
+    padding: 5px 20px 2px;
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  .dropdown-menu > li.past {
+    background-image: none;
+    background-color: $light-yellow;
+  }
+
+  .dropdown-menu > li.past > a:hover,
+  .dropdown-menu > li.past > a:focus {
+    background-image: none;
+    background-color: $dark-yellow;
   }
 }
 
@@ -80,14 +131,39 @@ $light-lilac: #8C5D79;
   box-shadow: none;
   -webkit-box-shadow: none;
   color: #fff;
+  width: 130%;
 }
 
 .dropdown-menu > li > a {
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 20px 10px 20px;
   border-top: 1px solid $dark-border;
 }
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  background-color: transparent;
+  background-color: inherit;
+}
+
+.dropdown-menu > li > a > span.glyphicon {
+  padding-right: 12px;
+  color: rgba(255,255,255,0.3);
+  font-size: 125%;
+  vertical-align: -4px;
+}
+
+.dropdown-menu > li > a:hover > span.glyphicon {
+  color: rgba(255,255,255,1.0);
+}
+
+.dropdown-menu > li > a > span.glyphicon-chevron-right,
+.dropdown-menu > li > a > span.glyphicon.pull-right {
+  float: right;
+  padding-right: 0;
+  padding-top: 2px;
+}
+
+.dropdown-menu > li.course > a > span.glyphicon-chevron-right,
+.dropdown-menu > li.course > a > span.glyphicon.pull-right {
+  padding-top: 10px;
 }
