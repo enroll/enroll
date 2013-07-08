@@ -14,3 +14,9 @@
     <%= link_to 'Try it out!', new_course_path, :class => 'btn btn-primary btn-large' %>
   </div>
 </div>
+
+<ul>
+  <% Course.all.each do |course| %>
+    <li><%= link_to course.name, edit_course_path(course) %></li>
+  <% end %>
+</ul>
