@@ -87,3 +87,7 @@ $light-lilac: #8C5D79;
   padding: 10px 20px;
   border-top: 1px solid $dark-border;
 }
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: transparent;
+}
