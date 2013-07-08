@@ -5,10 +5,12 @@ require File.expand_path('../config/application', __FILE__)
 
 WorkshopPlatform::Application.load_tasks
 
-Rake::TestTask.new(:spec) do |t|
-  t.libs << 'spec'
-  t.test_files = FileList['spec/**/*_spec.rb']
-end
+unless Rails.env.production?
+  Rake::TestTask.new(:spec) do |t|
+    t.libs << 'spec'
+    t.test_files = FileList['spec/**/*_spec.rb']
+  end
 
-desc "Run tests"
-task :default => :spec
+  desc "Run tests"
+  task :default => :spec
+end
