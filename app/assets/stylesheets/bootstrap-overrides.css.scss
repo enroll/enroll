@@ -19,16 +19,24 @@ $light-lilac: #8C5D79;
 
 
 /* Bootstrap Variables */
+$brand-primary:         $light-blue;
+
+$font-family-sans-serif:  "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
 $border-radius-base:             0px;
 $border-radius-large:            0px;
 $border-radius-small:            0px;
+
+$component-active-bg:            $brand-primary !default;
 
 $list-group-bg:               $dark-gray;
 $list-group-border:           $dark-border;
 $list-group-border-radius:    $border-radius-base;
 
-$list-group-hover-bg:         #f5f5f5 !default;
-$list-group-active-color:     #fff !default;
+$list-group-hover-bg:         $light-turquoise;
+$list-group-active-color:     $dark-turquoise;
+$list-group-active-bg:        $component-active-bg !default;
+$list-group-active-border:    $list-group-active-bg !default;
 
 $panel-bg:                    $dark-gray;
 $panel-border:                $dark-border;
@@ -84,9 +92,8 @@ $panel-footer-bg:             $dark-gray;
 
 .btn-navbar > .title {
   vertical-align: middle;
-  font-size: 16px;
+  font-size: 14px;
 }
-
 
 .btn-navbar:hover {
   background-color: $light-blue;
@@ -97,7 +104,7 @@ $panel-footer-bg:             $dark-gray;
 }
 
 .btn-group.open {
-  font-size: 16px;
+  font-size: 14px;
 
   .btn-navbar {
     background-color: $dark-blue;
@@ -135,13 +142,13 @@ $panel-footer-bg:             $dark-gray;
 
   .dropdown-menu > li.past {
     background-image: none;
-    background-color: $light-yellow;
+    background-color: $light-purple;
   }
 
   .dropdown-menu > li.past > a:hover,
   .dropdown-menu > li.past > a:focus {
     background-image: none;
-    background-color: $dark-yellow;
+    background-color: $dark-purple;
   }
 }
 
@@ -201,15 +208,43 @@ $panel-footer-bg:             $dark-gray;
   margin: 0;
 }
 
-.list-group-item:first-child {
+.badge {
+  border-radius: 0;
+  background-color: $light-purple;
 }
 
-.list-group-item:last-child {
+a.list-group-item {
+  color: #fff;
+  height: 60px;
+  padding-top: 0;
+
+  > .badge {
+    margin-top: 20px;
+  }
+}
+
+a.list-group-item.active {
+  color: #fff;
+}
+
+a.list-group-item span.glyphicon {
+  padding: 20px 16px 0 6px;
+  margin-right: 12px;
+  color: rgba(255,255,255,0.3);
+  vertical-align: -4px;
+  font-size: 125%;
+  border-right: 1px solid $dark-border;
+  height: 60px;
+  display: inline-block;
+}
+
+a.list-group-item:hover span.glyphicon,
+a.list-group-item.active span.glyphicon {
+  color: rgba(255,255,255,1.0);
 }
 
 .list-group-flush {
   margin: 0;
   padding: 0;
 }
-
 

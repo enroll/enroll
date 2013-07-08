@@ -1,3 +1,4 @@
+$dark-border: rgba(255,255,255,0.05);
 $dark-gray: #232323;
 $light-gray: #EBE7DF;
 
@@ -87,10 +88,47 @@ span.dollar {
   margin-top: 60px;
   width: 240px;
   background-color: $dark-gray;
+
+  .panel {
+    border-right: none;
+    border-left: none;
+
+    .panel-heading {
+      padding: 20px 20px;
+      margin: 0;
+      color: #fff;
+
+      .progress {
+        height: 10px;
+        margin-bottom: 10px;
+        border: 1px solid $dark-border;
+      }
+
+      .status-strip {
+        margin-right: -10px;
+        margin-left: -10px;
+
+        .col-4 {
+          padding-right: 5px;
+          padding-left: 5px;
+        }
+      }
+
+      .quantity {
+        font-size: 120%;
+      }
+      .status-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.3);
+      }
+
+    }
+  }
 }
 
 .manage-content {
-  
+  margin-left: 240px;
 }
 
 .course-info {

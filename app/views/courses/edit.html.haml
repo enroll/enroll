@@ -1,29 +1,48 @@
 .manage-sidebar
   .panel
     .panel-heading
-      %p 5 enrolled
-    %ul.list-group-flush
-      %li.list-group-item
-        %a{href: "#"}
-          %span.glyphicon.glyphicon-home
-          Dashboard
-      %li.list-group-item
-        %a{href: "#"}
-          %span.glyphicon.glyphicon-user
-          Students
-      %li.list-group-item
-        %a{href: "#"}
-          %span.glyphicon.glyphicon-tags
-          Tickets
-      %li.list-group-item
-        %a{href: "#"}
-          %span.glyphicon.glyphicon-file
-          Landing Page
-      %li.list-group-item
-        %a{href: "#"}
-          %span.glyphicon.glyphicon-cog
-          Settings
+      .progress
+        .progress-bar{style: "width: 40%;"}
+        .progress-bar.progress-bar-warning{style: "width: 20%"}
+      .row.status-strip
+        .col-4
+          .quantity 2
+          .status-label Needed
+        .col-4
+          .quantity $1,315
+          .status-label Revenue
+        .col-4
+          .quantity 21
+          .status-label Days to go
+    %div.list-group-flush
+      %a.list-group-item.active{href: "#"}
+        %span.glyphicon.glyphicon-home
+        Dashboard
+      %a.list-group-item{href: "#"}
+        %span.glyphicon.glyphicon-user
+        %span.badge 14
+        Students
+      %a.list-group-item{href: "#"}
+        %span.glyphicon.glyphicon-tags
+        Tickets
+      %a.list-group-item{href: "#"}
+        %span.glyphicon.glyphicon-file
+        Landing Page
+      %a.list-group-item{href: "#"}
+        %span.glyphicon.glyphicon-cog
+        Settings
 
 .manage-content
   = render 'layouts/messages'
-  Body
+  .alert
+    %button.close{type:"button", "data-dismiss" => "alert"} &times;
+    %strong We want to pay you!
+    You should
+    %a{href: "#"} update your payment settings.
+  .row
+    .col-6
+      .well
+        %h3 Students
+    .col-6
+      .well
+        %h3 Revenue
