@@ -22,12 +22,6 @@ describe Course do
     course.location.must_equal location
   end
 
-  it "requires a location" do
-    course.location =  nil
-    course.valid?
-    course.errors[:location].must_include "can't be blank"
-  end
-
   describe "course_start_date" do
     it "returns a date value" do
       course.course_starts_at = Time.parse("January 1 2014 12:01 PM EST")
@@ -55,6 +49,31 @@ describe Course do
     it "has many reservations" do
       course.reservations.create!(reservation_attributes)
       course.reservations.count.must_equal 1
+    end
+  end
+
+  describe "location_attributes" do
+    before { course.location = nil }
+
+    it "creates a location" do
+      assert_difference "Location.count" do
+        course.location_attributes = { name: 'New Location' }
+        course.location.wont_equal nil
+        course.location.name.must_equal 'New Location'
+      end
+    end
+
+    it "matches an existing location" do
+      location = create(:location, name: 'Existing Location')
+      assert_no_difference "Location.count" do
+        course.location_attributes = { name: 'Existing Location' }
+        course.location.name.must_equal 'Existing Location'
+      end
+    end
+
+    it "only creates a location if attrs are present" do
+      course.location_attributes = { name: '', address: '' }
+      course.location.must_equal nil
     end
   end
 end
