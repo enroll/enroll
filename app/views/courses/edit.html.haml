@@ -3,26 +3,28 @@
     .panel-heading
       .progress
         .progress-bar{style: "width: 40%;"}
-        .progress-bar.progress-bar-warning{style: "width: 20%"}
+      .funded-label{style: "margin-left: 40%; width: 50%;"}
+        .glyphicon.glyphicon-arrow-up
+        Goal
       .row.status-strip
         .col-4
-          .quantity 2
-          .status-label Needed
+          .quantity 14
+          .status-label Enrolled
         .col-4
-          .quantity $1,315
-          .status-label Revenue
+          .quantity 4
+          .status-label Needed
         .col-4
           .quantity 21
           .status-label Days to go
     %div.list-group-flush
-      %a.list-group-item.active{href: "#"}
+      %a.list-group-item{href: "#"}
         %span.glyphicon.glyphicon-home
         Dashboard
       %a.list-group-item{href: "#"}
         %span.glyphicon.glyphicon-user
         %span.badge 14
         Students
-      %a.list-group-item{href: "#"}
+      %a.list-group-item.active{href: "#"}
         %span.glyphicon.glyphicon-tags
         Tickets
       %a.list-group-item{href: "#"}

@@ -201,11 +201,15 @@ $panel-footer-bg:             $dark-gray;
 .panel {
   border-radius: 0px;
   padding: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 
 .panel-heading {
+  border-radius: 0px;
   padding: 0;
   margin: 0;
+
 }
 
 .badge {
