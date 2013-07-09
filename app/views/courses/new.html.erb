@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<%= simple_form_for(@course) do |f| %>
+<%= simple_form_for(@course, :html => {:class => "new_course disable-submit-on-return"}) do |f| %>
   <%= f.error_notification %>
 
   <div class="jumbotron text-right">
