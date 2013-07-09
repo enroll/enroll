@@ -7,26 +7,16 @@ guard 'bundler' do
   # watch(/^.+\.gemspec/)
 end
 
-guard 'minitest' do
-  # with Minitest::Unit
-  # watch(%r|^test/(.*)\/?test_(.*)\.rb|)
-  # watch(%r|^lib/(.*)([^/]+)\.rb|)     { |m| "test/#{m[1]}test_#{m[2]}.rb" }
-  # watch(%r|^test/test_helper\.rb|)    { "test" }
+guard 'rspec', all_on_start: false do
+  watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
+  watch('spec/spec_helper.rb')  { "spec" }
 
-  # with Minitest::Spec
-  watch(%r|^spec/(.*)_spec\.rb|)
-  watch(%r|^lib/(.*)([^/]+)\.rb|)     { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
-  watch(%r|^spec/spec_helper\.rb|)    { "spec" }
-
-  # Rails 3.2
-  watch(%r|^app/controllers/(.*)\.rb|) { |m| "spec/controllers/#{m[1]}_spec.rb" }
-  watch(%r|^app/helpers/(.*)\.rb|)     { |m| "spec/helpers/#{m[1]}_spec.rb" }
-  watch(%r|^app/models/(.*)\.rb|)      { |m| "spec/models/#{m[1]}_spec.rb" }  
-
-  # Rails
-  # watch(%r|^app/controllers/(.*)\.rb|) { |m| "test/functional/#{m[1]}_test.rb" }
-  # watch(%r|^app/helpers/(.*)\.rb|)     { |m| "test/helpers/#{m[1]}_test.rb" }
-  # watch(%r|^app/models/(.*)\.rb|)      { |m| "test/unit/#{m[1]}_test.rb" }  
+  # Rails example
+  watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
+  watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb" }
+  watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
+  watch('app/controllers/application_controller.rb')  { "spec/controllers" }
 end
 
 # Add files and commands to this file, like the example:

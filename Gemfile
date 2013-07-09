@@ -26,18 +26,19 @@ gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
 gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 
 group :development, :test do
-  gem 'minitest-rails'
   gem 'capybara'
-  gem 'turn'
   gem 'factory_girl_rails'
   gem 'mocha', '~> 0.13.3', :require => false
+  gem 'rspec-instafail'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
   gem 'foreman'
   gem 'guard'
-  gem 'guard-minitest'
-  gem 'guard-shell'
   gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-shell'
 end
 
