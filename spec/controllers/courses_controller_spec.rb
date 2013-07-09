@@ -21,7 +21,7 @@ describe CoursesController do
     before { course.save }
 
     it "renders the show page" do
-      get :show, :id => course.to_param
+      get :show, id: course.to_param
       response.should be_success
       response.should render_template :show
     end
