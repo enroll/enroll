@@ -4,6 +4,3 @@
 require File.expand_path('../config/application', __FILE__)
 
 WorkshopPlatform::Application.load_tasks
-
-desc "Run tests"
-task :default => :spec
