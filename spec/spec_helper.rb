@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'rspec/instafail'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -42,4 +43,12 @@ RSpec.configure do |config|
 
   # Factory Girl
   config.include FactoryGirl::Syntax::Methods
+
+  # Aliases
+  config.filter_run :focused => true
+  config.alias_example_to :fit, :focused => true
+  config.alias_example_to :pit, :pending => true
+
+  config.run_all_when_everything_filtered = true
+  # config.render_views
 end
