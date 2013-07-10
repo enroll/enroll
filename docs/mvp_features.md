@@ -17,6 +17,7 @@ Trello list once we have some decisions here.
 - publish the workshop (make it live)
 - only I can view my workshop while in draft mode
 - get paid
+- send a broadcast to all enrolled students
 
 ### Student
 
@@ -44,9 +45,10 @@ Trello list once we have some decisions here.
 
 ### Instructor
 
+- awesome onboarding (try before you buy)
+- course materials
 - early-bird and tiered pricing
 - expert advice
-- course materials
 - multi-day workshops
 - custom domains
 - re-teach my workshop
