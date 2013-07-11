@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
+#ruby-gemset=enroll
 
 gem 'rails', '~> 4.0.0'
 
 # Standard gems
 gem 'coffee-rails', '~> 4.0.0'
+gem 'devise', '~> 3.0.0.rc'
 gem 'jbuilder', '~> 1.0.1'
 gem 'jquery-rails'
 gem 'pg'
