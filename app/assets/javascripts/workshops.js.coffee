@@ -57,14 +57,12 @@ $(document).on "ready page:change", ->
     $('.datepicker-time').text date.toLocaleTimeString()
 
   $("form.disable-submit-on-return").keydown (e) ->
-    console.log "form submit"
     code = e.keyCode or e.which
     if code is 13
       e.preventDefault()
       false
 
   $("input.workshop-input").keypress (event) ->
-    console.log "input submit"
     if event.which is 13
       finishEditing(event)
 
