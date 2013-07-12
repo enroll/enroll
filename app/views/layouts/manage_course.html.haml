@@ -14,6 +14,10 @@
                 .course-date July 13, 2013
               %span.caret
             %ul.dropdown-menu{role: "menu"}
+              %li.create-new
+                %a{href: "#{new_course_path}"}
+                  Create a new course
+                  %span.glyphicon.glyphicon-plus.pull-right
               %li.title
                 %span Upcoming
               %li.course
@@ -28,10 +32,6 @@
                     .course-title Intro to HTML
                     .course-date August 23, 2013
                   %span.glyphicon.glyphicon-chevron-right
-              %li
-                %a{href: "#{new_course_path}"}
-                  Create a new course
-                  %span.glyphicon.glyphicon-plus.pull-right
               %li.past.title
                 %span Past
               %li.past.course

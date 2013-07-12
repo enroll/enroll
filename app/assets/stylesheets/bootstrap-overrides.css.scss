@@ -150,6 +150,17 @@ $panel-footer-bg:             $dark-gray;
     background-image: none;
     background-color: $dark-purple;
   }
+
+  .dropdown-menu > li.create-new {
+    background-image: none;
+    background-color: $light-red;
+  }
+
+  .dropdown-menu > li.create-new > a:hover,
+  .dropdown-menu > li.create-new > a:focus {
+    background-image: none;
+    background-color: $dark-red;
+  }
 }
 
 .dropdown-menu {
