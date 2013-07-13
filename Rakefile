@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-WorkshopPlatform::Application.load_tasks
+Enroll::Application.load_tasks
