@@ -1,5 +1,5 @@
-Workshop Platform
-=================
+Enroll
+======
 
 **World Domination Begins: Tuesday, July 23, 2013 (hopeful release date)**
 
