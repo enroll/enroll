@@ -25,4 +25,8 @@ server after the migrations have finished.
 
     $ heroku restart --app enroll
 
+### Janky
+
+Janky CI is set up at http://enroll-janky.herokuapp.com
+
 [chat]: https://launchwise.campfirenow.com/room/564908
