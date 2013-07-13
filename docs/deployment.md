@@ -29,4 +29,8 @@ server after the migrations have finished.
 
 Janky CI is set up at http://enroll-janky.herokuapp.com
 
+### Jenkins
+
+Jenkins is set up at http://162.216.17.171
+
 [chat]: https://launchwise.campfirenow.com/room/564908
