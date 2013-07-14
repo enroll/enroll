@@ -25,7 +25,7 @@ finishEditing = (event) ->
   $editable.find("label").text($newText)
   event.stopPropagation()
 
-$(document).on "page:change", ->
+ready = ->
   $("#input-seats").keyup calculateRevenue
   $("#input-cost").keyup calculateRevenue
   $("#input-seats").blur calculateRevenue
@@ -58,4 +58,5 @@ $(document).on "page:change", ->
     $('.datepicker-date').text date.toDateString()
     $('.datepicker-time').text date.toLocaleTimeString()
 
-
+$(document).ready(ready)
+$(document).on('page:load', ready)
