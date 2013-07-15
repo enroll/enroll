@@ -1,7 +1,11 @@
+$dark-border: rgba(255,255,255,0.05);
+$dark-gray: #232323;
+$light-gray: #EBE7DF;
+
 body {
   font-family: 'Montserrat', sans-serif;
-  padding-top: 70px;
-  background-color: #ECF0F1;
+  padding-top: 60px;
+  background-color: $light-gray;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -9,8 +13,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-  padding-top: 20px;
-  background-color: #1A1A1A;
+  background-color: $dark-gray;
   color: #ecf0f1;
 }
 
@@ -32,17 +35,17 @@ h1, h2, h3, h4, h5, h6 {
 .jumbotron.front-page {
   text-align: center;
   color: #ecf0f1;
-  /*background-color: #27ae60;*/
-  background-color: #232323;
+  background-color: #204246;
+  /*background-color: #E76E66;*/
   border-radius: 0;
 }
 
 .jumbotron.front-page h1.logo {
-  width: 546px;
+  width: 385px;
   height: 116px;
   text-indent: -9000px;
   margin: 0 auto 1em;
-  background: transparent url(/assets/images/enroll-io-logo-white.png) top left no-repeat;
+  background: transparent url(/assets/images/enroll-logo-white.png) top left no-repeat;
 }
 
 .jumbotron.front-page p + p {
@@ -77,3 +80,85 @@ span.dollar {
   float: right;
 }
 
+.manage-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin-top: 60px;
+  width: 240px;
+  background-color: $dark-gray;
+
+  .panel {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+
+    .panel-heading {
+      padding: 20px;
+      margin: 0;
+      color: #fff;
+      background-color: #204246;
+
+      .progress {
+        height: 10px;
+        margin-bottom: 2px;
+        border: 1px solid $dark-border;
+      }
+
+      .funded-label {
+        font-size: 10px;
+        color: rgba(255,255,255,0.3);
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 10px;
+        margin-bottom: 10px;
+      }
+
+      .status-strip {
+        border-top: 1px solid $dark-border;
+        margin-right: -20px;
+        margin-left: -20px;
+        padding: 5px 10px 0;
+
+        .col-4 {
+          padding-right: 5px;
+          padding-left: 5px;
+        }
+      }
+
+      .quantity {
+        font-size: 120%;
+      }
+      .status-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.3);
+      }
+
+    }
+  }
+}
+
+.manage-content {
+  margin-left: 240px;
+}
+
+.course-info {
+  text-align: left;
+  display: inline-block;
+  padding: 4px 0;
+
+  .course-title {
+    font-size: 14px;
+  }
+  .course-date {
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.course-info + .caret {
+  margin-bottom: 20px;
+}

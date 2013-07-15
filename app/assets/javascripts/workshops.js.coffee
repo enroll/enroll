@@ -25,7 +25,7 @@ finishEditing = (event) ->
   $editable.find("label").text($newText)
   event.stopPropagation()
 
-$(document).on "page:change", ->
+ready = ->
   $("#input-seats").keyup calculateRevenue
   $("#input-cost").keyup calculateRevenue
   $("#input-seats").blur calculateRevenue
@@ -34,16 +34,14 @@ $(document).on "page:change", ->
   $("#input-cost").keyup updateWorkshopCost
   $("#input-cost").blur updateWorkshopCost
 
+  $('.manage-sidebar').affix();
+
   $(".editable").click ->
     if $(this).hasClass "edit-ready"
       unless $(this).hasClass "workshop-datetime"
         $(this).removeClass "edit-ready"
         $(this).addClass "editing"
       $(".editable").find(".workshop-input").focus()
-
-  $("input.workshop-input").keypress (event) ->
-    if event.which is 13
-      finishEditing(event)
 
   $(".glyphicon-ok").click finishEditing
 
@@ -58,4 +56,15 @@ $(document).on "page:change", ->
     $('.datepicker-date').text date.toDateString()
     $('.datepicker-time').text date.toLocaleTimeString()
 
+  $("form.disable-submit-on-return").keydown (e) ->
+    code = e.keyCode or e.which
+    if code is 13
+      e.preventDefault()
+      false
 
+  $("input.workshop-input").keypress (event) ->
+    if event.which is 13
+      finishEditing(event)
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

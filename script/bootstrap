@@ -19,4 +19,4 @@ bundle exec rake db:migrate db:test:prepare
 echo "==> Creating seed data..."
 bundle exec rake db:seed
 
-echo "==> Workshop Platform is bootstrapped!"
+echo "==> Enroll is bootstrapped!"

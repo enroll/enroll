@@ -1,4 +1,4 @@
-WorkshopPlatform::Application.routes.draw do
+Enroll::Application.routes.draw do
   devise_for :instructors
 
   resources :courses do
