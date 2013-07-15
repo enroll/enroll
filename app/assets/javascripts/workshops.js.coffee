@@ -25,7 +25,7 @@ finishEditing = (event) ->
   $editable.find("label").text($newText)
   event.stopPropagation()
 
-$(document).on "ready page:change", ->
+ready = ->
   $("#input-seats").keyup calculateRevenue
   $("#input-cost").keyup calculateRevenue
   $("#input-seats").blur calculateRevenue
@@ -66,3 +66,5 @@ $(document).on "ready page:change", ->
     if event.which is 13
       finishEditing(event)
 
+$(document).ready(ready)
+$(document).on('page:load', ready)

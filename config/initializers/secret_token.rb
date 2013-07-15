@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-WorkshopPlatform::Application.config.secret_key_base = 'fbbe058267c9208c469ca2670881caf7f33bc58a5fdf8d40ed6658a49b9bb6c089a85f259a46e787971195e720fec55fddbb6a35175213cfdfba4899246aa47a'
+Enroll::Application.config.secret_key_base = 'fbbe058267c9208c469ca2670881caf7f33bc58a5fdf8d40ed6658a49b9bb6c089a85f259a46e787971195e720fec55fddbb6a35175213cfdfba4899246aa47a'
