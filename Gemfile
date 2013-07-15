@@ -6,6 +6,7 @@ gem 'rails', '~> 4.0.0'
 
 # Standard gems
 gem 'coffee-rails', '~> 4.0.0'
+gem 'haml', '~> 4.0.3'
 gem 'jbuilder', '~> 1.0.1'
 gem 'jquery-rails'
 gem 'pg'
@@ -20,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Try out bootstrap 3
 gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', branch: '3.0.0', require: 'bootstrap-rails'
+gem 'bootstrap-glyphicons'
 
 # Gems for Heroku
 gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
