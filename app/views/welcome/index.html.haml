@@ -1,28 +1,10 @@
 .navbar.navbar-fixed-top
-  .row
+  .container-fluid
     = link_to 'enroll', root_path, :class => 'navbar-brand'
 
-    - if instructor_signed_in?
-      .btn-group.pull-right
-        %button.btn.btn-navbar.dropdown-toggle.pull-right{"data-toggle" => "dropdown"}
-          %img.img-rounded{src: "/assets/images/profile-default-small.jpg"}
-          %span.title
-            = current_instructor.display_title
-          %span.caret
-        %ul.dropdown-menu{role: "menu"}
-          %li
-            %a{href: "#"}
-              %span.glyphicon.glyphicon-usd
-              %span Payment Settings
-          %li
-            %a{href: "#"}
-              %span.glyphicon.glyphicon-user
-              Personal Info
-          %li
-            %a{href: destroy_instructor_session_path, "data-method" => "delete", rel: "nofollow"}
-              %span.glyphicon.glyphicon-remove
-              Logout
-    - else
+    = render 'layouts/settings_menu'
+
+    - unless instructor_signed_in?
       .btn-group.pull-right
         %button.btn.btn-navbar{"data-toggle" => "collapse", "data-target" => "#log-in"}
           %span.title Log In
@@ -33,18 +15,23 @@
   .container
     .row
       = simple_form_for(Instructor.new, :url => registration_path(:instructor), :html => {:class => "form-horizontal"}) do |f|
-        .col-lg-7
-          = f.input :email, :autofocus => true, label_html: { class: 'col-lg-3' }
-          = f.input :password, label_html: { class: 'col-lg-3' }
-        .col-lg-5
-          = f.button :submit, "Sign up"
+        = f.simple_fields_for :course do |c|
+          = c.input :title, 
+                    required: false, autofocus: true, label: "Course Name",
+                    label_html: { class: 'col-lg-2' },
+                    input_html: { class: 'course-title-popover' }
+          = f.input :email, :autofocus => true, label_html: { class: 'col-lg-2' }
+          = f.input :password, label_html: { class: 'col-lg-2' }
+          .row
+            = f.button :submit, "Sign Up To Teach", class: "btn-primary"
 
 .jumbotron.front-page
   .container
     %h1.logo enroll
     %p You teach.
     %p We take care of the rest.
-    = link_to 'Sign Up', new_instructor_registration_path, :class => 'btn btn-primary btn-large'
+    %button.btn.btn-primary{"data-toggle" => "collapse", "data-target" => "#sign-up"}
+      Sign Up To Teach
 %ul
   - Course.all.each do |course|
     %li= link_to course.name, edit_course_path(course)

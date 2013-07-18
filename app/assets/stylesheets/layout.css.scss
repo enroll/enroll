@@ -1,22 +1,17 @@
 @import 'colors';
 
 body {
-  font-family: 'Montserrat', sans-serif;
   padding-top: 60px;
   background-color: $light-gray;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-}
-
 .navbar {
-  background-color: $dark-gray;
+  background-color: $darkest-gray;
   color: #ecf0f1;
 }
 
 #sign-up {
-  background-color: $dark-red;
+  background-color: $dark-gray;
   color: #fff;
 }
 

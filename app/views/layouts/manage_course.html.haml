@@ -47,24 +47,8 @@
                     .course-date January 10, 2013
                   %span.glyphicon.glyphicon-chevron-right
 
-          .btn-group.pull-right
-            %button.btn.btn-navbar.dropdown-toggle{"data-toggle" => "dropdown"}
-              %img.img-rounded{src: "/assets/images/profile-default-small.jpg"}
-              %span.title Jess Martin
-              %span.caret
-            %ul.dropdown-menu{role: "menu"}
-              %li
-                %a{href: "#"}
-                  %span.glyphicon.glyphicon-usd
-                  %span Payment Settings
-              %li
-                %a{href: "#"}
-                  %span.glyphicon.glyphicon-user
-                  Personal Info
-              %li
-                %a{href: "#"}
-                  %span.glyphicon.glyphicon-remove
-                  Logout
+          = render 'layouts/settings_menu'
+
     #main{role: "main"}
       = yield
     %footer

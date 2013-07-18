@@ -66,5 +66,11 @@ ready = ->
     if event.which is 13
       finishEditing(event)
 
+  $(".course-title-popover").popover(
+    trigger: 'focus',
+    placement: 'bottom',
+    content: "You can always change the name of your course later."
+  )
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

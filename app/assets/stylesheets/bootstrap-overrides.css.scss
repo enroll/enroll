@@ -1,9 +1,18 @@
 @import 'colors';
 
 /* Bootstrap Variables */
-$brand-primary:               $light-blue;
+$brand-primary:               $light-green;
+$brand-success:               $light-blue;
+$brand-warning:               $light-yellow;
+$brand-danger:                $light-red;
+$brand-info:                  $light-purple;
 
-$font-family-sans-serif:      "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:      "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-size-base:              18px;
+
+$headings-font-family:        "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$headings-font-weight:        700;
+$headings-line-height:        1.1;
 
 $border-radius-base:          0px;
 $border-radius-large:         0px;
@@ -29,6 +38,47 @@ $panel-footer-bg:             $dark-gray;
 $input-bg:                    transparent;
 $input-border:                $light-border;
 $input-height-base:           60px;
+
+$btn-default-color:              #fff;
+$btn-default-bg:                 $light-green;
+$btn-default-border:             $btn-default-bg;
+
+$btn-primary-color:              $btn-default-color;
+$btn-primary-bg:                 $brand-primary;
+$btn-primary-border:             $btn-primary-bg;
+
+$btn-success-color:              $btn-default-color;
+$btn-success-bg:                 $brand-success;
+$btn-success-border:             $btn-success-bg;
+
+$btn-warning-color:              $btn-default-color;
+$btn-warning-bg:                 $brand-warning;
+$btn-warning-border:             $btn-warning-bg;
+
+$btn-danger-color:               $btn-default-color;
+$btn-danger-bg:                  $brand-danger;
+$btn-danger-border:              $btn-danger-bg;
+
+$btn-info-color:                 $btn-default-color;
+$btn-info-bg:                    $brand-info;
+$btn-info-border:                $btn-info-bg;
+
+$zindex-popover:                 1060;
+
+$tooltip-color:               #fff;
+$tooltip-bg:                  rgba(0,0,0,.9);
+$tooltip-arrow-width:         5px;
+$tooltip-arrow-color:         $tooltip-bg;
+
+$popover-bg:                  $darkest-gray;
+$popover-arrow-width:         10px;
+$popover-arrow-color:         $darkest-gray;
+$popover-title-bg:            darken($popover-bg, 3%);
+
+// Special enhancement for popovers
+$popover-arrow-outer-width:   ($popover-arrow-width + 1);
+$popover-arrow-outer-color:   rgba(0,0,0,.25);
+
 
 @import 'twitter/bootstrap';
 
@@ -237,7 +287,6 @@ a.list-group-item span.glyphicon {
   margin-right: 12px;
   color: rgba(255,255,255,0.3);
   vertical-align: -4px;
-  font-size: 125%;
   border-right: 1px solid $dark-border;
   height: 60px;
   display: inline-block;
@@ -253,3 +302,46 @@ a.list-group-item.active span.glyphicon {
   padding: 0;
 }
 
+label {
+  font-weight: normal;
+  line-height: 49px;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  min-height: 60px;
+  box-shadow: none;
+
+  &:hover:focus,
+  &:focus {
+    border-color: $dark-green;
+    border-width: 3px;
+    box-shadow: none;
+  }
+
+  &:hover {
+    border-color: $light-blue;
+    border-width: 2px;
+  }
+}
+
+.popover {
+  border-radius: none;
+  box-shadow: none;
+  max-width: 400px;
+  font-size: 14px;
+}

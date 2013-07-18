@@ -1,5 +1,5 @@
-# Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
+  # TODO: Make the default form not use labels and implement the variants as other wrappers.
   config.wrappers :bootstrap, tag: 'div', class: 'row', error_class: 'error' do |b|
     b.use :html5
     b.use :placeholder
