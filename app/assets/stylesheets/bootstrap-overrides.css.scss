@@ -1,33 +1,15 @@
-$dark-border: rgba(255,255,255,0.05);
-$dark-gray: #232323;
-$light-gray: #EBE7DF;
-$dark-green: #19664A;
-$light-green: #1F7F5C;
-$dark-red: #B75654;
-$light-red: #E56C69;
-$dark-yellow: #AF845A;
-$light-yellow: #DBA571;
-$dark-blue: #487B86;
-$light-blue: #5A9AA8;
-$bright-blue: #0C8AC8;
-$dark-turquoise: #204246;
-$light-turquoise: #28545B;
-$dark-purple: #554870;
-$light-purple: #6A5A8C;
-$dark-lilac: #704A61;
-$light-lilac: #8C5D79;
-
+@import 'colors';
 
 /* Bootstrap Variables */
-$brand-primary:         $light-blue;
+$brand-primary:               $light-blue;
 
-$font-family-sans-serif:  "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:      "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
-$border-radius-base:             0px;
-$border-radius-large:            0px;
-$border-radius-small:            0px;
+$border-radius-base:          0px;
+$border-radius-large:         0px;
+$border-radius-small:         0px;
 
-$component-active-bg:            $brand-primary !default;
+$component-active-bg:         $brand-primary !default;
 
 $list-group-bg:               $dark-gray;
 $list-group-border:           $dark-border;
@@ -43,6 +25,10 @@ $panel-border:                $dark-border;
 $panel-border-radius:         $border-radius-base;
 $panel-heading-bg:            $dark-gray;
 $panel-footer-bg:             $dark-gray;
+
+$input-bg:                    transparent;
+$input-border:                $light-border;
+$input-height-base:           60px;
 
 @import 'twitter/bootstrap';
 
@@ -109,6 +95,10 @@ $panel-footer-bg:             $dark-gray;
   .btn-navbar {
     background-color: $dark-blue;
   }
+}
+
+.btn-group > .btn + .dropdown-toggle {
+  padding: 8px 26px;
 }
 
 .btn-group {

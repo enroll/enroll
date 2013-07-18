@@ -1,6 +1,4 @@
-$dark-border: rgba(255,255,255,0.05);
-$dark-gray: #232323;
-$light-gray: #EBE7DF;
+@import 'colors';
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -15,6 +13,15 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
   background-color: $dark-gray;
   color: #ecf0f1;
+}
+
+#sign-up {
+  background-color: $dark-red;
+  color: #fff;
+}
+
+#sign-up > .container {
+  padding: 16px 0;
 }
 
 .upcase {
