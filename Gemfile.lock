@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 56cf002b266b61263d881155b938369488cb9d54
+  revision: 9874186cf3e30db0a626ff26120f2de882d5ecae
   branch: 3.0.0
   specs:
     anjlab-bootstrap-rails (3.0.0.0.alpha1)
@@ -213,7 +213,7 @@ DEPENDENCIES
   anjlab-bootstrap-rails!
   bootstrap-glyphicons
   coffee-rails (~> 4.0.0)
-  devise (~> 3.0.0.rc)
+  devise (~> 3.0.0)
   factory_girl_rails
   foreman
   guard
