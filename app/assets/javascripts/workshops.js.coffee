@@ -69,6 +69,7 @@ ready = ->
   $(".course-title-popover").popover(
     trigger: 'focus',
     placement: 'bottom',
+    title: "It's free to create a course.",
     content: "You can always change the name of your course later."
   )
 
