@@ -11,19 +11,19 @@
         %button.btn.btn-navbar{"data-toggle" => "collapse", "data-target" => "#sign-up"}
           %span.title Sign Up
 
-#sign-up.collapse
+#sign-up.collapse{class: "#{@instructor.errors.any? ? 'in' : ''}"}
   .container
     .row
-      = simple_form_for(Instructor.new, :url => registration_path(:instructor), :html => {:class => "form-horizontal"}) do |f|
-        = f.simple_fields_for :course do |c|
-          = c.input :title, 
-                    required: false, autofocus: true, label: "Course Name",
+      = simple_form_for(@instructor, :url => registration_path(:instructor), :html => {:class => "form-horizontal"}) do |f|
+        = f.simple_fields_for @course do |c|
+          = c.input :name, required: false, autofocus: true, label: "Course Name",
                     label_html: { class: 'col-lg-2' },
                     input_html: { class: 'course-title-popover' }
-          = f.input :email, :autofocus => true, label_html: { class: 'col-lg-2' }
+          = f.input :email, label_html: { class: 'col-lg-2' }
           = f.input :password, label_html: { class: 'col-lg-2' }
           .row
-            = f.button :submit, "Sign Up To Teach", class: "btn-primary"
+            .col-offset-2
+              = f.button :submit, "Sign Up To Teach", class: "btn-primary"
 
 .jumbotron.front-page
   .container
