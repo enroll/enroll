@@ -1,0 +1,44 @@
+#!/bin/bash
+# Usage: script/cibuild
+# CI build script
+#
+set -e
+
+echo "Tests started at..."
+date "+%H:%M:%S"
+
+# GC customizations
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1.25
+export RUBY_HEAP_MIN_SLOTS=800000
+export RUBY_FREE_MIN=600000
+
+echo "Using..."
+ruby -v
+
+mkdir -p log
+mkdir -p tmp
+
+trap "rm -f tmp/bootstrap.$$" EXIT
+
+# list of bundler groups to exclude when bootstrapping
+bundle_without="development:staging:production"
+
+echo "Bundler started at..."
+date "+%H:%M:%S"
+
+bundle install --without="$bundle_without" --path vendor/gems 1>tmp/bootstrap.$$ 2>&1 || {
+    echo "error: bundle failed (exit $?)" 1>&2
+    cat tmp/bootstrap.$$
+    exit 1
+}
+
+echo "Creating test database for enroll..."
+date "+%H:%M:%S"
+dropdb enroll_test 2>/dev/null || true
+createdb enroll_test --template template0 --encoding unicode 2>/dev/null || true
+bundle exec rake db:schema:load
+
+echo "Running tests ..."
+date "+%H:%M:%S"
+bundle exec rake
