@@ -13,6 +13,9 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1.25
 export RUBY_HEAP_MIN_SLOTS=800000
 export RUBY_FREE_MIN=600000
 
+# setup environment
+export PATH="/var/lib/jenkins/.rbenv/shims:/usr/bin:/bin"
+
 echo "Using..."
 ruby -v
 
