@@ -15,6 +15,8 @@ export RUBY_FREE_MIN=600000
 
 # setup environment
 export PATH="/var/lib/jenkins/.rbenv/shims:/usr/bin:/bin"
+export RAILS_ENV="test"
+export RACK_ENV="$RAILS_ENV"
 
 echo "Using..."
 ruby -v
@@ -40,6 +42,8 @@ echo "Creating test database for enroll..."
 date "+%H:%M:%S"
 dropdb enroll_test 2>/dev/null || true
 createdb enroll_test --template template0 --encoding unicode 2>/dev/null || true
+
+cp config/database.ci.yml config/database.yml
 bundle exec rake db:schema:load
 
 echo "Running tests ..."
