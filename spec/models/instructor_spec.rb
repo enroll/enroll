@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Instructor do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:instructor) { build(:instructor) }
+
+  it { should have_many(:courses) }
+
+  it { should validate_presence_of(:email) }
 end

@@ -4,6 +4,7 @@ describe Course do
   let(:course) { build(:course) }
 
   it { should belong_to(:location) }
+  it { should belong_to(:instructor) }
   it { should have_many(:reservations) }
 
   it { should validate_presence_of(:name) }

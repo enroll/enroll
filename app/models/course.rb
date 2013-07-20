@@ -1,9 +1,11 @@
 class Course < ActiveRecord::Base
   has_many :reservations, dependent: :destroy
   belongs_to :location
+  belongs_to :instructor
 
   validates :name, presence: true
   validates :location, associated: true
+  validates :instructor, associated: true
 
   after_save :set_defaults
 

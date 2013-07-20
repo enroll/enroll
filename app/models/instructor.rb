@@ -5,6 +5,8 @@ class Instructor < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :courses
+
   def display_title
     email
   end
