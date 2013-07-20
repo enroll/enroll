@@ -6,9 +6,9 @@
 
     - unless instructor_signed_in?
       .btn-group.pull-right
-        %button.btn.btn-navbar{"data-toggle" => "collapse", "data-target" => "#log-in"}
+        %button.btn.btn-navbar.collapsed{"data-toggle" => "collapse", "data-target" => "#log-in"}
           %span.title Log In
-        %button.btn.btn-navbar{"data-toggle" => "collapse", "data-target" => "#sign-up"}
+        %button.btn.btn-navbar.btn-sign-up.collapsed{"data-toggle" => "collapse", "data-target" => "#sign-up"}
           %span.title Sign Up
 
 #sign-up.collapse{class: "#{@instructor.errors.any? ? 'in' : ''}"}
@@ -22,8 +22,8 @@
           = f.input :email, label_html: { class: 'col-lg-2' }
           = f.input :password, label_html: { class: 'col-lg-2' }
           .row
-            .col-offset-2
-              = f.button :submit, "Sign Up To Teach", class: "btn-primary"
+            .col-lg-11
+              = f.button :submit, "Sign Up To Teach", class: "btn-primary pull-right"
 
 .jumbotron.front-page
   .container

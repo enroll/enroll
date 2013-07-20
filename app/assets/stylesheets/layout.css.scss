@@ -1,5 +1,8 @@
 @import 'colors';
 
+$montserrat-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
 body {
   padding-top: 60px;
   background-color: $light-gray;
@@ -10,13 +13,39 @@ body {
   color: #ecf0f1;
 }
 
-#sign-up {
-  background-color: $dark-gray;
-  color: #fff;
+/* Sign Up Toggle Form */
+
+.btn-navbar.btn-sign-up {
+  background-color: lighten($dark-gray, 3%);
+
+  &:hover {
+    background-color: $light-blue;
+  }
+
+  &:active {
+    background-color: $dark-blue;
+  }
+
+  &.collapsed {
+    background-color: transparent;
+
+    &:hover {
+      background-color: $light-blue;
+    }
+
+    &:active {
+      background-color: $dark-blue;
+    }
+  }
 }
 
-#sign-up > .container {
-  padding: 16px 0;
+#sign-up {
+  background-color: lighten($dark-gray, 3%);
+  color: #fff;
+
+  > .container {
+    padding: 16px 0;
+  }
 }
 
 .upcase {
@@ -25,9 +54,9 @@ body {
 }
 
 .btn.reserve {
-  background-color: #16a085;
+  background-color: $light-green;
   font-weight: bold;
-  border: 1px solid #16a085;
+  border: 1px solid $light-green;
 }
 
 .jumbotron {
@@ -36,8 +65,8 @@ body {
 
 .jumbotron.front-page {
   text-align: center;
-  color: #ecf0f1;
-  background-color: #204246;
+  color: #fff;
+  background-color: $dark-turquoise;
   /*background-color: #E76E66;*/
   border-radius: 0;
 }
@@ -100,17 +129,21 @@ span.dollar {
       padding: 20px;
       margin: 0;
       color: #fff;
-      background-color: #204246;
+      background-color: #2e2e2e;
+      border: none;
 
       .progress {
-        height: 10px;
+        height: 20px;
         margin-bottom: 2px;
-        border: 1px solid $dark-border;
+
+        .progress-bar {
+          background-color: lighten($light-green, 5%);
+        }
       }
 
       .funded-label {
         font-size: 10px;
-        color: rgba(255,255,255,0.3);
+        color: rgba(255,255,255,0.4);
         text-transform: uppercase;
         text-align: center;
         line-height: 10px;
@@ -121,6 +154,7 @@ span.dollar {
         border-top: 1px solid $dark-border;
         margin-right: -20px;
         margin-left: -20px;
+        margin-bottom: -10px;
         padding: 5px 10px 0;
 
         .col-4 {
@@ -130,12 +164,15 @@ span.dollar {
       }
 
       .quantity {
-        font-size: 120%;
+        font-weight: 400;
+        font-family: $montserrat-family;
+        margin-bottom: -5px;
       }
       .status-label {
         font-size: 10px;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.3);
+        color: rgba(255,255,255,0.4);
+        font-family: $montserrat-family;
       }
 
     }
