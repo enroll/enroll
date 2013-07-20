@@ -1,0 +1,9 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: enroll_test
+  template: template0
+  pool: 5
+  min_messages: warning
+  host: localhost
+  user: jenkins

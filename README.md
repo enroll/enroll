@@ -16,3 +16,4 @@ Enroll
 - [Competition](https://github.com/jessmartin/workshop-platform/blob/master/docs/competition.md)
 - [Potential Customers](https://github.com/jessmartin/workshop-platform/blob/master/docs/customers.md)
 - [User Stories](https://trello.com/board/workshop-platform/51b06b4d6024b43523001cf2) (Trello)
+- [Deployment](https://github.com/jessmartin/workshop-platform/blob/master/docs/deployment.md)
