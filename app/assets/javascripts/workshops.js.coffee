@@ -73,5 +73,17 @@ ready = ->
     content: "You can always change the name of your course later."
   )
 
+  $('#sign-up').on 'show.bs.collapse', ->
+    $('#log-in.in').collapse('hide')
+
+  $('#sign-up').on 'shown.bs.collapse', ->
+    $('#instructor_course_name').focus()
+
+  $('#log-in').on 'shown.bs.collapse', ->
+    $('#log-in .email').focus()
+
+  $('#log-in').on 'show.bs.collapse', ->
+    $('#sign-up.in').collapse('hide')
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

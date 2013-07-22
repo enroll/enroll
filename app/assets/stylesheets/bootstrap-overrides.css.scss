@@ -328,6 +328,10 @@ label {
   color: rgba(255,255,255,0.6);
 }
 
+.checkbox label {
+  line-height: 27px;
+}
+
 .has-error {
   select,
   textarea,

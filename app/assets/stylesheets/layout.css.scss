@@ -10,6 +10,7 @@ body {
 
 /* Sign Up Toggle Form */
 
+.btn-navbar.btn-log-in,
 .btn-navbar.btn-sign-up {
   background-color: lighten($dark-gray, 3%);
 
@@ -34,6 +35,7 @@ body {
   }
 }
 
+#log-in,
 #sign-up {
   background-color: lighten($dark-gray, 3%);
   color: #fff;
