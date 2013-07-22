@@ -8,11 +8,6 @@ body {
   background-color: $light-gray;
 }
 
-.navbar {
-  background-color: $darkest-gray;
-  color: #ecf0f1;
-}
-
 /* Sign Up Toggle Form */
 
 .btn-navbar.btn-sign-up {
@@ -60,23 +55,21 @@ body {
 }
 
 .jumbotron {
-  background-color: #95A5A6;
+  background-color: $dark-green;
 }
 
 .jumbotron.front-page {
   text-align: center;
   color: #fff;
-  background-color: $dark-turquoise;
-  /*background-color: #E76E66;*/
+  background-color: darken($dark-green, 7%);
   border-radius: 0;
 }
 
 .jumbotron.front-page h1.logo {
-  width: 385px;
-  height: 116px;
-  text-indent: -9000px;
-  margin: 0 auto 1em;
-  background: transparent url(/assets/images/enroll-logo-white.png) top left no-repeat;
+  font-size: 135px;
+  text-transform: none;
+  letter-spacing: -8px;
+  margin: 0 auto 24px;
 }
 
 .jumbotron.front-page p + p {
