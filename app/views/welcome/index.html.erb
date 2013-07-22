@@ -1,17 +1,22 @@
 <div class="navbar navbar-fixed-top">
   <div class="container">
     <div class="row">
-      <p class="lead text-right">
-        <a href="/workshops/new" class="btn btn-primary">Try it out!</a>
-      </p>
+      <%= link_to 'Try it out!', new_course_path, :class => 'btn btn-large btn-primary pull-right' %>
     </div>
   </div>
 </div>
 
 <div class="jumbotron front-page text-right">
   <div class="container">
-    <h1>Symposia</h1>
-    <p>You teach it.  We host it.</p>
+    <h1 class="logo">enroll</h1>
+    <p>You teach.</p>
+    <p>We take care of the rest.</p>
     <%= link_to 'Try it out!', new_course_path, :class => 'btn btn-primary btn-large' %>
   </div>
 </div>
+
+<ul>
+  <% Course.all.each do |course| %>
+    <li><%= link_to course.name, edit_course_path(course) %></li>
+  <% end %>
+</ul>

@@ -1,10 +1,11 @@
 FactoryGirl.define do
   factory :course do
     name "Space Monkeys Learn Java"
+    location
   end
 
-  factory :reservation do
-    course
+  factory :location do
+    name "The Corner Pub"
   end
 
   factory :payout do
@@ -21,4 +22,7 @@ FactoryGirl.define do
     end
   end
 
+  factory :reservation do
+    course
+  end
 end

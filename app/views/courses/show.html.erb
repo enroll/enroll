@@ -11,10 +11,14 @@
 
 <div class="jumbotron text-right">
   <h1><%= @course.name %></h1>
-  <p>You Don't Have to be a Startup to Innovate Like One</p>
+  <p><%= @course.tagline %></p>
 
-  <p class="upcase location">San Francisco, CA</p>
-  <p class="date upcase">June 6, 2013  |  8:30AM - 4:30PM</p>
+  <% if @course.location.present? %>
+    <p class="upcase location"><%= @course.location.city %>, <%= @course.location.state %></p>
+  <% end %>
+  <% if @course.course_starts_at.present? %>
+    <p class="date upcase"><%= @course.course_start_date %> | <%= @course.course_start_time %> - <%= @course.course_end_time %></p>
+  <% end %>
   <%= course_reservation_link(@course) %>
 </div>
 
@@ -46,14 +50,16 @@
         We'll give you a real glimpse into how some of the largest organizations in the world are embracing the breakthrough power of Lean Startup in the Enterprise.
       </p>
 
-      <h2>Where</h2>
+      <% if @course.location.present? %>
+        <h2>Where</h2>
 
-      <address>
-        <strong>Twitter, Inc.</strong><br>
-        795 Folsom Ave, Suite 600<br>
-        San Francisco, CA 94107<br>
-        <abbr title="Phone">P:</abbr> (123) 456-7890
-      </address>
+        <address>
+          <strong><%= @course.location.name %></strong><br>
+          <%= @course.location.address %><br>
+          <%= @course.location.city %>, <%= @course.location.state %> <%= @course.location.zip %><br>
+          <abbr title="Phone">P:</abbr> <%= @course.location.phone %>
+        </address>
+      <% end %>
 
     </div>
   </div>

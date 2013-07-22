@@ -2,18 +2,18 @@ require 'spec_helper'
 
 describe CoursesController do
   let(:course) { build(:course) }
-  let(:course_attributes) { attributes_for(:course) }
+  let(:course_attributes) { attributes_for(:course).merge({ location_attributes: attributes_for(:location)}) }
 
   context "GET new" do
     it "renders the new page" do
       get :new
-      must_respond_with :success
-      must_render_template :new
+      response.should be_success
+      response.should render_template :new
     end
 
     it "initializes a new course" do
       get :new
-      assigns[:course].wont_be_nil
+      assigns[:course].should_not be_nil
     end
   end
 
@@ -21,8 +21,9 @@ describe CoursesController do
     before { course.save }
 
     it "renders the show page" do
-      get :show, :id => course.to_param
-      must_render_template :show
+      get :show, id: course.to_param
+      response.should be_success
+      response.should render_template :show
     end
   end
 
@@ -31,13 +32,46 @@ describe CoursesController do
 
     it "renders the index" do
       get :index
-      must_respond_with :success
-      must_render_template :index
+      response.should be_success
+      response.should render_template :index
     end
 
     it "includes some courses" do
       get :index
-      assigns[:courses].wont_be_nil
+      assigns[:courses].should_not be_nil
+    end
+  end
+
+  context "POST create" do
+    it "creates a course" do
+      expect {
+        post :create, course: course_attributes
+      }.to change(Course, :count)
+    end
+
+    it "redirects to the reservation" do
+      post :create, course: course_attributes
+      response.should be_redirect
+      response.should redirect_to(course_path(assigns[:course]))
+    end
+
+    it "sets the success flash" do
+      post :create, course: course_attributes
+      flash[:success].should_not be_nil
+    end
+
+    context "when submitting invalid data" do
+      before { Course.any_instance.stubs(:save).returns(false) }
+
+      it "renders the new page" do
+        post :create, course: { junk: '1' }
+        response.should render_template :new
+      end
+
+      it "sets the error flash" do
+        post :create, course: { junk: '1' }
+        flash[:error].should_not be_nil
+      end
     end
   end
 end

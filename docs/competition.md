@@ -13,6 +13,20 @@
   - http://www.skillshare.com/How-to-Build-an-Awesome-Professional-Network/168031227/1758500734?via=similar-classes
   - http://www.skillshare.com/Startup-Marketing-for-Dummies-Acquisition-Retention-and-Revenue/1783431596/1053709570?via=similar-classes
 
+**General Assembly** - http://generalassemb.ly/
+
+- Curated set of local and live-streamed courses
+- Very well-designed site with some course tools as well
+- Interesting Enterprise partnerships
+  - https://generalassemb.ly/enterprise
+- Uses eventbrite for ticketing?? *boggle* Would love to talk to them about this at some point.
+- Check out some of their beautifully-designed workshop pages:
+  - All courses: https://generalassemb.ly/learn
+  - Bootcamp: https://generalassemb.ly/education/mobile-app-development-bootcamp/new-york-city/2128
+  - "Immersive Course": https://generalassemb.ly/education/user-experience-design-immersive/new-york-city
+  - Workshop: https://generalassemb.ly/education/understanding-mobile-user-experience/new-york-city/2140
+- Refund policy is 7 days
+
 **Custom website + EventBrite**
 
 - Many people hosting workshops put together a custom website and use
