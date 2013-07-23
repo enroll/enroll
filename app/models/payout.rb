@@ -1,8 +1,10 @@
 class Payout < ActiveRecord::Base
   validates_presence_of :amount_in_cents, :description, :stripe_recipient_id
 
+  attr_accessor :transfer
+
   state_machine :status, :initial => :pending do
-    after_transition :on => :request, :do => :transfer_funds!
+    after_transition :on => :request, :do => [:transfer_funds!, :set_transfer_id]
 
     # Request a transfer of funds
     event :request do
@@ -29,7 +31,11 @@ class Payout < ActiveRecord::Base
 
   # Initiate a funds transfer
   def transfer_funds!
-    Stripe::Transfer.create(transfer_params)
+    self.transfer = Stripe::Transfer.create(transfer_params)
+  end
+
+  def set_transfer_id
+    self.stripe_transfer_id = self.transfer.try(:id)
   end
 
 end

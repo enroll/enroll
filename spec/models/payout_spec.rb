@@ -39,6 +39,11 @@ describe Payout do
       payout.expects(:transfer_funds!).returns(stub_everything)
       payout.request
     end
+
+    it "sets the transfer id" do
+      payout.expects(:set_transfer_id).returns(stub_everything)
+      payout.request
+    end
   end
 
   context "#transfer_funds!" do
@@ -56,6 +61,20 @@ describe Payout do
         transfer.recipient.should == "rp_2FUrV5Zn4ILgfo"
         transfer.amount.should    == 14000
       end
+    end
+  end
+
+  context "#set_transfer_id" do
+    it "sets the stripe_transfer_id from the transfer" do
+      payout.transfer = stub(:id => "abc123")
+      payout.set_transfer_id
+      payout.stripe_transfer_id.should == "abc123"
+    end
+
+    it "handles the case where the transfer is nil" do
+      payout.transfer = nil
+      payout.set_transfer_id
+      payout.stripe_transfer_id.should be_nil
     end
   end
 
