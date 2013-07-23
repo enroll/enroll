@@ -10,7 +10,7 @@ FactoryGirl.define do
 
   factory :payout do
     amount_in_cents 15000 # $150 USD
-    description 'Course: How to raise seed funding'
+    description 'How to raise seed funding'
     stripe_recipient_id 12345
 
     factory :payout_requested do

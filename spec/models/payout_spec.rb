@@ -28,26 +28,56 @@ describe Payout do
   end
 
   context "#request" do
-    before { Payout.any_instance.stubs(:request_stripe_transfer!).returns(true) }
+    before { payout.stubs(:transfer_funds!).returns(true) }
 
     it "updates the status to 'requested" do
       payout.request
       payout.status.should == 'requested'
     end
 
-    # TODO: Bring in VCR or stub out Stripe somehow
-    #it "creates a Stripe::Transfer" do
-      #payout = build(:payout, :description => "Ruby Fundamentals", :amount_in_cents => 14000, :stripe_recipient_id => 12345)
+    it "requests a funds transfer" do
+      payout.expects(:transfer_funds!).returns(stub_everything)
+      payout.request
+    end
+  end
 
-      #Stripe::Transfer.expects(:create).with({
-        #:amount => 140000,
-        #:currency => 'usd',
-        #:recipient => 12345,
-        #:statement_descriptor => "Ruby Fundamentals"
-      #})
+  context "#transfer_funds!" do
+    it "transfers funds to a stripe recipient" do
+      payout = build(:payout,
+        :description         => "Ruby Fundamentals",
+        :amount_in_cents     => 14000,
+        :stripe_recipient_id => "rp_2FUrV5Zn4ILgfo"
+      )
 
-      #payout.transfer!
-    #end
+      VCR.use_cassette('stripe/transfer') do
+        transfer = payout.transfer_funds!
+
+        transfer.status.should    == "pending"
+        transfer.recipient.should == "rp_2FUrV5Zn4ILgfo"
+        transfer.amount.should    == 14000
+      end
+    end
+  end
+
+  context "#transfer_params" do
+    it "includes the amount" do
+      payout.amount_in_cents = 1000
+      payout.transfer_params[:amount].should == 1000
+    end
+
+    it "includes the currency" do
+      payout.transfer_params[:currency].should == 'usd'
+    end
+
+    it "includes the stripe recipient" do
+      payout.stripe_recipient_id = 54321
+      payout.transfer_params[:recipient].should == 54321
+    end
+
+    it "includes the statement_descriptor" do
+      payout.description = "Negotiation 101"
+      payout.transfer_params[:statement_descriptor].should == "Negotiation 101"
+    end
   end
 
   context "#complete" do
