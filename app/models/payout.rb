@@ -35,7 +35,9 @@ class Payout < ActiveRecord::Base
   end
 
   def set_transfer_id
-    self.stripe_transfer_id = self.transfer.try(:id)
+    if transfer && transfer.id
+      self.stripe_transfer_id = transfer.id
+    end
   end
 
 end
