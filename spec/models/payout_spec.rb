@@ -27,12 +27,12 @@ describe Payout do
     payout.status.should == 'pending'
   end
 
-  context "#transfer" do
+  context "#request" do
     before { Payout.any_instance.stubs(:request_stripe_transfer!).returns(true) }
 
-    it "updates the status to 'transfer_requested" do
-      payout.transfer
-      payout.status.should == 'transfer_requested'
+    it "updates the status to 'requested" do
+      payout.request
+      payout.status.should == 'requested'
     end
 
     # TODO: Bring in VCR or stub out Stripe somehow
@@ -50,10 +50,10 @@ describe Payout do
     #end
   end
 
-  context "#transfer_complete" do
+  context "#complete" do
     it "updates the status to 'paid'" do
       payout = build(:payout_requested)
-      payout.transfer_complete
+      payout.complete
       payout.status.should == 'paid'
     end
   end

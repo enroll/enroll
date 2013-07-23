@@ -14,7 +14,7 @@ FactoryGirl.define do
     stripe_recipient_id 12345
 
     factory :payout_requested do
-      status "transfer_requested"
+      status "requested"
     end
 
     factory :payout_completed do

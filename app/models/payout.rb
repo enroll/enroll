@@ -4,12 +4,14 @@ class Payout < ActiveRecord::Base
   state_machine :status, :initial => :pending do
     before_transition :on => :transfer, :do => :request_stripe_transfer!
 
-    event :transfer do
-      transition :pending => :transfer_requested
+    # Request a transfer of funds
+    event :request do
+      transition :pending => :requested
     end
 
-    event :transfer_complete do
-      transition :transfer_requested => :paid
+    # A funds transfer has been completed
+    event :complete do
+      transition :requested => :paid
     end
   end
 
