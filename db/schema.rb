@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20130704195221) do
   end
 
   create_table "payouts", force: true do |t|
-    t.integer "stripe_transfer_id"
-    t.integer "stripe_recipient_id"
+    t.string  "stripe_transfer_id"
+    t.string  "stripe_recipient_id"
     t.string  "status"
     t.string  "description"
     t.integer "amount_in_cents"
