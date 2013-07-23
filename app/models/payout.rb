@@ -2,7 +2,7 @@ class Payout < ActiveRecord::Base
   validates_presence_of :amount_in_cents, :description, :stripe_recipient_id
 
   state_machine :status, :initial => :pending do
-    before_transition :on => :request, :do => :transfer_funds!
+    after_transition :on => :request, :do => :transfer_funds!
 
     # Request a transfer of funds
     event :request do
