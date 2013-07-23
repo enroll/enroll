@@ -36,7 +36,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'vcr'
-  gem 'webmock'
+  gem 'fakeweb'
   gem 'dotenv-rails'
 end
 
