@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rspec-instafail'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'dotenv-rails'
 end
 
 group :development do
