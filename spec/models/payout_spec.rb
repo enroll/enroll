@@ -7,24 +7,24 @@ describe Payout do
     it "requires an 'amount_in_cents'" do
       payout.amount_in_cents = nil
       payout.valid?
-      payout.errors[:amount_in_cents].must_include "can't be blank"
+      payout.errors[:amount_in_cents].should include("can't be blank")
     end
 
     it "requires a 'description' of what bank transfer will say" do
       payout.description = nil
       payout.valid?
-      payout.errors[:description].must_include "can't be blank"
+      payout.errors[:description].should include("can't be blank")
     end
 
     it "requires a 'stripe_recipient_id'" do
       payout.stripe_recipient_id = nil
       payout.valid?
-      payout.errors[:stripe_recipient_id].must_include "can't be blank"
+      payout.errors[:stripe_recipient_id].should include("can't be blank")
     end
   end
 
   it "starts in the 'pending' status" do
-    payout.status.must_equal 'pending'
+    payout.status.should == 'pending'
   end
 
   context "#transfer" do
@@ -32,7 +32,7 @@ describe Payout do
 
     it "updates the status to 'transfer_requested" do
       payout.transfer
-      payout.status.must_equal 'transfer_requested'
+      payout.status.should == 'transfer_requested'
     end
 
     # TODO: Bring in VCR or stub out Stripe somehow
@@ -54,7 +54,7 @@ describe Payout do
     it "updates the status to 'paid'" do
       payout = build(:payout_requested)
       payout.transfer_complete
-      payout.status.must_equal 'paid'
+      payout.status.should == 'paid'
     end
   end
 end
