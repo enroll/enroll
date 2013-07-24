@@ -50,6 +50,10 @@ body {
   font-weight: 700;
 }
 
+#course-dropdown .btn-navbar {
+  min-width: 250px;
+}
+
 .btn.reserve {
   background-color: $light-green;
   font-weight: bold;

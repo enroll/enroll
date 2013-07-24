@@ -7,6 +7,9 @@ class Course < ActiveRecord::Base
   validates :location, associated: true
   validates :instructor, associated: true
 
+  scope :future, -> { where("course_starts_at >= ?", Date.today.to_datetime)}
+  scope :past, -> { where("course_starts_at < ?", Date.today.to_datetime)}
+
   after_save :set_defaults
 
   # temporary while we figure out what db columns we want...

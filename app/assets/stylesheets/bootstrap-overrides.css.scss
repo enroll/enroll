@@ -110,6 +110,11 @@ $popover-arrow-outer-color:   rgba(0,0,0,.25);
   font-weight: 700;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
+
+  &:active,
+  &.active {
+    box-shadow: none;
+  }
 }
 
 .btn-large {
@@ -126,6 +131,7 @@ $popover-arrow-outer-color:   rgba(0,0,0,.25);
 
 .btn .caret {
   margin-left: 10px;
+  margin-top: 20px;
   border-top-color: rgba(255,255,255,0.3);
 }
 
@@ -136,6 +142,7 @@ $popover-arrow-outer-color:   rgba(0,0,0,.25);
   color: #fff;
   font-weight: 400;
   text-transform: none;
+  text-align: left;
 }
 
 .btn-navbar > img {
@@ -161,6 +168,10 @@ $popover-arrow-outer-color:   rgba(0,0,0,.25);
   .btn-navbar {
     background-color: $light-blue;
   }
+}
+
+.btn-group.open .dropdown-toggle {
+  box-shadow: none;
 }
 
 .btn-group > .btn + .dropdown-toggle {

@@ -7,46 +7,31 @@
       %nav.navbar-inner
         .container-fluid
           = link_to "enroll", root_path, :class => 'navbar-brand'
-          .btn-group
+          #course-dropdown.btn-group
             %button.btn.btn-navbar.dropdown-toggle{"data-toggle" => "dropdown"}
-              .course-info
-                .course-title Ruby for Newbies
-                .course-date July 13, 2013
-              %span.caret
+              = render 'courses/dropdown_course_info', course: @course
+              %span.caret.pull-right
             %ul.dropdown-menu{role: "menu"}
               %li.create-new
                 %a{href: "#{new_course_path}"}
                   Create a new course
                   %span.glyphicon.glyphicon-plus.pull-right
-              %li.title
-                %span Upcoming
-              %li.course
-                %a{href: "#"}
-                  .course-info
-                    .course-title Ruby for Newbies
-                    .course-date July 13, 2013
-                  %span.glyphicon.glyphicon-chevron-right
-              %li.course
-                %a{href: "#"}
-                  .course-info
-                    .course-title Intro to HTML
-                    .course-date August 23, 2013
-                  %span.glyphicon.glyphicon-chevron-right
-              %li.past.title
-                %span Past
-              %li.past.course
-                %a{href: "#"}
-                  .course-info
-                    .course-title Ruby for Newbies
-                    .course-date February 13, 2013
-                  %span.glyphicon.glyphicon-chevron-right
-              %li.past.course
-                %a{href: "#"}
-                  .course-info
-                    .course-title Intro to HTML
-                    .course-date January 10, 2013
-                  %span.glyphicon.glyphicon-chevron-right
-
+              - if Course.future.count > 0
+                %li.title
+                  %span Upcoming
+                - Course.future.first(5).each do |course|
+                  %li.course
+                    %a{href: "#{edit_course_path(course)}"}
+                      = render 'courses/dropdown_course_info', course: course
+                      %span.glyphicon.glyphicon-chevron-right
+              - if Course.past.count > 0
+                %li.past.title
+                  %span Past
+                - Course.past.first(5).each do |course|
+                  %li.past.course
+                    %a{href: "#{edit_course_path(course)}"}
+                      = render 'courses/dropdown_course_info', course: course
+                      %span.glyphicon.glyphicon-chevron-right
           = render 'layouts/settings_menu'
 
     #main{role: "main"}

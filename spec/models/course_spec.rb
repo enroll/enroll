@@ -56,4 +56,38 @@ describe Course do
       }.to_not change(Location, :count)
     end
   end
+
+  describe ".future" do
+    it "returns a course in the future" do
+      course = create(:course, course_starts_at: Date.tomorrow)
+      Course.future.should include(course)
+    end
+
+    it "does not return a course in the past" do
+      course = create(:course, course_starts_at: Date.yesterday)
+      Course.future.should_not include(course)
+    end
+
+    it "returns a course that is today" do
+      course = create(:course, course_starts_at: Date.today)
+      Course.future.should include(course)
+    end
+  end
+
+  describe ".past" do
+    it "returns a course in the past" do
+      course = create(:course, course_starts_at: Date.yesterday)
+      Course.past.should include(course)
+    end
+
+    it "does not return a course in the future" do
+      course = create(:course, course_starts_at: Date.tomorrow)
+      Course.past.should_not include(course)
+    end
+
+    it "does not return a course that is today" do
+      course = create(:course, course_starts_at: Date.today)
+      Course.past.should_not include(course)
+    end
+  end
 end
