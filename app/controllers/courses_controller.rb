@@ -1,9 +1,6 @@
 class CoursesController < ApplicationController
-
-  def new
-    @course = Course.new
-    @course.build_location
-  end
+  before_filter :authenticate_instructor!, only: [:edit]
+  before_filter :find_course!, only: [:edit]
 
   def index
     @courses = Course.all
@@ -11,6 +8,11 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+  end
+
+  def new
+    @course = Course.new
+    @course.build_location
   end
 
   def create
@@ -26,7 +28,6 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find(params[:id])
     render :layout => "manage_course"
   end
 
@@ -39,5 +40,10 @@ class CoursesController < ApplicationController
         :name, :address, :city, :state, :zip, :phone
       ]
     )
+  end
+
+  def find_course!
+    @course = current_instructor.courses.find_by_id(params[:id])
+    redirect_to root_path unless @course
   end
 end

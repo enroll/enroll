@@ -10,7 +10,7 @@ describe Instructors::RegistrationsController do
   end
 
   let(:instructor_attributes) { attributes_for(:instructor).merge({ course: attributes_for(:course)}) }
-  
+
   context "POST instructors" do
     context "with valid params" do
       it "creates a new instructor" do
