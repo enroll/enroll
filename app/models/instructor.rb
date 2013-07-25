@@ -7,6 +7,18 @@ class Instructor < ActiveRecord::Base
 
   has_many :courses
 
+  def current_course
+    return nil if courses.count == 0
+
+    if courses.future.count > 0
+      courses.future.first
+    elsif courses.past.count > 0
+      courses.past.first
+    else
+      courses.first
+    end
+  end
+
   def display_title
     email
   end

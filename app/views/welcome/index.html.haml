@@ -1,7 +1,10 @@
 .navbar.navbar-fixed-top
   .container-fluid
     = link_to 'enroll', root_path, :class => 'navbar-brand'
-
+    - if instructor_signed_in?
+      %ul.nav.navbar-nav
+        %li
+          = link_to 'Manage my course', edit_course_path(current_instructor.current_course)
     = render 'layouts/settings_menu'
 
     - unless instructor_signed_in?

@@ -7,31 +7,7 @@
       %nav.navbar-inner
         .container-fluid
           = link_to "enroll", root_path, :class => 'navbar-brand'
-          #course-dropdown.btn-group
-            %button.btn.btn-navbar.dropdown-toggle{"data-toggle" => "dropdown"}
-              = render 'courses/dropdown_course_info', course: @course
-              %span.caret.pull-right
-            %ul.dropdown-menu{role: "menu"}
-              %li.create-new
-                %a{href: "#{new_course_path}"}
-                  Create a new course
-                  %span.glyphicon.glyphicon-plus.pull-right
-              - if Course.future.count > 0
-                %li.title
-                  %span Upcoming
-                - Course.future.first(5).each do |course|
-                  %li.course
-                    %a{href: "#{edit_course_path(course)}"}
-                      = render 'courses/dropdown_course_info', course: course
-                      %span.glyphicon.glyphicon-chevron-right
-              - if Course.past.count > 0
-                %li.past.title
-                  %span Past
-                - Course.past.first(5).each do |course|
-                  %li.past.course
-                    %a{href: "#{edit_course_path(course)}"}
-                      = render 'courses/dropdown_course_info', course: course
-                      %span.glyphicon.glyphicon-chevron-right
+          = render 'layouts/course_chooser'
           = render 'layouts/settings_menu'
 
     #main{role: "main"}

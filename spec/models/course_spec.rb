@@ -42,7 +42,7 @@ describe Course do
     end
 
     it "matches an existing location" do
-      location = create(:location, name: 'Existing Location')
+      create(:location, name: 'Existing Location')
       expect {
         course.location_attributes = { name: 'Existing Location' }
         course.location.name.should == 'Existing Location'
@@ -72,6 +72,13 @@ describe Course do
       course = create(:course, course_starts_at: Date.today)
       Course.future.should include(course)
     end
+
+    it "returns courses sorted with sooner courses first" do
+      later_course = create(:course, course_starts_at: Date.tomorrow+1)
+      next_course = create(:course, course_starts_at: Date.tomorrow)
+
+      Course.future.should == [next_course, later_course]
+    end
   end
 
   describe ".past" do
@@ -88,6 +95,25 @@ describe Course do
     it "does not return a course that is today" do
       course = create(:course, course_starts_at: Date.today)
       Course.past.should_not include(course)
+    end
+
+    it "returns courses sorted with most recent courses first" do
+      long_ago_course = create(:course, course_starts_at: Date.yesterday-10)
+      recent_course = create(:course, course_starts_at: Date.yesterday)
+
+      Course.past.should == [recent_course, long_ago_course]
+    end
+  end
+
+  describe ".without_dates" do
+    it "returns a course without a date" do
+      course = create(:course, course_starts_at: nil)
+      Course.without_dates.should include(course)
+    end
+
+    it "does not return a course with a date" do
+      course = create(:course, course_starts_at: Date.today)
+      Course.without_dates.should_not include(course)
     end
   end
 end

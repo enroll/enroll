@@ -7,8 +7,9 @@ class Course < ActiveRecord::Base
   validates :location, associated: true
   validates :instructor, associated: true
 
-  scope :future, -> { where("course_starts_at >= ?", Date.today.to_datetime)}
-  scope :past, -> { where("course_starts_at < ?", Date.today.to_datetime)}
+  scope :future, -> { where("course_starts_at >= ?", Date.today.to_datetime).order("course_starts_at ASC") }
+  scope :past, -> { where("course_starts_at < ?", Date.today.to_datetime).order("course_starts_at DESC") }
+  scope :without_dates, -> { where(course_starts_at: nil) }
 
   after_save :set_defaults
 
