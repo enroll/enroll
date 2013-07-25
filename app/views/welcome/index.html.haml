@@ -9,9 +9,9 @@
 
     - unless instructor_signed_in?
       .btn-group.pull-right
-        %button.btn.btn-navbar.btn-log-in{class: "#{flash.alert ? '' : 'collapsed'}", "data-toggle" => "collapse", "data-target" => "#log-in"}
+        %button.btn.navbar-btn.btn-log-in{class: "#{flash.alert ? '' : 'collapsed'}", "data-toggle" => "collapse", "data-target" => "#log-in"}
           %span.title Log In
-        %button.btn.btn-navbar.btn-sign-up{class: "#{@instructor.errors.any? || @course.errors.any? ? '' : 'collapsed'}", "data-toggle" => "collapse", "data-target" => "#sign-up"}
+        %button.btn.navbar-btn.btn-sign-up{class: "#{@instructor.errors.any? || @course.errors.any? ? '' : 'collapsed'}", "data-toggle" => "collapse", "data-target" => "#sign-up"}
           %span.title Sign Up
 
 #sign-up.collapse{class: "#{@instructor.errors.any? || @course.errors.any? ? 'in' : ''}"}

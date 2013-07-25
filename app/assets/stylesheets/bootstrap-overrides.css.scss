@@ -1,6 +1,6 @@
 @import 'colors';
 
-/* Bootstrap Variables */
+/* Bootstrap Variables
 $brand-primary:               $light-green;
 $brand-success:               $light-blue;
 $brand-warning:               $light-yellow;
@@ -79,10 +79,11 @@ $popover-title-bg:            darken($popover-bg, 3%);
 $popover-arrow-outer-width:   ($popover-arrow-width + 1);
 $popover-arrow-outer-color:   rgba(0,0,0,.25);
 
+*/
 
 @import 'twitter/bootstrap';
 
-/* Bootstrap Styles */
+/* Bootstrap Styles 
 
 .navbar {
   height: 60px;
@@ -128,12 +129,11 @@ $popover-arrow-outer-color:   rgba(0,0,0,.25);
   border-right: 6px solid transparent;
   border-left: 6px solid transparent;
 }
-
+*/
 .btn .caret {
   margin-left: 10px;
-  margin-top: 20px;
-  border-top-color: rgba(255,255,255,0.3);
 }
+/*
 
 .btn-navbar {
   border-left: 1px solid $dark-border;
@@ -145,9 +145,13 @@ $popover-arrow-outer-color:   rgba(0,0,0,.25);
   text-align: left;
 }
 
+*/
+
 .btn-navbar > img {
   margin-right: 10px;
 }
+
+/*
 
 .btn-navbar > .title {
   vertical-align: middle;
@@ -417,3 +421,5 @@ input[type="color"] {
   max-width: 420px;
   font-size: 14px;
 }
+
+*/
