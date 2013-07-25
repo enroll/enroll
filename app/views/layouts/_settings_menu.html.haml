@@ -1,7 +1,7 @@
 - if instructor_signed_in?
   .btn-group.pull-right
     %button.btn.btn-navbar.dropdown-toggle.pull-right{"data-toggle" => "dropdown"}
-      %img.img-rounded{src: "/assets/images/profile-default-small.jpg"}
+      = gravatar_for(current_instructor.email, class: 'img-rounded', size: 30)
       %span.title
         = current_instructor.display_title
       %span.caret
