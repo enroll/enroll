@@ -1,21 +1,10 @@
 require 'spec_helper'
 
 describe CoursesController do
+  include Devise::TestHelpers
+
   let(:course) { build(:course) }
   let(:course_attributes) { attributes_for(:course).merge({ location_attributes: attributes_for(:location)}) }
-
-  context "GET new" do
-    it "renders the new page" do
-      get :new
-      response.should be_success
-      response.should render_template :new
-    end
-
-    it "initializes a new course" do
-      get :new
-      assigns[:course].should_not be_nil
-    end
-  end
 
   context "GET show" do
     before { course.save }
@@ -71,6 +60,43 @@ describe CoursesController do
       it "sets the error flash" do
         post :create, course: { junk: '1' }
         flash[:error].should_not be_nil
+      end
+    end
+  end
+
+  context "GET edit" do
+    let(:instructor) { create(:instructor) }
+
+    before { course.save }
+
+    context "when logged in and course owner" do
+      before do
+        course.instructor = instructor
+        course.save
+      end
+
+      it "renders the edit page" do
+        sign_in(instructor)
+        get :edit, id: course.to_param
+        response.should be_success
+        response.should render_template :edit
+      end
+    end
+
+    context "when logged in but not course owner" do
+      it "redirects to the root page" do
+        sign_in(instructor)
+        get :edit, id: course.to_param
+        response.should be_redirect
+        response.should redirect_to(root_path)
+      end
+    end
+
+    context "when not logged in" do
+      it "redirects to the root page" do
+        get :edit, id: course.to_param
+        response.should be_redirect
+        response.should redirect_to(root_path)
       end
     end
   end
