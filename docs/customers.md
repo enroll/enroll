@@ -38,4 +38,6 @@
 - geeks@thinkrelevance.com
 - Amy Hoy
 - Nathan Barry
-
+- Greg Young
+  - Why did he stop teaching his courses in person and switch to video only?
+  - http://goodenoughsoftware.net/online-videos/
