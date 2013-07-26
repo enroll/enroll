@@ -1,20 +1,21 @@
 - if instructor_signed_in?
-  .btn-group.pull-right
-    %button.btn.btn-navbar.dropdown-toggle.pull-right{"data-toggle" => "dropdown"}
-      = gravatar_for(current_instructor.email, class: 'img-rounded', size: 30)
-      %span.title
-        = current_instructor.display_title
-      %span.caret
-    %ul.dropdown-menu{role: "menu"}
-      %li
-        %a{href: "#"}
-          %span.glyphicon.glyphicon-usd
-          %span Payment Settings
-      %li
-        %a{href: "#"}
-          %span.glyphicon.glyphicon-user
-          Personal Info
-      %li
-        %a{href: destroy_instructor_session_path, "data-method" => "delete", rel: "nofollow"}
-          %span.glyphicon.glyphicon-remove
-          Logout
+  %ul#settings-menu.nav.navbar-nav.pull-right
+    %li
+      %a.dropdown-toggle{href: '#', "data-toggle" => "dropdown"}
+        = gravatar_for(current_instructor.email, class: 'img-rounded', size: 30)
+        %span.title
+          = current_instructor.display_title
+        %span.caret
+      %ul.dropdown-menu{role: "menu"}
+        %li
+          %a{href: "#"}
+            %span.glyphicon.glyphicon-usd
+            %span Payment Settings
+        %li
+          %a{href: "#"}
+            %span.glyphicon.glyphicon-user
+            Personal Info
+        %li
+          %a{href: destroy_instructor_session_path, "data-method" => "delete", rel: "nofollow"}
+            %span.glyphicon.glyphicon-remove
+            Logout

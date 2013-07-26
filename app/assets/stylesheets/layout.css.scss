@@ -1,39 +1,10 @@
 @import 'colors';
 
-$montserrat-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-
 body {
-  padding-top: 60px;
-  background-color: $light-gray;
+  padding-top: 70px;
 }
 
 /* Sign Up Toggle Form */
-
-.btn-navbar.btn-log-in,
-.btn-navbar.btn-sign-up {
-  background-color: lighten($dark-gray, 3%);
-
-  &:hover {
-    background-color: $light-blue;
-  }
-
-  &:active {
-    background-color: $dark-blue;
-  }
-
-  &.collapsed {
-    background-color: transparent;
-
-    &:hover {
-      background-color: $light-blue;
-    }
-
-    &:active {
-      background-color: $dark-blue;
-    }
-  }
-}
 
 #log-in,
 #sign-up {
@@ -43,6 +14,15 @@ body {
   > .container {
     padding: 16px 0;
   }
+
+  .popover {
+    color: #333;
+  }
+}
+
+#log-in.in,
+#sign-up.in {
+  margin-top: -20px;
 }
 
 .upcase {
@@ -50,25 +30,8 @@ body {
   font-weight: 700;
 }
 
-#course-dropdown .btn-navbar {
-  min-width: 250px;
-}
-
-.btn.reserve {
-  background-color: $light-green;
-  font-weight: bold;
-  border: 1px solid $light-green;
-}
-
-.jumbotron {
-  background-color: $dark-green;
-}
-
 .jumbotron.front-page {
   text-align: center;
-  color: #fff;
-  background-color: darken($dark-green, 7%);
-  border-radius: 0;
 }
 
 .jumbotron.front-page h1.logo {
@@ -89,60 +52,35 @@ body {
   font-size: 30pt;
 }
 
-.completion {
-  background-color: #222;
-  color: #ecf0f1;
-}
-
-.thats-it {
-  font-family: 'Love Ya Like A Sister', cursive;
-}
-.row.calculate {
-  font-size: 220%;
-}
-span.times {
-  font-size: 150%;
-}
-span.equals {
-  font-size: 150%;
-}
-span.dollar {
-  float: right;
-}
-
 .manage-sidebar {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  margin-top: 60px;
+  margin-top: 70px;
   width: 240px;
-  background-color: $dark-gray;
 
   .panel {
-    border-top: none;
-    border-right: none;
     border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 
     .panel-heading {
+      border-left: none;
+      border-top-left-radius: 0;
       padding: 20px;
-      margin: 0;
-      color: #fff;
-      background-color: #2e2e2e;
-      border: none;
+      margin: -15px;
 
       .progress {
         height: 20px;
         margin-bottom: 2px;
 
         .progress-bar {
-          background-color: lighten($light-green, 5%);
         }
       }
 
       .funded-label {
         font-size: 10px;
-        color: rgba(255,255,255,0.4);
         text-transform: uppercase;
         text-align: center;
         line-height: 10px;
@@ -163,15 +101,13 @@ span.dollar {
       }
 
       .quantity {
-        font-weight: 400;
-        font-family: $montserrat-family;
+        font-weight: 700;
+        font-size: 18px;
         margin-bottom: -5px;
       }
       .status-label {
         font-size: 10px;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.4);
-        font-family: $montserrat-family;
       }
 
     }
@@ -179,24 +115,43 @@ span.dollar {
 }
 
 .manage-content {
-  margin-left: 240px;
+  margin-left: 255px;
+  margin-right: 20px;
 }
 
-.course-info {
-  text-align: left;
-  display: inline-block;
-  padding: 4px 0;
+#course-dropdown {
+  > li > a.dropdown-toggle {
+    text-align: left;
+    vertical-align: middle;
+    padding: 7px 12px 5px;
+    min-height: 50px;
 
-  .course-title {
-    font-size: 14px;
+    > .no-course {
+      padding: 9px 0;
+      display: inline-block;
+    }
+
+    > .course-info + .caret {
+      margin-bottom: 15px;
+    }
   }
-  .course-date {
-    color: rgba(255,255,255,0.4);
-    font-size: 12px;
-    line-height: 12px;
+
+  .course-info {
+    text-align: left;
+    display: inline-block;
+
+    .course-title {
+      margin-bottom: -3px;
+    }
+
+    .course-date {
+      font-size: 85%;
+    }
   }
 }
 
-.course-info + .caret {
-  margin-bottom: 20px;
+#settings-menu {
+  > li > a.dropdown-toggle {
+    padding: 10px 12px;
+  }
 }

@@ -1,7 +1,7 @@
 .course-info
   .course-title
     = course.name
-  .course-date
+  .course-date.text-muted
     - if course.course_starts_at.blank?
       Date TBD
     - else
