@@ -1,14 +1,14 @@
 class Course < ActiveRecord::Base
   has_many :reservations, dependent: :destroy
   belongs_to :location
-  belongs_to :instructor
+  belongs_to :instructor, class_name: 'User'
 
   validates :name, presence: true
   validates :location, associated: true
   validates :instructor, associated: true
 
-  scope :future, -> { where("course_starts_at >= ?", Date.today.to_datetime).order("course_starts_at ASC") }
-  scope :past, -> { where("course_starts_at < ?", Date.today.to_datetime).order("course_starts_at DESC") }
+  scope :future, -> { where("course_starts_at >= ?", Time.now).order("course_starts_at ASC") }
+  scope :past, -> { where("course_starts_at < ?", Time.now).order("course_starts_at DESC") }
   scope :without_dates, -> { where(course_starts_at: nil) }
 
   after_save :set_defaults

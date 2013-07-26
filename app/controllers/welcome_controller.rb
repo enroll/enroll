@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @instructor = Instructor.new
+    @user = User.new
     @course = Course.new
   end
 end
