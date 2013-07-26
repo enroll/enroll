@@ -6,10 +6,10 @@
         = render 'layouts/course_chooser'
         = render 'layouts/settings_menu'
       - else
-        %ul.nav.navbar-nav.pull-right
-          %li.btn-log-in
-            %a{href: '#', class: "#{flash.alert ? '' : 'collapsed'}", "data-toggle" => "collapse", "data-target" => "#log-in"}
+        %ul#sign-up-or-in.nav.navbar-nav.pull-right
+          %li
+            %a.btn-log-in{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#log-in"}
               Log In
-          %li.btn-sign-up
-            %a{href: '#', class: "#{@instructor.errors.any? || @course.errors.any? ? '' : 'collapsed'}", "data-toggle" => "collapse", "data-target" => "#sign-up"}
+          %li
+            %a.btn-sign-up{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#sign-up"}
               Sign Up
