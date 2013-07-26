@@ -59,23 +59,23 @@ describe Course do
 
   describe ".future" do
     it "returns a course in the future" do
-      course = create(:course, course_starts_at: Date.tomorrow)
+      course = create(:course, course_starts_at: Time.now + 1.day)
       Course.future.should include(course)
     end
 
     it "does not return a course in the past" do
-      course = create(:course, course_starts_at: Date.yesterday)
+      course = create(:course, course_starts_at: Time.now - 1.day)
       Course.future.should_not include(course)
     end
 
     it "returns a course that is today" do
-      course = create(:course, course_starts_at: Date.today)
+      course = create(:course, course_starts_at: Time.now + 1.hour)
       Course.future.should include(course)
     end
 
     it "returns courses sorted with sooner courses first" do
-      later_course = create(:course, course_starts_at: Date.tomorrow+1)
-      next_course = create(:course, course_starts_at: Date.tomorrow)
+      later_course = create(:course, course_starts_at: Time.now + 1.day)
+      next_course = create(:course, course_starts_at: Time.now + 1.hour)
 
       Course.future.should == [next_course, later_course]
     end
@@ -83,23 +83,23 @@ describe Course do
 
   describe ".past" do
     it "returns a course in the past" do
-      course = create(:course, course_starts_at: Date.yesterday)
+      course = create(:course, course_starts_at: Time.now - 1.day)
       Course.past.should include(course)
     end
 
     it "does not return a course in the future" do
-      course = create(:course, course_starts_at: Date.tomorrow)
+      course = create(:course, course_starts_at: Time.now + 1.day)
       Course.past.should_not include(course)
     end
 
     it "does not return a course that is today" do
-      course = create(:course, course_starts_at: Date.today)
+      course = create(:course, course_starts_at: Time.now + 1.minute)
       Course.past.should_not include(course)
     end
 
     it "returns courses sorted with most recent courses first" do
-      long_ago_course = create(:course, course_starts_at: Date.yesterday-10)
-      recent_course = create(:course, course_starts_at: Date.yesterday)
+      long_ago_course = create(:course, course_starts_at: Time.now - 12.hours)
+      recent_course = create(:course, course_starts_at: Time.now - 1.hour)
 
       Course.past.should == [recent_course, long_ago_course]
     end
@@ -112,7 +112,7 @@ describe Course do
     end
 
     it "does not return a course with a date" do
-      course = create(:course, course_starts_at: Date.today)
+      course = create(:course, course_starts_at: Time.now + 1.day)
       Course.without_dates.should_not include(course)
     end
   end
