@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with @user, location: after_sign_up_path_for(@user)
     else
       flash.now[:error] = "Something went wrong."
-      clean_up_passwords @instructor
+      clean_up_passwords @user
       render :template => "welcome/index"
     end
   end
