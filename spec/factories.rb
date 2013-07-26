@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :course do
     name "Space Monkeys Learn Java"
     location
-    instructor
+    instructor factory: :user
   end
 
   factory :reservation do
@@ -13,8 +13,8 @@ FactoryGirl.define do
     name "The Corner Pub"
   end
 
-  factory :instructor do
-    sequence(:email) {|n| "instructor#{n}@example.com" }
+  factory :user do
+    sequence(:email) {|n| "user#{n}@example.com" }
     password "password"
   end
 end
