@@ -65,18 +65,18 @@ describe CoursesController do
   end
 
   context "GET edit" do
-    let(:instructor) { create(:instructor) }
+    let(:user) { create(:user) }
 
     before { course.save }
 
     context "when logged in and course owner" do
       before do
-        course.instructor = instructor
+        course.instructor = user
         course.save
       end
 
       it "renders the edit page" do
-        sign_in(instructor)
+        sign_in(user)
         get :edit, id: course.to_param
         response.should be_success
         response.should render_template :edit
@@ -85,7 +85,7 @@ describe CoursesController do
 
     context "when logged in but not course owner" do
       it "redirects to the root page" do
-        sign_in(instructor)
+        sign_in(user)
         get :edit, id: course.to_param
         response.should be_redirect
         response.should redirect_to(root_path)

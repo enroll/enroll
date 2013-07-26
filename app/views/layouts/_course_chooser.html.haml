@@ -1,4 +1,5 @@
-- if instructor_signed_in?
+<<<<<<< HEAD
+- if user_signed_in?
   %ul#course-dropdown.nav.navbar-nav
     %li
       %a.dropdown-toggle{href: '#', "data-toggle" => "dropdown"}
@@ -12,23 +13,23 @@
         %li.create-new
           %a{href: "#{new_course_path}"}
             Create a new course
-        - if (current_instructor.courses.future.count + current_instructor.courses.without_dates.count) > 0
+        - if (current_user.courses.future.count + current_user.courses.without_dates.count) > 0
           %li.divider
             &nbsp;
           %li.dropdown-header Upcoming
-          - current_instructor.courses.future.each do |course|
+          - current_user.courses.future.each do |course|
             %li.course
               %a{href: "#{edit_course_path(course)}"}
                 = render 'courses/dropdown_course_info', course: course
-          - current_instructor.courses.without_dates.each do |course|
+          - current_user.courses.without_dates.each do |course|
             %li.course
               %a{href: "#{edit_course_path(course)}"}
                 = render 'courses/dropdown_course_info', course: course
-        - if current_instructor.courses.past.count > 0
+        - if current_user.courses.past.count > 0
           %li.divider
             &nbsp;
           %li.dropdown-header Past
-          - current_instructor.courses.past.each do |course|
+          - current_user.courses.past.each do |course|
             %li.past.course
               %a{href: "#{edit_course_path(course)}"}
                 = render 'courses/dropdown_course_info', course: course

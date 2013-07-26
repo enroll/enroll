@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_instructor!, only: [:edit]
+  before_filter :authenticate_user!, only: [:edit]
   before_filter :find_course!, only: [:edit]
 
   def index
@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
   end
 
   def find_course!
-    @course = current_instructor.courses.find_by_id(params[:id])
+    @course = current_user.courses.find_by_id(params[:id])
     redirect_to root_path unless @course
   end
 end
