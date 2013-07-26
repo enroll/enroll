@@ -1,37 +1,10 @@
 @import 'colors';
 
-$montserrat-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 body {
   padding-top: 70px;
 }
 
 /* Sign Up Toggle Form */
-
-.btn-navbar.btn-log-in,
-.btn-navbar.btn-sign-up {
-  background-color: lighten($dark-gray, 3%);
-
-  &:hover {
-    background-color: $light-blue;
-  }
-
-  &:active {
-    background-color: $dark-blue;
-  }
-
-  &.collapsed {
-    background-color: transparent;
-
-    &:hover {
-      background-color: $light-blue;
-    }
-
-    &:active {
-      background-color: $dark-blue;
-    }
-  }
-}
 
 #log-in,
 #sign-up {
@@ -41,14 +14,20 @@ body {
   > .container {
     padding: 16px 0;
   }
+
+  .popover {
+    color: #333;
+  }
+}
+
+#log-in.in,
+#sign-up.in {
+  margin-top: -20px;
 }
 
 .upcase {
   text-transform: uppercase;
   font-weight: 700;
-}
-
-.jumbotron {
 }
 
 .jumbotron.front-page {
@@ -92,7 +71,6 @@ body {
         margin-bottom: 2px;
 
         .progress-bar {
-          background-color: lighten($light-green, 5%);
         }
       }
 
@@ -118,14 +96,13 @@ body {
       }
 
       .quantity {
-        font-weight: 400;
-        font-family: $montserrat-family;
+        font-weight: 700;
+        font-size: 18px;
         margin-bottom: -5px;
       }
       .status-label {
         font-size: 10px;
         text-transform: uppercase;
-        font-family: $montserrat-family;
       }
 
     }
@@ -134,15 +111,22 @@ body {
 
 .manage-content {
   margin-left: 255px;
+  margin-right: 20px;
 }
 
 #course-dropdown {
-  .navbar-btn {
+  > li > a.dropdown-toggle {
     text-align: left;
     vertical-align: middle;
-    padding: 2px 12px;
+    padding: 7px 12px 5px;
+    min-height: 50px;
 
-    .course-info + .caret {
+    > .no-course {
+      padding: 9px 0;
+      display: inline-block;
+    }
+
+    > .course-info + .caret {
       margin-bottom: 15px;
     }
   }
@@ -162,7 +146,7 @@ body {
 }
 
 #settings-menu {
-  .navbar-btn {
-    padding: 0px 12px 0 0;
+  > li > a.dropdown-toggle {
+    padding: 10px 12px;
   }
 }

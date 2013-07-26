@@ -1,29 +1,34 @@
 - if instructor_signed_in?
-  #course-dropdown.btn-group
-    %button.btn.navbar-btn.dropdown-toggle{"data-toggle" => "dropdown"}
-      = render 'courses/dropdown_course_info', course: @course
-      %span.caret
-    %ul.dropdown-menu{role: "menu"}
-      %li.create-new
-        %a{href: "#{new_course_path}"}
-          Create a new course
-      - if (current_instructor.courses.future.count + current_instructor.courses.without_dates.count) > 0
-        %li.divider
-          &nbsp;
-        %li.dropdown-header Upcoming
-        - current_instructor.courses.future.each do |course|
-          %li.course
-            %a{href: "#{edit_course_path(course)}"}
-              = render 'courses/dropdown_course_info', course: course
-        - current_instructor.courses.without_dates.each do |course|
-          %li.course
-            %a{href: "#{edit_course_path(course)}"}
-              = render 'courses/dropdown_course_info', course: course
-      - if current_instructor.courses.past.count > 0
-        %li.divider
-          &nbsp;
-        %li.dropdown-header Past
-        - current_instructor.courses.past.each do |course|
-          %li.past.course
-            %a{href: "#{edit_course_path(course)}"}
-              = render 'courses/dropdown_course_info', course: course
+  %ul#course-dropdown.nav.navbar-nav
+    %li
+      %a.dropdown-toggle{href: '#', "data-toggle" => "dropdown"}
+        - if @course.new_record?
+          .no-course
+            Manage my courses
+        - else
+          = render 'courses/dropdown_course_info', course: @course
+        %span.caret
+      %ul.dropdown-menu{role: "menu"}
+        %li.create-new
+          %a{href: "#{new_course_path}"}
+            Create a new course
+        - if (current_instructor.courses.future.count + current_instructor.courses.without_dates.count) > 0
+          %li.divider
+            &nbsp;
+          %li.dropdown-header Upcoming
+          - current_instructor.courses.future.each do |course|
+            %li.course
+              %a{href: "#{edit_course_path(course)}"}
+                = render 'courses/dropdown_course_info', course: course
+          - current_instructor.courses.without_dates.each do |course|
+            %li.course
+              %a{href: "#{edit_course_path(course)}"}
+                = render 'courses/dropdown_course_info', course: course
+        - if current_instructor.courses.past.count > 0
+          %li.divider
+            &nbsp;
+          %li.dropdown-header Past
+          - current_instructor.courses.past.each do |course|
+            %li.past.course
+              %a{href: "#{edit_course_path(course)}"}
+                = render 'courses/dropdown_course_info', course: course

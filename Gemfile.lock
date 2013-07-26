@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 4cb88fac45fa0108393d359f18741394e5d7caa4
+  revision: 1edd6beba9ba003a5528c85c641e677bccc367e4
   branch: 3.0.0
   specs:
     anjlab-bootstrap-rails (3.0.0.0.alpha1)
@@ -121,7 +121,7 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.7.7)
     orm_adapter (0.4.0)
-    pg (0.15.1)
+    pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -176,7 +176,7 @@ GEM
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0.rc1, < 4.1)
       activemodel (>= 4.0.0.rc1, < 4.1)
-    slop (3.4.5)
+    slop (3.4.6)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -187,7 +187,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     thor (0.18.1)
-    thread_safe (0.1.0)
+    thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
     treetop (1.4.14)

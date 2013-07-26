@@ -1,6 +1,15 @@
-= link_to "Home", root_path, :class => 'navbar-brand'
-.nav-collapse.collapse
-  %ul.nav.navbar-nav
-    %li
-      = link_to "Try it out", new_course_path
-
+%header.navbar.navbar-fixed-top.navbar-inverse
+  %nav.navbar-inner
+    .container-fluid
+      = link_to "enroll", root_path, :class => 'navbar-brand'
+      - if instructor_signed_in?
+        = render 'layouts/course_chooser'
+        = render 'layouts/settings_menu'
+      - else
+        %ul.nav.navbar-nav.pull-right
+          %li.btn-log-in
+            %a{href: '#', class: "#{flash.alert ? '' : 'collapsed'}", "data-toggle" => "collapse", "data-target" => "#log-in"}
+              Log In
+          %li.btn-sign-up
+            %a{href: '#', class: "#{@instructor.errors.any? || @course.errors.any? ? '' : 'collapsed'}", "data-toggle" => "collapse", "data-target" => "#sign-up"}
+              Sign Up
