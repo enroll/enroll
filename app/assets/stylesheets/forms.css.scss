@@ -50,6 +50,18 @@ form.new_course {
   input::-webkit-input-placeholder { color: #000; }
   input:-moz-input-placeholder { color: #000; }
 
+  .has-error {
+    input[type="text"], textarea {
+      border: 1px solid #b94a48;
+    }
+
+    .help-block, .help-inline {
+      color: red;
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+
   input[type="text"], textarea {
     background: none;
     border: none;
