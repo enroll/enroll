@@ -29,7 +29,6 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    render :layout => "manage_course"
   end
 
   def update
