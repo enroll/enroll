@@ -16,8 +16,8 @@
   <% if @course.location.present? %>
     <p class="upcase location"><%= @course.location.city %>, <%= @course.location.state %></p>
   <% end %>
-  <% if @course.course_starts_at.present? %>
-    <p class="date upcase"><%= @course.course_start_date %> | <%= @course.course_start_time %> - <%= @course.course_end_time %></p>
+  <% if @course.starts_at.present? %>
+    <p class="date upcase"><%= @course.start_date %> | <%= @course.start_time %> - <%= @course.end_time %></p>
   <% end %>
   <%= course_reservation_link(@course) %>
 </div>
@@ -25,6 +25,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
+      <h2>What</h2>
       <%= @course.description %>
 
       <% if @course.location.present? %>
