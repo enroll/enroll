@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit]
-  before_filter :find_course!, only: [:edit]
+  before_filter :authenticate_user!, only: [:edit, :update]
+  before_filter :find_course!, only: [:edit, :update]
 
   def index
     @courses = Course.all
@@ -29,6 +29,16 @@ class CoursesController < ApplicationController
 
   def edit
     render :layout => "manage_course"
+  end
+
+  def update
+    if @course.update_attributes(course_params)
+      flash[:success] = "Course updated successfully."
+      redirect_to course_path(@course)
+    else
+      flash[:error] = "Course failed to be updated."
+      render :edit
+    end
   end
 
   private
