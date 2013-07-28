@@ -11,19 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130726023227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20130728213953) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
-    t.integer  "location_id"
     t.string   "tagline"
     t.datetime "course_starts_at"
     t.datetime "course_ends_at"
     t.text     "description"
+    t.integer  "location_id"
     t.integer  "instructor_id"
+    t.integer  "min_seats"
+    t.integer  "max_seats"
+    t.integer  "price_per_seat"
+    t.text     "instructor_biography"
   end
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
