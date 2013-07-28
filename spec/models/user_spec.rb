@@ -38,4 +38,32 @@ describe User do
       end
     end
   end
+
+  context "#next_course" do
+    it "returns the next upcoming course" do
+      far_in_future = create(:course, course_starts_at: Date.today + 20, instructor: user)
+      next_course   = create(:course, course_starts_at: Date.today + 10, instructor: user)
+
+      user.next_course.should == next_course
+    end
+
+    it "returns nil if there is not a future course" do
+      user.courses.future.none?.should be_true
+      user.next_course.should be_nil
+    end
+  end
+
+  context "#most_recent_course" do
+    it "returns the most recent course" do
+      oldest_course = create(:course, course_starts_at: Date.yesterday - 20, instructor: user)
+      recent_course = create(:course, course_starts_at: Date.yesterday, instructor: user)
+
+      user.most_recent_course.should == recent_course
+    end
+
+    it "returns nil if there is not a most recent course" do
+      user.courses.past.none?.should be_true
+      user.most_recent_course.should be_nil
+    end
+  end
 end

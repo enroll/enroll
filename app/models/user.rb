@@ -8,15 +8,15 @@ class User < ActiveRecord::Base
   has_many :courses, foreign_key: :instructor_id
 
   def current_course
-    return nil if courses.count == 0
+    (next_course || most_recent_course || courses.first) if courses.any?
+  end
 
-    if courses.future.count > 0
-      courses.future.first
-    elsif courses.past.count > 0
-      courses.past.first
-    else
-      courses.first
-    end
+  def next_course
+    courses.future.first
+  end
+
+  def most_recent_course
+    courses.past.first
   end
 
   def display_title
