@@ -2,7 +2,4 @@
   .course-title
     = course.name
   .course-date.text-muted
-    - if course.course_starts_at.blank?
-      Date TBD
-    - else
-      = course.course_starts_at.to_date.to_s(:long)
+    = course.start_date ? course.start_date : "Date TBD"
