@@ -8,13 +8,32 @@
 
         <h1>Edit course details</h1>
 
+        <h2>What</h2>
         <%= f.input :name %>
         <%= f.input :tagline %>
         <%= f.input :description %>
         <%= f.input :instructor_biography, label: 'Your biography' %>
+
+        <h2>When</h2>
+        <%= f.input :starts_at, as: :string, input_html: { class: 'datepicker' } %>
+        <%= f.input :ends_at, as: :string, input_html: { class: 'datepicker' } %>
+
+        <h2>Where</h2>
+        <%= f.simple_fields_for(:location_attributes) do |location| %>
+          <%= location.input :name, label: 'Venue name' %>
+          <%= location.input :address %>
+          <%= location.input :address_2 %>
+          <%= location.input :city %>
+          <%= location.input :state %>
+          <%= location.input :zip %>
+          <%= location.input :phone %>
+        <% end %>
+
+        <h2>Pricing</h2>
         <%= f.input :min_seats %>
         <%= f.input :max_seats %>
         <%= f.input :price_per_seat %>
+
         <%= f.button :submit %>
       <% end %>
     </div>
