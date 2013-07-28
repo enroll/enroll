@@ -7,5 +7,7 @@ class AddCourseSeats < ActiveRecord::Migration
 
     rename_column :courses, :course_starts_at, :starts_at
     rename_column :courses, :course_ends_at, :ends_at
+
+    add_column :locations, :address_2, :string
   end
 end

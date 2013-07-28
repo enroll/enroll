@@ -48,7 +48,7 @@ class CoursesController < ApplicationController
       :name, :tagline, :starts_at, :ends_at, :description,
       :instructor_biography, :min_seats, :max_seats, :price_per_seat,
       location_attributes: [
-        :name, :address, :city, :state, :zip, :phone
+        :name, :address, :address_2, :city, :state, :zip, :phone
       ]
     )
   end

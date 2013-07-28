@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20130728213953) do
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address_2"
   end
 
   create_table "reservations", force: true do |t|
