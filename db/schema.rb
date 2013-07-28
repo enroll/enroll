@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20130728213953) do
   create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "tagline"
-    t.datetime "course_starts_at"
-    t.datetime "course_ends_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.text     "description"
     t.integer  "location_id"
     t.integer  "instructor_id"

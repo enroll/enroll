@@ -13,8 +13,8 @@ describe User do
     end
 
     context "with future courses" do
-      let!(:later_course) { create(:course, course_starts_at: Date.today + 20, instructor: user) }
-      let!(:next_course) { create(:course, course_starts_at: Date.today + 10, instructor: user) }
+      let!(:later_course) { create(:course, starts_at: Date.today + 20, instructor: user) }
+      let!(:next_course) { create(:course, starts_at: Date.today + 10, instructor: user) }
 
       it "returns the next upcoming course" do
         user.current_course.should == next_course
@@ -22,8 +22,8 @@ describe User do
     end
 
     context "with only past courses" do
-      let!(:long_ago_course) { create(:course, course_starts_at: Date.yesterday - 20, instructor: user) }
-      let!(:recent_past_course) { create(:course, course_starts_at: Date.yesterday, instructor: user) }
+      let!(:long_ago_course) { create(:course, starts_at: Date.yesterday - 20, instructor: user) }
+      let!(:recent_past_course) { create(:course, starts_at: Date.yesterday, instructor: user) }
 
       it "returns the most recent past course" do
         user.current_course.should == recent_past_course
@@ -41,8 +41,8 @@ describe User do
 
   context "#next_course" do
     it "returns the next upcoming course" do
-      far_in_future = create(:course, course_starts_at: Date.today + 20, instructor: user)
-      next_course   = create(:course, course_starts_at: Date.today + 10, instructor: user)
+      far_in_future = create(:course, starts_at: Date.today + 20, instructor: user)
+      next_course   = create(:course, starts_at: Date.today + 10, instructor: user)
 
       user.next_course.should == next_course
     end
@@ -55,8 +55,8 @@ describe User do
 
   context "#most_recent_course" do
     it "returns the most recent course" do
-      oldest_course = create(:course, course_starts_at: Date.yesterday - 20, instructor: user)
-      recent_course = create(:course, course_starts_at: Date.yesterday, instructor: user)
+      oldest_course = create(:course, starts_at: Date.yesterday - 20, instructor: user)
+      recent_course = create(:course, starts_at: Date.yesterday, instructor: user)
 
       user.most_recent_course.should == recent_course
     end
