@@ -6,8 +6,6 @@
       <%= simple_form_for(@course, :html => { :class => "edit_course disable-submit-on-return" }) do |f| %>
         <%= f.error_notification %>
 
-        <h1>Edit course details</h1>
-
         <h2>What</h2>
         <%= f.input :name %>
         <%= f.input :tagline %>
