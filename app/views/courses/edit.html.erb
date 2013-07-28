@@ -17,7 +17,7 @@
         <%= f.input :ends_at, as: :string, input_html: { class: 'datepicker' } %>
 
         <h2>Where</h2>
-        <%= f.simple_fields_for(:location_attributes) do |location| %>
+        <%= f.simple_fields_for(:location) do |location| %>
           <%= location.input :name, label: 'Venue name' %>
           <%= location.input :address %>
           <%= location.input :address_2 %>
