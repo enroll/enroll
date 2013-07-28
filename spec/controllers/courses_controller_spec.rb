@@ -113,9 +113,9 @@ describe CoursesController do
       course.reload.name.should == 'Linux Administration 101'
     end
 
-    it "redirects to the course" do
+    it "redirects to the edit course page" do
       put :update, id: course.to_param, course: { name: 'Linux Administration 101' }
-      response.should redirect_to course_path(course)
+      response.should redirect_to edit_course_path(course)
     end
 
     it "sets the success flash" do

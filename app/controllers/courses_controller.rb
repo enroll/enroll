@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
   def update
     if @course.update_attributes(course_params)
       flash[:success] = "Course updated successfully."
-      redirect_to course_path(@course)
+      redirect_to edit_course_path(@course)
     else
       flash[:error] = "Course failed to be updated."
       render :edit
