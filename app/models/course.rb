@@ -17,18 +17,15 @@ class Course < ActiveRecord::Base
   attr_accessor :motivation, :audience
 
   def course_start_date
-    return nil unless course_starts_at.present?
-    course_starts_at.strftime("%a, %B %e %Y")
+    course_starts_at.try(:strftime, "%a, %B %e %Y")
   end
 
   def course_start_time
-    return nil unless course_starts_at.present?
-    course_starts_at.strftime("%l:%M %p %Z")
+    course_starts_at.try(:strftime, "%l:%M %p %Z")
   end
 
   def course_end_time
-    return nil unless course_ends_at.present?
-    course_ends_at.strftime("%l:%M %p %Z")
+    course_ends_at.try(:strftime, "%l:%M %p %Z")
   end
 
   def location_attributes=(location_attributes)

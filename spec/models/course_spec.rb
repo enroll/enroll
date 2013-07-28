@@ -14,6 +14,11 @@ describe Course do
       course.course_starts_at = Time.parse("January 1 2014 12:01 PM EST")
       course.course_start_date.should == "Wed, January  1 2014"
     end
+
+    it "returns nil if a start date isn't set" do
+      course.course_starts_at = nil
+      course.course_start_date.should be_nil
+    end
   end
 
   describe "course_start_time" do
@@ -21,12 +26,22 @@ describe Course do
       course.course_starts_at = Time.parse("January 1 2014 12:01 PM EST")
       course.course_start_time.should == " 5:01 PM UTC"
     end
+
+    it "returns nil if the start date isn't set" do
+      course.course_starts_at = nil
+      course.course_start_time.should be_nil
+    end
   end
 
   describe "course_end_time" do
     it "returns a time value" do
       course.course_ends_at = Time.parse("January 1 2014 4:01 PM EST")
       course.course_end_time.should == " 9:01 PM UTC"
+    end
+
+    it "returns nil if the end date isn't set" do
+      course.course_ends_at = nil
+      course.course_end_time.should be_nil
     end
   end
 
