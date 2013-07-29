@@ -45,112 +45,76 @@
   to { color: inherit; }
 }
 
-.editable {
-  &.edit-ready {
-    -webkit-animation: UN-EDIT-ME 0.05s ease-in-out 0 1;
-  }
 
-  &.edit-ready:hover, &.editing {
-    -webkit-animation: EDIT-ME 0.1s ease-in-out 0 1;
-    background-color: rgba(0,0,0,0.1);
-    border-bottom: 2px solid rgba(0,0,0,0.15);
-    border-radius: 5px;
-    padding: 5px 15px;
-    cursor: pointer;
-  }
+form.new_course {
+  input::-webkit-input-placeholder { color: #000; }
+  input:-moz-input-placeholder { color: #000; }
 
-  &.editable {
-    display: inline-block;
-  }
+  .has-error {
+    input[type="text"], textarea {
+      border: 1px solid #b94a48;
+    }
 
-  .glyphicon {
-    display: inline-block;
-    font-size: 70%;
-    padding-left: 10px;
-    animation: UN-COLOR-IT-GREEN 0.2s ease-in-out 0 1;
-    -webkit-animation: UN-COLOR-IT-GREEN 0.2s ease-in-out 0 1;
-
-    &:hover {
-      animation: COLOR-IT-GREEN 0.2s ease-in-out 0 1;
-      -webkit-animation: COLOR-IT-GREEN 0.2s ease-in-out 0 1;
-      color: #16a085;
+    .help-block, .help-inline {
+      color: red;
+      font-size: 12px;
+      font-weight: normal;
     }
   }
 
-  .glyphicon-pencil {
-    display:none;
-  }
-
-  &:hover .glyphicon-pencil {
-    display: inline-block;
-  }
-
-  &.edit-ready .glyphicon-ok, &.edit-ready .workshop-input {
-    display: none;
-  }
-
-  &.editing .glyphicon-pencil, &.editing .content, &.editing label {
-    display: none;
-  }
-
-  .control-group, .controls {
-    display: inline;
-  }
-
-  .workshop-input {
-    width: auto;
-    display: inline-block;
-    background-color: transparent;
-    box-shadow: none;
+  input[type="text"], textarea {
+    background: none;
     border: none;
-    border-bottom: 2px dashed rgba(0,0,0,0.25);
-    font-size: inherit;
-    padding: 0;
-    margin: 0;
-    margin-top: -10px;
-  }
-
-  textarea.workshop-input {
     height: auto;
-    border: none;
-    padding: 15px 0;
-    width: 600px;
-  }
+    color: #333;
 
-  .text + .glyphicon-ok {
-    font-size: 200%;
-  }
-
-  label {
-    margin-bottom: 0;
-  }
-
-  .workshop-input input[type=text] {
-    text-align: right;
-  }
-}
-
-.form-element {
-  line-height: 1.4;
-  margin-bottom: 10px;
-
-  .date-and-time {
-    input {
-      display: none;
+    &:hover, &:focus {
+      border: 1px #ccc;
+      background: #eee;
     }
   }
-}
 
-.workshop-tagline label {
-  font-weight: normal;
+  .text-right {
+    input {
+      text-align: right;
+      font-size: 21px;
+
+      &:hover, &:focus {
+        background: #fff;
+        border: 1px #ccc;
+      }
+    }
+  }
+
+  #course_name {
+    font-size: 30pt;
+    font-weight: bold;
+  }
+
+  #course_course_starts_at {
+    font-weight: bold;
+  }
 }
 
 address {
+  .form-group {
+    display: inline-block;
+  }
+
   .form-element {
     margin-bottom: 3px;
   }
 
   label {
     font-weight: normal;
+  }
+
+  input {
+    display: inline-block;
+    width: 400px;
+  }
+
+  .multi input {
+    width: 120px;
   }
 }

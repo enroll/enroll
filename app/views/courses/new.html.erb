@@ -12,51 +12,39 @@
 <%= simple_form_for(@course, :html => {:class => "new_course disable-submit-on-return"}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="jumbotron text-right">
-    <h1><%= editable_input(f, :name, label: 'Your workshop title here') %></h1>
-    <div class="form-element">
-      <%= editable_input(f, :tagline, label: 'Your workshop tagline here') %>
-    </div>
+  <div class="jumbotron text-right col-12">
+    <div class="col-4"></div>
+    <div class="col-8">
+      <h1><%= f.input(:name, placeholder: 'YOUR WORKSHOP TITLE HERE', label: false) %></h1>
+      <div class="form-element">
+        <%= f.input(:tagline, placeholder: 'Your workshop tagline here', label: false) %>
+      </div>
 
-    <div class="form-element upcase location">
-      <%= f.simple_fields_for(:location_attributes) do |lf| %>
-        <%= editable_input(lf, :name, label: 'Your location here') %>
-      <% end %>
-    </div>
+      <div class="form-element upcase date-and-time">
+        <%= f.input(:course_starts_at, as: :string, placeholder: 'YOUR COURSE START DATE', label: false, input_html: { class: 'datepicker' }) %>
+      </div>
 
-    <div class="form-element upcase date-and-time">
-      <%= f.input(:course_starts_at, as: :hidden) %>
-      <span class="workshop-datetime editable edit-ready">
-        <span class="datepicker-date content">Your workshop date</span>
-        <span class="glyphicon glyphicon-ok"></span>
-        <span class="glyphicon glyphicon-pencil datepicker"></span>
-      </span>
-      &nbsp;| 
-      <span class="workshop-datetime editable edit-ready">
-        <span class="datepicker-time content">Your workshop time</span>
-        <span class="glyphicon glyphicon-ok"></span>
-        <span class="glyphicon glyphicon-pencil datepicker"></span>
-      </span>
+      <br/>
+      <a href="#try" class="btn btn-primary btn-large reserve upcase">Reserve your seat</a>
     </div>
-
-    <a href="#try" class="btn btn-primary btn-large reserve upcase">Reserve your seat</a>
   </div>
 
   <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="form-element">
-          <%= editable_input(f, :description, label: 'Your description here. Tell people a little about the workshop.', as: :text, input_html: { rows: 3, placeholder: 'Your description here' }) %>
+          <h2>What is this workshop about?</h2>
+          <%= f.input(:description, placeholder: 'Your description here. Tell people a little about the workshop.', label: false, as: :text, input_html: { rows: 3, placeholder: 'Your description here' }) %>
         </div>
 
-        <h2>What you will learn</h2>
+        <h2>What will attendees learn?</h2>
         <div class="form-element">
-          <%= editable_input(f, :motivation, label: 'Help motivate people to take your course by telling them a little about what they will learn in the course.', as: :text, input_html: { rows: 3, placeholder: 'Tell people what they will learn' }) %>
+          <%= f.input(:motivation, placeholder: 'Help motivate people to take your course by telling them a little about what they will learn in the course.', label: false, as: :text, input_html: { rows: 3, placeholder: 'Tell people what they will learn' }) %>
         </div>
 
-        <h2>Who this is for</h2>
+        <h2>Who this is for?</h2>
         <div class="form-element">
-          <%= editable_input(f, :audience, label: 'Your target audience goes here', as: :text, input_html: { rows: 3 }) %>
+          <%= f.input(:audience, placeholder: 'Your target audience goes here', label: false, as: :text, input_html: { rows: 3 }) %>
         </div>
 
         <h2>Where</h2>
@@ -64,21 +52,21 @@
         <%= f.simple_fields_for(:location_attributes) do |lf| %>
           <address>
             <div class="form-element">
-              <%= editable_input(lf, :name, label: 'Your Location Name') %>
+              <%= lf.input(:name, placeholder: 'Your Location Name', label: false) %>
             </div>
             <div class="form-element">
-              <%= editable_input(lf, :address, label: 'Your Location Street Address') %>
+              <%= lf.input(:address, placeholder: 'Your Location Street Address', label: false) %>
             </div>
-            <div class="form-element">
-              <%= editable_input(lf, :city, label: "City") %>
+            <div class="form-element multi">
+              <%= lf.input(:city, placeholder: "City", label: false) %>
               <span>,</span>
-              <%= editable_input(lf, :state, label: "Your Location State") %>
+              <%= lf.input(:state, placeholder: "Your State", label: false) %>
               <span>,</span>
-              <%= editable_input(lf, :zip, label: "Zip Code") %>
+              <%= lf.input(:zip, placeholder: "Zip Code", label: false) %>
             </div>
             <div class="form-element">
               <abbr title="Phone">P:</abbr>
-              <%= editable_input(lf, :phone, label: "Your Phone Number") %>
+              <%= lf.input(:phone, as: :string, placeholder: "Your Phone Number", label: false) %>
             </div>
           </address>
         <% end %>

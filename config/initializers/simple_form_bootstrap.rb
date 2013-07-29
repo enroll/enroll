@@ -1,16 +1,16 @@
 SimpleForm.setup do |config|
-  # TODO: Make the default form not use labels and implement the variants as other wrappers.
-  config.wrappers :bootstrap, tag: 'div', class: 'row', error_class: 'has-error' do |b|
+  config.wrappers :bootstrap, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper tag: 'div', class: 'col-lg-9' do |ba|
+    b.wrapper tag: 'div', class: 'controls' do |ba|
       ba.use :input
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     end
   end
 
-  config.wrappers :prepend, tag: 'div', class: "row", error_class: 'has-error' do |b|
+  config.wrappers :prepend, tag: 'div', class: "form-group", error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
@@ -23,7 +23,7 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :append, tag: 'div', class: 'row', error_class: 'has-error' do |b|
+  config.wrappers :append, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
