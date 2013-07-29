@@ -3,39 +3,32 @@ require 'spec_helper'
 describe User do
   let(:user) { build(:user) }
 
-  it { should have_many(:courses) }
+  it { should have_many(:reservations) }
+  it { should have_many(:courses_as_student) }
+  it { should have_many(:courses_as_instructor) }
 
   it { should validate_presence_of(:email) }
 
-  context "#current_course" do
-    it "returns nil if the user has no courses" do
-      user.current_course.should be_nil
+  describe 'courses' do
+    before(:each) do
+      user.save
+      @instructor_course = create(:course, instructor: user)
+      @student_course = create(:course)
+      create(:reservation, user: user, course: @student_course)
     end
 
-    context "with future courses" do
-      let!(:later_course) { create(:course, course_starts_at: Date.today + 20, instructor: user) }
-      let!(:next_course) { create(:course, course_starts_at: Date.today + 10, instructor: user) }
-
-      it "returns the next upcoming course" do
-        user.current_course.should == next_course
-      end
+    it 'includes courses the user is taking as a student' do
+      user.courses.should include(@student_course)
     end
 
-    context "with only past courses" do
-      let!(:long_ago_course) { create(:course, course_starts_at: Date.yesterday - 20, instructor: user) }
-      let!(:recent_past_course) { create(:course, course_starts_at: Date.yesterday, instructor: user) }
-
-      it "returns the most recent past course" do
-        user.current_course.should == recent_past_course
-      end
+    it 'includes courses that the user is teaching' do
+      user.courses.should include(@instructor_course)
     end
+  end
 
-    context "with courses with no dates" do
-      let!(:course) { create(:course, instructor: user) }
-
-      it "returns any course" do
-        user.current_course.should == course
-      end
+  describe 'display_title' do
+    it 'is the same as the user email' do
+      user.display_title.should == user.email
     end
   end
 end

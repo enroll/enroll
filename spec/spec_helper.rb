@@ -44,6 +44,9 @@ RSpec.configure do |config|
   # Factory Girl
   config.include FactoryGirl::Syntax::Methods
 
+  # Authentication
+  config.include Devise::TestHelpers, type: :controller
+
   # Aliases
   config.filter_run focused: true
   config.alias_example_to :fit, focused: true

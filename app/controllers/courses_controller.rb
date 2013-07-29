@@ -28,6 +28,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    @course = Course.new
     render :layout => "manage_course"
   end
 
@@ -43,7 +44,8 @@ class CoursesController < ApplicationController
   end
 
   def find_course!
-    @course = current_user.courses.find_by_id(params[:id])
-    redirect_to root_path unless @course
+    @course = current_user.courses_as_instructor.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
   end
 end
