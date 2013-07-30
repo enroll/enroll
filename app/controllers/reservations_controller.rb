@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :require_course!
 
   def new
@@ -7,6 +8,7 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = @course.reservations.build(params[:course])
+    @reservation.user = current_user
 
     if @reservation.save
       flash[:success] = "Reservation created successfully."
@@ -18,13 +20,13 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @reservation = @course.reservations.find_by_id(params[:id])
+    @reservation = @course.reservations.find(params[:id])
   end
 
   protected
 
   def require_course!
-    unless @course = Course.find_by_id(params[:course_id])
+    unless @course = Course.find(params[:course_id])
       flash[:error] = "Couldn't find the course you were looking for"
       return redirect_to root_url
     end

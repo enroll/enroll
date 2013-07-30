@@ -17,6 +17,7 @@ FactoryGirl.define do
 
   factory :reservation do
     course
+    user
   end
 
   factory :location do

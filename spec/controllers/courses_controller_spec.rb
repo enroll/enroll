@@ -69,12 +69,9 @@ describe CoursesController do
     before { course.save }
 
     context "when logged in and course owner" do
-      before do
+      it "renders the edit page" do
         course.instructor = user
         course.save
-      end
-
-      it "renders the edit page" do
         sign_in(user)
         get :edit, id: course.to_param
         response.should be_success

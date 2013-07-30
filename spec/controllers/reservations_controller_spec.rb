@@ -1,9 +1,14 @@
 require 'spec_helper'
 
 describe ReservationsController do
+  let(:user) { create(:user) }
   let(:course) { create(:course) }
   let(:reservation) { build(:reservation, course: course) }
   let(:reservation_attributes) { attributes_for(:reservation, course: course) }
+
+  before(:each) do
+    sign_in user
+  end
 
   context "GET new" do
     it "renders the new page" do
@@ -20,10 +25,12 @@ describe ReservationsController do
   end
 
   context "POST create" do
-    it "creates a reservation" do
+    it "creates a reservation for the current user" do
       expect {
         post :create, course_id: course.to_param, reservation: reservation_attributes
-      }.to change(Reservation, :count)
+      }.to change(user.reservations, :count)
+
+      user.courses_as_student.last.should == course
     end
 
     it "redirects to the reservation" do
