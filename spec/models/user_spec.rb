@@ -31,4 +31,5 @@ describe User do
       user.display_title.should == user.email
     end
   end
+
 end

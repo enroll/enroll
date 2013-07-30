@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit]
-  before_filter :find_course!, only: [:edit]
+  before_filter :authenticate_user!, only: [:edit, :update]
+  before_filter :find_course!, only: [:edit, :update]
 
   def index
     @courses = Course.all
@@ -17,28 +17,38 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    @location = @course.location
+
     if @course.save
       flash[:success] = "Course created successfully."
       redirect_to course_path(@course)
     else
-      @location = @course.location
       flash[:error] = "Course failed to be created."
       render :new
     end
   end
 
   def edit
-    @course = Course.new
-    render :layout => "manage_course"
+  end
+
+  def update
+    if @course.update_attributes(course_params)
+      flash[:success] = "Course updated successfully."
+      redirect_to edit_course_path(@course)
+    else
+      flash[:error] = "Course failed to be updated."
+      render :edit
+    end
   end
 
   private
 
   def course_params
     params.require(:course).permit(
-      :name, :tagline, :course_starts_at, :course_ends_at, :description,
+      :name, :tagline, :starts_at, :ends_at, :description,
+      :instructor_biography, :min_seats, :max_seats, :price_per_seat,
       location_attributes: [
-        :name, :address, :city, :state, :zip, :phone
+        :name, :address, :address_2, :city, :state, :zip, :phone
       ]
     )
   end
