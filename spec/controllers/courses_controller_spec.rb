@@ -5,6 +5,7 @@ describe CoursesController do
 
   let(:course) { build(:course) }
   let(:course_attributes) { attributes_for(:course).merge({ location_attributes: attributes_for(:location)}) }
+  let(:user) { create(:user) }
 
   context "GET show" do
     before { course.save }
@@ -65,11 +66,7 @@ describe CoursesController do
   end
 
   context "GET edit" do
-    let(:user) { create(:user) }
-
-    before do
-      course.save
-    end
+    before { course.save }
 
     context "when logged in and course owner" do
       it "renders the edit page" do
@@ -96,6 +93,44 @@ describe CoursesController do
         get :edit, id: course.to_param
         response.should be_redirect
         response.should redirect_to(root_path)
+      end
+    end
+  end
+
+  context "PUT update" do
+    before do
+      course.instructor = user
+      course.save
+
+      sign_in(user)
+    end
+
+    it "updates the course" do
+      put :update, id: course.to_param, course: { name: 'Linux Administration 101' }
+      course.reload.name.should == 'Linux Administration 101'
+    end
+
+    it "redirects to the edit course page" do
+      put :update, id: course.to_param, course: { name: 'Linux Administration 101' }
+      response.should redirect_to edit_course_path(course)
+    end
+
+    it "sets the success flash" do
+      put :update, id: course.to_param, course: { name: 'Linux Administration 101' }
+      flash[:success].should_not be_nil
+    end
+
+    context "when submitting invalid data" do
+      before { Course.any_instance.stubs(:update_attributes).returns(false) }
+
+      it "renders the edit page" do
+        put :update, id: course.to_param, course: { junk: '1' }
+        response.should render_template :edit
+      end
+
+      it "sets the error flash" do
+        put :update, id: course.to_param, course: { junk: '1' }
+        flash[:error].should_not be_nil
       end
     end
   end

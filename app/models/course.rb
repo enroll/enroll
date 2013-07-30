@@ -9,28 +9,25 @@ class Course < ActiveRecord::Base
   validates :location, associated: true
   validates :instructor, associated: true
 
-  scope :future, -> { where("course_starts_at >= ?", Time.now).order("course_starts_at ASC") }
-  scope :past, -> { where("course_starts_at < ?", Time.now).order("course_starts_at DESC") }
-  scope :without_dates, -> { where(course_starts_at: nil) }
+  scope :future, -> { where("starts_at >= ?", Time.now).order("starts_at ASC") }
+  scope :past, -> { where("starts_at < ?", Time.now).order("starts_at DESC") }
+  scope :without_dates, -> { where(starts_at: nil) }
 
   after_save :set_defaults
 
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
 
-  def course_start_date
-    return nil unless course_starts_at.present?
-    course_starts_at.strftime("%a, %B %e %Y")
+  def start_date
+    starts_at.try(:strftime, "%a, %B %e %Y")
   end
 
-  def course_start_time
-    return nil unless course_starts_at.present?
-    course_starts_at.strftime("%l:%M %p %Z")
+  def start_time
+    starts_at.try(:strftime, "%l:%M %p %Z")
   end
 
-  def course_end_time
-    return nil unless course_ends_at.present?
-    course_ends_at.strftime("%l:%M %p %Z")
+  def end_time
+    ends_at.try(:strftime, "%l:%M %p %Z")
   end
 
   def location_attributes=(location_attributes)
@@ -44,6 +41,6 @@ class Course < ActiveRecord::Base
 
   # temporary
   def set_defaults
-    self.course_ends_at = self.course_starts_at + 4.hours if self.course_starts_at_changed?
+    self.ends_at = self.starts_at + 4.hours if self.starts_at_changed?
   end
 end

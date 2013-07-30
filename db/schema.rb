@@ -13,17 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20130728231941) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "courses", force: true do |t|
     t.string   "name"
-    t.integer  "location_id"
     t.string   "tagline"
-    t.datetime "course_starts_at"
-    t.datetime "course_ends_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.text     "description"
+    t.integer  "location_id"
     t.integer  "instructor_id"
+    t.integer  "min_seats"
+    t.integer  "max_seats"
+    t.integer  "price_per_seat"
+    t.text     "instructor_biography"
   end
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20130728231941) do
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address_2"
   end
 
   create_table "reservations", force: true do |t|
