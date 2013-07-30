@@ -6,10 +6,6 @@ describe ReservationsController do
   let(:reservation) { build(:reservation, course: course) }
   let(:reservation_attributes) { attributes_for(:reservation, course: course) }
 
-  before(:each) do
-    sign_in user
-  end
-
   context "GET new" do
     it "renders the new page" do
       get :new, course_id: course.to_param
@@ -25,12 +21,16 @@ describe ReservationsController do
   end
 
   context "POST create" do
-    it "creates a reservation for the current user" do
-      expect {
-        post :create, course_id: course.to_param, reservation: reservation_attributes
-      }.to change(user.reservations, :count)
+    context "with a user signed in" do
+      it "creates a reservation for the current user" do
+        sign_in user
 
-      user.courses_as_student.last.should == course
+        expect {
+          post :create, course_id: course.to_param, reservation: reservation_attributes
+        }.to change(user.reservations, :count)
+
+        user.courses_as_student.last.should == course
+      end
     end
 
     it "redirects to the reservation" do

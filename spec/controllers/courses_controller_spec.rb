@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe CoursesController do
-  include Devise::TestHelpers
-
   let(:course) { build(:course) }
   let(:course_attributes) { attributes_for(:course).merge({ location_attributes: attributes_for(:location)}) }
   let(:user) { create(:user) }
