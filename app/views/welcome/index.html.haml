@@ -38,8 +38,9 @@
     %h1.logo enroll
     %p You teach.
     %p We take care of the rest.
-    %button.btn.btn-primary{"data-toggle" => "collapse", "data-target" => "#sign-up"}
-      Sign Up To Teach
+    - unless user_signed_in?
+      %button.btn.btn-primary{"data-toggle" => "collapse", "data-target" => "#sign-up"}
+        Sign Up To Teach
 %ul
   - Course.all.each do |course|
     %li= link_to course.name, course_path(course)
