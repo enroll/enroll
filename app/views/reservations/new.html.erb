@@ -6,15 +6,15 @@
       <fieldset>
         <legend>Reserve your seat</legend>
         <div class="price">
-          1 seat (<%= @course.free? ? 'FREE' : number_to_currency(@course.price_per_seat) %>)
+          1 seat (<%= @course.free? ? 'FREE' : number_to_currency_from_cents(@course.price_per_seat_in_cents) %>)
         </div>
         <% unless @course.free? %>
           <script
             src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
             data-key="pk_test_1dGqIW80J3bz620Ylp8FbCLJ"
-            data-amount="<%= ((@course.price_per_seat || 0) * 100).to_i %>"
+            data-amount="<%= @course.price_per_seat_in_cents || 0 %>"
             data-name="<%= @course.name %>"
-            data-description="1 seat (<%= number_to_currency(@course.price_per_seat) %>)"
+            data-description="1 seat (<%= number_to_currency_from_cents(@course.price_per_seat_in_cents) %>)"
             data-image="/placeholder.png">
           </script>
         <% end %>

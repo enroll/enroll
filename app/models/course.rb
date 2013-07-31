@@ -31,7 +31,7 @@ class Course < ActiveRecord::Base
   end
 
   def free?
-    price_per_seat.blank? || price_per_seat == 0
+    price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
   end
 
   def location_attributes=(location_attributes)
