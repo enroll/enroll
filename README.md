@@ -1,8 +1,6 @@
 Enroll
 ======
 
-**World Domination Begins: Tuesday, July 23, 2013 (hopeful release date)**
-
 ## Getting Started
 
     cp config/database.example.yml config/database.yml
