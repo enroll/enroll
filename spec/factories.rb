@@ -8,7 +8,7 @@ FactoryGirl.define do
     instructor_biography { "Professor Ben Ann Ugh has been teaching for 40 years." }
     min_seats            { 10 }
     max_seats            { 25 }
-    price_per_seat       { 14999 } # $149.99
+    price_per_seat       { 149.99 }
 
     # associations
     location
