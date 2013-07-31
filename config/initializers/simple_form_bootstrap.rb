@@ -1,44 +1,22 @@
 SimpleForm.setup do |config|
-  # TODO: Make the default form not use labels and implement the variants as other wrappers.
-  config.wrappers :bootstrap, tag: 'div', class: 'row', error_class: 'has-error' do |b|
+  config.wrappers :bootstrap, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper tag: 'div', class: 'col-lg-9' do |ba|
+    b.use :input
+    b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block text-danger' }
+  end
+
+  config.wrappers 'bootstrap-horizontal', tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper tag: 'div', class: 'col-lg-10' do |ba|
       ba.use :input
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     end
   end
 
-  config.wrappers :prepend, tag: 'div', class: "row", error_class: 'has-error' do |b|
-    b.use :html5
-    b.use :placeholder
-    b.use :label
-    b.wrapper tag: 'div', class: 'controls' do |input|
-      input.wrapper tag: 'div', class: 'input-prepend' do |prepend|
-        prepend.use :input
-      end
-      input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
-      input.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    end
-  end
-
-  config.wrappers :append, tag: 'div', class: 'row', error_class: 'has-error' do |b|
-    b.use :html5
-    b.use :placeholder
-    b.use :label
-    b.wrapper tag: 'div', class: 'controls' do |input|
-      input.wrapper tag: 'div', class: 'input-append' do |append|
-        append.use :input
-      end
-      input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
-      input.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-    end
-  end
-
-  # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.
-  # Check the Bootstrap docs (http://twitter.github.com/bootstrap)
-  # to learn about the different styles for forms and inputs,
-  # buttons and other elements.
   config.default_wrapper = :bootstrap
 end
