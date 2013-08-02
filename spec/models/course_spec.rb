@@ -131,4 +131,16 @@ describe Course do
       Course.without_dates.should_not include(course)
     end
   end
+
+  describe ".free?" do
+    it "is true if price per seat is zero" do
+      course.price_per_seat_in_cents = 0
+      course.should be_free
+    end
+
+    it "is false if price per seat is non-zero" do
+      course.price_per_seat_in_cents = 10000
+      course.should_not be_free
+    end
+  end
 end

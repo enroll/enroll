@@ -1,14 +1,14 @@
 FactoryGirl.define do
   factory :course do
-    name                 { "Space Monkeys Learn Java" }
-    tagline              { "You'll be peeling XML bananas in no time." }
-    starts_at            { 2.weeks.from_now }
-    ends_at              { 2.weeks.from_now + 4.hours }
-    description          { "Learn NetBeans, Eclipse, and Static Typing" }
-    instructor_biography { "Professor Ben Ann Ugh has been teaching for 40 years." }
-    min_seats            { 10 }
-    max_seats            { 25 }
-    price_per_seat       { 14999 } # $149.99
+    name                    { "Space Monkeys Learn Java" }
+    tagline                 { "You'll be peeling XML bananas in no time." }
+    starts_at               { 2.weeks.from_now }
+    ends_at                 { 2.weeks.from_now + 4.hours }
+    description             { "Learn NetBeans, Eclipse, and Static Typing" }
+    instructor_biography    { "Professor Ben Ann Ugh has been teaching for 40 years." }
+    min_seats               { 10 }
+    max_seats               { 25 }
+    price_per_seat_in_cents { 14999 }
 
     # associations
     location
