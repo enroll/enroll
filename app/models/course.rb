@@ -30,6 +30,10 @@ class Course < ActiveRecord::Base
     ends_at.try(:strftime, "%l:%M %p %Z")
   end
 
+  def free?
+    price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
+  end
+
   def location_attributes=(location_attributes)
     location_attributes.delete_if { |k, v| v.blank? }
     if location_attributes.any?
