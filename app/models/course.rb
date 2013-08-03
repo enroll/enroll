@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  acts_as_url :name
+
   has_many :reservations, dependent: :destroy
   has_many :users, through: :reservations
 
