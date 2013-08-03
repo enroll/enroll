@@ -8,6 +8,8 @@
     </div>
 
     <div class="col-3">
+      <h2><%= number_to_currency @course.price_in_dollars %></h2>
+
       <%= course_reservation_link(@course) %>
       <hr />
 
