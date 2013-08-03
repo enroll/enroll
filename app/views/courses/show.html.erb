@@ -1,36 +1,26 @@
-<div class="navbar navbar-fixed-top">
-  <div class="container">
-    <div class="row">
-      <p class="lead text-right">
-        Only $<span class="workshop-cost">50</span>
-        <%= course_reservation_link(@course, :class => 'btn btn-primary reserve upcase') %>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="jumbotron text-right">
-  <h1><%= @course.name %></h1>
-  <p><%= @course.tagline %></p>
-
-  <% if @course.location.present? %>
-    <p class="upcase location"><%= @course.location.city %>, <%= @course.location.state %></p>
-  <% end %>
-  <% if @course.starts_at.present? %>
-    <p class="date upcase"><%= @course.start_date %> | <%= @course.start_time %> - <%= @course.end_time %></p>
-  <% end %>
-  <%= course_reservation_link(@course) %>
-</div>
-
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h2>What</h2>
-      <%= @course.description %>
+    <div class="col-9">
+      <h1><%= @course.name %></h1>
+      <h3><%= @course.tagline %></h3>
+
+      <p><%= @course.description %></p>
+    </div>
+
+    <div class="col-3">
+      <%= course_reservation_link(@course) %>
+      <hr />
+
+      <% if @course.starts_at.present? %>
+        <h4><%= @course.starts_at.strftime("%B %e, %Y") %></h4>
+        <h5>
+          <%= @course.starts_at.strftime("%l:%M %p") %> -
+          <%= @course.ends_at.strftime("%l:%M %p %Z") %>
+        </h5>
+      <% end %>
+
 
       <% if @course.location.present? %>
-        <h2>Where</h2>
-
         <address>
           <strong><%= @course.location.name %></strong><br>
           <%= @course.location.address %><br>
@@ -39,8 +29,6 @@
           <abbr title="Phone">P:</abbr> <%= @course.location.phone %>
         </address>
       <% end %>
-
     </div>
   </div>
-
 </div>
