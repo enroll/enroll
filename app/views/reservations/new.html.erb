@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <%= form_for(@reservation, :url => course_reservations_path) do |f| %>
+    <%= simple_form_for(@reservation, :url => course_reservations_path) do |f| %>
       <h2><%= @course.name %></h2>
 
       <fieldset>
@@ -24,14 +24,14 @@
 
       <fieldset>
         <legend>Complete other details</legend>
-        <%= label_tag :detail_1 %>
-        <%= text_field_tag :detail_1 %>
+        <%= label_tag :name %>
+        <%= text_field_tag :name %>
 
-        <%= label_tag :detail_2 %>
-        <%= text_field_tag :detail_2 %>
+        <%= label_tag :email %>
+        <%= text_field_tag :email %>
 
         <br />
-        <%= f.submit('Confirm reservation', class: 'btn', disabled: !@course.free?) %>
+        <%= f.submit('Confirm reservation', class: 'btn') %>
       </fieldset>
     <% end %>
   </div>
