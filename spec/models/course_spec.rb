@@ -143,4 +143,17 @@ describe Course do
       course.should_not be_free
     end
   end
+
+  describe "#price_in_dollars" do
+    it "returns the price in dollars with decimal point" do
+      course.price_per_seat_in_cents = 15095
+      course.price_in_dollars.should == 150.95
+    end
+
+    it "returns nil if price isn't set" do
+      course.price_per_seat_in_cents = nil
+      course.price_in_dollars.should be_nil
+    end
+  end
+
 end
