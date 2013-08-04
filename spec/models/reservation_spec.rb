@@ -8,6 +8,7 @@ describe Reservation do
 
   it { should belong_to(:course) }
   it { should belong_to(:student) }
+  it { should have_one(:instructor) }
 
   it { should validate_presence_of(:course) }
   it { should validate_presence_of(:student) }
