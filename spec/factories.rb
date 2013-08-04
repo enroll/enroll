@@ -12,12 +12,12 @@ FactoryGirl.define do
 
     # associations
     location
-    instructor factory: :user
+    instructor factory: :instructor
   end
 
   factory :reservation do
     course
-    user
+    student
   end
 
   factory :location do

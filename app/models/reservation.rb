@@ -6,4 +6,10 @@ class Reservation < ActiveRecord::Base
 
   validates :course,  presence: true
   validates :student, presence: true
+
+  after_create :send_enrollment_notification
+
+  def send_enrollment_notification
+    InstructorMailer.student_enrolled(self).deliver
+  end
 end

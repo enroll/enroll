@@ -17,4 +17,11 @@ describe Reservation do
       reservation.instructor.should == instructor
     end
   end
+
+  it "notifies the instructor when a student enrolls" do
+    InstructorMailer.expects(:student_enrolled).
+      with(reservation).returns(mock 'mail', :deliver => true)
+
+    reservation.save
+  end
 end

@@ -36,6 +36,7 @@ group :development, :test do
   gem 'rspec-instafail'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'email_spec'
 end
 
 group :development do
