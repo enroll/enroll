@@ -6,6 +6,7 @@ ruby '2.0.0'
 gem 'rails', '~> 4.0.0'
 
 # Standard gems
+gem 'angularjs-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', '~> 3.0.0'
 gem 'haml', '~> 4.0.3'
