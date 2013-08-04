@@ -11,6 +11,9 @@ class Course < ActiveRecord::Base
   validates :location, associated: true
   validates :instructor, associated: true
 
+  validates :url, uniqueness: true,
+                  format: { with: /\A[a-z\d]+([-_][a-z\d]+)*\z/i, message: 'is not a valid URL'}
+
   scope :future, -> { where("starts_at >= ?", Time.now).order("starts_at ASC") }
   scope :past, -> { where("starts_at < ?", Time.now).order("starts_at DESC") }
   scope :without_dates, -> { where(starts_at: nil) }
