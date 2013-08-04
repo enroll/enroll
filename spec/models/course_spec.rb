@@ -6,6 +6,7 @@ describe Course do
   it { should belong_to(:location) }
   it { should belong_to(:instructor) }
   it { should have_many(:reservations) }
+  it { should have_many(:students) }
 
   it { should validate_presence_of(:name) }
 
