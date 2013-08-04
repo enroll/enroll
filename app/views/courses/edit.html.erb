@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-init="data.url='<%= @course.url %>'"
   <div class="row">
     <div class="col-12">
       <%= render 'shared/messages' %>
@@ -8,6 +8,7 @@
 
         <h2>What</h2>
         <%= f.input :name %>
+        <%= f.input :url, as: :string, label: 'Subdomain', hint: 'Your course URL will be: {{ data.url.dasherize() }}.enroll.io', input_html: { 'ng-model' => 'data.url' } %>
         <%= f.input :tagline %>
         <%= f.input :description %>
         <%= f.input :instructor_biography, label: 'Your biography' %>
