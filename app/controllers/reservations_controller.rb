@@ -1,5 +1,4 @@
 class ReservationsController < ApplicationController
-  # before_filter :authenticate_user!
   before_filter :require_course!
 
   def new
