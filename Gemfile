@@ -45,5 +45,6 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-shell'
+  gem 'pry-rails'
 end
 
