@@ -5,5 +5,9 @@ Enroll::Application.routes.draw do
     resources :reservations
   end
 
+  constraints(Subdomain) do
+    get '/', to: 'courses#show'
+  end
+
   root 'welcome#index'
 end

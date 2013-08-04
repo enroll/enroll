@@ -10,6 +10,15 @@ describe CoursesController do
 
     it "renders the show page" do
       get :show, id: course.to_param
+      assigns[:course].should == course
+      response.should be_success
+      response.should render_template :show
+    end
+
+    it "renders the landing page via custom subdomain" do
+      @controller.request.expects(:subdomain).returns(course.url)
+      get :show
+      assigns[:course].should == course
       response.should be_success
       response.should render_template :show
     end
