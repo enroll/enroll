@@ -14,7 +14,7 @@ describe User do
       user.save
       @instructor_course = create(:course, instructor: user)
       @student_course = create(:course)
-      create(:reservation, user: user, course: @student_course)
+      create(:reservation, student: user, course: @student_course)
     end
 
     it 'includes courses the user is taking as a student' do
