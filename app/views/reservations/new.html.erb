@@ -5,9 +5,10 @@
 
       <fieldset>
         <legend>Reserve your seat</legend>
-        <div class="price">
+        <p>
           1 seat (<%= @course.free? ? 'FREE' : number_to_currency_from_cents(@course.price_per_seat_in_cents) %>)
-        </div>
+        </p>
+
         <% unless @course.free? %>
           <script
             src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
@@ -20,19 +21,12 @@
         <% end %>
       </fieldset>
 
-      <br />
-
       <fieldset>
-        <legend>Complete other details</legend>
-        <%= label_tag :name %>
-        <%= text_field_tag :name %>
-
-        <%= label_tag :email %>
-        <%= text_field_tag :email %>
-
-        <br />
-        <%= f.submit('Confirm reservation', class: 'btn') %>
+        <legend>Student details</legend>
+        <p>Email: <%= current_user.email %></p>
       </fieldset>
+
+      <%= f.submit('Confirm reservation', class: 'btn') %>
     <% end %>
   </div>
 </div>
