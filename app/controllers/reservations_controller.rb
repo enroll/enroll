@@ -20,9 +20,10 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = @course.reservations.find(params[:id])
+    @student = @reservation.student
   end
 
-  protected
+  private
 
   def require_course!
     unless @course = Course.find(params[:course_id])
