@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :require_course!
 
   def new
@@ -6,8 +7,8 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = @course.reservations.build(params[:course])
-    @reservation.user = current_user if user_signed_in?
+    @reservation = @course.reservations.build
+    @reservation.student = current_user
 
     if @reservation.save
       flash[:success] = "Reservation created successfully."
