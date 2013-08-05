@@ -32,4 +32,10 @@ describe User do
     end
   end
 
+  describe "#staff?" do
+    it 'returns true' do
+      user.staff?.should be_true
+    end
+  end
+
 end

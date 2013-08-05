@@ -15,4 +15,10 @@ class User < ActiveRecord::Base
   def display_title
     email
   end
+
+  # TODO: Add a 'role' column to actually distinguish
+  # between Enroll staff and Enroll customers
+  def staff?
+    true
+  end
 end
