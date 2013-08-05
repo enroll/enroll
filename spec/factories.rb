@@ -27,15 +27,13 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) {|n| "user#{n}@example.com" }
     password "password"
-  end
 
-  factory :student, :class => User do
-    sequence(:email) {|n| "user#{n}@example.com" }
-    password "password"
-  end
+    factory :student do
+      sequence(:email) {|n| "student#{n}@example.com" }
+    end
 
-  factory :instructor, :class => User do
-    sequence(:email) {|n| "user#{n}@example.com" }
-    password "password"
+    factory :instructor do
+      sequence(:email) {|n| "instructor#{n}@example.com" }
+    end
   end
 end
