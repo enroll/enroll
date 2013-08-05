@@ -35,7 +35,7 @@ Course.create!(
 )
 Course.create!(
   name: "How to launch your startup",
-  tagline: "Learn how to spend $5 MM in stealth mode building a product
+  tagline: "Learn how not to spend $5 MM in stealth mode building a product
   that nobody is going to buy",
   starts_at: 1.month.from_now,
   ends_at: 1.month.from_now + 4.hours,
