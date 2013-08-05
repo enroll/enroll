@@ -6,7 +6,8 @@ User.delete_all
 Reservation.delete_all
 
 instructor = User.create!(email: "instructor@example.com", password: "password")
-puts "Created 1 user."
+student    = User.create!(email: "student@example.com",    password: "password")
+puts "Created 2 users."
 
 location = Location.create!(
   name: "Moscone Center West",
