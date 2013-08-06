@@ -18,10 +18,28 @@ describe Reservation do
     end
   end
 
-  it "notifies the instructor when a student enrolls" do
-    InstructorMailer.expects(:student_enrolled).
-      with(reservation).returns(mock 'mail', :deliver => true)
+  context "when a reservation is made" do
+    it "delivers an enrollment notification" do
+      reservation.expects(:send_enrollment_notification)
+      reservation.save
+    end
+  end
 
-    reservation.save
+  context "#send_enrollment_notification" do
+    before { reservation.save }
+
+    it "enqueues an enrollment notification job" do
+      Resque.expects(:enqueue).with(EnrollmentNotification, reservation.id)
+      reservation.send_enrollment_notification
+    end
+  end
+
+  context "#send_enrollment_notification!" do
+    it "notifies the instructor when a student enrolls" do
+      InstructorMailer.expects(:student_enrolled).
+        with(reservation).returns(mock 'mail', :deliver => true)
+
+      reservation.send_enrollment_notification!
+    end
   end
 end

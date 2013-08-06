@@ -10,6 +10,10 @@ class Reservation < ActiveRecord::Base
   after_create :send_enrollment_notification
 
   def send_enrollment_notification
+    Resque.enqueue EnrollmentNotification, id
+  end
+
+  def send_enrollment_notification!
     InstructorMailer.student_enrolled(self).deliver
   end
 end
