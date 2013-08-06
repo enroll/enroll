@@ -9,12 +9,12 @@ describe User do
 
   it { should validate_presence_of(:email) }
 
-  describe 'courses' do
+  describe '.courses' do
     before(:each) do
       user.save
       @instructor_course = create(:course, instructor: user)
       @student_course = create(:course)
-      create(:reservation, user: user, course: @student_course)
+      create(:reservation, student: user, course: @student_course)
     end
 
     it 'includes courses the user is taking as a student' do
@@ -26,9 +26,15 @@ describe User do
     end
   end
 
-  describe 'display_title' do
+  describe '#display_title' do
     it 'is the same as the user email' do
       user.display_title.should == user.email
+    end
+  end
+
+  describe "#staff?" do
+    it 'returns true' do
+      user.staff?.should be_true
     end
   end
 

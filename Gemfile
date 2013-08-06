@@ -6,17 +6,18 @@ ruby '2.0.0'
 gem 'rails', '~> 4.0.0'
 
 # Standard gems
-gem 'coffee-rails', '~> 4.0.0'
-gem 'devise', '~> 3.0.0'
-gem 'haml', '~> 4.0.3'
-gem 'jbuilder', '~> 1.0.1'
+gem 'coffee-rails',   '~> 4.0.0'
+gem 'devise',         '~> 3.0.0'
+gem 'haml',           '~> 4.0.3'
+gem 'jbuilder',       '~> 1.0.1'
 gem 'jquery-rails'
 gem 'pg'
-gem 'sass-rails', '~> 4.0.0'
-gem 'simple_form', '~> 3.0.0.rc'
+gem 'resque',         '1.24.1'
+gem 'sass-rails',     '~> 4.0.0'
+gem 'simple_form',    '~> 3.0.0.rc'
 gem 'turbolinks'
 gem 'unicorn'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier',       '>= 1.3.0'
 # ^- remember to keep this in alphabetical order
 
 # Production gems that need further explanation:
@@ -35,6 +36,7 @@ group :development, :test do
   gem 'rspec-instafail'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'email_spec'
 end
 
 group :development do

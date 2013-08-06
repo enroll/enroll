@@ -6,10 +6,11 @@ describe Course do
   it { should belong_to(:location) }
   it { should belong_to(:instructor) }
   it { should have_many(:reservations) }
+  it { should have_many(:students) }
 
   it { should validate_presence_of(:name) }
 
-  describe "start_date" do
+  describe "#start_date" do
     it "returns a date value" do
       course.starts_at = Time.parse("January 1 2014 12:01 PM EST")
       course.start_date.should == "Wed, January  1 2014"
@@ -21,7 +22,7 @@ describe Course do
     end
   end
 
-  describe "start_time" do
+  describe "#start_time" do
     it "returns a time value" do
       course.starts_at = Time.parse("January 1 2014 12:01 PM EST")
       course.start_time.should == " 5:01 PM UTC"
@@ -33,7 +34,7 @@ describe Course do
     end
   end
 
-  describe "end_time" do
+  describe "#end_time" do
     it "returns a time value" do
       course.ends_at = Time.parse("January 1 2014 4:01 PM EST")
       course.end_time.should == " 9:01 PM UTC"
@@ -45,7 +46,7 @@ describe Course do
     end
   end
 
-  describe "location_attributes" do
+  describe "#location_attributes=" do
     before { course.location = nil }
 
     it "creates a location" do
@@ -132,7 +133,7 @@ describe Course do
     end
   end
 
-  describe ".free?" do
+  describe "#free?" do
     it "is true if price per seat is zero" do
       course.price_per_seat_in_cents = 0
       course.should be_free
@@ -143,4 +144,5 @@ describe Course do
       course.should_not be_free
     end
   end
+
 end

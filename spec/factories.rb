@@ -12,12 +12,12 @@ FactoryGirl.define do
 
     # associations
     location
-    instructor factory: :user
+    instructor factory: :instructor
   end
 
   factory :reservation do
     course
-    user
+    student
   end
 
   factory :location do
@@ -27,5 +27,13 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) {|n| "user#{n}@example.com" }
     password "password"
+
+    factory :student do
+      sequence(:email) {|n| "student#{n}@example.com" }
+    end
+
+    factory :instructor do
+      sequence(:email) {|n| "instructor#{n}@example.com" }
+    end
   end
 end
