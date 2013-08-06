@@ -41,10 +41,6 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def price_in_dollars
-    (price_per_seat_in_cents.to_f / 100) if price_per_seat_in_cents
-  end
-
   private
 
   # temporary
