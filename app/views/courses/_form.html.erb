@@ -1,0 +1,28 @@
+<%= form.error_notification %>
+
+<h2>What</h2>
+<%= form.input :name %>
+<%= form.input :tagline %>
+<%= form.input :description %>
+<%= form.input :instructor_biography, label: 'Your biography' %>
+
+<h2>When</h2>
+<%= form.input :starts_at, as: :string, input_html: { class: 'datepicker' } %>
+<%= form.input :ends_at, as: :string, input_html: { class: 'datepicker' } %>
+
+<h2>Where</h2>
+<%= form.simple_fields_for(:location) do |location| %>
+  <%= location.input :name, label: 'Venue name' %>
+  <%= location.input :address %>
+  <%= location.input :address_2 %>
+  <%= location.input :city %>
+  <%= location.input :state %>
+  <%= location.input :zip %>
+  <%= location.input :phone %>
+<% end %>
+
+<h2>Pricing</h2>
+<%= form.input :min_seats %>
+<%= form.input :max_seats %>
+<%= form.input :price_per_seat_in_cents %>
+
