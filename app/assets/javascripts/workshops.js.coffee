@@ -1,3 +1,25 @@
+updateCourseCalculator = ->
+  $minSeats = $('#course_min_seats').val()
+  $('.min-seats').text($minSeats)
+
+  $maxSeats = $('#course_max_seats').val()
+  $('.max-seats').text($maxSeats)
+
+  $cost = $('#course_price_per_seat_in_cents').val()
+  $('.ticket-price').text("$#{$cost}")
+
+  $minRevenue = parseInt($minSeats) * parseInt($cost)
+  $maxRevenue = parseInt($maxSeats) * parseInt($cost)
+
+  if isNaN $minRevenue
+    $(".min-seat-revenue").text "$0"
+  else
+    $(".min-seat-revenue").text "$#{$minRevenue}"
+  if isNaN $maxRevenue
+    $(".max-seat-revenue").text "$0"
+  else
+    $(".max-seat-revenue").text "$#{$maxRevenue}"
+
 ready = ->
   $('.manage-sidebar').affix();
 
@@ -42,6 +64,10 @@ ready = ->
 
   $('#log-in').on 'shown.bs.collapse', ->
     $('#log-in .email').focus()
+
+  $('#course_min_seats').on 'propertychange input', updateCourseCalculator
+  $('#course_max_seats').on 'propertychange input', updateCourseCalculator
+  $('#course_price_per_seat_in_cents').on 'propertychange input', updateCourseCalculator
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
