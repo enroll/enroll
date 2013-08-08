@@ -41,6 +41,23 @@
     - unless user_signed_in?
       %button.btn.btn-primary{"data-toggle" => "collapse", "data-target" => "#sign-up"}
         Sign Up To Teach
-%ul
-  - Course.all.each do |course|
-    %li= link_to course.name, course_path(course)
+
+.container
+  .row
+    .col-4
+      %h4 All Courses
+      %ul
+        - Course.all.each do |course|
+          %li= link_to course.name, course_path(course)
+    .col-4
+      %h4 My Courses
+      - if user_signed_in?
+        %ul
+          - current_user.courses_as_instructor.all.each do |course|
+            %li= link_to course.name, course_path(course)
+    .col-4
+      %h4 My Reservations
+      - if user_signed_in?
+        %ul
+          - current_user.courses_as_student.all.each do |course|
+            %li= link_to course.name, course_path(course)
