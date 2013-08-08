@@ -1,0 +1,29 @@
+.manage-sidebar
+  .panel
+    .panel-heading
+      .progress
+        .progress-bar{style: "width: 40%;"}
+      .funded-label{style: "margin-left: 40%; width: 50%;"}
+        .glyphicon.glyphicon-arrow-up
+        Goal
+      .row.status-strip
+        .col-4
+          .quantity 14
+          .status-label Enrolled
+        .col-4
+          .quantity 4
+          .status-label Needed
+        .col-4
+          .quantity 21
+          .status-label Days left
+    %div.list-group-flush
+      %a.list-group-item{href: "#"}
+        %span.glyphicon.glyphicon-home
+        Dashboard
+      %a.list-group-item{href: "#"}
+        %span.glyphicon.glyphicon-user
+        %span.badge 14
+        Students
+      %a.list-group-item.active{href: edit_course_path(course)}
+        %span.glyphicon.glyphicon-cog
+        Settings
