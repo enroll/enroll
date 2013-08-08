@@ -4,35 +4,9 @@
       <%= render 'shared/messages' %>
 
       <%= simple_form_for(@course, :html => { :class => "edit_course disable-submit-on-return" }) do |f| %>
-        <%= f.error_notification %>
+        <%= render 'courses/form', form: f %>
 
-        <h2>What</h2>
-        <%= f.input :name %>
-        <%= f.input :tagline %>
-        <%= f.input :description %>
-        <%= f.input :instructor_biography, label: 'Your biography' %>
-
-        <h2>When</h2>
-        <%= f.input :starts_at, as: :string, input_html: { class: 'datepicker' } %>
-        <%= f.input :ends_at, as: :string, input_html: { class: 'datepicker' } %>
-
-        <h2>Where</h2>
-        <%= f.simple_fields_for(:location) do |location| %>
-          <%= location.input :name, label: 'Venue name' %>
-          <%= location.input :address %>
-          <%= location.input :address_2 %>
-          <%= location.input :city %>
-          <%= location.input :state %>
-          <%= location.input :zip %>
-          <%= location.input :phone %>
-        <% end %>
-
-        <h2>Pricing</h2>
-        <%= f.input :min_seats %>
-        <%= f.input :max_seats %>
-        <%= f.input :price_per_seat_in_cents %>
-
-        <%= f.button :submit %>
+        <%= f.button :submit, class: 'btn btn-primary upcase' %>
         <span class="pull-right"><%= link_to 'View course page', course_path(@course) %></span>
       <% end %>
     </div>
