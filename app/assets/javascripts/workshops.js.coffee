@@ -69,5 +69,19 @@ ready = ->
   $('#course_max_seats').on 'propertychange input', updateCourseCalculator
   $('#course_price_per_seat_in_cents').on 'propertychange input', updateCourseCalculator
 
+  $('#for-fun').click ->
+    $cost = $('#course_price_per_seat_in_cents')
+    $cost.val(0).hide()
+    $cost.parent().append("<strong class='free-text'>FREE</strong>")
+    $('#revenue-calculator').hide()
+
+  $('#for-profit').click ->
+    $cost = $('#course_price_per_seat_in_cents')
+    $cost.val(100).show()
+    $('.free-text').remove()
+    $('#revenue-calculator').show()
+    updateCourseCalculator()
+
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

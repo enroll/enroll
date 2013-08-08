@@ -12,6 +12,9 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    @course.min_seats = 5
+    @course.max_seats = 15
+    @course.price_per_seat_in_cents = 19900
     @course.build_location
   end
 

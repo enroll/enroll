@@ -26,19 +26,27 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-primary active">
+      <label id="for-profit" class="btn btn-info active">
         <input type="radio" name="options" id="for-profit"> For Profit
       </label>
-      <label class="btn btn-primary">
+      <label id="for-fun" class="btn btn-info">
         <input type="radio" name="options" id="for-fun"> For Fun
       </label>
     </div>
 
-    <%= form.input :min_seats, wrapper: 'pricing-block' %>
-    <%= form.input :max_seats, wrapper: 'pricing-block' %>
-    <%= form.input :price_per_seat_in_cents, wrapper: 'pricing-block' %>
+    <%= form.input :min_seats,
+                   label: 'Minimum # of Seats',
+                   wrapper: 'pricing-block',
+                   hint: "If fewer than this number of people sign up, the workshop won't run." %>
+    <%= form.input :max_seats,
+                   label: 'Maximum # of Seats',
+                   wrapper: 'pricing-block',
+                   hint: "The most people you can fit in the room, or the most you want to teach to." %>
+    <%= form.input :price_per_seat_in_cents,
+                   label: 'Cost per Seat',
+                   wrapper: 'pricing-block' %>
   </div>
-  <div class="col-lg-6 well">
+  <div id="revenue-calculator" class="col-lg-6 well">
     <h5 class="text-center upcase">Course Revenue Calculator</h5>
 
     <table class="table text-right">
