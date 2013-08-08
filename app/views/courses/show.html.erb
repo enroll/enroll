@@ -8,7 +8,7 @@
     </div>
 
     <div class="col-3">
-      <h2><%= number_to_currency price_in_dollars(@course.price_per_seat_in_sents) %></h2>
+      <h2><%= number_to_currency price_in_dollars(@course.price_per_seat_in_cents) %></h2>
 
       <%= course_reservation_link(@course) %>
       <hr />
