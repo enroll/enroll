@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :find_course!, only: [:edit, :update]
 
   def index
@@ -47,6 +47,7 @@ class CoursesController < ApplicationController
     params.require(:course).permit(
       :name, :tagline, :starts_at, :ends_at, :description,
       :instructor_biography, :min_seats, :max_seats, :price_per_seat_in_cents,
+      :instructor_id,
       location_attributes: [
         :name, :address, :address_2, :city, :state, :zip, :phone
       ]

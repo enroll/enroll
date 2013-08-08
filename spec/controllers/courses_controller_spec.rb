@@ -31,34 +31,52 @@ describe CoursesController do
   end
 
   context "POST create" do
-    it "creates a course" do
-      expect {
-        post :create, course: course_attributes
-      }.to change(Course, :count)
-    end
+    context "when logged in" do
+      before { sign_in(user) }
 
-    it "redirects to the reservation" do
-      post :create, course: course_attributes
-      response.should be_redirect
-      response.should redirect_to(course_path(assigns[:course]))
-    end
-
-    it "sets the success flash" do
-      post :create, course: course_attributes
-      flash[:success].should_not be_nil
-    end
-
-    context "when submitting invalid data" do
-      before { Course.any_instance.stubs(:save).returns(false) }
-
-      it "renders the new page" do
-        post :create, course: { junk: '1' }
-        response.should render_template :new
+      it "creates a course" do
+        expect {
+          post :create, course: course_attributes
+        }.to change(Course, :count)
       end
 
-      it "sets the error flash" do
-        post :create, course: { junk: '1' }
-        flash[:error].should_not be_nil
+      it "redirects to the reservation" do
+        post :create, course: course_attributes
+        response.should be_redirect
+        response.should redirect_to(course_path(assigns[:course]))
+      end
+
+      it "sets the success flash" do
+        post :create, course: course_attributes
+        flash[:success].should_not be_nil
+      end
+
+      it "sets the instructor" do
+        course_attributes.merge!(:instructor_id => user.id)
+        post :create, course: course_attributes
+        user.courses.count.should == 1
+      end
+
+      context "when submitting invalid data" do
+        before { Course.any_instance.stubs(:save).returns(false) }
+
+        it "renders the new page" do
+          post :create, course: { junk: '1' }
+          response.should render_template :new
+        end
+
+        it "sets the error flash" do
+          post :create, course: { junk: '1' }
+          flash[:error].should_not be_nil
+        end
+      end
+    end
+
+    context "when not logged in" do
+      it "redirects to root" do
+        post :create, course: course_attributes
+        response.should be_redirect
+        response.should redirect_to(root_path)
       end
     end
   end
