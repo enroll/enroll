@@ -6,10 +6,10 @@ updateCourseCalculator = ->
   $('.max-seats').text($maxSeats)
 
   $cost = $('#course_price_per_seat_in_cents').val()
-  $('.ticket-price').text("$#{$cost}")
+  $('.ticket-price').text("$#{parseInt($cost)/100}")
 
-  $minRevenue = parseInt($minSeats) * parseInt($cost)
-  $maxRevenue = parseInt($maxSeats) * parseInt($cost)
+  $minRevenue = parseInt($minSeats) * (parseInt($cost) / 100)
+  $maxRevenue = parseInt($maxSeats) * (parseInt($cost) / 100)
 
   if isNaN $minRevenue
     $(".min-seat-revenue").text "$0"
@@ -72,12 +72,13 @@ ready = ->
   $('#for-fun').click ->
     $cost = $('#course_price_per_seat_in_cents')
     $cost.val(0).hide()
+    $('.free-text').remove()
     $cost.parent().append("<strong class='free-text'>FREE</strong>")
     $('#revenue-calculator').hide()
 
   $('#for-profit').click ->
     $cost = $('#course_price_per_seat_in_cents')
-    $cost.val(100).show()
+    $cost.val(19900).show()
     $('.free-text').remove()
     $('#revenue-calculator').show()
     updateCourseCalculator()

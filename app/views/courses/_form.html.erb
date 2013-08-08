@@ -21,10 +21,9 @@
   <%= location.input :phone %>
 <% end %>
 
-<h2>Pricing</h2>
-
-<div class="row">
-  <div class="col-lg-6">
+<h2>
+  Pricing
+  <small>
     <div class="btn-group" data-toggle="buttons">
       <label id="for-profit" class="btn btn-info active">
         <input type="radio" name="options" id="for-profit"> For Profit
@@ -33,6 +32,11 @@
         <input type="radio" name="options" id="for-fun"> For Fun
       </label>
     </div>
+  </small>
+</h2>
+
+<div class="row">
+  <div class="col-lg-6">
 
     <%= form.input :min_seats,
                    label: 'Minimum # of Seats',
