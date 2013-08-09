@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :find_course!, only: [:edit, :update]
 
   def index
@@ -17,6 +17,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    @course.instructor = current_user
     @location = @course.location
 
     if @course.save
