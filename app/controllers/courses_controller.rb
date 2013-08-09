@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update]
-  before_filter :find_course!, only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:edit, :edit_students, :update]
+  before_filter :find_course!, only: [:edit, :edit_students, :update]
 
   def index
     @courses = Course.all

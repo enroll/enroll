@@ -34,6 +34,10 @@ class Course < ActiveRecord::Base
     price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
   end
 
+  def has_students?
+    reservations.count > 0
+  end
+
   def location_attributes=(location_attributes)
     location_attributes.delete_if { |k, v| v.blank? }
     if location_attributes.any?

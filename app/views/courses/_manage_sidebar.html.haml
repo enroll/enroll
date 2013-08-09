@@ -24,11 +24,11 @@
       %a.list-group-item{href: "#"}
         %span.glyphicon.glyphicon-home
         Dashboard
-      %a.list-group-item{href: "#"}
+      %a.list-group-item{href: course_students_path(course), class: current_page?(course_students_path(course)) ? "active" : ""}
         %span.glyphicon.glyphicon-user
         %span.badge
           = course.reservations.count
         Students
-      %a.list-group-item.active{href: edit_course_path(course)}
+      %a.list-group-item{href: edit_course_path(course), class: current_page?(edit_course_path(course)) ? "active" : ""}
         %span.glyphicon.glyphicon-cog
         Settings
