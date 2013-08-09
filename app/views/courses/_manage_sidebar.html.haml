@@ -8,13 +8,16 @@
         Goal
       .row.status-strip
         .col-4
-          .quantity 14
+          .quantity
+            = course.reservations.count
           .status-label Enrolled
         .col-4
-          .quantity 4
+          .quantity
+            = reservations_needed(course)
           .status-label Needed
         .col-4
-          .quantity 21
+          .quantity
+            = days_until_start(course)
           .status-label Days left
     %div.list-group-flush
       %a.list-group-item{href: "#"}
