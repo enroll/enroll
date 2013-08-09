@@ -15,9 +15,8 @@ describe CoursesController do
       response.should render_template :show
     end
 
-    it "renders the landing page via custom subdomain" do
-      @controller.request.expects(:subdomain).returns(course.url)
-      get :show
+    it "renders the landing page via landing page url" do
+      get :show, url: course.url
       assigns[:course].should == course
       response.should be_success
       response.should render_template :show

@@ -7,8 +7,8 @@
         <%= f.error_notification %>
 
         <h2>What</h2>
-        <%= f.input :name %>
-        <%= f.input :url, as: :string, label: 'Subdomain', hint: 'Your course URL will be: {{ data.url.dasherize() }}.enroll.io', input_html: { 'ng-model' => 'data.url' } %>
+        <%= f.input :name, label: 'Course name' %>
+        <%= f.input :url, as: :string, label: 'URL', hint: 'Your course URL will be: enroll.io/go/{{ data.url.dasherize() }}', input_html: { 'ng-model' => 'data.url' } %>
         <%= f.input :tagline %>
         <%= f.input :description %>
         <%= f.input :instructor_biography, label: 'Your biography' %>
