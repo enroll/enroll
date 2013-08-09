@@ -3,9 +3,10 @@
     .panel-heading
       .progress
         .progress-bar{style: "width: #{percentage_to_full(course)}%;"}
-      .funded-label{style: "margin-left: #{percentage_goal(course) - 25}%; width: 50%;"}
-        .glyphicon.glyphicon-arrow-up
-        Goal
+      - if course.min_seats
+        .funded-label{style: "margin-left: #{percentage_goal(course) - 25}%; width: 50%;"}
+          .glyphicon.glyphicon-arrow-up
+          Goal
       .row.status-strip
         .col-4
           .quantity
