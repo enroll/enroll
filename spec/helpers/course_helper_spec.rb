@@ -14,7 +14,7 @@ describe CourseHelper do
       reservations_needed(course).should == 7
     end
 
-    it "returns question mark if min_seats is not set" do
+    it "returns question mark if min seats is not set" do
       course = create(:course, min_seats: nil)
       reservations_needed(course).should == "?"
     end
@@ -39,6 +39,36 @@ describe CourseHelper do
     it "returns question mark if starts_at is not set" do
       course = create(:course, starts_at: nil)
       days_until_start(course).should == "?"
+    end
+  end
+
+  context "#percentage_to_full" do
+    it "returns the percentage of reservations to max seats" do
+      course = create(:course, max_seats: 20)
+      5.times { create(:reservation, course: course) }
+      percentage_to_full(course).should == 25
+    end
+
+    it "returns zero if max seats is not set" do
+      course = create(:course, max_seats: nil)
+      percentage_to_full(course).should == 0
+    end
+  end
+
+  context "#percentage_goal" do
+    it "returns the percentage of min seats to max seats" do
+      course = create(:course, min_seats: 10, max_seats: 20)
+      percentage_goal(course).should == 50
+    end
+
+    it "returns zero if max seats is not set" do
+      course = create(:course, max_seats: nil)
+      percentage_goal(course).should == 0
+    end
+
+    it "returns zero if min seats is not set" do
+      course = create(:course, min_seats: nil)
+      percentage_goal(course).should == 0
     end
   end
 end

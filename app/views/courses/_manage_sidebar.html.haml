@@ -2,8 +2,8 @@
   .panel
     .panel-heading
       .progress
-        .progress-bar{style: "width: 40%;"}
-      .funded-label{style: "margin-left: 40%; width: 50%;"}
+        .progress-bar{style: "width: #{percentage_to_full(course)}%;"}
+      .funded-label{style: "margin-left: #{percentage_goal(course) - 25}%; width: 50%;"}
         .glyphicon.glyphicon-arrow-up
         Goal
       .row.status-strip
@@ -25,7 +25,8 @@
         Dashboard
       %a.list-group-item{href: "#"}
         %span.glyphicon.glyphicon-user
-        %span.badge 14
+        %span.badge
+          = course.reservations.count
         Students
       %a.list-group-item.active{href: edit_course_path(course)}
         %span.glyphicon.glyphicon-cog
