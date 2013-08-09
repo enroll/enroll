@@ -6,8 +6,6 @@
       <h1>Create a new course</h1>
 
       <%= simple_form_for(@course, :html => {:class => "new_course disable-submit-on-return"}) do |f| %>
-        <%= f.input :instructor_id, as: 'hidden', input_html: { value: current_user.id } %>
-
         <%= render 'courses/form', form: f %>
 
         <%= f.button(:submit, 'Create New Workshop', class: 'btn btn-primary upcase') %>

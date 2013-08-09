@@ -52,7 +52,6 @@ describe CoursesController do
       end
 
       it "sets the instructor" do
-        course_attributes.merge!(:instructor_id => user.id)
         post :create, course: course_attributes
         user.courses.count.should == 1
       end
