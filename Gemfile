@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.0.0'
 
 # Standard gems
+gem 'angularjs-rails'
 gem 'coffee-rails',   '~> 4.0.0'
 gem 'devise',         '~> 3.0.1'
 gem 'haml',           '~> 4.0.3'
@@ -12,6 +13,7 @@ gem 'pg'
 gem 'resque',         '1.24.1'
 gem 'sass-rails',     '~> 4.0.0'
 gem 'simple_form',    '~> 3.0.0.rc'
+gem 'stringex'
 gem 'turbolinks'
 gem 'unicorn'
 gem 'uglifier',       '>= 1.3.0'
@@ -42,5 +44,6 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-shell'
+  gem 'pry-rails'
 end
 
