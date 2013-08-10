@@ -23,3 +23,7 @@
 #= require_tree .
 
 @App = angular.module('EnrollApp', ["$strap.directives"])
+
+$(document).on('ready page:load', ->
+  angular.bootstrap(document, ['EnrollApp'])
+)
