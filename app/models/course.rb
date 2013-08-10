@@ -2,7 +2,7 @@ class Course < ActiveRecord::Base
   acts_as_url :name
 
   has_many :reservations, dependent: :destroy
-  has_many :users, through: :reservations
+  has_many :students, through: :reservations, class_name: 'User'
 
   belongs_to :location
   belongs_to :instructor, class_name: 'User'

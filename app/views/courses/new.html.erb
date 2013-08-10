@@ -1,133 +1,15 @@
-<div class="navbar navbar-fixed-top">
-  <div class="container">
-    <div class="row">
-      <p class="lead text-right">
-        Only $<span class="workshop-cost">50</span>
-        <a href="#try" class="btn btn-primary reserve upcase">Reserve your seat</a>
-      </p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <%= render 'shared/messages' %>
+
+      <h1>Create a new course</h1>
+
+      <%= simple_form_for(@course, :html => {:class => "new_course disable-submit-on-return"}) do |f| %>
+        <%= render 'courses/form', form: f %>
+
+        <%= f.button(:submit, 'Create New Workshop', class: 'btn btn-primary upcase') %>
+      <% end %>
     </div>
   </div>
 </div>
-
-<%= simple_form_for(@course, :html => {:class => "new_course disable-submit-on-return"}) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="jumbotron text-right">
-    <h1><%= editable_input(f, :name, label: 'Your workshop title here') %></h1>
-    <div class="form-element">
-      <%= editable_input(f, :tagline, label: 'Your workshop tagline here') %>
-    </div>
-
-    <div class="form-element upcase location">
-      <%= f.simple_fields_for(:location_attributes) do |lf| %>
-        <%= editable_input(lf, :name, label: 'Your location here') %>
-      <% end %>
-    </div>
-
-    <div class="form-element upcase date-and-time">
-      <%= f.input(:starts_at, as: :hidden) %>
-      <span class="workshop-datetime editable edit-ready">
-        <span class="datepicker-date content">Your workshop date</span>
-        <span class="glyphicon glyphicon-ok"></span>
-        <span class="glyphicon glyphicon-pencil datepicker"></span>
-      </span>
-      &nbsp;| 
-      <span class="workshop-datetime editable edit-ready">
-        <span class="datepicker-time content">Your workshop time</span>
-        <span class="glyphicon glyphicon-ok"></span>
-        <span class="glyphicon glyphicon-pencil datepicker"></span>
-      </span>
-    </div>
-
-    <a href="#try" class="btn btn-primary btn-large reserve upcase">Reserve your seat</a>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="form-element">
-          <%= editable_input(f, :description, label: 'Your description here. Tell people a little about the workshop.', as: :text, input_html: { rows: 3, placeholder: 'Your description here' }) %>
-        </div>
-
-        <h2>What you will learn</h2>
-        <div class="form-element">
-          <%= editable_input(f, :motivation, label: 'Help motivate people to take your course by telling them a little about what they will learn in the course.', as: :text, input_html: { rows: 3, placeholder: 'Tell people what they will learn' }) %>
-        </div>
-
-        <h2>Who this is for</h2>
-        <div class="form-element">
-          <%= editable_input(f, :audience, label: 'Your target audience goes here', as: :text, input_html: { rows: 3 }) %>
-        </div>
-
-        <h2>Where</h2>
-
-        <%= f.simple_fields_for(:location_attributes) do |lf| %>
-          <address>
-            <div class="form-element">
-              <%= editable_input(lf, :name, label: 'Your Location Name') %>
-            </div>
-            <div class="form-element">
-              <%= editable_input(lf, :address, label: 'Your Location Street Address') %>
-            </div>
-            <div class="form-element">
-              <%= editable_input(lf, :city, label: "City") %>
-              <span>,</span>
-              <%= editable_input(lf, :state, label: "Your Location State") %>
-              <span>,</span>
-              <%= editable_input(lf, :zip, label: "Zip Code") %>
-            </div>
-            <div class="form-element">
-              <abbr title="Phone">P:</abbr>
-              <%= editable_input(lf, :phone, label: "Your Phone Number") %>
-            </div>
-          </address>
-        <% end %>
-
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row-fluid completion">
-    <div class="container">
-      <div class="row">
-        <div class="col col-lg-10 col-sm-12 col-offset-1"</div>
-          <h3 class="thats-it text-center"><span class="glyphicon glyphicon-thumbs-up"></span> And that's it!</h3>
-
-          <p class="text-center">You just created a workshop.  What you see above is what potential students will see.</p>
-
-          <p class="text-center"><em>You're almost there!</em>&nbsp; Just a few more steps and you'll be hosting your own workshop.</p>
-          <br>
-          <br>
-          <div class="row calculate">
-            <div class="col col-lg-2 col-sm-2 col-offset-2">
-              <input id="input-seats" class="input-large" type="text" value="15">
-            </div>
-
-            <div class="col col-lg-1 col-sm-2">
-              <label class="seats" for="input-seats">seats</label>
-            </div>
-            <div class="col col-lg-2 col-sm-2 text-center">
-              <span class="glyphicon glyphicon-remove times"></span> 
-              <span class="dollar">$</span>
-            </div>
-            <div class="col col-lg-2 col-sm-2">
-              <input id="input-cost" class="input-large" type="text" value="50"> 
-            </div>
-            <div class="col col-lg-3 col-sm-3">
-              = <span id="revenue">$750</span>
-            </div>
-          </div>
-
-          <br>
-          <br>
-          <div class="row text-center">
-            <%= f.button(:submit, 'Host Your Workshop', class: 'btn btn-primary btn-large upcase') %>
-          </div>
-          <br>
-          <br>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
