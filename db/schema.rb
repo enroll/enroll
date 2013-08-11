@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130809213222) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "tagline"
@@ -25,9 +28,11 @@ ActiveRecord::Schema.define(version: 20130809213222) do
     t.integer  "max_seats"
     t.integer  "price_per_seat_in_cents"
     t.text     "instructor_biography"
+    t.string   "url"
   end
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
+  add_index "courses", ["url"], name: "index_courses_on_url", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "name"

@@ -9,5 +9,7 @@ Enroll::Application.routes.draw do
     resources :reservations
   end
 
+  get '/go/:url', to: 'courses#show', as: :landing_page
+
   root 'welcome#index'
 end

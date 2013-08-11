@@ -10,6 +10,14 @@ describe CoursesController do
 
     it "renders the show page" do
       get :show, id: course.to_param
+      assigns[:course].should == course
+      response.should be_success
+      response.should render_template :show
+    end
+
+    it "renders the landing page via landing page url" do
+      get :show, url: course.url
+      assigns[:course].should == course
       response.should be_success
       response.should render_template :show
     end
