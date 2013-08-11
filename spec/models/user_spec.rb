@@ -38,4 +38,18 @@ describe User do
     end
   end
 
+  describe "#reservation_for_course" do
+    it 'returns a reservation for the course if it exists' do
+      user.save
+      course = create(:course)
+      reservation = create(:reservation, course: course, student: user)
+      user.reservation_for_course(course).should == reservation
+    end
+
+    it 'returns nil if no reservation for the course exists' do
+      course = create(:course)
+      user.reservation_for_course(course).should == nil
+    end
+  end
+
 end

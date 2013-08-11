@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-lg-3">
+      <%= render 'courses/manage_sidebar', course: @course %>
+    </div>
+    <div class="col-lg-9">
       <%= render 'shared/messages' %>
 
       <%= simple_form_for(@course, :html => { :class => "edit_course disable-submit-on-return" }) do |f| %>

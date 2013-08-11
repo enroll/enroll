@@ -166,4 +166,15 @@ describe Course do
     end
   end
 
+  describe "#has_students?" do
+    it "returns true if course has reservations" do
+      create(:reservation, course: course)
+      course.has_students?.should be_true
+    end
+
+    it "returns false if course has no reservations" do
+      course.has_students?.should be_false
+    end
+  end
+
 end
