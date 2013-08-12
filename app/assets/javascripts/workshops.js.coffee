@@ -25,23 +25,4 @@ ready = ->
     content: "You can always change the name of your course later."
   )
 
-  $('#sign-up').on 'show.bs.collapse', ->
-    $('#log-in.in').collapse('hide')
-    $('.btn-log-in').addClass('collapsed')
-    $('.btn-sign-up').removeClass('collapsed')
-
-  $('#sign-up').on 'shown.bs.collapse', ->
-    $('#instructor_course_name').focus()
-
-  $('#sign-up').on 'hide.bs.collapse', ->
-    $('.btn-sign-up').addClass('collapsed')
-
-  $('#log-in').on 'show.bs.collapse', ->
-    $('#sign-up.in').collapse('hide')
-    $('.btn-sign-up').addClass('collapsed')
-
-  $('#log-in').on 'shown.bs.collapse', ->
-    $('#log-in .email').focus()
-
-$(document).ready(ready)
 $(document).on('page:load', ready)
