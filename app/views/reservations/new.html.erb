@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
+    <%= render 'shared/messages' %>
     <%= simple_form_for(@reservation, :url => course_reservations_path) do |f| %>
       <h2><%= @course.name %></h2>
+
+      <%= f.error_notification %>
 
       <fieldset>
         <legend>Reserve your seat</legend>
@@ -23,7 +26,14 @@
 
       <fieldset>
         <legend>Student details</legend>
-        <p>Email: <%= current_user.email %></p>
+        <% if user_signed_in? %>
+          <p>Email: <%= current_user.email %></p>
+        <% else %>
+          <%= simple_fields_for(@user) do |uf| %>
+            <%= uf.input(:email, label: 'Your email for the receipt') %>
+            <%= uf.input(:password, label: 'A memorable password', hint: 'Required so you can log in later to communicate with the instructor, see class materials, and manage your account') %>
+          <% end %>
+        <% end %>
       </fieldset>
 
       <%= f.submit('Confirm reservation', class: 'btn') %>
