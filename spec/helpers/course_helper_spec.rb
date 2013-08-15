@@ -22,8 +22,13 @@ describe CourseHelper do
 
   context "#days_until_start" do
     it "returns the number of days until the course starts if it's in the future" do
-      course = create(:course, starts_at: 20.days.from_now)
-      days_until_start(course).should == 20
+      current_time = "2013-08-01 23:59:59 UTC"
+      starts_at    = "2013-08-21 12:00:00 UTC"
+
+      Timecop.freeze(current_time) do
+        course = build(:course, starts_at: starts_at)
+        days_until_start(course).should == 20
+      end
     end
 
     it "returns zero if it's in the past" do
