@@ -32,17 +32,17 @@ describe CourseHelper do
     end
 
     it "returns zero if it's in the past" do
-      course = create(:course, starts_at: 20.days.ago)
+      course = build(:course, starts_at: 20.days.ago)
       days_until_start(course).should == 0
     end
 
     it "returns zero if it's today" do
-      course = create(:course, starts_at: Date.today)
+      course = build(:course, starts_at: Date.today)
       days_until_start(course).should == 0
     end
 
     it "returns question mark if starts_at is not set" do
-      course = create(:course, starts_at: nil)
+      course = build(:course, starts_at: nil)
       days_until_start(course).should == "?"
     end
   end
@@ -62,17 +62,17 @@ describe CourseHelper do
 
   context "#percentage_goal" do
     it "returns the percentage of min seats to max seats" do
-      course = create(:course, min_seats: 10, max_seats: 20)
+      course = build(:course, min_seats: 10, max_seats: 20)
       percentage_goal(course).should == 50
     end
 
     it "returns zero if max seats is not set" do
-      course = create(:course, max_seats: nil)
+      course = build(:course, max_seats: nil)
       percentage_goal(course).should == 0
     end
 
     it "returns zero if min seats is not set" do
-      course = create(:course, min_seats: nil)
+      course = build(:course, min_seats: nil)
       percentage_goal(course).should == 0
     end
   end
