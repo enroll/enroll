@@ -22,4 +22,10 @@ module CourseHelper
     return 0 unless course.max_seats && course.min_seats
     (course.min_seats.to_f / course.max_seats) * 100
   end
+
+  def course_reservation_link(course, options={})
+    link_to 'Reserve your seat',
+      new_course_reservation_path(course),
+      :class => options[:class] ||= 'btn btn-primary btn-large reserve upcase'
+  end
 end
