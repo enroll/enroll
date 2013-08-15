@@ -81,6 +81,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
     ffi (1.9.0)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -102,6 +104,7 @@ GEM
       guard (>= 1.1.0)
     haml (4.0.3)
       tilt
+    hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.0.2)
@@ -130,6 +133,7 @@ GEM
       metaclass (~> 0.0.1)
     mono_logger (1.1.0)
     multi_json (1.7.9)
+    multipart-post (1.2.0)
     orm_adapter (0.4.0)
     pg (0.16.0)
     polyglot (0.3.3)
@@ -194,6 +198,10 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    sentry-raven (0.6.0)
+      faraday (>= 0.7.6)
+      hashie (>= 1.1.0)
+      uuidtools
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
     simple_form (3.0.0.rc)
@@ -231,6 +239,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uuidtools (2.1.4)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.3)
@@ -266,6 +275,7 @@ DEPENDENCIES
   rspec-instafail
   rspec-rails
   sass-rails (~> 4.0.0)
+  sentry-raven (= 0.6.0)
   shoulda-matchers
   simple_form (~> 3.0.0.rc)
   stringex
