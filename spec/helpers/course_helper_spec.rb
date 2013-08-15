@@ -76,4 +76,16 @@ describe CourseHelper do
       percentage_goal(course).should == 0
     end
   end
+
+  context "#course_reservation_link" do
+    it "returns a link to the course reservation page" do
+      course = create(:course)
+
+      link = link_to 'Reserve your seat',
+        new_course_reservation_path(course),
+        :class => 'btn btn-primary btn-large reserve upcase'
+
+      course_reservation_link(course).should == link
+    end
+  end
 end
