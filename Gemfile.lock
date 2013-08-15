@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 377c7ee19d13e5a6a0a6a635b596bb13364034e9
+  revision: 507323616c5a3e2fe6d9e60cc21cce7d58a639f5
   branch: 3.0.0
   specs:
-    anjlab-bootstrap-rails (3.0.0.rc1)
+    anjlab-bootstrap-rails (3.0.0.rc2)
       railties (>= 3.0)
       sass (>= 3.2)
 
@@ -49,7 +49,7 @@ GEM
     addressable (2.3.5)
     angularjs-rails (1.0.7)
     arel (4.0.0)
-    atomic (1.1.12)
+    atomic (1.1.13)
     bcrypt-ruby (3.1.1)
     bootstrap-glyphicons (0.0.1)
       railties (>= 3.0)
@@ -103,7 +103,7 @@ GEM
     haml (4.0.3)
       tilt
     hike (1.2.3)
-    i18n (0.6.4)
+    i18n (0.6.5)
     jbuilder (1.0.2)
       activesupport (>= 3.0.0)
     jquery-rails (3.0.4)
@@ -127,7 +127,7 @@ GEM
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     mono_logger (1.1.0)
-    multi_json (1.7.8)
+    multi_json (1.7.9)
     orm_adapter (0.4.0)
     pg (0.16.0)
     polyglot (0.3.3)
