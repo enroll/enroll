@@ -156,3 +156,29 @@ module SimpleForm
     end
   end
 end
+
+# Terrible hack for Bootstrap 3
+# See https://github.com/plataformatec/simple_form/issues/857
+inputs = %w[
+  CollectionSelectInput
+  DateTimeInput
+  FileInput
+  GroupedCollectionSelectInput
+  NumericInput
+  PasswordInput
+  RangeInput
+  StringInput
+  TextInput
+]
+
+inputs.each do |input_type|
+  superclass = "SimpleForm::Inputs::#{input_type}".constantize
+
+  new_class = Class.new(superclass) do
+    def input_html_classes
+      super.push('form-control')
+    end
+  end
+
+  Object.const_set(input_type, new_class)
+end
