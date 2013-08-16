@@ -15,7 +15,7 @@ gem 'mail_gate',      '1.1.2'
 gem 'pg'
 gem 'resque',         '1.24.1'
 gem 'sass-rails',     '~> 4.0.0'
-gem 'sentry-raven',         '0.6.0'
+gem 'sentry-raven',   '0.6.0'
 gem 'simple_form',    '~> 3.0.0.rc'
 gem 'stringex'
 gem 'turbolinks'
@@ -31,7 +31,7 @@ gem 'bootstrap-glyphicons'
 
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'mocha', '~> 0.13.3', :require => false
+  gem 'mocha', '~> 0.13.3', require: false
   gem 'rspec-instafail'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
