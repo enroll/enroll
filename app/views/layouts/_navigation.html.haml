@@ -15,7 +15,7 @@
               Sign Up
 
 - unless user_signed_in?
-  #sign-up.collapse{class: "#{(@user && @user.errors.any?) || (@course && @course.errors.any?) ? 'in' : ''}"}
+  #sign-up.collapse{class: nav_signupbox_class}
     .container
       .row
         = simple_form_for(@user || User.new, url: registration_path(:user), wrapper: "bootstrap-horizontal", html: {class: "form-horizontal"}) do |f|
@@ -29,7 +29,7 @@
               .col-lg-11
                 = f.button :submit, "Sign Up To Teach", class: "btn-primary pull-right"
 
-  #log-in.collapse{class: "#{flash.alert ? 'in' : ''}"}
+  #log-in.collapse{class: nav_loginbox_class}
     .container
       .row
         - if flash.alert
