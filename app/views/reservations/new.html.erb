@@ -1,6 +1,5 @@
 <div class="container">
   <div class="row">
-    <%= render 'shared/messages' %>
     <%= simple_form_for(@reservation, :url => course_reservations_path) do |f| %>
       <h2><%= @course.name %></h2>
 

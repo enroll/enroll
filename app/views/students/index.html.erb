@@ -4,8 +4,6 @@
       <%= render 'courses/manage_sidebar', course: @course %>
     </div>
     <div class="col-lg-9">
-      <%= render 'shared/messages' %>
-
       <% if @course.has_students? %>
         <a href="mailto:<%= @course.students.map { |s| s.email }.join(",") %>" class="btn btn-primary pull-right email-all-link">
           <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Email All
