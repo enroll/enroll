@@ -2,7 +2,7 @@
   %ul#course-dropdown.nav.navbar-nav
     %li
       %a.dropdown-toggle{href: '#', "data-toggle" => "dropdown"}
-        - if @course.new_record?
+        - if !@course || @course.new_record?
           .no-course
             Manage my courses
         - else
