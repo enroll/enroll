@@ -21,7 +21,7 @@ updateCourseCalculator = ->
     $(".max-seat-revenue").text "$#{$maxRevenue}"
 
 ready = ->
-  $('.manage-sidebar').affix();
+  $('.manage-sidebar').affix()
 
   $('.datepicker').datepicker(
     format: "yyyy-mm-dd"
@@ -53,7 +53,7 @@ ready = ->
     $('.btn-sign-up').removeClass('collapsed')
 
   $('#sign-up').on 'shown.bs.collapse', ->
-    $('#instructor_course_name').focus()
+    $('#user_course_name').focus()
 
   $('#sign-up').on 'hide.bs.collapse', ->
     $('.btn-sign-up').addClass('collapsed')
@@ -83,6 +83,4 @@ ready = ->
     $('#revenue-calculator').show()
     updateCourseCalculator()
 
-
-$(document).ready(ready)
 $(document).on('page:load', ready)

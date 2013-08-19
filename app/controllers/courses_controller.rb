@@ -1,13 +1,13 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, only: [:edit, :update]
-  before_filter :find_course!, only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_filter :find_course_as_instructor!, only: [:edit, :update]
+  before_filter :find_course_by_url!, only: [:show]
 
   def index
     @courses = Course.all
   end
 
   def show
-    @course = Course.find(params[:id])
   end
 
   def new
@@ -20,6 +20,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    @course.instructor = current_user
     @location = @course.location
 
     if @course.save
@@ -48,7 +49,7 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(
-      :name, :tagline, :starts_at, :ends_at, :description,
+      :name, :url, :tagline, :starts_at, :ends_at, :description,
       :instructor_biography, :min_seats, :max_seats, :price_per_seat_in_cents,
       location_attributes: [
         :name, :address, :address_2, :city, :state, :zip, :phone
@@ -56,9 +57,17 @@ class CoursesController < ApplicationController
     )
   end
 
-  def find_course!
+  def find_course_as_instructor!
     @course = current_user.courses_as_instructor.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
+  end
+
+  def find_course_by_url!
+    @course = if params[:url].present?
+      Course.find_by!(url: params[:url])
+    else
+      Course.find(params[:id])
+    end
   end
 end

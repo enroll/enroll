@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  acts_as_url :name
+
   has_many :reservations, dependent: :destroy
   has_many :students, through: :reservations, class_name: 'User'
 
@@ -8,6 +10,9 @@ class Course < ActiveRecord::Base
   validates :name, presence: true
   validates :location, associated: true
   validates :instructor, associated: true
+
+  validates :url, uniqueness: true,
+                  format: { with: /\A[a-z\d]+([-_][a-z\d]+)*\z/i, message: 'is not a valid URL'}
 
   scope :future, -> { where("starts_at >= ?", Time.now).order("starts_at ASC") }
   scope :past, -> { where("starts_at < ?", Time.now).order("starts_at DESC") }
@@ -32,6 +37,10 @@ class Course < ActiveRecord::Base
 
   def free?
     price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
+  end
+
+  def has_students?
+    reservations.count > 0
   end
 
   def location_attributes=(location_attributes)

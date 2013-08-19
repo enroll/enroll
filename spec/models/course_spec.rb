@@ -10,7 +10,28 @@ describe Course do
 
   it { should validate_presence_of(:name) }
 
-  describe "#start_date" do
+  describe ".url" do
+    before(:each) do
+      course.save
+    end
+
+    context "when editing a saved resource url directly" do
+      it "only allows valid subdomain characters" do
+        course.url = 'fap fap fap'
+        course.should_not be_valid
+        course.errors[:url].should include('is not a valid URL')
+      end
+
+      it "must be unique" do
+        new_course = create(:course)
+        new_course.url = course.url
+        new_course.should_not be_valid
+        new_course.errors[:url].should include("has already been taken")
+      end
+    end
+  end
+
+  describe "start_date" do
     it "returns a date value" do
       course.starts_at = Time.parse("January 1 2014 12:01 PM EST")
       course.start_date.should == "Wed, January  1 2014"
@@ -142,6 +163,17 @@ describe Course do
     it "is false if price per seat is non-zero" do
       course.price_per_seat_in_cents = 10000
       course.should_not be_free
+    end
+  end
+
+  describe "#has_students?" do
+    it "returns true if course has reservations" do
+      create(:reservation, course: course)
+      course.has_students?.should be_true
+    end
+
+    it "returns false if course has no reservations" do
+      course.has_students?.should be_false
     end
   end
 
