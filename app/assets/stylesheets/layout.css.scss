@@ -9,6 +9,7 @@ body {
 #log-in,
 #sign-up {
   margin-top: -20px;
+  margin-bottom: 20px;
   background-color: lighten($dark-gray, 3%);
   color: #fff;
 
@@ -27,6 +28,7 @@ body {
 }
 
 .jumbotron.front-page {
+  margin-top: -20px;
   text-align: center;
 }
 
