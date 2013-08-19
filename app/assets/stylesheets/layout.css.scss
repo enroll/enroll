@@ -1,13 +1,15 @@
 @import 'colors';
 
 body {
-  padding-top: 50px;
+  padding-top: 70px;
 }
 
 /* Sign Up Toggle Form */
 
 #log-in,
 #sign-up {
+  margin-top: -20px;
+  margin-bottom: 20px;
   background-color: lighten($dark-gray, 3%);
   color: #fff;
 
@@ -26,6 +28,7 @@ body {
 }
 
 .jumbotron.front-page {
+  margin-top: -20px;
   text-align: center;
 }
 
@@ -145,6 +148,10 @@ body {
   > li > a.dropdown-toggle {
     padding: 10px 12px;
   }
+}
+
+.table td.border-top {
+  border-top: 1px solid #000;
 }
 
 .email-all-link {

@@ -26,7 +26,7 @@
             = f.input :email, label_html: { class: 'control-label col-lg-2' }
             = f.input :password, label_html: { class: 'control-label col-lg-2' }
             .row
-              .col-lg-11
+              .col-lg-12
                 = f.button :submit, "Sign Up To Teach", class: "btn-primary pull-right"
 
   #log-in.collapse{class: nav_loginbox_class}
@@ -46,5 +46,5 @@
                 = f.input_field :remember_me, :as => :boolean
                 Remember me
           .row
-            .col-lg-11
+            .col-lg-12
               = f.button :submit, "Sign in", class: "btn-primary pull-right"
