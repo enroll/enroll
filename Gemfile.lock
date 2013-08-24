@@ -7,6 +7,14 @@ GIT
       railties (>= 3.0)
       sass (>= 3.2)
 
+GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 359606f222fa0972a4a14ec70140ac00f7c80839
+  specs:
+    simple_form (3.0.0.rc)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -197,9 +205,6 @@ GEM
       uuidtools
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
-    simple_form (3.0.0.rc)
-      actionpack (>= 4.0.0.rc1, < 4.1)
-      activemodel (>= 4.0.0.rc1, < 4.1)
     sinatra (1.4.3)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -270,7 +275,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sentry-raven (= 0.6.0)
   shoulda-matchers
-  simple_form (~> 3.0.0.rc)
+  simple_form!
   stringex
   timecop
   turbolinks
