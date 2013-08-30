@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     Reservation.where(course_id: course.id, student_id: self.id).first
   end
 
+  def instructor?
+    courses_as_instructor.any?
+  end
+
   # TODO: Add a 'role' column to actually distinguish
   # between Enroll staff and Enroll customers
   def staff?

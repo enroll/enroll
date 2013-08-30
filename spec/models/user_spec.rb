@@ -52,4 +52,17 @@ describe User do
     end
   end
 
+  describe "#instructor?" do
+    it 'returns true if user is teaching any courses' do
+      user.save
+      create(:course, instructor: user)
+      user.should be_instructor
+    end
+
+    it 'returns false if user is not teaching any courses' do
+      user.save
+      create(:reservation, student: user)
+      user.should_not be_instructor
+    end
+  end
 end
