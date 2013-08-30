@@ -7,4 +7,8 @@ module NavigationHelper
   def nav_loginbox_class
     flash.alert ? 'in' : nil
   end
+
+  def course_short_url(course)
+    '/go/' + course.url
+  end
 end
