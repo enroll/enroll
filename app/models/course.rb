@@ -24,7 +24,7 @@ class Course < ActiveRecord::Base
   attr_accessor :motivation, :audience
 
   def start_date
-    starts_at.try(:strftime, "%a, %B %e %Y")
+    starts_at.try(:strftime, "%a, %B %e, %Y")
   end
 
   def start_time

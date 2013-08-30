@@ -1,9 +1,15 @@
 %tr
   %td
     = course.start_date
+    %br
+    = course.start_time
+    = "-"
+    = course.end_time
   %td
     %strong
       = link_to course.name, course_short_url(course)
+  %td
+    = course.instructor.email
   %td
     - if future
       %a.btn.btn-default.btn-small.pull-right{href: "mailto:support@enroll.io"}
