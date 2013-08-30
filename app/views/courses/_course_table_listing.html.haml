@@ -1,7 +1,10 @@
 %tr
   %td
-    = course.starts_at.to_date
+    = course.start_date
   %td
     %strong
       = link_to course.name, course_short_url(course)
   %td
+    - if future
+      %a.btn.btn-default.btn-small.pull-right{href: "mailto:support@enroll.io"}
+        Request Refund
