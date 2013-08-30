@@ -31,6 +31,38 @@ describe Course do
     end
   end
 
+  describe ".fail_campaigns" do
+    context "when a course does not have the minimum reservations after the campaign end date" do
+      before do
+        course.campaign_ends_at = 1.day.ago
+        course.min_seats = 2
+        course.save
+        create(:reservation, course: course)
+      end
+
+      it "sends email to enrolled students"
+
+      it "sends email to the instructor"
+
+      it "marks the campaign as failed" do
+        Course.fail_campaigns
+        course.reload.should be_campaign_failed
+      end
+    end
+
+    context "when a course has the minimum reservations after the campaign end date" do
+      it "does not email"
+
+      it "does not mark the campaign as failed"
+    end
+
+    context "when the campaign end date has not arrived" do
+      it "does not email"
+
+      it "does not mark the campaign as failed"
+    end
+  end
+
   describe "start_date" do
     it "returns a date value" do
       course.starts_at = Time.parse("January 1 2014 12:01 PM EST")

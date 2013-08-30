@@ -23,6 +23,14 @@ class Course < ActiveRecord::Base
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
 
+  def self.fail_campaigns
+    # for all courses that have passed the campaign due date
+      # if the course does not have the minimum seats signed up
+        # set campaign_failed to true
+        # send email to students
+        # send regretful email to instructor
+  end
+
   def start_date
     starts_at.try(:strftime, "%a, %B %e %Y")
   end
