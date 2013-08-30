@@ -6,7 +6,7 @@ User.delete_all
 Reservation.delete_all
 
 instructor = User.create!(email: "instructor@example.com", password: "password")
-student    = User.create!(email: "student@example.com",    password: "password")
+User.create!(email: "student@example.com",    password: "password")
 puts "Created 2 users."
 
 location = Location.create!(
@@ -25,6 +25,7 @@ Course.create!(
   tagline: "Spend hours writing tests, but do it first.",
   starts_at: 3.days.from_now,
   ends_at: 3.days.from_now + 4.hours,
+  campaign_ends_at: 1.day.from_now,
   description: "Level up as a developer that builds levels.",
   instructor: instructor,
   location: location,
@@ -37,8 +38,9 @@ Course.create!(
   name: "How to launch your startup",
   tagline: "Learn how not to spend $5 MM in stealth mode building a product
   that nobody is going to buy",
-  starts_at: 1.month.from_now,
-  ends_at: 1.month.from_now + 4.hours,
+  starts_at: 2.month.from_now,
+  ends_at: 2.month.from_now + 4.hours,
+  campaign_ends_at: 1.month.from_now,
   description: "Be YCombinator's next success after taking this class!",
   instructor: instructor,
   location: location,
