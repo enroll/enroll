@@ -1,0 +1,12 @@
+.container
+  %h2 Courses I'm Attending
+
+  %table.table
+    %tbody
+      = render partial: 'course_table_listing', collection: @courses.future, as: :course
+
+  %h2 Courses I Attended
+
+  %table.table
+    %tbody
+      = render partial: 'course_table_listing', collection: @courses.past, as: :course

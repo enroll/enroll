@@ -1,0 +1,7 @@
+%tr
+  %td
+    = course.starts_at.to_date
+  %td
+    %strong
+      = link_to course.name, course_short_url(course)
+  %td
