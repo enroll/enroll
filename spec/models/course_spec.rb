@@ -34,7 +34,7 @@ describe Course do
   describe "start_date" do
     it "returns a date value" do
       course.starts_at = Time.parse("January 1 2014 12:01 PM EST")
-      course.start_date.should == "Wed, January  1 2014"
+      course.start_date.should == "Wed, January  1, 2014"
     end
 
     it "returns nil if a start date isn't set" do
