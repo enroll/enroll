@@ -42,9 +42,15 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def self.notify_ending_soon_campaigns
+    
+  end
+
   def send_campaign_failed_notifications!
-    # send email to students
     InstructorMailer.campaign_failed(self).deliver
+    self.students.each do |student|
+      StudentMailer.campaign_failed(self, student).deliver
+    end
   end
 
   def start_date

@@ -91,11 +91,54 @@ describe Course do
   end
 
   describe "send_campaign_failed_notifications!" do
+    before do
+      course.save
+      create(:reservation, course: course)
+    end
+
     it "notifies the instructor when the campaign fails" do
       InstructorMailer.expects(:campaign_failed).
         with(course).returns(mock 'mail', :deliver => true)
 
       course.send_campaign_failed_notifications!
+    end
+
+    it "notifies the student when the campaign fails" do
+      student = course.students.first
+      StudentMailer.expects(:campaign_failed).
+        with(course, student).returns(mock 'mail', :deliver => true)
+
+      course.send_campaign_failed_notifications!
+    end
+  end
+
+  describe "notify_ending_soon_campaigns" do
+    context "when the campaign is under 48 hours from ending" do
+      context "minimums are met" do
+        before do
+          course.campaign_ends_at = 1.day.from_now
+          course.min_seats = 1
+          course.save
+          2.times.do { create(:reservation, course: course) }
+        end
+
+        it "does not notify students" do
+          StudentMailer.campaign
+        end
+      end
+
+      context "minimums are not met" do
+        before do
+          course.campaign_ends_at = 1.day.from_now
+          course.min_seats = 2
+          course.save
+          create(:reservation, course: course)
+        end
+
+        it "notifies students that the end is nigh" do
+
+        end
+      end
     end
   end
 
