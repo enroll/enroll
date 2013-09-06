@@ -16,6 +16,16 @@ describe StudentMailer do
     end
   end
 
+  describe "#campaign_succeeded" do
+    let(:email) { StudentMailer.campaign_succeeded(course, student) }
+
+    it "delivers the campaign success notification" do
+      email.should deliver_to("student@example.com")
+      email.should deliver_from("Enroll <noreply@enroll.io>")
+      email.should have_subject("[Hackers 101] Get ready! Course reached minimum reservations")
+    end
+  end
+
   describe "#campaign_ending_soon" do
     let(:email) { StudentMailer.campaign_ending_soon(course, student) }
 

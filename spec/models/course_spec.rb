@@ -331,4 +331,25 @@ describe Course do
     end
   end
 
+  describe "#send_campaign_success_notifications!" do
+    before do
+      course.save
+      create(:reservation, course: course)
+    end
+
+    it "notifies the instructor when the course has met minimum enrollment" do
+      InstructorMailer.expects(:campaign_succeeded).
+        with(course).returns(mock 'mail', :deliver => true)
+
+      course.send_campaign_success_notifications!
+    end
+
+    it "notifies the students when the course has met minimum enrollment" do
+      student = course.students.first
+      StudentMailer.expects(:campaign_succeeded).
+        with(course, student).returns(mock 'mail', :deliver => true)
+
+      course.send_campaign_success_notifications!
+    end
+  end
 end

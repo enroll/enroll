@@ -73,6 +73,13 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def send_campaign_success_notifications!
+    InstructorMailer.campaign_succeeded(self).deliver
+    self.students.each do |student|
+      StudentMailer.campaign_succeeded(self, student).deliver
+    end
+  end
+
   def start_date
     starts_at.try(:strftime, "%a, %B %e, %Y")
   end
