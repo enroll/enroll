@@ -15,7 +15,6 @@ class InstructorMailer < ActionMailer::Base
   def campaign_failed(course)
     @instructor = course.instructor
     @students   = course.students
-    @student_emails = course.students.map { |s| s.email }.to_sentence
     @course     = course
 
     mail \
