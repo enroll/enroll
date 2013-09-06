@@ -44,10 +44,15 @@ class Course < ActiveRecord::Base
     end
   end
 
+  # "Ending Soon" is henceforth defined as within the next 48 hours
+  def self.ending_soon_time
+    48.hours.from_now
+  end
+
   def self.notify_ending_soon_campaigns
     # NOTE: see above note for self.fail_campaigns. Similar stuff applies.
 
-    Course.future.campaign_not_ending_soon_reminded.campaign_ending_within(48.hours.from_now).each do |course|
+    Course.future.campaign_not_ending_soon_reminded.campaign_ending_within(ending_soon_time).each do |course|
       if course.students.count < course.min_seats
         course.update_attribute :campaign_ending_soon_reminded_at, Time.now
         Resque.enqueue CampaignEndingSoonNotification, course.id
