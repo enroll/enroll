@@ -42,4 +42,59 @@ describe Reservation do
       reservation.send_enrollment_notification!
     end
   end
+
+  context "#send_campaign_success_notifications" do
+    context "when minimum seats is zero" do
+      before do
+        course.min_seats = 0
+        reservation.save
+      end
+
+      it "does not enqueue a job" do
+        Resque.expects(:enqueue).never
+        reservation.send_campaign_success_notifications
+      end
+    end
+
+    context "when minimum seats is greater than zero" do
+      context "when reservation satisfies minimum seats" do
+        before do
+          course.min_seats = 1
+          reservation.save
+        end
+
+        it "enqueues a campaign success notification job" do
+          Resque.expects(:enqueue).with(CampaignSuccessNotification, course.id)
+          reservation.send_campaign_success_notifications
+        end
+      end
+
+      context "when reservation is short of minimum seats" do
+        before do
+          course.min_seats = 2
+          reservation.save
+        end
+
+        it "does not enqueue a job" do
+          Resque.expects(:enqueue).never
+          reservation.send_campaign_success_notifications
+        end
+      end
+
+      context "when minimum seats has already been met" do
+        before do
+          course.min_seats = 1
+          course.save
+          create(:reservation, course: course)
+          reservation.save
+        end
+
+        it "does not enqueue a job" do
+          Resque.expects(:enqueue).never
+          reservation.send_campaign_success_notifications
+        end
+      end
+    end
+  end
+
 end

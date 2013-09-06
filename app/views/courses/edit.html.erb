@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-md-3">
       <%= render 'courses/manage_sidebar', course: @course %>
     </div>
-    <div class="col-lg-9">
+    <div class="col-md-9">
       <%= simple_form_for(@course, :html => { :class => "edit_course disable-submit-on-return" }) do |f| %>
         <%= render 'courses/form', form: f %>
 
