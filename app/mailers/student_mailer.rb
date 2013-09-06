@@ -11,4 +11,15 @@ class StudentMailer < ActionMailer::Base
       :from     => enroll_noreply,
       :subject  => "[#{@course.name}] Course didn't reach minimum reservations"
   end
+
+  def campaign_ending_soon(course, student)
+    @student    = student
+    @instructor = course.instructor
+    @course     = course
+
+    mail \
+      :to       => @student.email,
+      :from     => enroll_noreply,
+      :subject  => "[#{@course.name}] Course needs your help!"
+  end
 end

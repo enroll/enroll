@@ -73,7 +73,7 @@ describe Course do
     context "when the campaign end date has not arrived" do
       before do
         course.campaign_ends_at = 1.day.from_now
-        course.min_seats = 1
+        course.min_seats = 2
         course.save
         create(:reservation, course: course)
       end
@@ -112,31 +112,74 @@ describe Course do
     end
   end
 
+  describe "send_campaign_ending_soon_notifications!" do
+    before do
+      course.save
+      create(:reservation, course: course)
+    end
+
+    it "notifies the student when the campaign fails" do
+      student = course.students.first
+      StudentMailer.expects(:campaign_ending_soon).
+        with(course, student).returns(mock 'mail', :deliver => true)
+
+      course.send_campaign_ending_soon_notifications!
+    end
+  end
+
   describe "notify_ending_soon_campaigns" do
     context "when the campaign is under 48 hours from ending" do
-      context "minimums are met" do
+      context "and minimums are met" do
         before do
           course.campaign_ends_at = 1.day.from_now
           course.min_seats = 1
           course.save
-          2.times.do { create(:reservation, course: course) }
+          2.times { create(:reservation, course: course) }
         end
 
         it "does not notify students" do
-          StudentMailer.campaign
+          Resque.expects(:enqueue).never
+          Course.notify_ending_soon_campaigns
+        end
+
+        it "sets the course as having been reminded" do
+          Course.notify_ending_soon_campaigns
+          course.reload.campaign_ending_soon_reminded_at.should be_nil
         end
       end
 
-      context "minimums are not met" do
+      context "and minimums are not met" do
         before do
           course.campaign_ends_at = 1.day.from_now
+          course.campaign_ending_soon_reminded_at = nil
           course.min_seats = 2
           course.save
           create(:reservation, course: course)
         end
 
         it "notifies students that the end is nigh" do
+          Resque.expects(:enqueue).with(CampaignEndingSoonNotification, course.id)
+          Course.notify_ending_soon_campaigns
+        end
 
+        it "sets the course as having been reminded" do
+          Course.notify_ending_soon_campaigns
+          course.reload.campaign_ending_soon_reminded_at.should_not be_nil
+        end
+      end
+
+      context "and campaign has already been reminded" do
+        before do
+          course.campaign_ends_at = 1.day.from_now
+          course.min_seats = 2
+          course.campaign_ending_soon_reminded_at = Time.now
+          course.save
+          create(:reservation, course: course)
+        end
+
+        it "does not notify students" do
+          Resque.expects(:enqueue).never
+          Course.notify_ending_soon_campaigns
         end
       end
     end

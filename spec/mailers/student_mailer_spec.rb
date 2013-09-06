@@ -15,4 +15,14 @@ describe StudentMailer do
       email.should have_subject("[Hackers 101] Course didn't reach minimum reservations")
     end
   end
+
+  describe "#campaign_ending_soon" do
+    let(:email) { StudentMailer.campaign_ending_soon(course, student) }
+
+    it "delivers the campaign ending soon reminder" do
+      email.should deliver_to("student@example.com")
+      email.should deliver_from("Enroll <noreply@enroll.io>")
+      email.should have_subject("[Hackers 101] Course needs your help!")
+    end
+  end
 end

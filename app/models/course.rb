@@ -18,7 +18,9 @@ class Course < ActiveRecord::Base
   scope :past, -> { where("starts_at < ?", Time.now).order("starts_at DESC") }
   scope :without_dates, -> { where(starts_at: nil) }
   scope :campaign_ended, -> { where("campaign_ends_at < ?", Time.now) }
+  scope :campaign_ending_within, ->(future){ where("campaign_ends_at > :now AND campaign_ends_at < :future", now: Time.now, future: future) }
   scope :campaign_not_failed, -> { where(campaign_failed_at: nil) }
+  scope :campaign_not_ending_soon_reminded, -> { where(campaign_ending_soon_reminded_at: nil) }
 
   after_save :set_defaults
 
@@ -43,13 +45,26 @@ class Course < ActiveRecord::Base
   end
 
   def self.notify_ending_soon_campaigns
-    
+    # NOTE: see above note for self.fail_campaigns. Similar stuff applies.
+
+    Course.future.campaign_not_ending_soon_reminded.campaign_ending_within(48.hours.from_now).each do |course|
+      if course.students.count < course.min_seats
+        course.update_attribute :campaign_ending_soon_reminded_at, Time.now
+        Resque.enqueue CampaignEndingSoonNotification, course.id
+      end
+    end
   end
 
   def send_campaign_failed_notifications!
     InstructorMailer.campaign_failed(self).deliver
     self.students.each do |student|
       StudentMailer.campaign_failed(self, student).deliver
+    end
+  end
+
+  def send_campaign_ending_soon_notifications!
+    self.students.each do |student|
+      StudentMailer.campaign_ending_soon(self, student).deliver
     end
   end
 
