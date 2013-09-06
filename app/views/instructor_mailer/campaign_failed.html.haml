@@ -1,0 +1,16 @@
+%p
+  %strong Darn!
+
+%p
+  = link_to @course.name, @course
+  didn't quite reach the minimum number of reservations you set in order to give the course.
+
+%p
+  But don't give up yet!
+  = @students.count
+  students really wanted to take your course. If you'd like some tips on getting more people to sign up for your course, we'd be happy to help. Just reply to this email!
+
+%p
+  Best of luck!
+  %br
+  Team Enroll

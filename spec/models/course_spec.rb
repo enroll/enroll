@@ -90,6 +90,15 @@ describe Course do
     end
   end
 
+  describe "send_campaign_failed_notifications!" do
+    it "notifies the instructor when the campaign fails" do
+      InstructorMailer.expects(:campaign_failed).
+        with(course).returns(mock 'mail', :deliver => true)
+
+      course.send_campaign_failed_notifications!
+    end
+  end
+
   describe "start_date" do
     it "returns a date value" do
       course.starts_at = Time.parse("January 1 2014 12:01 PM EST")
