@@ -48,7 +48,7 @@ class Course < ActiveRecord::Base
   end
 
   def start_date
-    starts_at.try(:strftime, "%a, %B %e %Y")
+    starts_at.try(:strftime, "%a, %B %e, %Y")
   end
 
   def start_time

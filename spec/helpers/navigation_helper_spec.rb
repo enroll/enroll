@@ -57,4 +57,11 @@ describe NavigationHelper do
       @nav.nav_loginbox_class.should == 'in'
     end
   end
+
+  describe 'course_short_url' do
+    it 'returns the course url properly constructed' do
+      course = build(:course, url: 'my-fresh-course')
+      course_short_url(course).should == '/go/my-fresh-course'
+    end
+  end
 end
