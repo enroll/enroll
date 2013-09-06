@@ -40,26 +40,53 @@ describe Course do
         create(:reservation, course: course)
       end
 
-      it "sends email to enrolled students"
-
-      it "sends email to the instructor"
+      it "sends email notifications" do
+        Resque.expects(:enqueue).with(CampaignFailedNotification, course.id)
+        Course.fail_campaigns
+      end
 
       it "marks the campaign as failed" do
         Course.fail_campaigns
-        course.reload.should be_campaign_failed
+        course.reload.campaign_failed_at.should_not be_nil
       end
     end
 
     context "when a course has the minimum reservations after the campaign end date" do
-      it "does not email"
+      before do
+        course.campaign_ends_at = 1.day.ago
+        course.min_seats = 1
+        course.save
+        2.times { create(:reservation, course: course) }
+      end
 
-      it "does not mark the campaign as failed"
+      it "does not send email notifications" do
+        Resque.expects(:enqueue).never
+        Course.fail_campaigns
+      end
+
+      it "does not mark the campaign as failed" do
+        Course.fail_campaigns
+        course.reload.campaign_failed_at.should be_nil
+      end
     end
 
     context "when the campaign end date has not arrived" do
-      it "does not email"
+      before do
+        course.campaign_ends_at = 1.day.from_now
+        course.min_seats = 1
+        course.save
+        create(:reservation, course: course)
+      end
 
-      it "does not mark the campaign as failed"
+      it "does not email" do
+        Resque.expects(:enqueue).never
+        Course.fail_campaigns
+      end
+
+      it "does not mark the campaign as failed" do
+        Course.fail_campaigns
+        course.reload.campaign_failed_at.should be_nil
+      end
     end
   end
 
