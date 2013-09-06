@@ -6,6 +6,8 @@ require 'resque/tasks'
 
 Enroll::Application.load_tasks
 
+task "resque:preload" => :environment
+
 task "resque:setup" do
   ENV['QUEUE'] = '*'
 end
