@@ -26,7 +26,7 @@ class Course < ActiveRecord::Base
   def self.fail_campaigns
     # for all courses that have passed the campaign due date
       # if the course does not have the minimum seats signed up
-        # set campaign_failed to true
+        # set campaign_failed_at to now
         # send email to students
         # send regretful email to instructor
   end

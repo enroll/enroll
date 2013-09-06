@@ -5,7 +5,7 @@ FactoryGirl.define do
     starts_at               { 2.weeks.from_now }
     ends_at                 { 2.weeks.from_now + 4.hours }
     campaign_ends_at        { 1.week.from_now }
-    campaign_failed         { false }
+    campaign_failed_at      { nil }
     description             { "Learn NetBeans, Eclipse, and Static Typing" }
     instructor_biography    { "Professor Ben Ann Ugh has been teaching for 40 years." }
     min_seats               { 10 }
