@@ -1,0 +1,20 @@
+%p
+  %strong Congratulations!
+
+%p
+  = link_to @course.name, @course
+  has
+  = pluralize(@course.students.count, "student")
+  signed up, which was the minimums you set in order to teach the course.
+
+%p
+  You're on the hook now. :-)
+
+%p
+  Don't stop now though! Keep promoting and see if you can fill 'er up.
+  If you'd like help with promotion or anything really, just respond to this email.
+
+%p
+  Best of luck
+  %br
+  Team Enroll

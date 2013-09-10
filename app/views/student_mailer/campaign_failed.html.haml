@@ -1,0 +1,18 @@
+%p Bummer!
+
+%p
+  You reserved a spot in
+  = link_to @course.name, @course
+  but the course failed to get the minimum number of signups.
+  Unfortunately, that means that the course won't get taught this time around.
+
+%p
+  All is not lost, however! Next time, the course just needs more people to sign up and you can help with that.
+  Feel free to reach out to the course instructor at 
+  = @instructor.email
+  and let them know you're still interested.
+
+%p
+  Best of luck!
+  %br
+  Team Enroll

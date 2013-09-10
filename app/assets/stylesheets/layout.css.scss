@@ -4,6 +4,14 @@ body {
   padding-top: 70px;
 }
 
+a .caret {
+  margin-left: 10px;
+}
+
+a > img {
+  margin-right: 5px;
+}
+
 /* Sign Up Toggle Form */
 
 #log-in,
@@ -50,32 +58,26 @@ body {
   font-size: 30pt;
 }
 
-@media screen and (min-width: 992px) {
+@media (min-width: 992px) {
   .manage-sidebar.affix-bottom,
   .manage-sidebar.affix {
     width: 212px;
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
   .manage-sidebar.affix-bottom,
   .manage-sidebar.affix {
-    width: 270px;
+    width: 262px;
   }
 }
 
 .manage-sidebar {
   .panel {
     .panel-heading {
-      padding: 20px;
-      margin: -15px;
-
       .progress {
         height: 20px;
         margin-bottom: 2px;
-
-        .progress-bar {
-        }
       }
 
       .funded-label {
@@ -84,16 +86,17 @@ body {
         text-align: center;
         line-height: 10px;
         margin-bottom: 10px;
+
+        .goal-text {
+          margin-top: 3px
+        }
       }
 
       .status-strip {
-        border-top: 1px solid $dark-border;
-        margin-right: -25px;
-        margin-left: -25px;
-        margin-bottom: -10px;
+        border-top: 1px solid rgba(0,0,0,0.05);
         padding: 5px 10px 0;
 
-        .col-4 {
+        .col-xs-4 {
           padding-right: 5px;
           padding-left: 5px;
         }
