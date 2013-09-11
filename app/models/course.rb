@@ -80,6 +80,10 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def url_or_short_name
+    url ? url : name.slice(0, 20)
+  end
+
   def start_date
     starts_at.try(:strftime, "%a, %B %e, %Y")
   end

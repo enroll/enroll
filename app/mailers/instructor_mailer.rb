@@ -9,7 +9,7 @@ class InstructorMailer < ActionMailer::Base
     mail \
       :to       => @instructor.email,
       :from     => enroll_noreply,
-      :subject  => "[#{@course.name}] A new student just enrolled."
+      :subject  => "[#{@course.url_or_short_name}] A new student just enrolled."
   end
 
   def campaign_failed(course)
@@ -20,7 +20,7 @@ class InstructorMailer < ActionMailer::Base
     mail \
       :to       => @instructor.email,
       :from     => enroll_reply,
-      :subject  => "[#{@course.name}] Your course didn't meet reach your minimum reservations."
+      :subject  => "[#{@course.url_or_short_name}] Your course didn't meet reach your minimum reservations."
   end
 
   def campaign_succeeded(course)
@@ -31,6 +31,6 @@ class InstructorMailer < ActionMailer::Base
     mail \
       :to       => @instructor.email,
       :from     => enroll_reply,
-      :subject  => "[#{@course.name}] Congrats! Your course has met your minimums."
+      :subject  => "[#{@course.url_or_short_name}] Congrats! Your course has met your minimums."
   end
 end
