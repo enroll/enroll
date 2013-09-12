@@ -6,8 +6,11 @@ User.delete_all
 Reservation.delete_all
 
 instructor = User.create!(email: "instructor@example.com", password: "password")
-User.create!(email: "student@example.com",    password: "password")
-puts "Created 2 users."
+student    = User.create!(email: "student@example.com",    password: "password")
+student1   = User.create!(email: "student1@example.com",   password: "password")
+student2   = User.create!(email: "student2@example.com",   password: "password")
+students   = [student, student1, student2]
+puts "Created 4 users."
 
 location = Location.create!(
   name: "Moscone Center West",
@@ -20,7 +23,7 @@ location = Location.create!(
 )
 puts "Created 1 location."
 
-Course.create!(
+course1 = Course.create!(
   name: "Test-Driven Development for Rails",
   tagline: "Spend hours writing tests, but do it first.",
   starts_at: 3.days.from_now,
@@ -34,7 +37,7 @@ Course.create!(
   price_per_seat_in_cents: 85000,
   instructor_biography: "Scrooge McDuck has taught 2 courses before."
 )
-Course.create!(
+course2 = Course.create!(
   name: "How to launch your startup",
   tagline: "Learn how not to spend $5 MM in stealth mode building a product
   that nobody is going to buy",
@@ -50,3 +53,12 @@ Course.create!(
   instructor_biography: "Scrooge McDuck has taught 2 courses before."
 )
 puts "Created 2 courses."
+
+# Students sign up for course 1
+students.each do |student|
+  Reservation.create!(
+    course: course1,
+    student: student
+  )
+end
+puts "Created 3 reservations."
