@@ -1,0 +1,13 @@
+development: &development
+  publishable_key: "pk_test_vSOC9sUGEcBMh7kdQ5sjcsdM"
+  secret_key: "sk_test_xlf81Tc7EFDDps6VCBue3N2d"
+
+test:
+  <<: *development
+
+production: &production
+  publishable_key: "<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
+  secret_key: "<%= ENV['STRIPE_SECRET_KEY'] %>"
+
+staging:
+  <<: *production
