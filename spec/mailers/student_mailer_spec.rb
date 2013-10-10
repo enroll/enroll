@@ -12,7 +12,7 @@ describe StudentMailer do
     it "delivers the campaign failure notification" do
       email.should deliver_to("student@example.com")
       email.should deliver_from("Enroll <noreply@enroll.io>")
-      email.should have_subject("[Hackers 101] Course didn't reach minimum reservations")
+      email.should have_subject(/Hackers 101/)
     end
   end
 
@@ -22,7 +22,7 @@ describe StudentMailer do
     it "delivers the campaign success notification" do
       email.should deliver_to("student@example.com")
       email.should deliver_from("Enroll <noreply@enroll.io>")
-      email.should have_subject("[Hackers 101] Get ready! Course reached minimum reservations")
+      email.should have_subject(/Hackers 101/)
     end
   end
 
@@ -32,7 +32,7 @@ describe StudentMailer do
     it "delivers the campaign ending soon reminder" do
       email.should deliver_to("student@example.com")
       email.should deliver_from("Enroll <noreply@enroll.io>")
-      email.should have_subject("[Hackers 101] Course needs your help!")
+      email.should have_subject(/Hackers 101/)
     end
   end
 end
