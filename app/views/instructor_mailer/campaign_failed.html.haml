@@ -11,7 +11,8 @@
     = @students.count
     = pluralize(@students.count, 'student')
     really wanted to take your course.
-  If you'd like some tips on getting more people to sign up for your course, we'd be happy to help. Just reply to this email.
+  = link_to "Give it another go.", new_course_path
+  And remember, we're happy to help. Just reply to this email.
 
 %p
   Best of luck!

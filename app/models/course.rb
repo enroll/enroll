@@ -28,13 +28,9 @@ class Course < ActiveRecord::Base
   attr_accessor :motivation, :audience
 
   def self.fail_campaigns
-    # NOTE: We are checking for all courses that have not yet happened with a
-    # campaign that has ended but with a campaign that has not failed.
-    # This will repeatedly pick up courses with a campaign that succeeds, but
-    # will stop finding them once the course actually happens. Odd, but would
-    # require adding another boolean (campaign_succeeded_at) to narrow in
-    # further. Interesting that the opposite of failure is not necessarily
-    # success.
+    # This marks campaigns that haven't reached the minimum number of seats by
+    # their campaign ending time as failed, and notifies students and instructors
+    # that are impacted.
 
     Course.future.campaign_ended.campaign_not_failed.each do |course|
       if course.students.count < course.min_seats
@@ -50,7 +46,9 @@ class Course < ActiveRecord::Base
   end
 
   def self.notify_ending_soon_campaigns
-    # NOTE: see above note for self.fail_campaigns. Similar stuff applies.
+    # This marks campaigns that haven't reached the minimum number of seats by
+    # their campaign ending time as reminded about ending soon, and reminds
+    # students that time is drawing short.
 
     Course.future.campaign_not_ending_soon_reminded.campaign_ending_within(ending_soon_time).each do |course|
       if course.students.count < course.min_seats
@@ -78,6 +76,10 @@ class Course < ActiveRecord::Base
     self.students.each do |student|
       StudentMailer.campaign_succeeded(self, student).deliver
     end
+  end
+
+  def url_or_short_name
+    url ? url : name.slice(0, 20)
   end
 
   def start_date

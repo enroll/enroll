@@ -12,7 +12,7 @@ describe InstructorMailer do
     it "delivers the enrollment notification" do
       email.should deliver_to("instructor@example.com")
       email.should deliver_from("Enroll <noreply@enroll.io>")
-      email.should have_subject("[Hackers 101] A new student has enrolled")
+      email.should have_subject(/Hackers 101/)
     end
   end
 
@@ -22,7 +22,7 @@ describe InstructorMailer do
     it "delivers the campaign failed notification" do
       email.should deliver_to("instructor@example.com")
       email.should deliver_from("Enroll <help@enroll.io>")
-      email.should have_subject("[Hackers 101] Course didn't meet reach your minimum reservations")
+      email.should have_subject(/Hackers 101/)
     end
   end
 
@@ -32,7 +32,7 @@ describe InstructorMailer do
     it "delivers the campaign succeeded notification" do
       email.should deliver_to("instructor@example.com")
       email.should deliver_from("Enroll <help@enroll.io>")
-      email.should have_subject("[Hackers 101] Congrats! Your course has met your minimums.")
+      email.should have_subject(/Hackers 101/)
     end
   end
 end
