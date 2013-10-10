@@ -43,7 +43,7 @@ describe Reservation do
     end
   end
 
-  context "#send_campaign_success_notifications" do
+  context "#check_campaign_success" do
     context "when minimum seats is zero" do
       before do
         course.min_seats = 0
@@ -52,7 +52,7 @@ describe Reservation do
 
       it "does not enqueue a job" do
         Resque.expects(:enqueue).never
-        reservation.send_campaign_success_notifications
+        reservation.check_campaign_success
       end
     end
 
@@ -64,8 +64,15 @@ describe Reservation do
         end
 
         it "enqueues a campaign success notification job" do
+          Resque.expects(:enqueue) # the other enque call
           Resque.expects(:enqueue).with(CampaignSuccessNotification, course.id)
-          reservation.send_campaign_success_notifications
+          reservation.check_campaign_success
+        end
+
+        it "enqueues a charge credit cards job" do
+          Resque.expects(:enqueue) # the other enque call
+          Resque.expects(:enqueue).with(ChargeCreditCards, course.id)
+          reservation.check_campaign_success
         end
       end
 
@@ -77,7 +84,7 @@ describe Reservation do
 
         it "does not enqueue a job" do
           Resque.expects(:enqueue).never
-          reservation.send_campaign_success_notifications
+          reservation.check_campaign_success
         end
       end
 
@@ -91,7 +98,7 @@ describe Reservation do
 
         it "does not enqueue a job" do
           Resque.expects(:enqueue).never
-          reservation.send_campaign_success_notifications
+          reservation.check_campaign_success
         end
       end
     end

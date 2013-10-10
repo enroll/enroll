@@ -8,7 +8,7 @@ class Reservation < ActiveRecord::Base
   validates :student, presence: true
 
   after_create :send_enrollment_notification
-  after_create :send_campaign_success_notifications
+  after_create :check_campaign_success
 
   def send_enrollment_notification
     Resque.enqueue EnrollmentNotification, id
@@ -18,9 +18,10 @@ class Reservation < ActiveRecord::Base
     InstructorMailer.student_enrolled(self).deliver
   end
 
-  def send_campaign_success_notifications
+  def check_campaign_success
     if course.students.count == course.min_seats
       Resque.enqueue CampaignSuccessNotification, course.id
+      Resque.enqueue ChargeCreditCards, course.id
     end
   end
 end
