@@ -8,7 +8,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = @course.reservations.build
+    @reservation = @course.reservations.build :stripe_token => params[:stripeToken]
 
     unless user_signed_in?
       @user = User.new(user_params)

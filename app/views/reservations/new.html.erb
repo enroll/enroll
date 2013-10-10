@@ -18,6 +18,7 @@
             data-amount="<%= @course.price_per_seat_in_cents || 0 %>"
             data-name="<%= @course.name %>"
             data-description="1 seat (<%= number_to_currency_from_cents(@course.price_per_seat_in_cents) %>)"
+            data-capture="false"
             data-image="/placeholder.png">
           </script>
         <% end %>
