@@ -27,6 +27,14 @@ describe ReservationsController do
   end
 
   context "POST create" do
+    context "when course is paid" do
+      it "captures the stripe token" do
+        post :create, course_id: course.to_param, reservation: reservation_attributes, stripeToken: "1"
+
+        user.reservations.last.stripe_token.should == "1"
+      end
+    end
+
     context "with an existing user" do
       it "creates a reservation for the current user" do
         expect {
