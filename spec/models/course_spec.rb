@@ -313,6 +313,12 @@ describe Course do
         course.charge_credit_cards!
       end
     end
+
+    it "does not charge when the course is free" do
+      course.update_attribute(:price_per_seat_in_cents, 0)
+      Stripe::Charge.expects(:create).never
+      Stripe::Customer.expects(:create).never
+    end
   end
 
   describe "#start_date" do

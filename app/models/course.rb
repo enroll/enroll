@@ -61,6 +61,8 @@ class Course < ActiveRecord::Base
   end
 
   def charge_credit_cards!
+    return if course.free?
+    
     self.reservations.each do |reservation|
       next if reservation.charged?
 
@@ -80,7 +82,7 @@ class Course < ActiveRecord::Base
         )
         reservation.student.update_attribute(:stripe_customer_id, customer.id)
       end
-      
+
       begin
         charge = Stripe::Charge.create(
           amount: self.price_per_seat_in_cents,
