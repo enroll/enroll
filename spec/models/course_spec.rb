@@ -199,7 +199,7 @@ describe Course do
     end
   end
 
-  describe "#charge_credit_cards!" do
+  describe "#charge_credit_cards!", :vcr do
     before do
       course.price_per_seat_in_cents = 1000
       course.save

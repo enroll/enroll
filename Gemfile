@@ -38,6 +38,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'email_spec'
   gem 'timecop'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
