@@ -306,8 +306,8 @@ describe Course do
           @user.update_attribute(:stripe_customer_id, nil)
         end
 
-        xit "logs an error message" do
-          # Expect a Raven capture_message call
+        it "logs an error message" do
+          Raven.expects(:capture_message)
           course.charge_credit_cards!
         end
 
