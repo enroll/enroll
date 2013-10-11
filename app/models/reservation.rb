@@ -25,7 +25,9 @@ class Reservation < ActiveRecord::Base
   def check_campaign_success
     if course.students.count == course.min_seats
       Resque.enqueue CampaignSuccessNotification, course.id
-      Resque.enqueue ChargeCreditCards, course.id
+      unless course.free?
+        Resque.enqueue ChargeCreditCards, course.id
+      end
     end
   end
 end
