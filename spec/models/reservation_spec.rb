@@ -25,6 +25,18 @@ describe Reservation do
     end
   end
 
+  context "#charged?" do
+    it "returns true if charge succeeded at is set" do
+      reservation.charge_succeeded_at = Time.now
+      reservation.should be_charged
+    end
+
+    it "returns false if charge succeeded at is not set" do
+      reservation.charge_succeeded_at = nil
+      reservation.should_not be_charged
+    end
+  end
+
   context "#send_enrollment_notification" do
     before { reservation.save }
 

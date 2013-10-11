@@ -10,6 +10,10 @@ class Reservation < ActiveRecord::Base
   after_create :send_enrollment_notification
   after_create :check_campaign_success
 
+  def charged?
+    charge_succeeded_at.present?
+  end
+
   def send_enrollment_notification
     Resque.enqueue EnrollmentNotification, id
   end
