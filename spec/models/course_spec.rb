@@ -10,7 +10,7 @@ describe Course do
 
   it { should validate_presence_of(:name) }
 
-  describe ".url" do
+  describe "#url" do
     before(:each) do
       course.save
     end
@@ -28,6 +28,20 @@ describe Course do
         new_course.should_not be_valid
         new_course.errors[:url].should include("has already been taken")
       end
+    end
+  end
+
+  describe "#url_or_short_name" do
+    it "shortens the course name to 20 characters when there is no url" do
+      course.name = "Introduction to Ruby on Rails"
+      course.url = nil
+      course.url_or_short_name.should == "Introduction to Ruby"
+    end
+
+    it "returns url when there is a url" do
+      course.name = "Introduction to Ruby on Rails"
+      course.url = "intro-to-rails"
+      course.url_or_short_name.should == "intro-to-rails"
     end
   end
 
