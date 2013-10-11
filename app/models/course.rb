@@ -59,7 +59,7 @@ class Course < ActiveRecord::Base
   end
 
   def charge_credit_cards!
-    return if course.free?
+    return if self.free?
     
     self.reservations.each do |reservation|
       next if reservation.charged?
