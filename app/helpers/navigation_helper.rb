@@ -9,6 +9,10 @@ module NavigationHelper
   end
 
   def course_short_url(course)
-    '/go/' + course.url
+    if course.url.nil?
+      course_path(course)
+    else
+      '/go/' + course.url
+    end
   end
 end

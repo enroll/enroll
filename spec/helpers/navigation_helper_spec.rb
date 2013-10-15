@@ -63,5 +63,11 @@ describe NavigationHelper do
       course = build(:course, url: 'my-fresh-course')
       course_short_url(course).should == '/go/my-fresh-course'
     end
+
+    it 'returns the standard course path if course url is nil' do
+      course = create(:course)
+      course.url = nil
+      course_short_url(course).should =~ /\/courses\//
+    end
   end
 end
