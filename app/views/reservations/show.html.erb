@@ -2,6 +2,20 @@
   <div class="row">
     <div class="col-12">
       <p>You (<%= @student.email %>) have been enrolled as a student in <%= @course.name %>.</p>
+
+      <p>Tell all your friends about it!</p>
+
+      <p>
+      	<a href="#" 
+				  onclick="
+				    window.open(
+				      'https://www.facebook.com/sharer/sharer.php?u=<%= course_short_url(@course) %>', 
+				      'facebook-share-dialog', 
+				      'width=626,height=436'); 
+				    return false;">
+				  Share on Facebook
+				</a>
+      </p> 
     </div>
   </div>
 </div>
