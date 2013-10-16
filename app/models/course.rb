@@ -102,6 +102,10 @@ class Course < ActiveRecord::Base
     reservations.count > 0
   end
 
+  def future?
+    Time.now < starts_at
+  end
+
   def location_attributes=(location_attributes)
     location_attributes.delete_if { |k, v| v.blank? }
     if location_attributes.any?

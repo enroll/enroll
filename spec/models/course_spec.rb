@@ -141,7 +141,7 @@ describe Course do
     end
   end
 
-  describe "#notify_ending_soon_campaigns" do
+  describe ".notify_ending_soon_campaigns" do
     context "when the campaign is under 48 hours from ending" do
       context "and minimums are met" do
         before do
@@ -364,6 +364,18 @@ describe Course do
         with(course, student).returns(mock 'mail', :deliver => true)
 
       course.send_campaign_success_notifications!
+    end
+  end
+
+  describe "#future?" do
+    it "returns true if course start date is in the future" do
+      course.starts_at = Time.now + 1.hour
+      course.should be_future
+    end
+
+    it "returns false if course start date is in the past" do
+      course.starts_at = Time.now - 1.hour
+      course.should_not be_future
     end
   end
 end
