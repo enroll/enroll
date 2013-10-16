@@ -61,13 +61,26 @@ describe NavigationHelper do
   describe 'course_short_url' do
     it 'returns the course url properly constructed' do
       course = build(:course, url: 'my-fresh-course')
-      course_short_url(course).should == '/go/my-fresh-course'
+      course_short_url(course).should == 'http://test.host/go/my-fresh-course'
+    end
+
+    it 'returns the standard course url if course url is nil' do
+      course = create(:course)
+      course.url = nil
+      course_short_url(course).should include("http://test.host/courses/")
+    end
+  end
+
+  describe 'course_short_path' do
+    it 'returns the course path properly constructed' do
+      course = build(:course, url: 'my-fresh-course')
+      course_short_path(course).should == '/go/my-fresh-course'
     end
 
     it 'returns the standard course path if course url is nil' do
       course = create(:course)
       course.url = nil
-      course_short_url(course).should =~ /\/courses\//
+      course_short_path(course).should include("/courses/")
     end
   end
 end
