@@ -150,6 +150,10 @@ a > img {
 #settings-menu {
   > li > a.dropdown-toggle {
     padding: 10px 12px;
+
+    > img {
+      height: 30px;
+    }
   }
 }
 
