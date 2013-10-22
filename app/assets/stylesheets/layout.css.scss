@@ -59,6 +59,7 @@ a > img {
 }
 
 @media (max-width: 991px) {
+  /* Do not remove - disables zooming on focus on mobile phones */
   input:not([type=submit]):not([type=file]),
   textarea {
     font-size:16px;
