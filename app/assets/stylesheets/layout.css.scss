@@ -12,6 +12,11 @@ a > img {
   margin-right: 5px;
 }
 
+.form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 /* Sign Up Toggle Form */
 
 #log-in,
@@ -22,7 +27,8 @@ a > img {
   color: #fff;
 
   > .container {
-    padding: 16px 0;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
   .popover {
@@ -41,9 +47,9 @@ a > img {
 }
 
 .jumbotron.front-page h1.logo {
-  font-size: 135px;
-  text-transform: none;
-  letter-spacing: -8px;
+  font-size: 72pt;
+  font-weight: 700;
+  letter-spacing: -4px;
   margin: 0 auto 24px;
 }
 
@@ -52,10 +58,11 @@ a > img {
   margin-bottom: 2em;
 }
 
-.jumbotron h1 {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 30pt;
+@media (max-width: 991px) {
+  input:not([type=submit]):not([type=file]),
+  textarea {
+    font-size:16px;
+  };
 }
 
 @media (min-width: 992px) {
