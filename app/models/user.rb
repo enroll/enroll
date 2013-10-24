@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessor :stripe_bank_account_token
+  attr_accessor :account_number, :routing_number, :stripe_bank_account_token
 
   has_many :reservations, dependent: :destroy, foreign_key: :student_id
   has_many :courses_as_student, through: :reservations,
