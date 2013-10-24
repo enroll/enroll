@@ -20,6 +20,21 @@ updateCourseCalculator = ->
   else
     $(".max-seat-revenue").text "$#{$maxRevenue}"
 
+sendPaymentSettingsToStripeAndSubmit = ->
+  $form = $(this)
+  $form.find('.btn-primary').prop('disabled', true)
+
+  Stripe.bankAccount.createToken({
+    country: 'US',
+    routingNumber: $('#user_routing_number').val(),
+    accountNumber: $('#user_account_number').val(),
+  }, (status, response) -> 
+    $("#user_stripe_bank_account_token").val(response.id)
+    $('.edit_payment_settings')[0].submit()
+  )
+
+  return false
+
 ready = ->
   $('.datepicker').datepicker(
     format: "yyyy-mm-dd"
@@ -80,5 +95,9 @@ ready = ->
     $('.free-text').remove()
     $('#revenue-calculator').show()
     updateCourseCalculator()
+
+  $('.edit_payment_settings').on 'submit', sendPaymentSettingsToStripeAndSubmit
+
+  Stripe.setPublishableKey('pk_test_vSOC9sUGEcBMh7kdQ5sjcsdM');
 
 $(document).on('ready page:load', ready)
