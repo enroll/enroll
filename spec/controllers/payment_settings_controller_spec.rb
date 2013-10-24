@@ -41,14 +41,14 @@ describe PaymentSettingsController do
       end
 
       it 'save the payment settings for the user' do
-        User.any_instance.expects(:save_payment_settings!).with(payment_settings_params)
+        User.any_instance.expects(:save_payment_settings!).with({ 
+          'name' => 'Joe Full Legal Name',
+          'routing_number' => '111000025',
+          'account_number' => '000123456789',
+          'stripe_bank_account_token' => 'tok_u5dg20Gra'
+        })
 
-        put :update, user: { 
-          name: 'Joe Full Legal Name',
-          routing_number: '111000025',
-          account_number: '000123456789',
-          stripe_bank_account_token: 'tok_u5dg20Gra'
-        }
+        put :update, user: payment_settings_params
       end
 
       it 'redirects to the edit page' do
