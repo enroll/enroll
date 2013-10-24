@@ -3,7 +3,7 @@
     .panel-heading
       Account Settings
     .list-group
-      %a.list-group-item{href: "#"}
+      %a.list-group-item{href: edit_payment_settings_path, class: current_page?(edit_payment_settings_path) ? "active" : ""}
         %span.glyphicon.glyphicon-usd
         %span.badge
         Payment Settings
