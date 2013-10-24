@@ -43,8 +43,6 @@ describe PaymentSettingsController do
       it 'save the payment settings for the user' do
         User.any_instance.expects(:save_payment_settings!).with({ 
           'name' => 'Joe Full Legal Name',
-          'routing_number' => '111000025',
-          'account_number' => '000123456789',
           'stripe_bank_account_token' => 'tok_u5dg20Gra'
         })
 
@@ -93,8 +91,6 @@ end
 def payment_settings_params
   { 
     'name' => 'Joe Full Legal Name',
-    'routing_number' => '111000025',
-    'account_number' => '000123456789',
     'stripe_bank_account_token' => 'tok_u5dg20Gra'
   }
 end
