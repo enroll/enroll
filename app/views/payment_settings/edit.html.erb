@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'accounts/manage_sidebar' %>
+    </div>
+
+    <div class="col-md-9">
+      <%= simple_form_for(@user, url: payment_settings_path, html: { class: 'edit_payment_settings' }) do |f| %>
+        <%= f.error_notification %>
+
+        <h2>Bank Account Details</h2>
+        <%= f.input :name %>
+        <%= f.input :account_number %>
+        <%= f.input :routing_number %>
+
+        <%= f.button :submit, "Update Payment Settings", class: 'btn btn-primary upcase' %>
+      <% end %>
+    </div>
+  </div>
+</div>
