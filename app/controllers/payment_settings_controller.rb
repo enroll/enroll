@@ -11,7 +11,7 @@ class PaymentSettingsController < ApplicationController
       flash[:success] = "Payment settings updated successfully."
       redirect_to edit_payment_settings_path
     else
-      flash[:error] = "Unable to update your payment settings. Sorry about that."
+      flash.now[:error] = "Unable to update your payment settings. Sorry about that."
       render :edit
     end
   end

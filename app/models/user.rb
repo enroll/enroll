@@ -34,12 +34,19 @@ class User < ActiveRecord::Base
     params[:type] = "individual"
     params[:bank_account] = params.delete(:stripe_bank_account_token)
     params[:email] = self.email
-    recipient = Stripe::Recipient.create(params)
 
-    if recipient && recipient.id
-      self.stripe_recipient_id = recipient.id
-      self.name = params[:name]
-      save
+    begin
+      recipient = Stripe::Recipient.create(params)
+
+      if recipient && recipient.id
+        self.stripe_recipient_id = recipient.id
+        self.name = params[:name]
+        save
+      else
+        false
+      end
+    rescue Stripe::InvalidRequestError => e
+      return false
     end
   end
 

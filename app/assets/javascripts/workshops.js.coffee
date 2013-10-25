@@ -28,12 +28,27 @@ sendPaymentSettingsToStripeAndSubmit = ->
     country: 'US',
     routingNumber: $('#user_routing_number').val(),
     accountNumber: $('#user_account_number').val(),
-  }, (status, response) -> 
-    $("#user_stripe_bank_account_token").val(response.id)
-    $('.edit_payment_settings')[0].submit()
-  )
+  }, stripeResponseHandler)
 
   return false
+
+stripeResponseHandler = (status, response) ->
+  $form = $('.edit_payment_settings')
+
+  if (response.error)
+    $('.alert').remove()
+
+    $outerDiv = $('<div class="alert alert-dismissable alert-danger">')
+    $outerDiv.text(response.error.message + ".")
+    $outerDiv.prepend($('<strong>Whoops! </strong>'))
+    $outerDiv.hide()
+    $('header.navbar').after($outerDiv)
+    $('.alert').fadeIn()
+
+    $form.find('.btn-primary').prop('disabled', false)
+  else
+    $("#user_stripe_bank_account_token").val(response.id)
+    $form[0].submit()
 
 ready = ->
   $('.datepicker').datepicker(
