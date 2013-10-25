@@ -11,18 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130704195221) do
+ActiveRecord::Schema.define(version: 20131010183238) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "tagline"
-    t.datetime "course_starts_at"
-    t.datetime "course_ends_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.text     "description"
     t.integer  "location_id"
+    t.integer  "instructor_id"
+    t.integer  "min_seats"
+    t.integer  "max_seats"
+    t.integer  "price_per_seat_in_cents"
+    t.text     "instructor_biography"
+    t.string   "url"
+    t.datetime "campaign_ends_at"
+    t.datetime "campaign_failed_at"
+    t.datetime "campaign_ending_soon_reminded_at"
   end
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
+  add_index "courses", ["url"], name: "index_courses_on_url", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -35,6 +45,7 @@ ActiveRecord::Schema.define(version: 20130704195221) do
     t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address_2"
   end
 
   create_table "payouts", force: true do |t|
@@ -48,9 +59,32 @@ ActiveRecord::Schema.define(version: 20130704195221) do
   add_index "payouts", ["status"], name: "index_payouts_on_status", using: :btree
 
   create_table "reservations", force: true do |t|
-    t.integer "course_id"
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stripe_token"
   end
 
   add_index "reservations", ["course_id"], name: "index_reservations_on_course_id", using: :btree
+  add_index "reservations", ["student_id"], name: "index_reservations_on_student_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

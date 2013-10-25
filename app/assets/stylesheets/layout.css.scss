@@ -1,20 +1,33 @@
-$dark-border: rgba(255,255,255,0.05);
-$dark-gray: #232323;
-$light-gray: #EBE7DF;
+@import 'colors';
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  padding-top: 60px;
-  background-color: $light-gray;
+  padding-top: 70px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+a .caret {
+  margin-left: 10px;
 }
 
-.navbar {
-  background-color: $dark-gray;
-  color: #ecf0f1;
+a > img {
+  margin-right: 5px;
+}
+
+/* Sign Up Toggle Form */
+
+#log-in,
+#sign-up {
+  margin-top: -20px;
+  margin-bottom: 20px;
+  background-color: lighten($dark-gray, 3%);
+  color: #fff;
+
+  > .container {
+    padding: 16px 0;
+  }
+
+  .popover {
+    color: #333;
+  }
 }
 
 .upcase {
@@ -22,30 +35,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-.btn.reserve {
-  background-color: #16a085;
-  font-weight: bold;
-  border: 1px solid #16a085;
-}
-
-.jumbotron {
-  background-color: #95A5A6;
-}
-
 .jumbotron.front-page {
+  margin-top: -20px;
   text-align: center;
-  color: #ecf0f1;
-  background-color: #204246;
-  /*background-color: #E76E66;*/
-  border-radius: 0;
 }
 
 .jumbotron.front-page h1.logo {
-  width: 385px;
-  height: 116px;
-  text-indent: -9000px;
-  margin: 0 auto 1em;
-  background: transparent url(/assets/images/enroll-logo-white.png) top left no-repeat;
+  font-size: 135px;
+  text-transform: none;
+  letter-spacing: -8px;
+  margin: 0 auto 24px;
 }
 
 .jumbotron.front-page p + p {
@@ -59,106 +58,118 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 30pt;
 }
 
-.completion {
-  background-color: #222;
-  color: #ecf0f1;
+@media (min-width: 992px) {
+  .manage-sidebar.affix-bottom,
+  .manage-sidebar.affix {
+    width: 212px;
+  }
 }
 
-.thats-it {
-  font-family: 'Love Ya Like A Sister', cursive;
-}
-.row.calculate {
-  font-size: 220%;
-}
-span.times {
-  font-size: 150%;
-}
-span.equals {
-  font-size: 150%;
-}
-span.dollar {
-  float: right;
+@media (min-width: 1200px) {
+  .manage-sidebar.affix-bottom,
+  .manage-sidebar.affix {
+    width: 262px;
+  }
 }
 
 .manage-sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  margin-top: 60px;
-  width: 240px;
-  background-color: $dark-gray;
-
   .panel {
-    border-top: none;
-    border-right: none;
-    border-left: none;
-
     .panel-heading {
-      padding: 20px;
-      margin: 0;
-      color: #fff;
-      background-color: #204246;
-
       .progress {
-        height: 10px;
+        height: 20px;
         margin-bottom: 2px;
-        border: 1px solid $dark-border;
       }
 
       .funded-label {
         font-size: 10px;
-        color: rgba(255,255,255,0.3);
         text-transform: uppercase;
         text-align: center;
         line-height: 10px;
         margin-bottom: 10px;
+
+        .goal-text {
+          margin-top: 3px
+        }
       }
 
       .status-strip {
-        border-top: 1px solid $dark-border;
-        margin-right: -20px;
-        margin-left: -20px;
+        border-top: 1px solid rgba(0,0,0,0.05);
         padding: 5px 10px 0;
 
-        .col-4 {
+        .col-xs-4 {
           padding-right: 5px;
           padding-left: 5px;
         }
       }
 
       .quantity {
-        font-size: 120%;
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: -5px;
       }
       .status-label {
         font-size: 10px;
         text-transform: uppercase;
-        color: rgba(255,255,255,0.3);
       }
 
     }
   }
 }
 
-.manage-content {
-  margin-left: 240px;
+#course-dropdown {
+  > li > a.dropdown-toggle {
+    text-align: left;
+    vertical-align: middle;
+    padding: 7px 12px 5px;
+    min-height: 50px;
+
+    > .no-course {
+      padding: 9px 0;
+      display: inline-block;
+    }
+
+    > .course-info + .caret {
+      margin-bottom: 15px;
+    }
+  }
+
+  .course-info {
+    text-align: left;
+    display: inline-block;
+
+    .course-title {
+      margin-bottom: -3px;
+    }
+
+    .course-date {
+      font-size: 85%;
+    }
+  }
 }
 
-.course-info {
-  text-align: left;
-  display: inline-block;
-  padding: 4px 0;
+#settings-menu {
+  > li > a.dropdown-toggle {
+    padding: 10px 12px;
 
-  .course-title {
-    font-size: 14px;
-  }
-  .course-date {
-    color: rgba(255,255,255,0.4);
-    font-size: 12px;
-    line-height: 12px;
+    > img {
+      height: 30px;
+    }
   }
 }
 
-.course-info + .caret {
-  margin-bottom: 20px;
+.table td.border-top {
+  border-top: 1px solid #000;
+}
+
+.email-all-link {
+  margin-top: 20px;
+}
+
+#footer {
+  margin-top: 40px;
+  padding-bottom: 100px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
 }

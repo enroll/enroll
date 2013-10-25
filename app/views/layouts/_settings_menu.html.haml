@@ -1,0 +1,22 @@
+- if user_signed_in?
+  %ul#settings-menu.nav.navbar-nav.pull-right
+    %li
+      %a.dropdown-toggle{href: '#', "data-toggle" => "dropdown"}
+        = gravatar_for(current_user.email, class: 'img-rounded', size: 30)
+        %span.title
+          = current_user.display_title
+        %span.caret
+      %ul.dropdown-menu{role: "menu"}
+        - if current_user.instructor?
+          %li
+            %a{href: edit_account_path}
+              %span.glyphicon.glyphicon-usd
+              %span Payment Settings
+        %li
+          %a{href: edit_account_path}
+            %span.glyphicon.glyphicon-user
+            Personal Info
+        %li
+          %a{href: destroy_user_session_path, "data-method" => "delete", rel: "nofollow"}
+            %span.glyphicon.glyphicon-remove
+            Logout

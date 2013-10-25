@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'courses/manage_sidebar', course: @course %>
+    </div>
+    <div class="col-md-9">
+      <%= simple_form_for(@course, :html => { :class => "edit_course disable-submit-on-return" }) do |f| %>
+        <%= render 'courses/form', form: f %>
+
+        <%= f.button :submit, class: 'btn btn-primary upcase' %>
+        <span class="pull-right"><%= link_to 'View course page', course_path(@course) %></span>
+      <% end %>
+    </div>
+  </div>
+</div>

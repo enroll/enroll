@@ -1,9 +1,16 @@
 require 'spec_helper'
 
 describe ReservationsController do
+  let(:user) { create(:user) }
+  let(:user_attributes) { attributes_for(:user) }
   let(:course) { create(:course) }
   let(:reservation) { build(:reservation, course: course) }
   let(:reservation_attributes) { attributes_for(:reservation, course: course) }
+  let(:user_attributes) { attributes_for(:user) }
+
+  before do
+    sign_in user
+  end
 
   context "GET new" do
     it "renders the new page" do
@@ -20,25 +27,70 @@ describe ReservationsController do
   end
 
   context "POST create" do
-    it "creates a reservation" do
-      expect {
+    context "when course is paid" do
+      it "captures the stripe token" do
+        post :create, course_id: course.to_param, reservation: reservation_attributes, stripeToken: "1"
+
+        user.reservations.last.stripe_token.should == "1"
+      end
+    end
+
+    context "with an existing user" do
+      it "creates a reservation for the current user" do
+        expect {
+          post :create, course_id: course.to_param, reservation: reservation_attributes
+        }.to change(user.reservations, :count)
+
+        user.courses_as_student.last.should == course
+      end
+
+      it "redirects to the reservation" do
         post :create, course_id: course.to_param, reservation: reservation_attributes
-      }.to change(Reservation, :count)
+        response.should redirect_to(course_reservation_path(course, assigns[:reservation]))
+      end
+
+      it "sets the success flash" do
+        post :create, course_id: course.to_param, reservation: reservation_attributes
+        flash[:success].should_not be_nil
+      end
     end
 
-    it "redirects to the reservation" do
-      post :create, course_id: course.to_param, reservation: reservation_attributes
-      response.should be_redirect
-      response.should redirect_to(course_reservation_path(course, assigns[:reservation]))
-    end
+    context "with a new user" do
+      before(:each) do
+        sign_out :user
+      end
 
-    it "sets the success flash" do
-      post :create, course_id: course.to_param, reservation: reservation_attributes
-      flash[:success].should_not be_nil
+      it "creates a new user account" do
+        expect {
+          post :create, course_id: course.to_param, reservation: reservation_attributes, user: user_attributes
+        }.to change(User, :count)
+      end
+
+      it "creates a reservation for the new user" do
+        expect {
+          post :create, course_id: course.to_param, reservation: reservation_attributes, user: user_attributes
+        }.to change(course.reservations, :count)
+
+        User.last.reservations.count.should == 1
+        User.last.reservations.last.course.should == course
+      end
+
+      it "signs in the new user" do
+        post :create, course_id: course.to_param, reservation: reservation_attributes, user: user_attributes
+        warden.authenticated?(:user).should == true
+      end
+
+      it "requires an email and password" do
+        post :create, course_id: course.to_param, user: { email: '', password: '' }
+        flash[:error].should_not be_nil
+      end
     end
 
     context "when submitting invalid data" do
-      before { Reservation.any_instance.stubs(:save).returns(false) }
+      before do
+        Reservation.any_instance.stubs(:save).returns(false)
+        Reservation.any_instance.stubs(:valid?).returns(false)
+      end
 
       it "renders the new page" do
         post :create, course_id: course.to_param, reservation: {}

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'accounts/manage_sidebar' %>
+    </div>
+
+    <div class="col-md-9">
+      <%= simple_form_for(@user, url: account_path, html: { class: 'edit_account' }) do |f| %>
+        <%= f.error_notification %>
+
+        <h2>Account Details</h2>
+        <%= f.input :email %>
+
+        <%= f.button :submit, class: 'btn btn-primary upcase' %>
+      <% end %>
+    </div>
+  </div>
+</div>

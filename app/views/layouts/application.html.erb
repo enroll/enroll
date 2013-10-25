@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <%= render 'layouts/head' %>
-<body class="<%= controller_name %> <%= action_name %>">
-<%= yield %>
+<body class="<%= controller_name %> <%= action_name %>" ng-app="EnrollApp">
+  <%= render 'layouts/navigation' %>
+  <%= render 'shared/messages' %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
 </body>
 </html>

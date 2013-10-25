@@ -6,6 +6,7 @@ require 'rspec/autorun'
 require 'rspec/instafail'
 require 'vcr'
 require 'fakeweb'
+require 'email_spec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -24,10 +25,19 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
-  config.filter_run :focused => true
-  config.alias_example_to :fit, :focused => true
-  config.alias_example_to :pit, :pending => true
+  # Authentication
+  config.include Devise::TestHelpers, type: :controller
+
+  # Aliases
+  config.filter_run focused: true
+  config.alias_example_to :fit, focused: true
+  config.alias_example_to :pit, pending: true
+
   config.run_all_when_everything_filtered = true
+  # config.render_views
+
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
 end
 
 VCR.configure do |c|

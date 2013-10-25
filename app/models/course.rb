@@ -1,28 +1,105 @@
 class Course < ActiveRecord::Base
+  acts_as_url :name
+
   has_many :reservations, dependent: :destroy
+  has_many :students, through: :reservations, class_name: 'User'
+
   belongs_to :location
+  belongs_to :instructor, class_name: 'User'
 
   validates :name, presence: true
   validates :location, associated: true
+  validates :instructor, associated: true
+
+  validates :url, uniqueness: true,
+                  format: { with: /\A[a-z\d]+([-_][a-z\d]+)*\z/i, message: 'is not a valid URL'}
+
+  scope :future, -> { where("starts_at >= ?", Time.now).order("starts_at ASC") }
+  scope :past, -> { where("starts_at < ?", Time.now).order("starts_at DESC") }
+  scope :without_dates, -> { where(starts_at: nil) }
+  scope :campaign_ended, -> { where("campaign_ends_at < ?", Time.now) }
+  scope :campaign_ending_within, ->(future){ where("campaign_ends_at > :now AND campaign_ends_at < :future", now: Time.now, future: future) }
+  scope :campaign_not_failed, -> { where(campaign_failed_at: nil) }
+  scope :campaign_not_ending_soon_reminded, -> { where(campaign_ending_soon_reminded_at: nil) }
 
   after_save :set_defaults
 
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
 
-  def course_start_date
-    return nil unless course_starts_at.present?
-    course_starts_at.strftime("%a, %B %e %Y")
+  def self.fail_campaigns
+    # This marks campaigns that haven't reached the minimum number of seats by
+    # their campaign ending time as failed, and notifies students and instructors
+    # that are impacted.
+
+    Course.future.campaign_ended.campaign_not_failed.each do |course|
+      if course.students.count < course.min_seats
+        course.update_attribute :campaign_failed_at, Time.now
+        Resque.enqueue CampaignFailedNotification, course.id
+      end
+    end
   end
 
-  def course_start_time
-    return nil unless course_starts_at.present?
-    course_starts_at.strftime("%l:%M %p %Z")
+  # "Ending Soon" is henceforth defined as within the next 48 hours
+  def self.ending_soon_time
+    48.hours.from_now
   end
 
-  def course_end_time
-    return nil unless course_ends_at.present?
-    course_ends_at.strftime("%l:%M %p %Z")
+  def self.notify_ending_soon_campaigns
+    # This marks campaigns that haven't reached the minimum number of seats by
+    # their campaign ending time as reminded about ending soon, and reminds
+    # students that time is drawing short.
+
+    Course.future.campaign_not_ending_soon_reminded.campaign_ending_within(ending_soon_time).each do |course|
+      if course.students.count < course.min_seats
+        course.update_attribute :campaign_ending_soon_reminded_at, Time.now
+        Resque.enqueue CampaignEndingSoonNotification, course.id
+      end
+    end
+  end
+
+  def send_campaign_failed_notifications!
+    InstructorMailer.campaign_failed(self).deliver
+    self.students.each do |student|
+      StudentMailer.campaign_failed(self, student).deliver
+    end
+  end
+
+  def send_campaign_ending_soon_notifications!
+    self.students.each do |student|
+      StudentMailer.campaign_ending_soon(self, student).deliver
+    end
+  end
+
+  def send_campaign_success_notifications!
+    InstructorMailer.campaign_succeeded(self).deliver
+    self.students.each do |student|
+      StudentMailer.campaign_succeeded(self, student).deliver
+    end
+  end
+
+  def url_or_short_name
+    url ? url : name.slice(0, 20)
+  end
+
+  def start_date
+    starts_at.try(:strftime, "%a, %B %e, %Y")
+  end
+
+  def start_time
+    starts_at.try(:strftime, "%l:%M %p %Z")
+  end
+
+  def end_time
+    ends_at.try(:strftime, "%l:%M %p %Z")
+  end
+
+  def free?
+    price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
+  end
+
+  def has_students?
+    reservations.count > 0
   end
 
   def location_attributes=(location_attributes)
@@ -36,6 +113,6 @@ class Course < ActiveRecord::Base
 
   # temporary
   def set_defaults
-    self.course_ends_at = self.course_starts_at + 4.hours if self.course_starts_at_changed?
+    self.ends_at = self.starts_at + 4.hours if self.starts_at_changed?
   end
 end

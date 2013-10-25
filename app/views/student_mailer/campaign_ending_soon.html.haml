@@ -1,0 +1,21 @@
+%p
+  We're sure you're excited as we are for
+  = link_to @course.name, @course
+  coming up on
+  = @course.start_date.to_s
+  However, only 48 hours remain for it to get the
+  = @course.min_seats
+  reservations needed.
+
+%p
+  %strong You can help!
+  There's only
+  = @course.min_seats - @course.students.count
+  more reservations needed.
+  Surely you know a few people who'd like to take the course with you.
+  Just forward them this email and let them know that this exciting course is being held.
+
+%p
+  Best of luck!
+  %br
+  Team Enroll

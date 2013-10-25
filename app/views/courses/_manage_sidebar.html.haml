@@ -1,0 +1,35 @@
+.manage-sidebar
+  .panel.panel-info
+    .panel-heading
+      .progress
+        .progress-bar{style: "width: #{percentage_to_full(course)}%;"}
+      - if course.min_seats
+        .funded-label{style: "margin-left: #{percentage_goal(course) - 25}%; width: 50%;"}
+          .glyphicon.glyphicon-arrow-up
+          .goal-text
+            Goal
+      .row.status-strip
+        .col-xs-4
+          .quantity
+            = course.reservations.count
+          .status-label Enrolled
+        .col-xs-4
+          .quantity
+            = reservations_needed(course)
+          .status-label Needed
+        .col-xs-4
+          .quantity
+            = days_until_start(course)
+          .status-label Days left
+    .list-group
+      %a.list-group-item{href: "#"}
+        %span.glyphicon.glyphicon-home
+        Dashboard
+      %a.list-group-item{href: course_students_path(course), class: current_page?(course_students_path(course)) ? "active" : ""}
+        %span.glyphicon.glyphicon-user
+        %span.badge
+          = course.reservations.count
+        Students
+      %a.list-group-item{href: edit_course_path(course), class: current_page?(edit_course_path(course)) ? "active" : ""}
+        %span.glyphicon.glyphicon-cog
+        Settings

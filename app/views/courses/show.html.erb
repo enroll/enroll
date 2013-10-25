@@ -1,67 +1,36 @@
-<div class="navbar navbar-fixed-top">
-  <div class="container">
-    <div class="row">
-      <p class="lead text-right">
-        Only $<span class="workshop-cost">50</span>
-        <%= course_reservation_link(@course, :class => 'btn btn-primary reserve upcase') %>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="jumbotron text-right">
-  <h1><%= @course.name %></h1>
-  <p><%= @course.tagline %></p>
-
-  <% if @course.location.present? %>
-    <p class="upcase location"><%= @course.location.city %>, <%= @course.location.state %></p>
-  <% end %>
-  <% if @course.course_starts_at.present? %>
-    <p class="date upcase"><%= @course.course_start_date %> | <%= @course.course_start_time %> - <%= @course.course_end_time %></p>
-  <% end %>
-  <%= course_reservation_link(@course) %>
-</div>
-
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <p>Think Lean Startup is just for startups? Think again! Every business, large and small, can leverage the power of Lean Startup, business model generation, and agile concepts.</p>
+    <div class="col-md-9">
+      <h1><%= @course.name %></h1>
+      <h3><%= @course.tagline %></h3>
 
-      <p>In this free, one-day event, you’ll receive tips, tools, tricks and a ton of hands-on experience in applying experiment-driven design to any product development effort, business-to-business or business-to-consumer. Discover how even small steps can yield amazing breakthroughs.</p>
+      <p><%= @course.description %></p>
+    </div>
 
-      <h2>What you will learn</h2>
-      <p>
-        Thanks to your agile delivery teams, you know your organization can build it. The question now is, should you build it? Lean Startup and business model generation concepts will help you find the answers, giving you a competitive advantage that’s so good, it’s almost unfair!
-      </p>
-      <p>
-        You’ve read the book, you've heard the buzz - it's time to get started. This free workshop from BigVisible will provide you with the tangible skills you need to leverage the full power of agile, lean startup, and business model generation in the enterprise.
-      </p>
+    <div class="col-md-3">
+      <h2><%= number_to_currency price_in_dollars(@course.price_per_seat_in_cents) %></h2>
 
-      <h2>Who this is for</h2>
-      <ul>
-        <li>Product Managers</li>
-        <li>Business Stakeholders</li>
-        <li>Interaction Designers</li>
-        <li>Intrapreneurs</li>
-        <li>Cutting-Edge Leaderss</li>
-      </ul>
+      <%= course_reservation_link(@course) %>
+      <hr />
 
-      <p>
-        We'll give you a real glimpse into how some of the largest organizations in the world are embracing the breakthrough power of Lean Startup in the Enterprise.
-      </p>
+      <% if @course.starts_at.present? %>
+        <h4><%= @course.starts_at.strftime("%B %e, %Y") %></h4>
+        <h5>
+          <%= @course.starts_at.strftime("%l:%M %p") %> -
+          <%= @course.ends_at.strftime("%l:%M %p %Z") %>
+        </h5>
+      <% end %>
+
 
       <% if @course.location.present? %>
-        <h2>Where</h2>
-
         <address>
           <strong><%= @course.location.name %></strong><br>
           <%= @course.location.address %><br>
+          <%= @course.location.address_2 %><br>
           <%= @course.location.city %>, <%= @course.location.state %> <%= @course.location.zip %><br>
           <abbr title="Phone">P:</abbr> <%= @course.location.phone %>
         </address>
       <% end %>
-
     </div>
   </div>
-
 </div>

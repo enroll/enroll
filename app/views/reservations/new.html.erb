@@ -1,32 +1,42 @@
-<%= form_for(@reservation, :url => course_reservations_path) do |f| %>
-  <h2><%= @course.name %></h2>
+<div class="container">
+  <div class="row">
+    <%= simple_form_for(@reservation, :url => course_reservations_path) do |f| %>
+      <h2><%= @course.name %></h2>
 
-  <fieldset>
-    <legend>Reserve your seat</legend>
-    <form action="" method="POST">
-      <script
-        src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-        data-key="pk_test_1dGqIW80J3bz620Ylp8FbCLJ"
-        data-amount="19900"
-        data-name="<%= @course.name %>"
-        data-description="1 seat ($199.00)"
-        data-image="/placeholder.png">
-      </script>
-    </form>
-  </fieldset>
+      <%= f.error_notification %>
 
-  <br />
+      <fieldset>
+        <legend>Reserve your seat</legend>
+        <p>
+          1 seat (<%= @course.free? ? 'FREE' : number_to_currency_from_cents(@course.price_per_seat_in_cents) %>)
+        </p>
 
-  <fieldset>
-    <legend>Complete other details</legend>
-    <%= label_tag :detail_1 %>
-    <%= text_field_tag :detail_1 %>
+        <% unless @course.free? %>
+          <script
+            src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+            data-key="pk_test_1dGqIW80J3bz620Ylp8FbCLJ"
+            data-amount="<%= @course.price_per_seat_in_cents || 0 %>"
+            data-name="<%= @course.name %>"
+            data-description="1 seat (<%= number_to_currency_from_cents(@course.price_per_seat_in_cents) %>)"
+            data-capture="false"
+            data-image="/placeholder.png">
+          </script>
+        <% end %>
+      </fieldset>
 
-    <%= label_tag :detail_2 %>
-    <%= text_field_tag :detail_2 %>
+      <fieldset>
+        <legend>Student details</legend>
+        <% if user_signed_in? %>
+          <p>Email: <%= current_user.email %></p>
+        <% else %>
+          <%= simple_fields_for(@user) do |uf| %>
+            <%= uf.input(:email, label: 'Your email for the receipt') %>
+            <%= uf.input(:password, label: 'A memorable password', hint: 'Required so you can log in later to communicate with the instructor, see class materials, and manage your account') %>
+          <% end %>
+        <% end %>
+      </fieldset>
 
-    <br />
-    <button class="btn" type="submit" disabled=disabled>Confirm reservation</button>
-  </fieldset>
-<% end %>
-
+      <%= f.submit('Confirm reservation', class: 'btn') %>
+    <% end %>
+  </div>
+</div>

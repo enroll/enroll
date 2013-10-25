@@ -1,50 +1,26 @@
-calculateRevenue = ->
-  $seats = $("#input-seats").val()
-  $cost = $("#input-cost").val()
-  $revenue = parseInt($seats) * parseInt($cost)
-  if isNaN $revenue
-    $("#revenue").text "$0"
-  else
-    $("#revenue").text "$#{$revenue}"
+updateCourseCalculator = ->
+  $minSeats = $('#course_min_seats').val()
+  $('.min-seats').text($minSeats)
 
-updateWorkshopCost = ->
-  $cost = $("#input-cost").val()
-  $(".workshop-cost").text($cost)
+  $maxSeats = $('#course_max_seats').val()
+  $('.max-seats').text($maxSeats)
 
-finishEditing = (event) ->
-  $editable = $(event.target).first().parents(".editable")
-  $editable.removeClass "editing"
-  $editable.addClass "edit-ready"
-  $editableInput = $editable.find(".workshop-input")
-  $newText = ""
-  if $editableInput.val() == ""
-    $newText = $editableInput.attr("placeholder")
+  $cost = $('#course_price_per_seat_in_cents').val()
+  $('.ticket-price').text("$#{parseInt($cost)/100}")
+
+  $minRevenue = parseInt($minSeats) * (parseInt($cost) / 100)
+  $maxRevenue = parseInt($maxSeats) * (parseInt($cost) / 100)
+
+  if isNaN $minRevenue
+    $(".min-seat-revenue").text "$0"
   else
-    $newText = $editableInput.val()
-  $editable.find(".content").text($newText)
-  $editable.find("label").text($newText)
-  event.stopPropagation()
+    $(".min-seat-revenue").text "$#{$minRevenue}"
+  if isNaN $maxRevenue
+    $(".max-seat-revenue").text "$0"
+  else
+    $(".max-seat-revenue").text "$#{$maxRevenue}"
 
 ready = ->
-  $("#input-seats").keyup calculateRevenue
-  $("#input-cost").keyup calculateRevenue
-  $("#input-seats").blur calculateRevenue
-  $("#input-cost").blur calculateRevenue
-
-  $("#input-cost").keyup updateWorkshopCost
-  $("#input-cost").blur updateWorkshopCost
-
-  $('.manage-sidebar').affix();
-
-  $(".editable").click ->
-    if $(this).hasClass "edit-ready"
-      unless $(this).hasClass "workshop-datetime"
-        $(this).removeClass "edit-ready"
-        $(this).addClass "editing"
-      $(".editable").find(".workshop-input").focus()
-
-  $(".glyphicon-ok").click finishEditing
-
   $('.datepicker').datepicker(
     format: "yyyy-mm-dd"
     todayHighlight: true
@@ -62,9 +38,47 @@ ready = ->
       e.preventDefault()
       false
 
-  $("input.workshop-input").keypress (event) ->
-    if event.which is 13
-      finishEditing(event)
+  $(".course-title-popover").popover(
+    trigger: 'focus',
+    placement: 'bottom',
+    title: "It's free to create a course!",
+    content: "You can always change the name of your course later."
+  )
 
-$(document).ready(ready)
-$(document).on('page:load', ready)
+  $('#sign-up').on 'show.bs.collapse', ->
+    $('#log-in.in').collapse('hide')
+    $('.btn-log-in').addClass('collapsed')
+    $('.btn-sign-up').removeClass('collapsed')
+
+  $('#sign-up').on 'shown.bs.collapse', ->
+    $('#user_course_name').focus()
+
+  $('#sign-up').on 'hide.bs.collapse', ->
+    $('.btn-sign-up').addClass('collapsed')
+
+  $('#log-in').on 'show.bs.collapse', ->
+    $('#sign-up.in').collapse('hide')
+    $('.btn-sign-up').addClass('collapsed')
+
+  $('#log-in').on 'shown.bs.collapse', ->
+    $('#log-in .email').focus()
+
+  $('#course_min_seats').on 'propertychange input', updateCourseCalculator
+  $('#course_max_seats').on 'propertychange input', updateCourseCalculator
+  $('#course_price_per_seat_in_cents').on 'propertychange input', updateCourseCalculator
+
+  $('#for-fun').click ->
+    $cost = $('#course_price_per_seat_in_cents')
+    $cost.val(0).hide()
+    $('.free-text').remove()
+    $cost.parent().append("<strong class='free-text'>FREE</strong>")
+    $('#revenue-calculator').hide()
+
+  $('#for-profit').click ->
+    $cost = $('#course_price_per_seat_in_cents')
+    $cost.val(19900).show()
+    $('.free-text').remove()
+    $('#revenue-calculator').show()
+    updateCourseCalculator()
+
+$(document).on('ready page:load', ready)

@@ -97,6 +97,8 @@ SimpleForm.setup do |config|
   # You can define the class to use on all labels. Default is nil.
   config.label_class = 'control-label'
 
+  config.input_class = 'form-control'
+
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form
 

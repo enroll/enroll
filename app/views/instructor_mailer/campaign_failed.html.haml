@@ -1,0 +1,20 @@
+%p
+  %strong Darn!
+
+%p
+  = link_to @course.name, @course
+  didn't quite reach the minimum number of reservations you set in order to give the course.
+
+%p
+  But don't give up just yet.
+  - if @students.count > 0
+    = @students.count
+    = pluralize(@students.count, 'student')
+    really wanted to take your course.
+  = link_to "Give it another go.", new_course_path
+  And remember, we're happy to help. Just reply to this email.
+
+%p
+  Best of luck!
+  %br
+  Team Enroll
