@@ -366,4 +366,118 @@ describe Course do
       course.send_campaign_success_notifications!
     end
   end
+
+  describe "#revenue" do
+    context "paid course" do
+      before do
+        course.price_per_seat_in_cents = 10000 # $100
+        course.save
+        10.times { create(:reservation, course: course) }
+      end
+
+      it "returns total value of course tickets sold ignoring fees" do
+        course.revenue.should == 100000 # $1,000
+      end
+    end
+
+    context "free course" do
+      before do
+        course.price_per_seat_in_cents = 0
+        course.save
+        10.times { create(:reservation, course: course) }
+      end
+
+      it "returns zero for free courses" do
+        course.revenue.should == 0
+      end
+    end
+  end
+
+  describe "#credit_card_fees" do
+    context "paid course" do
+      before do
+        course.price_per_seat_in_cents = 10000 # $100
+        course.save
+        10.times { create(:reservation, course: course) }
+      end
+
+      it "returns credit card fees" do
+        # Course revenue: $1,000
+        # CC percentage fees: $1,000 x 2.9% = $29
+        # CC transaction fees: 10 tix x $0.30 = $3
+        course.credit_card_fees.should == 3200 # $32
+      end
+    end
+
+    context "free course" do
+      before do
+        course.price_per_seat_in_cents = 0
+        course.save
+        10.times { create(:reservation, course: course) }
+      end
+
+      it "returns zero for free courses" do
+        course.credit_card_fees.should == 0
+      end
+    end
+  end
+
+  describe "#gross_profit" do
+    context "paid course" do
+      before do
+        course.price_per_seat_in_cents = 10000 # $100
+        course.save
+        10.times { create(:reservation, course: course) }
+      end
+
+      it "returns credit card fees" do
+        # Course revenue: $1,000
+        # Enroll service fees: $1,000 x 3.1% = $31
+        course.gross_profit.should == 3100 # $31
+      end
+    end
+
+    context "free course" do
+      before do
+        course.price_per_seat_in_cents = 0
+        course.save
+        10.times { create(:reservation, course: course) }
+      end
+
+      it "returns zero for free courses" do
+        course.gross_profit.should == 0
+      end
+    end
+  end
+
+  describe "#instructor_payout" do
+    context "paid course" do
+      before do
+        course.price_per_seat_in_cents = 10000 # $100
+        course.save
+        10.times { create(:reservation, course: course) }
+      end
+
+      it "returns credit card fees" do
+        # Course revenue: $1,000
+        # Enroll service fees: $1,000 x 3.1% = $31
+        # CC percentage fees: $1,000 x 2.9% = $29
+        # CC transaction fees: 10 tix x $0.30 = $3
+        # Instructor payout: $1,000 - $31 - $29 - $3 = $937
+        course.instructor_payout.should == 93700 # $937
+      end
+    end
+
+    context "free course" do
+      before do
+        course.price_per_seat_in_cents = 0
+        course.save
+        10.times { create(:reservation, course: course) }
+      end
+
+      it "returns zero for free courses" do
+        course.instructor_payout.should == 0
+      end
+    end
+  end
 end

@@ -98,6 +98,35 @@ class Course < ActiveRecord::Base
     price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
   end
 
+  #============== COURSE REVENUE AND FEES ================
+
+  def revenue
+    reservations.count * price_per_seat_in_cents
+  end
+
+  # Stripe takes a 2.9% cut of every ticket sold and 30 cents per ticket
+  STRIPE_CREDIT_CARD_PERCENTAGE = 0.029             #  2.9%
+  STRIPE_CREDIT_CARD_TRANSACTION_FEE_IN_CENTS = 30  # $0.30
+
+  def credit_card_fees
+    return 0 if free?
+
+    (STRIPE_CREDIT_CARD_PERCENTAGE * revenue) + (STRIPE_CREDIT_CARD_TRANSACTION_FEE_IN_CENTS * reservations.count)
+  end
+
+  # Enroll takes a 3.1% cut of every ticket sold
+  ENROLL_SERVICE_FEE_PERCENTAGE = 0.031  # 3.1%
+
+  def gross_profit
+    revenue * ENROLL_SERVICE_FEE_PERCENTAGE
+  end
+
+  def instructor_payout
+    revenue - credit_card_fees - gross_profit
+  end
+
+  #============== END COURSE REVENUE AND FEES ================
+
   def has_students?
     reservations.count > 0
   end
