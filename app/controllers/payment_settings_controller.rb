@@ -7,7 +7,7 @@ class PaymentSettingsController < ApplicationController
 
   def update
     @user = current_user
-    if @user.save_payment_settings!(params[:user])
+    if @user.save_payment_settings!(stripe_recipient_params)
       flash[:success] = "Payment settings updated successfully."
       redirect_to edit_payment_settings_path
     else
@@ -16,4 +16,9 @@ class PaymentSettingsController < ApplicationController
     end
   end
 
+  private
+
+  def stripe_recipient_params
+    params.require(:user).permit(:name, :stripe_bank_account_token)
+  end
 end

@@ -30,6 +30,19 @@ class User < ActiveRecord::Base
     courses_as_student.any?
   end
 
+  def save_payment_settings!(params)
+    params[:type] = "individual"
+    params[:bank_account] = params.delete(:stripe_bank_account_token)
+    params[:email] = self.email
+    recipient = Stripe::Recipient.create(params)
+
+    if recipient && recipient.id
+      self.stripe_recipient_id = recipient.id
+      self.name = params[:name]
+      save
+    end
+  end
+
   # TODO: Add a 'role' column to actually distinguish
   # between Enroll staff and Enroll customers
   def staff?
