@@ -1,18 +1,60 @@
-# Stripe Integration
+# Paying Instructors
 
-## Create a valid Recipient
+A payout needs to be initiated with Stripe from our enroll account to the Instructor's bank account. 
+
+For now, we'll initiate each transfer manually via the console since it involves moneys, and potentially large amounts of it.
+
+## Initiate a payout via the console
+
+Find the course that needs to be paid out.
 
 ```ruby
-Stripe::Recipient.create(
-  :name => "Julia Childs",
-  :type => "individual",
-  :tax_id => "000000000",
-  :bank_account => {
-    :country => "US",
-    :routing_number => "110000000",
-    :account_number => "000123456789"
-   }
- )
+course = Course.find(some_id)
 ```
 
-* Utilize `Stripe::Recipient` with ID: `rp_2FUrV5Zn4ILgfo`
+Find out all of the details about the course. Note that all amounts are in cents.
+
+```ruby
+course.revenue # total amount the course made
+=> 250000
+course.reservations.count # number of tickets sold
+=> 25
+course.price_per_seat_in_cents # cost of each ticket
+=> 10000
+course.credit_card_fees # total credit card fees
+=> 8000
+course.gross_profit # total amount that enroll made
+=> 7750
+course.instructor_payout # total amount to pay to the instructor
+=> 234950
+```
+
+You might want to check the computer's math. It's a lot of money.
+
+```ruby
+course.revenue == course.instructor_payout + course.gross_profit + course.credit_card_fees
+=> true
+```
+
+Now I'd go check out the [Stripe interface](https://manage.stripe.com) to make sure there are the correct number of transactions for the number of tickets sold. Also, make sure that the money for the instructor payout is all there.
+
+Ok. If you think you're ready to initiate the payout, go ahead.
+
+```ruby
+payout = Payout.create({
+  amount_in_cents: course.price_per_seat_in_cents, 
+  description: course.name, 
+  stripe_recipient_id: course.instructor.stripe_recipient_id
+})
+=> #<Payout id: 1, stripe_transfer_id: nil, stripe_recipient_id: "rp_2rAHV7u3t4lL4i", status: "pending", description: "Test-Driven Development for Rails", amount_in_cents: 85000>
+payout.request
+=> true
+payout.status
+=> "requested"
+```
+
+Ok, now go check out Stripe one more time and make sure there's a transfer there.
+
+The only way (for now) to tie the payout back to the instructor is through the `stripe_recipient_id`.
+
+The transfer should be completed in the next 1-2 business days.
