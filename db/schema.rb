@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131016030039) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "tagline"
@@ -56,8 +59,6 @@ ActiveRecord::Schema.define(version: 20131016030039) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripe_token"
-    t.datetime "charge_succeeded_at"
-    t.string   "charge_failure_message"
   end
 
   add_index "reservations", ["course_id"], name: "index_reservations_on_course_id", using: :btree
@@ -76,7 +77,6 @@ ActiveRecord::Schema.define(version: 20131016030039) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "stripe_customer_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
