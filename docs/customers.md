@@ -7,8 +7,15 @@
 - http://workshops.railsbridge.org/
   - Notice how they use EventBrite to manage ticket sales... [Example Workshop Listing](http://workshops.railsbridge.org/ai1ec_event/nyc-railsbridge-workshop/?instance_id=223)
 - http://workshop.bostonrb.org/
+
+## Enterprise Sales
+
 - Github: http://training.github.com/in-person/git-foundations/
   - They should totally be using WP for their in-person courses
+- Twitter University:
+  - They could use this to power all of their internal courses
+- Duke University - Rose Ritts
+- RedHat internal training team
 
 ## Example Workshops
 

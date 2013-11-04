@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe InstructorMailer do
   let(:instructor)  { build(:instructor, :email => "instructor@example.com") }
-  let(:course)      { build(:course, instructor: instructor, name: "Hackers 101") }
+  let(:course)      { build(:course, instructor: instructor, name: "Hackers 101", url: nil) }
   let(:student)     { build(:student, :email => "student@example.com") }
   let(:reservation) { build(:reservation, student: student, course: course) }
 
