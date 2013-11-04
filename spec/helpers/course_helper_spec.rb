@@ -22,7 +22,7 @@ describe CourseHelper do
 
   context "#days_until_start" do
     it "returns the number of days until the course starts if it's in the future" do
-      current_time = "2013-08-01 23:59:59 UTC"
+      current_time = "2013-08-01 12:00:00 UTC"
       starts_at    = "2013-08-21 12:00:00 UTC"
 
       Timecop.freeze(current_time) do
