@@ -10,6 +10,7 @@ module SocialHelper
       .sub(':text', CGI.escape(text))
     content_tag :a, label,
       :href => '#',
-      :onclick => "window.open('#{url}', '#{network}-share-dialog', 'width=626,height=436')".html_safe
+      :class => "social #{network}",
+      :onclick => "window.open('#{url}', '#{network}-share-dialog', 'width=626,height=436'); return false;".html_safe
   end
 end

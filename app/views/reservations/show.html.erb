@@ -5,9 +5,14 @@
 
       <p>Tell all your friends about it!</p>
 
-      <%= share_button(:facebook, course_short_url(@course), 'Facebook') %>
-      <%= share_button(:twitter, course_short_url(@course), 'Twitter', "Just enrolled in #{@course.name}. You should be there!") %>
-      <%= text_field_tag('course-url', course_short_url(@course), disabled: true) %>
+      <div>
+        <%= share_button(:facebook, course_short_url(@course), 'Share on Facebook') %>
+        <%= share_button(:twitter, course_short_url(@course), 'Share on Twitter', "Just enrolled in #{@course.name}. You should be there!") %>
+      </div>
+      <div class="social-url">
+        <small>Or just copy the link:</small>
+        <%= text_field_tag('course-url', course_short_url(@course), disabled: true) %>
+      </div>
       </p>
     </div>
   </div>
