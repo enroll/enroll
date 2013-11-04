@@ -88,4 +88,26 @@ describe CourseHelper do
       course_reservation_link(course).should == link
     end
   end
+
+  context "#facebook_og_meta_tags" do
+    let(:course) { build(:course) }
+    it "returns an og title with course title" do
+      course.name = "My course"
+      facebook_og_meta_tags(course).should =~ /meta property="og:title" content="My course"/
+    end
+
+    it "returns an og description with course tagline" do
+      course.tagline = "The best course EVAR!!!"
+      facebook_og_meta_tags(course).should =~ /meta property="og:description" content="The best course EVAR!!!"/
+    end
+
+    it "returns an og url with course short url" do
+      course.url = "best-course-evar"
+      facebook_og_meta_tags(course).should =~ /meta property="og:url" content=".*\/go\/best-course-evar"/
+    end
+
+    it "returns an og image with enroll logo" do
+      facebook_og_meta_tags(course).should =~ /meta property="og:image" content=".*\/assets\/images\/enroll-io-logo.png"/
+    end
+  end
 end
