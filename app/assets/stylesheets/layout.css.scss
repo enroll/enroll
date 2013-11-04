@@ -55,7 +55,8 @@ a > img {
 }
 
 @media (max-width: 991px) {
-  /* Do not remove - disables zooming on focus on mobile phones */
+  /* Do not remove - disables zooming on focus on mobile phones
+     http://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone */
   input:not([type=submit]):not([type=file]),
   textarea {
     font-size:16px;
