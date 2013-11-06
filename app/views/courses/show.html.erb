@@ -14,7 +14,13 @@
     <div class="col-md-3">
       <h2><%= number_to_currency price_in_dollars(@course.price_per_seat_in_cents) %></h2>
 
-      <%= course_reservation_link(@course) %>
+      <% if @course.future? %>
+        <%= course_reservation_link(@course) %>
+      <% elsif @course.campaign_failed? %>
+        Course not funded
+      <% else %>
+        Course complete
+      <% end %>
       <hr />
 
       <% if @course.starts_at.present? %>
