@@ -8,4 +8,8 @@ module MailersHelper
     "Enroll <help@enroll.io>"
   end
 
+  def enroll_support
+    "Enroll Support <support@enroll.io>"
+  end
+
 end

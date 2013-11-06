@@ -1,3 +1,5 @@
+include NavigationHelper
+
 module CourseHelper
   def reservations_needed(course)
     return "?" unless course.min_seats
@@ -27,5 +29,14 @@ module CourseHelper
     link_to 'Reserve your seat',
       new_course_reservation_path(course),
       :class => options[:class] ||= 'btn btn-primary btn-large reserve upcase'
+  end
+
+  def facebook_og_meta_tags(course)
+    meta_tags = []
+    meta_tags << %Q[<meta property="og:title" content="#{course.name}" />]
+    meta_tags << %Q[<meta property="og:description" content="#{course.tagline}" />]
+    meta_tags << %Q[<meta property="og:url" content="#{course_short_url(course)}" />]
+    meta_tags << %Q[<meta property="og:image" content="/assets/images/enroll-io-logo.png" />]
+    meta_tags.join("\n").html_safe
   end
 end

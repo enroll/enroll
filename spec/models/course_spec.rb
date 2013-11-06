@@ -141,7 +141,7 @@ describe Course do
     end
   end
 
-  describe "#notify_ending_soon_campaigns" do
+  describe ".notify_ending_soon_campaigns" do
     context "when the campaign is under 48 hours from ending" do
       context "and minimums are met" do
         before do
@@ -478,6 +478,52 @@ describe Course do
       it "returns zero for free courses" do
         course.instructor_payout.should == 0
       end
+    end
+  end
+
+  describe "#future?" do
+    it "returns true if course start date is in the future" do
+      course.starts_at = Time.now + 1.hour
+      course.should be_future
+    end
+
+    it "returns false if course start date is in the past" do
+      course.starts_at = Time.now - 1.hour
+      course.should_not be_future
+    end
+  end
+
+  describe "#campaign_failed?" do
+    it "returns true if campaign failed at is not nil" do
+      course.campaign_failed_at = Time.now - 1.hour
+      course.should be_campaign_failed
+    end
+
+    it "returns false if campaign failed at is nil" do
+      course.campaign_failed_at = nil
+      course.should_not be_campaign_failed
+    end
+  end
+
+  describe "#send_course_created_notification" do
+    it "queues a course created notification when course is created" do
+      Resque.expects(:enqueue).with(CourseCreatedNotification, kind_of(Integer))
+      create(:course)
+    end
+
+    it "does not queue a course created notification when existing course is saved" do
+      course.save
+      Resque.expects(:enqueue).never
+      course.save
+    end
+  end
+
+  describe "#send_course_created_notification!" do
+    it "notifies the admins that a course has been created" do
+      AdminMailer.expects(:course_created).
+        with(course).returns(mock 'mail', :deliver => true)
+
+      course.send_course_created_notification!
     end
   end
 end

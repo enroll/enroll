@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20131024192538) do
     t.datetime "campaign_ends_at"
     t.datetime "campaign_failed_at"
     t.datetime "campaign_ending_soon_reminded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
@@ -64,6 +66,8 @@ ActiveRecord::Schema.define(version: 20131024192538) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripe_token"
+    t.datetime "charge_succeeded_at"
+    t.string   "charge_failure_message"
   end
 
   add_index "reservations", ["course_id"], name: "index_reservations_on_course_id", using: :btree
@@ -82,6 +86,7 @@ ActiveRecord::Schema.define(version: 20131024192538) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_customer_id"
     t.string   "name"
     t.string   "stripe_recipient_id"
   end

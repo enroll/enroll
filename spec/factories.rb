@@ -12,6 +12,7 @@ FactoryGirl.define do
     min_seats                        { 10 }
     max_seats                        { 25 }
     price_per_seat_in_cents          { 14999 }
+    url                              { "space-monkeys-learn-java" }
 
     # associations
     location

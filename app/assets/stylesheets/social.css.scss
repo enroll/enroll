@@ -1,0 +1,30 @@
+@import '_colors';
+
+a.social {
+  color: #fff;
+  padding: 10px 15px;
+  display: inline-block;
+
+  &.twitter {
+    background: #1daeeb;
+  }
+
+  &.facebook {
+    background: #4862a3;
+  }
+}
+
+div.social-url {
+  padding-top: 10px;
+
+  small {
+    display: block;
+    color: $dark-gray;
+    font-size: 8pt;
+  }
+
+  input {
+    width: 284px;
+    padding: 5px 5px;
+  }
+}
