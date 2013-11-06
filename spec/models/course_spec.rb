@@ -379,6 +379,18 @@ describe Course do
     end
   end
 
+  describe "#campaign_failed?" do
+    it "returns true if campaign failed at is not nil" do
+      course.campaign_failed_at = Time.now - 1.hour
+      course.should be_campaign_failed
+    end
+
+    it "returns false if campaign failed at is nil" do
+      course.campaign_failed_at = nil
+      course.should_not be_campaign_failed
+    end
+  end
+
   describe "#send_course_created_notification" do
     it "queues a course created notification when course is created" do
       Resque.expects(:enqueue).with(CourseCreatedNotification, kind_of(Integer))

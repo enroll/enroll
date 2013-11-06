@@ -16,6 +16,8 @@
 
       <% if @course.future? %>
         <%= course_reservation_link(@course) %>
+      <% elsif @course.campaign_failed? %>
+        Course not funded
       <% else %>
         Course complete
       <% end %>
