@@ -104,7 +104,7 @@ describe Course do
     end
   end
 
-  describe "send_campaign_failed_notifications!" do
+  describe "#send_campaign_failed_notifications!" do
     before do
       course.save
       create(:reservation, course: course)
@@ -126,7 +126,7 @@ describe Course do
     end
   end
 
-  describe "send_campaign_ending_soon_notifications!" do
+  describe "#send_campaign_ending_soon_notifications!" do
     before do
       course.save
       create(:reservation, course: course)
@@ -141,7 +141,7 @@ describe Course do
     end
   end
 
-  describe "notify_ending_soon_campaigns" do
+  describe "#notify_ending_soon_campaigns" do
     context "when the campaign is under 48 hours from ending" do
       context "and minimums are met" do
         before do
@@ -199,7 +199,7 @@ describe Course do
     end
   end
 
-  describe "start_date" do
+  describe "#start_date" do
     it "returns a date value" do
       course.starts_at = Time.parse("January 1 2014 12:01 PM EST")
       course.start_date.should == "Wed, January  1, 2014"
@@ -364,6 +364,28 @@ describe Course do
         with(course, student).returns(mock 'mail', :deliver => true)
 
       course.send_campaign_success_notifications!
+    end
+  end
+
+  describe "#send_course_created_notification" do
+    it "queues a course created notification when course is created" do
+      Resque.expects(:enqueue).with(CourseCreatedNotification, kind_of(Integer))
+      create(:course)
+    end
+
+    it "does not queue a course created notification when existing course is saved" do
+      course.save
+      Resque.expects(:enqueue).never
+      course.save
+    end
+  end
+
+  describe "#send_course_created_notification!" do
+    it "notifies the admins that a course has been created" do
+      AdminMailer.expects(:course_created).
+        with(course).returns(mock 'mail', :deliver => true)
+
+      course.send_course_created_notification!
     end
   end
 end

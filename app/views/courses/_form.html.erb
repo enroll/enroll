@@ -44,12 +44,12 @@
 </h2>
 
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-sm-6">
 
     <%= form.input :min_seats,
-                   label: 'Minimum # of Seats',
+                   label: '"Worth it" # of Seats',
                    wrapper: 'pricing-block',
-                   hint: "If fewer than this number of people sign up, the workshop won't run." %>
+                   hint: "If fewer than this number of people sign up, you're not on the hook to teach." %>
     <%= form.input :max_seats,
                    label: 'Maximum # of Seats',
                    wrapper: 'pricing-block',
@@ -58,7 +58,7 @@
                    label: 'Cost per Seat',
                    wrapper: 'pricing-block' %>
   </div>
-  <div id="revenue-calculator" class="col-lg-6 well">
+  <div id="revenue-calculator" class="col-sm-6 well">
     <h5 class="text-center upcase">Course Revenue Calculator</h5>
 
     <table class="table text-right">

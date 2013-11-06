@@ -1,0 +1,14 @@
+%p
+	=@instructor.display_title
+	created
+	=@course.name
+	at
+	=@course.created_at
+
+%p
+	Instructor email:
+	=@instructor.email
+
+%p
+	Course url:
+	=course_short_url(@course)

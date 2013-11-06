@@ -23,6 +23,7 @@ class Course < ActiveRecord::Base
   scope :campaign_not_ending_soon_reminded, -> { where(campaign_ending_soon_reminded_at: nil) }
 
   after_save :set_defaults
+  after_create :send_course_created_notification
 
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
@@ -56,6 +57,14 @@ class Course < ActiveRecord::Base
         Resque.enqueue CampaignEndingSoonNotification, course.id
       end
     end
+  end
+
+  def send_course_created_notification
+    Resque.enqueue(CourseCreatedNotification, self.id)
+  end
+
+  def send_course_created_notification!
+    AdminMailer.course_created(self).deliver
   end
 
   def send_campaign_failed_notifications!
