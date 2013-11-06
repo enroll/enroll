@@ -26,7 +26,7 @@ module Enroll
 
     # Google Analytics Domain
     def ga_domain
-      @ga_domain ||= ENV["GA_DOMAIN"]
+      @ga_domain ||= ENV["HOST"]
     end
     attr_writer :ga_domain
 
