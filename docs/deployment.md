@@ -4,28 +4,47 @@ Staging is currently running on Heroku.
 
 * http://enroll-staging.herokuapp.com
 
-We don't have a production environment provisioned yet.
+Production is currently running on Heroku.
+
+* http://enroll-production.herokuapp.com
 
 ## Deployment
 
-To deploy to staging on Heroku, make sure you have the proper git remote
+To deploy on Heroku, make sure you have the proper git remotes
 in place:
 
-   $ git remote add staging git@heroku.com:enroll-staging.git
+    $ git remote add staging git@heroku.com:enroll-staging.git
+    $ git remote add production git@heroku.com:enroll-production.git
 
 Then deploy like you would any other Heroku app:
 
-   $ git push staging master
+    $ git push staging master
+    $ git push production master
 
 Migrations are not automatically run with a deploy. If your feature has
 migrations, don't forget to run them after deploying your code:
 
     $ heroku run rake db:migrate --app enroll-staging
+    $ heroku run rake db:migrate --app enroll-production
 
 Due to how ActiveRecord handles the cache of columns, its best to restart the
 server after the migrations have finished.
 
     $ heroku restart --app enroll-staging
+    $ heroku restart --app enroll-production
+
+### Sending Emails - Resque Background Workers
+
+By default, the resque worker that handles sending email is disabled on
+staging. To enable email on staging, type the following:
+
+    $ heroku scale web=1 resque=1 --app enroll-staging
+
+Make sure to disable the resque worker again when you're done:
+
+    $ heroku scale web=1 resque=0 --app enroll-staging
+
+That saves us $35/month!
 
 ## Continuous Integration
 

@@ -18,6 +18,18 @@ module Enroll
     end
     attr_writer :redis
 
+    # Google Analytics Tracking Code
+    def ga_tracking_id
+      @ga_tracking_id ||= ENV["GA_TRACKING_ID"]
+    end
+    attr_writer :ga_tracking_id
+
+    # Google Analytics Domain
+    def ga_domain
+      @ga_domain ||= ENV["HOST"]
+    end
+    attr_writer :ga_domain
+
   end
 end
 

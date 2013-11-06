@@ -23,6 +23,7 @@ class Course < ActiveRecord::Base
   scope :campaign_not_ending_soon_reminded, -> { where(campaign_ending_soon_reminded_at: nil) }
 
   after_save :set_defaults
+  after_create :send_course_created_notification
 
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
@@ -99,6 +100,14 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def send_course_created_notification
+    Resque.enqueue(CourseCreatedNotification, self.id)
+  end
+
+  def send_course_created_notification!
+    AdminMailer.course_created(self).deliver
+  end
+
   def send_campaign_failed_notifications!
     InstructorMailer.campaign_failed(self).deliver
     self.students.each do |student|
@@ -141,6 +150,18 @@ class Course < ActiveRecord::Base
 
   def has_students?
     reservations.count > 0
+  end
+
+  def future?
+    Time.zone.now < starts_at
+  end
+
+  def past?
+    !future?
+  end
+
+  def campaign_failed?
+    campaign_failed_at.present?
   end
 
   def location_attributes=(location_attributes)
