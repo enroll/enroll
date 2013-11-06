@@ -112,7 +112,7 @@ class Course < ActiveRecord::Base
   end
 
   def future?
-    Time.now < starts_at
+    Time.zone.now < starts_at
   end
 
   def location_attributes=(location_attributes)
