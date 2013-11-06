@@ -6,5 +6,7 @@
   <%= render 'shared/messages' %>
   <%= yield %>
   <%= render 'layouts/footer' %>
+
+  <%= render 'layouts/analytics' unless Rails.env == "development" %>
 </body>
 </html>

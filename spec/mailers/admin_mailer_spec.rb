@@ -8,7 +8,6 @@ describe AdminMailer do
     let(:email) { AdminMailer.course_created(course) }
 
     it "delivers the course created notification" do
-      puts course.inspect
       email.should deliver_to("Enroll Support <support@enroll.io>")
       email.should deliver_from("Enroll <help@enroll.io>")
       email.should have_subject(/\[hackers-101\]/)
