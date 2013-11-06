@@ -4,12 +4,9 @@
       Account Settings
     .list-group
       %a.list-group-item{href: "#"}
-        %span.glyphicon.glyphicon-home
-        Dashboard
-      %a.list-group-item{href: "#"}
         %span.glyphicon.glyphicon-usd
         %span.badge
         Payment Settings
-      %a.list-group-item{href: edit_account_path}
+      %a.list-group-item{href: edit_account_path, class: current_page?(edit_account_path) ? "active" : ""}
         %span.glyphicon.glyphicon-user
         Personal Details

@@ -21,8 +21,6 @@ updateCourseCalculator = ->
     $(".max-seat-revenue").text "$#{$maxRevenue}"
 
 ready = ->
-  $('.manage-sidebar').affix()
-
   $('.datepicker').datepicker(
     format: "yyyy-mm-dd"
     todayHighlight: true

@@ -378,4 +378,26 @@ describe Course do
       course.should_not be_future
     end
   end
+
+  describe "#send_course_created_notification" do
+    it "queues a course created notification when course is created" do
+      Resque.expects(:enqueue).with(CourseCreatedNotification, kind_of(Integer))
+      create(:course)
+    end
+
+    it "does not queue a course created notification when existing course is saved" do
+      course.save
+      Resque.expects(:enqueue).never
+      course.save
+    end
+  end
+
+  describe "#send_course_created_notification!" do
+    it "notifies the admins that a course has been created" do
+      AdminMailer.expects(:course_created).
+        with(course).returns(mock 'mail', :deliver => true)
+
+      course.send_course_created_notification!
+    end
+  end
 end
