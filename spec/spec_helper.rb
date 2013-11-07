@@ -69,4 +69,8 @@ RSpec.configure do |config|
   config.include EmailSpec::Matchers
 
   config.treat_symbols_as_metadata_keys_with_true_values = true
+
+  config.before(:suite) do
+    Resque.inline = true
+  end
 end

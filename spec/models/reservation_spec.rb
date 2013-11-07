@@ -4,13 +4,18 @@ describe Reservation do
   let(:instructor)  { build(:instructor) }
   let(:course)      { build(:course, instructor: instructor) }
   let(:student)     { build(:student) }
-  let(:reservation) { build(:reservation, student: student, course: course) }
+  let(:reservation) { build(:reservation, student: student, course: course, stripe_token: 'foo') }
 
   it { should belong_to(:course) }
   it { should belong_to(:student) }
 
   it { should validate_presence_of(:course) }
   it { should validate_presence_of(:student) }
+
+  before do
+    Stripe::Customer.stubs(:create).with(anything).returns(stub(:id => 'cus_1'))
+    Stripe::Charge.stubs(:create).with(anything).returns(stub())
+  end
 
   context "#instructor" do
     it "should be the instructor of the course" do
@@ -120,9 +125,15 @@ describe Reservation do
           reservation.save
         end
 
-        it "does not enqueue a job" do
-          Resque.expects(:enqueue).never
+        it "does not send a notification" do
+          course.expects(:send_campaign_success_notifications!).never
           reservation.check_campaign_success
+        end
+
+        it "charges credit card for the reservation" do
+          reservation.charged?.should be_false
+          reservation.save
+          reservation.reload.charged?.should be_true
         end
       end
     end
