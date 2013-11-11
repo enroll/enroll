@@ -3,7 +3,8 @@
 $primary1: #4280c6;
 $primary2: #3970af;
 
-$width: 700px;
+$width: 844px;
+$padding: 20px;
 
 header.navbar {
   background-color: $primary1;
@@ -11,6 +12,8 @@ header.navbar {
   nav.navbar-inner {
     .container-fluid {
       max-width: $width;
+      padding-left: $padding;
+      padding-right: $padding;
       margin: auto;
     }
     a:not([class=navbar-brand]) {
@@ -37,4 +40,6 @@ header.navbar {
 .container {
   max-width: $width;
   padding: 0;
+  padding-left: $padding;
+  padding-right: $padding;
 }

@@ -1,13 +1,20 @@
 - content_for :head do
   = facebook_og_meta_tags(@course)
+
 .container
-  .row
-    .col-md-9
-      %h1= @course.name
+  .course-header
+    .course-title
+      .course-info
+        %strong.price= number_to_currency price_in_dollars(@course.price_per_seat_in_cents)
+        %em.location Boston, MA
+        %em.date November 22th-25th
+      %h2= @course.name
       %h3= @course.tagline
+
+  .course-content.row
+    .col-md-9
       %p= @course.description
     .col-md-3
-      %h2= number_to_currency price_in_dollars(@course.price_per_seat_in_cents)
       - if @course.future?
         = course_reservation_link(@course)
       - elsif @course.campaign_failed?
