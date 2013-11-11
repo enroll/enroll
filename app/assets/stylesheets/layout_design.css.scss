@@ -1,0 +1,40 @@
+@import '_mixins';
+
+$primary1: #4280c6;
+$primary2: #3970af;
+
+$width: 700px;
+
+header.navbar {
+  background-color: $primary1;
+  border: none;
+  nav.navbar-inner {
+    .container-fluid {
+      max-width: $width;
+      margin: auto;
+    }
+    a:not([class=navbar-brand]) {
+      color: #fff;
+      font-size: 12px;
+      background-color: $primary2;
+      padding: 3px 7px;
+      @include border-radius(3px);
+      margin-left: 10px;
+      margin-top: 12px;
+    }
+    a.navbar-brand {
+      @include retina('images/logo-header', 'png', 73px, 21px);
+      background-repeat: no-repeat;
+      display: block;
+      width: 100px;
+      height: 30px;
+      margin-top: 14px;
+      text-indent: -9999px;
+    }
+  }
+}
+
+.container {
+  max-width: $width;
+  padding: 0;
+}
