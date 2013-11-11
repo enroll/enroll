@@ -1,0 +1,9 @@
+@import '_colors';
+@import '_mixins';
+
+.btn-primary {
+  background: $primary1;
+  border: none;
+  font-weight: 400;
+  @include border-radius(3px);
+}

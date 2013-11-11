@@ -4,17 +4,20 @@
 .container
   .course-header
     .course-title
-      .course-info
-        %strong.price= number_to_currency price_in_dollars(@course.price_per_seat_in_cents)
-        %em.location Boston, MA
-        %em.date November 22th-25th
+      %table.course-info
+        %tr
+          %td.location
+            %em.location== #{@course.location.city}, #{@course.location.state}
+            - if @course.starts_at.present?
+              %em.date
+                == #{@course.starts_at.strftime("%B %e, %Y")}
       %h2= @course.name
       %h3= @course.tagline
 
   .course-content.row
-    .col-md-9
+    .col-sm-8
       %p= @course.description
-    .col-md-3
+    .course-sidebar.col-sm-4
       - if @course.future?
         = course_reservation_link(@course)
       - elsif @course.campaign_failed?

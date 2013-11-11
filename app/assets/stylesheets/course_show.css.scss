@@ -14,7 +14,33 @@
     width: 100%;
     padding: 10px 15px;
     background: rgba(0,0,0,0.1);
-    // border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    table.course-info {
+      float: right;
+
+      td {
+        padding: 10px;
+        vertical-align: middle;
+      }
+
+      td * {
+        font-style: normal;
+      }
+
+      td.location {
+        width: 150px;
+      }
+
+      .location {
+      }
+
+      .price {
+        font-size: 40px;
+        font-weight: 400;
+      }
+    }
+
     h2 {
       margin: 0;
       font-weight: 300;
@@ -26,34 +52,19 @@
       font-weight: 300;
       font-size: 14px;
     }
-
-    .course-info {
-      float: right;
-      width: 240px;
-      margin-left: 15px;
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      padding-left: 15px;
-
-      .location, .date, .price {
-        display: block;
-        font-style: normal;
-        text-align: right;
-      }
-
-      .location {
-        margin-top: 15px;
-      }
-
-      .price {
-        float: right;
-        font-size: 40px;
-        font-weight: 400;
-        margin-top: 5px;
-      }
-    }
   }
 }
 
 .course-content {
   padding-top: 20px;
+}
+
+.course-sidebar {
+  padding: 0 30px;
+}
+
+a.btn.reserve {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
