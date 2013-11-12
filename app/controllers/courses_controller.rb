@@ -2,6 +2,14 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :find_course_as_instructor!, only: [:edit, :update]
   before_filter :find_course_by_url!, only: [:show]
+  before_filter :prepare_steps, only: [:new]
+
+  STEPS = [
+    {id: 'details', label: 'Details'},
+    {id: 'dates_location', label: 'Dates & Location'},
+    {id: 'pricing', label: 'Pricing'},
+    {id: 'page', label: 'Public Page'}
+  ]
 
   def index
     @courses = Course.all
@@ -69,5 +77,14 @@ class CoursesController < ApplicationController
     else
       Course.find(params[:id])
     end
+  end
+
+  def prepare_steps
+    unless params[:step]
+      redirect_to new_course_step_path(:step => 'details')
+    end
+
+    @steps = STEPS
+    @current_step = params[:step]
   end
 end

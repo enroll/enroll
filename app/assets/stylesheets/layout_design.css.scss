@@ -17,7 +17,8 @@ nav.navbar {
     padding-left: $padding;
     padding-right: $padding;
     margin: auto;
-    a:not([class=navbar-brand]), button.navbar-toggle {
+    // Buttons in the navbar
+    a.navbar-btn {
       color: #fff;
       font-size: 10pt;
       background-color: $primary2;
@@ -27,6 +28,17 @@ nav.navbar {
       margin-top: 12px;
       border: none;
     }
+    // Dropdowns in the navbar
+    a.user-dropdown {
+      padding: 0;
+      padding-right: 10px;
+      margin-bottom: 0;
+      span {
+        position: relative;
+        top: 1px;
+      }
+    }
+    // Button for responsive toggle
     button.navbar-toggle {
       padding: 10px 10px;
       margin-right: 0;
@@ -37,6 +49,7 @@ nav.navbar {
     .navbar-collapse {
       border: none;
     }
+    // Logo
     a.navbar-brand {
       @include retina('images/logo-header', 'png', 73px, 21px);
       background-repeat: no-repeat;
@@ -49,7 +62,7 @@ nav.navbar {
   }
 }
 
-// Nav UL
+// Responsive navigation
 // ----------------------------------------------------------------------------
 
 ul.navbar-nav {

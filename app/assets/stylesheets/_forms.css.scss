@@ -1,0 +1,23 @@
+@import '_mixins';
+@import '_colors';
+@import 'twitter/bootstrap/_mixins';
+
+@mixin inner-shadow {
+  @include box-shadow(inset 0 1px 3px rgba(0,0,0,.2));
+}
+
+form.form {
+  .form-control {
+    @include border-radius(0);
+    border: 1px solid $gray-medium;
+    @include inner-shadow();
+    padding: 15px 10px;
+    color: $text1;
+    font-weight: 500;
+
+    &:focus {
+      border: 1px solid $gray-medium;
+      @include inner-shadow();
+    }
+  }
+}

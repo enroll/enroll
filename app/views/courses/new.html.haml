@@ -1,0 +1,9 @@
+.container.new-course
+  .row
+    .sidebar.col-sm-3
+      %ul.course-progress
+        - for step in @steps
+          %li{:class => step[:id] == @current_step ? 'active' : ''}
+            %a{:href => '#'}= step[:label]
+    .col-sm-9
+      = render "form_details"

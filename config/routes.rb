@@ -9,6 +9,7 @@ Enroll::Application.routes.draw do
     resources :reservations
     resources :students, only: [:index]
   end
+  get '/courses/new/:step', to: 'courses#new', as: :new_course_step
 
   resource :account, only: [:edit, :update] do
     # resources :courses

@@ -11,15 +11,15 @@
 
     .collapse.navbar-collapse.navbar-ex1-collapse
       - if user_signed_in?
-        = render 'layouts/course_chooser'
+        /= render 'layouts/course_chooser'
         = render 'layouts/settings_menu'
       - else
         %ul#sign-up-or-in.nav.navbar-nav
           %li
-            %a.btn-log-in{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#log-in"}
+            %a.navbar-btn.btn-log-in{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#log-in"}
               Log In
           %li
-            %a.btn-sign-up{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#sign-up"}
+            %a.navbar-btn.btn-sign-up{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#sign-up"}
               Sign Up
 
 - unless user_signed_in?
