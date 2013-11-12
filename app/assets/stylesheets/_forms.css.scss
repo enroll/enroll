@@ -12,12 +12,15 @@ form.form {
   $label-margin: 15px;
 
   label {
-    float: left;
-    width: $label-width;
     font-size: 11px;
     font-weight: 500;
-    text-align: right;
     color: $gray-medium;
+  }
+
+  .form-group > label {
+    float: left;
+    width: $label-width;
+    text-align: right;
     padding-top: 8px;
   }
 
@@ -36,6 +39,14 @@ form.form {
     &:focus {
       border: 1px solid $gray-medium;
       @include inner-shadow();
+    }
+
+    &.small {
+      width: 120px;
+    }
+
+    &.inline {
+      display: inline-block;
     }
   }
 
@@ -56,5 +67,9 @@ form.form {
     .btn {
       padding: 13px 25px;
     }
+  }
+
+  span.help-block {
+    font-size: 11px;
   }
 }

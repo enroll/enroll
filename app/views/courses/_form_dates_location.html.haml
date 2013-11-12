@@ -1,1 +1,7 @@
-= form.input :name, label: 'Course name'
+.form-group.string.optional
+  = form.label :starts_at, 'Date'
+  .controls
+    = form.input_field :starts_at, as: :string, class: 'datepicker small inline'
+    %label= '-'
+    = form.input_field :ends_at, as: :string, class: 'datepicker small inline'
+/= form.input :ends_at, as: :string, input_html: { class: 'datepicker small' }
