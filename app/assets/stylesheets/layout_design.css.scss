@@ -1,8 +1,12 @@
 @import '_mixins';
 @import '_colors';
+@import 'twitter/bootstrap/_variables';
 
 $width: 844px;
 $padding: 20px;
+
+// Nav Bar
+// ----------------------------------------------------------------------------
 
 header.navbar {
   background-color: $primary1;
@@ -16,7 +20,7 @@ header.navbar {
     }
     a:not([class=navbar-brand]) {
       color: #fff;
-      font-size: 12px;
+      font-size: 10pt;
       background-color: $primary2;
       padding: 3px 7px;
       @include border-radius(3px);
@@ -34,6 +38,32 @@ header.navbar {
     }
   }
 }
+
+// Nav UL
+// ----------------------------------------------------------------------------
+
+ul.navbar-nav {
+    float: right;
+  }
+
+@media (max-width: $screen-sm-max) {
+  a.navbar-brand {
+    width: 100% !important;
+    background-position: center center;
+  }
+
+  ul.navbar-nav {
+    float: none;
+    clear: both;
+
+    li {
+      text-align: center;
+    }
+  }
+}
+
+// Container
+// ----------------------------------------------------------------------------
 
 .container {
   max-width: $width;
