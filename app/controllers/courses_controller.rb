@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :find_course_as_instructor!, only: [:edit, :update]
   before_filter :find_course_by_url!, only: [:show]
-  before_filter :prepare_steps, only: [:new, :create]
+  before_filter :prepare_steps, only: [:new, :edit, :create, :update]
 
   STEPS = [
     {id: 'details', label: 'Details'},
@@ -33,10 +33,18 @@ class CoursesController < ApplicationController
 
     if @course.save
       flash[:success] = "Course created successfully."
-      redirect_to course_path(@course)
+      redirect_to_next_step
     else
       flash[:error] = "Course failed to be created."
       render :new
+    end
+  end
+
+  def redirect_to_next_step
+    if next_step
+      redirect_to edit_course_path(@course, :step => next_step[:id])
+    else
+      redirect_to course_path(@course)
     end
   end
 

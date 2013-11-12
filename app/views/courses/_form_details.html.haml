@@ -1,11 +1,4 @@
-= form.input :name, label: 'Course name'
-- unless form.object.new_record?
-  = form.input :url, as: :string, label: 'Landing page short URL',            |
-    hint: 'Your course URL will be: enroll.io/go/', |
-    input_html: { pattern: '^[\w-]+$',                                        |
-      'ng-model'   => 'data.url',                                             |
-      'ng-init'    => 'data.url="' + form.object.url + '"'                    |
-    }                                                                         |
+= form.input :name, label: 'Course name'                                                          |
 = form.input :tagline
 = form.input :description
 = form.input :instructor_biography, label: 'Your biography'

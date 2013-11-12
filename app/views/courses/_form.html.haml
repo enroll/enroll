@@ -1,76 +1,13 @@
-%h2 When
-  = form.input :starts_at, as: :string, input_html: { class: 'datepicker' }
-  = form.input :ends_at, as: :string, input_html: { class: 'datepicker' }
-  %h2 Where
-  = form.simple_fields_for(:location) do |location|
-    = location.input :name, label: 'Venue name'
-    = location.input :address
-    = location.input :address_2
-    = location.input :city
-    = location.input :state
-    = location.input :zip
-    = location.input :phone
-  %h2
-    Pricing
-    %small
-      .btn-group{"data-toggle" => "buttons"}
-        %label#for-profit.btn.btn-info.active
-          %input#for-profit{name: "options", type: "radio"}/
-          For Profit
-        %label#for-fun.btn.btn-info
-          %input#for-fun{name: "options", type: "radio"}/
-          For Fun
+.container.new-course
   .row
-    .col-sm-6
-      = form.input :min_seats,                                                                |
-        label: '"Worth it" # of Seats',                                                       |
-        wrapper: 'pricing-block',                                                             |
-        hint: "If fewer than this number of people sign up, you're not on the hook to teach." |
-      -#
-      = form.input :max_seats,                                                             |
-        label: 'Maximum # of Seats',                                                       |
-        wrapper: 'pricing-block',                                                          |
-        hint: "The most people you can fit in the room, or the most you want to teach to." |
-      -#
-      = form.input :price_per_seat_in_cents, |
-        label: 'Cost per Seat',              |
-        wrapper: 'pricing-block'             |
-    #revenue-calculator.col-sm-6.well
-      %h5.text-center.upcase Course Revenue Calculator
-      %table.table.text-right
-        %thead
-          %tr
-            %th
-            %th  
-            %th.text-right Minimum
-            %th
-            %th.text-right Maximum
-        %tbody
-          %tr
-            %td Tickets Sold
-            %td  
-            %td
-              %span.min-seats 5
-            %td
-            %td
-              %span.max-seats 15
-          %tr
-            %td Ticket Price
-            %td  
-            %td
-              %span.pull-left ×
-              %span.ticket-price $199
-            %td
-            %td
-              %span.pull-left ×
-              %span.ticket-price $199
-          %tr
-            %td Revenue
-            %td  
-            %td.border-top
-              %strong
-                %span.min-seat-revenue $995
-            %td  
-            %td.border-top
-              %strong
-                %span.max-seat-revenue $2,985
+    .sidebar.col-sm-3
+      %ul.course-progress
+        - for step in @steps
+          %li{:class => step[:id] == current_step[:id] ? 'active' : ''}
+            %a{:href => '#'}= step[:label]
+    .col-sm-9
+      = simple_form_for(@course, :html => {:class => "new-course form disable-submit-on-return"}) do |form|
+        = render "form_header", :form => form
+        = render "form_#{current_step[:id]}", :form => form
+        .actions
+          = form.button(:submit, "Next: #{next_step[:label]}", class: 'btn btn-primary')
