@@ -11,6 +11,7 @@ $padding: 20px;
 nav.navbar {
   background-color: $primary1;
   border: none;
+  margin-bottom: 0;
   .navbar-inner {
     max-width: $width;
     padding-left: $padding;
