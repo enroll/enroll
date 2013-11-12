@@ -8,17 +8,15 @@ $padding: 20px;
 // Nav Bar
 // ----------------------------------------------------------------------------
 
-header.navbar {
+nav.navbar {
   background-color: $primary1;
   border: none;
-  nav.navbar-inner {
-    .container-fluid {
-      max-width: $width;
-      padding-left: $padding;
-      padding-right: $padding;
-      margin: auto;
-    }
-    a:not([class=navbar-brand]) {
+  .navbar-inner {
+    max-width: $width;
+    padding-left: $padding;
+    padding-right: $padding;
+    margin: auto;
+    a:not([class=navbar-brand]), button.navbar-toggle {
       color: #fff;
       font-size: 10pt;
       background-color: $primary2;
@@ -26,6 +24,17 @@ header.navbar {
       @include border-radius(3px);
       margin-left: 10px;
       margin-top: 12px;
+      border: none;
+    }
+    button.navbar-toggle {
+      padding: 10px 10px;
+      margin-right: 0;
+      &:focus {
+        outline: none;
+      }
+    }
+    .navbar-collapse {
+      border: none;
     }
     a.navbar-brand {
       @include retina('images/logo-header', 'png', 73px, 21px);
@@ -44,20 +53,17 @@ header.navbar {
 
 ul.navbar-nav {
     float: right;
-  }
+}
 
-@media (max-width: $screen-sm-max) {
-  a.navbar-brand {
-    width: 100% !important;
-    background-position: center center;
-  }
-
+.navbar-collapse.in, .navbar-collapse.collapsing {
   ul.navbar-nav {
     float: none;
     clear: both;
+    text-align: center;
+    margin-bottom: 15px;
 
-    li {
-      text-align: center;
+    a:not([class=navbar-brand]) {
+      padding: 10px;
     }
   }
 }
