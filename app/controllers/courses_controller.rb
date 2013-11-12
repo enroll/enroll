@@ -87,4 +87,10 @@ class CoursesController < ApplicationController
     @steps = STEPS
     @current_step = params[:step]
   end
+
+  helper_method :next_step
+  def next_step
+    index = @steps.find_index { |s| s[:id] == @current_step }
+    @steps[index + 1]
+  end
 end

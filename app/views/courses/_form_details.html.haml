@@ -12,4 +12,5 @@
   = form.input :tagline
   = form.input :description
   = form.input :instructor_biography, label: 'Your biography'
-  = form.button(:submit, 'Create New Workshop', class: 'btn btn-primary upcase')
+  .actions
+    = form.button(:submit, "Next: #{next_step[:label]}", class: 'btn btn-primary')

@@ -1,6 +1,14 @@
 @import '_colors';
 @import '_mixins';
 
+.btn {
+  font-weight: 400;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .btn-primary {
   background: $primary1;
   border: none;
