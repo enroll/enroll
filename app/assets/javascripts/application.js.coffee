@@ -18,6 +18,7 @@
 #= require twitter/bootstrap
 #= require turbolinks
 #= require bootstrap-datepicker
+#= require spine
 
 #= require_self
 #= require_tree .

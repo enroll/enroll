@@ -6,8 +6,11 @@
           %li{:class => step[:id] == current_step[:id] ? 'active' : ''}
             %a{:href => '#'}= step[:label]
     .col-sm-9
-      = simple_form_for(@course, :html => {:class => "new-course form disable-submit-on-return"}) do |form|
+      = simple_form_for(@course, :html => {:class => "course-form form disable-submit-on-return"}) do |form|
         = render "form_header", :form => form
         = render "form_#{current_step[:id]}", :form => form
         .actions
           = form.button(:submit, "Next: #{next_step[:label]}", class: 'btn btn-primary')
+
+:coffeescript
+  new CourseForm(el: 'form.course-form')
