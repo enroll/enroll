@@ -1,0 +1,4 @@
+%pre= @course.errors.messages.to_yaml
+= form.error_notification
+
+= hidden_field_tag 'step', params[:step]

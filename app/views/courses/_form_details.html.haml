@@ -1,16 +1,11 @@
-= simple_form_for(@course, :html => {:class => "new-course form disable-submit-on-return"}) do |form|
-  = form.error_notification
-
-  = form.input :name, label: 'Course name'
-  - unless form.object.new_record?
-    = form.input :url, as: :string, label: 'Landing page short URL',            |
-      hint: 'Your course URL will be: enroll.io/go/', |
-      input_html: { pattern: '^[\w-]+$',                                        |
-        'ng-model'   => 'data.url',                                             |
-        'ng-init'    => 'data.url="' + form.object.url + '"'                    |
-      }                                                                         |
-  = form.input :tagline
-  = form.input :description
-  = form.input :instructor_biography, label: 'Your biography'
-  .actions
-    = form.button(:submit, "Next: #{next_step[:label]}", class: 'btn btn-primary')
+= form.input :name, label: 'Course name'
+- unless form.object.new_record?
+  = form.input :url, as: :string, label: 'Landing page short URL',            |
+    hint: 'Your course URL will be: enroll.io/go/', |
+    input_html: { pattern: '^[\w-]+$',                                        |
+      'ng-model'   => 'data.url',                                             |
+      'ng-init'    => 'data.url="' + form.object.url + '"'                    |
+    }                                                                         |
+= form.input :tagline
+= form.input :description
+= form.input :instructor_biography, label: 'Your biography'

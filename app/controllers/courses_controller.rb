@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :find_course_as_instructor!, only: [:edit, :update]
   before_filter :find_course_by_url!, only: [:show]
-  before_filter :prepare_steps, only: [:new]
+  before_filter :prepare_steps, only: [:new, :create]
 
   STEPS = [
     {id: 'details', label: 'Details'},
@@ -85,12 +85,16 @@ class CoursesController < ApplicationController
     end
 
     @steps = STEPS
-    @current_step = params[:step]
+  end
+
+  helper_method :current_step
+  def current_step
+    @steps.find { |s| s[:id] == params[:step] } || @steps[0]
   end
 
   helper_method :next_step
   def next_step
-    index = @steps.find_index { |s| s[:id] == @current_step }
+    index = @steps.index(current_step)
     @steps[index + 1]
   end
 end
