@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
     {id: 'details', label: 'Details'},
     {id: 'dates_location', label: 'Dates & Location'},
     {id: 'pricing', label: 'Pricing'},
-    {id: 'page', label: 'Public Page'}
+    {id: 'page', label: 'Landing page'}
   ]
 
   def index
@@ -32,10 +32,8 @@ class CoursesController < ApplicationController
     @location = @course.location
 
     if @course.save
-      flash[:success] = "Course created successfully."
       redirect_to_next_step
     else
-      flash[:error] = "Course failed to be created."
       render :new
     end
   end
@@ -49,14 +47,13 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    @course.build_location
   end
 
   def update
     if @course.update_attributes(course_params)
-      flash[:success] = "Course updated successfully."
-      redirect_to edit_course_path(@course)
+      redirect_to_next_step
     else
-      flash[:error] = "Course failed to be updated."
       render :edit
     end
   end

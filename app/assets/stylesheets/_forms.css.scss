@@ -10,6 +10,7 @@ form.form {
   $input-padding-sides: 8px;
   $label-width: 100px;
   $label-margin: 15px;
+  $label-total-width: $label-width + $label-margin;
 
   label {
     font-size: 11px;
@@ -25,7 +26,7 @@ form.form {
   }
 
   .controls {
-    margin-left: $label-width + $label-margin;
+    margin-left: $label-total-width;
   }
 
   .form-control {
@@ -62,7 +63,7 @@ form.form {
   }
 
   .actions {
-    margin-left: $label-width + $label-margin;
+    margin-left: $label-total-width;
 
     .btn {
       padding: 13px 25px;
@@ -72,4 +73,13 @@ form.form {
   span.help-block {
     font-size: 11px;
   }
+
+  h2 {
+    padding-left: $label-total-width;
+    padding-bottom: 5px;
+  }
+}
+
+.datepicker table tr td.today.active {
+  color: #fff !important;
 }

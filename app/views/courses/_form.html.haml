@@ -4,7 +4,7 @@
       %ul.course-progress
         - for step in @steps
           %li{:class => step[:id] == current_step[:id] ? 'active' : ''}
-            %a{:href => '#'}= step[:label]
+            %a{:href => "?step=#{step[:id]}"}= step[:label]
     .col-sm-9
       = simple_form_for(@course, :html => {:class => "course-form form disable-submit-on-return"}) do |form|
         = render "form_header", :form => form
