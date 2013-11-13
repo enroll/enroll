@@ -20,9 +20,6 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
-    @course.min_seats = 5
-    @course.max_seats = 15
-    @course.price_per_seat_in_cents = 19900
   end
 
   def create
@@ -46,7 +43,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course.build_location unless @course.location
+    @course.set_default_values_if_nil
   end
 
   def update

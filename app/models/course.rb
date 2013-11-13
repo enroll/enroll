@@ -130,6 +130,13 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def set_default_values_if_nil
+    self.min_seats ||= 5
+    self.max_seats ||= 15
+    self.price_per_seat_in_cents ||= 19900
+    self.build_location unless self.location
+  end
+
   private
 
   # temporary
