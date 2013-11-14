@@ -84,14 +84,14 @@ class CoursesController < ApplicationController
 
   def prepare_steps
     if !current_step
-      redirect_to new_course_step_path(:step => 'details')
+      redirect_to :step => 'details'
     end
   end
 
   helper_method :current_step
   def current_step
     @steps ||= STEPS
-    @steps.find { |s| s[:id] == params[:step] }
+    step = @steps.find { |s| s[:id] == params[:step] }
   end
 
   helper_method :next_step

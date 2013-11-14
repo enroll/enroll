@@ -63,6 +63,9 @@ describe CoursesController do
       it "redirects to the first step" do
         get :new, :step => 'blah'
         response.should redirect_to new_course_step_path(:step => 'details')
+
+        get :edit, id: saved_course.to_param, step: 'blah'
+        response.should redirect_to edit_course_step_path(:step => 'details')
       end
     end
 
