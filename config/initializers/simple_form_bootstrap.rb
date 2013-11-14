@@ -21,14 +21,14 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers 'pricing-block', tag: 'div', class: 'form-group clearfix', error_class: 'has-error' do |b|
+  config.wrappers 'pricing-block', tag: 'tr', class: '', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
-    b.wrapper tag: 'div', class: 'col-md-8' do |ba|
+    b.wrapper tag: 'td' do |ba|
       ba.use :label
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     end
-    b.wrapper tag: 'div', class: 'col-md-4' do |ba|
+    b.wrapper tag: 'td' do |ba|
       ba.use :input
     end
   end

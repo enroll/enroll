@@ -13,9 +13,8 @@ form.form {
   $label-total-width: $label-width + $label-margin;
 
   label {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
-    color: $gray-medium;
   }
 
   .form-group > label {
@@ -23,6 +22,7 @@ form.form {
     width: $label-width;
     text-align: right;
     padding-top: 8px;
+    color: $gray-dark;
   }
 
   .controls {
@@ -33,9 +33,10 @@ form.form {
     @include border-radius(0);
     border: 1px solid $gray-medium;
     @include inner-shadow();
-    padding: 15px $input-padding-sides;
+    padding: 7px $input-padding-sides;
     color: $text1;
     font-weight: 500;
+    height: auto;
 
     &:focus {
       border: 1px solid $gray-medium;
@@ -48,6 +49,11 @@ form.form {
 
     &.inline {
       display: inline-block;
+    }
+
+    &.numeric {
+      padding-top: 5px;
+      padding-bottom: 5px;
     }
   }
 
@@ -77,6 +83,10 @@ form.form {
   h2.offset {
     padding-left: $label-total-width;
     padding-bottom: 5px;
+  }
+
+  p.help-block {
+    font-size: 12px;
   }
 }
 
