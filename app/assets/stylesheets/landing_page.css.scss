@@ -1,6 +1,8 @@
 @import '_mixins';
+@import '_colors';
+@import 'twitter/bootstrap/_mixins';
 
-body.courses.show {
+body.landing-page {
   @include retina('images/landing-background', 'jpg', 1500px, 850px);
   background-repeat: no-repeat;
   background-position: top center;
@@ -69,6 +71,19 @@ body.courses.show {
   padding-top: 40px;
   background: #fff;
   background: rgba(255,255,255,0.9);
+
+  h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: $gray-medium-dark;
+  }
 }
 
 .course-sidebar {
@@ -79,4 +94,33 @@ a.btn.reserve {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.exit-button {
+  $width: 150px;
+  $color1: #cf0000;
+  $color2: #ae0000;
+  width: $width;
+  position: absolute;
+  position: fixed;
+  z-index: 1000;
+  top: 5px;
+  left: 50%;
+  margin-left: -$width/2;
+  @include gradient-vertical($color1, $color2);
+  text-align: center;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 0;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:active {
+    @include gradient-vertical(darken($color1, 2), darken($color2, 2));
+  }
 }

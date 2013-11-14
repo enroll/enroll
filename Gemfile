@@ -20,7 +20,7 @@ gem 'sentry-raven',   '0.6.0'
 gem 'simple_form',    '~> 3.0.0'
 gem 'spine-rails'
 gem 'stringex'
-gem 'turbolinks'
+gem 'tilt-jade'
 gem 'unicorn'
 gem 'uglifier',       '>= 1.3.0'
 # ^- remember to keep this in alphabetical order

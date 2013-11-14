@@ -1,13 +1,22 @@
-%h2 Landing page
+.landing-page-fields
+  .pull-right.actions
+    %a.preview.btn.btn-success{:href => '#'} Preview
+  %h2 Landing page
 
-.form-group.wide
-  = form.label :description, 'Page contents'
-  %p.help-block
-    Enter text you would like on your landing page. Use the # symbol to mark headings.
-  .controls
-    = form.input_field :description, label: 'Page', class: 'large'
+  .form-group.wide
+    = form.label :description, 'Page contents'
+    %p.help-block
+      Enter text you would like on your landing page. Use the # symbol to mark headings.
+    .controls
+      = form.input_field :description, label: 'Page', class: 'large'
 
-.form-group.wide
-  = form.label :instructor_biography, 'About the instructor'
-  .controls
-    = form.input_field :instructor_biography
+  .form-group.wide
+    = form.label :instructor_biography, 'About the instructor'
+    .controls
+      = form.input_field :instructor_biography
+
+:coffeescript
+  new LandingPagePreview(
+    el: '.landing-page-fields',
+    course: #{@course.to_json}
+  )

@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    add_body_class('landing-page')
   end
 
   def new

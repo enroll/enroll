@@ -16,12 +16,14 @@
 #= require angular
 #= require angular-strap
 #= require twitter/bootstrap
-#= require turbolinks
 #= require bootstrap-datepicker
 #= require spine
+#= require tilt-jade/runtime
+#= require markdown
 
-#= require_self
+#= require_tree ./templates
 #= require_tree .
+#= require_self
 
 @App = angular.module('EnrollApp', ["$strap.directives"])
 
