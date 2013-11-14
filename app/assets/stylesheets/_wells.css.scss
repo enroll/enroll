@@ -1,0 +1,8 @@
+@import '_mixins';
+@import 'twitter/bootstrap/_mixins';
+
+.well {
+  @include border-radius(0);
+  @include box-shadow(none);
+  border: none;
+}

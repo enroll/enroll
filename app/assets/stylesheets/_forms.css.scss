@@ -1,0 +1,111 @@
+@import '_mixins';
+@import '_colors';
+@import 'twitter/bootstrap/_mixins';
+
+@mixin inner-shadow {
+  @include box-shadow(inset 0 1px 3px rgba(0,0,0,.2));
+}
+
+form.form {
+  $input-padding-sides: 8px;
+  $label-width: 100px;
+  $label-margin: 15px;
+  $label-total-width: $label-width + $label-margin;
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .form-group > label {
+    float: left;
+    width: $label-width;
+    text-align: right;
+    padding-top: 8px;
+    color: $gray-dark;
+  }
+
+  .controls {
+    margin-left: $label-total-width;
+  }
+
+  .form-control {
+    @include border-radius(0);
+    border: 1px solid $gray-medium;
+    @include inner-shadow();
+    padding: 7px $input-padding-sides;
+    color: $text1;
+    font-weight: 500;
+    height: auto;
+
+    &:focus {
+      border: 1px solid $gray-medium;
+      @include inner-shadow();
+    }
+
+    &.small {
+      width: 120px;
+    }
+
+    &.inline {
+      display: inline-block;
+    }
+
+    &.numeric {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    &.large {
+      height: 300px;
+    }
+  }
+
+  textarea.form-control {
+    font-weight: normal;
+    padding: 7px $input-padding-sides;
+    font-size: 13px;
+  }
+
+  abbr[title] {
+    border-bottom: none;
+    color: $primary1;
+  }
+
+  .form-actions {
+    margin-left: $label-total-width;
+
+    .btn {
+      padding: 13px 25px;
+    }
+  }
+
+  span.help-block {
+    font-size: 11px;
+  }
+
+  h2.offset {
+    padding-left: $label-total-width;
+    padding-bottom: 5px;
+  }
+
+  p.help-block {
+    font-size: 12px;
+  }
+
+  // Wide from group
+  .form-group.wide {
+    label {
+      float: none;
+      width: 100%;
+      text-align: left;
+    }
+    .controls {
+      margin-left: 0;
+    }
+  }
+}
+
+.datepicker table tr td.today.active {
+  color: #fff !important;
+}

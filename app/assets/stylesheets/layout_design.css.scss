@@ -1,0 +1,100 @@
+@import '_mixins';
+@import '_colors';
+@import 'twitter/bootstrap/_variables';
+
+$width: 844px;
+$padding: 20px;
+
+// Nav Bar
+// ----------------------------------------------------------------------------
+
+nav.navbar {
+  background-color: $primary1;
+  border: none;
+  margin-bottom: 0;
+  .navbar-inner {
+    max-width: $width;
+    padding-left: $padding;
+    padding-right: $padding;
+    margin: auto;
+    // Buttons in the navbar
+    a.navbar-btn {
+      color: #fff;
+      font-size: 10pt;
+      background-color: $primary2;
+      padding: 3px 7px;
+      @include border-radius(3px);
+      margin-left: 10px;
+      margin-top: 14px;
+      border: none;
+      display: inline-block;
+      &.user-dropdown {
+        margin-top: 12px;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    // Dropdowns in the navbar
+    a.user-dropdown {
+      padding: 0;
+      padding-right: 10px;
+      margin-bottom: 0;
+      span {
+        position: relative;
+        top: 1px;
+      }
+    }
+    // Button for responsive toggle
+    button.navbar-toggle {
+      padding: 10px 10px;
+      margin-right: 0;
+      &:focus {
+        outline: none;
+      }
+    }
+    .navbar-collapse {
+      border: none;
+    }
+    // Logo
+    a.navbar-brand {
+      @include retina('images/logo-header', 'png', 73px, 21px);
+      background-repeat: no-repeat;
+      display: block;
+      width: 100px;
+      height: 30px;
+      margin-top: 14px;
+      text-indent: -9999px;
+    }
+  }
+}
+
+// Responsive navigation
+// ----------------------------------------------------------------------------
+
+ul.navbar-nav {
+    float: right;
+}
+
+.navbar-collapse.in, .navbar-collapse.collapsing {
+  ul.navbar-nav {
+    float: none;
+    clear: both;
+    text-align: center;
+    margin-bottom: 15px;
+
+    a:not([class=navbar-brand]) {
+      padding: 10px;
+    }
+  }
+}
+
+// Container
+// ----------------------------------------------------------------------------
+
+.container {
+  max-width: $width;
+  padding: 0;
+  padding-left: $padding;
+  padding-right: $padding;
+}

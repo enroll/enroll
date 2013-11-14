@@ -1,7 +1,7 @@
 - if user_signed_in?
   %ul#settings-menu.nav.navbar-nav.pull-right
     %li
-      %a.dropdown-toggle{href: '#', "data-toggle" => "dropdown"}
+      %a.navbar-btn.user-dropdown.dropdown-toggle{href: '#', "data-toggle" => "dropdown"}
         = gravatar_for(current_user.email, class: 'img-rounded', size: 30)
         %span.title
           = current_user.display_title
@@ -20,3 +20,4 @@
           %a{href: destroy_user_session_path, "data-method" => "delete", rel: "nofollow"}
             %span.glyphicon.glyphicon-remove
             Logout
+  = link_to 'Create course', new_course_path, :class => 'navbar-btn'

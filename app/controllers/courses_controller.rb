@@ -2,20 +2,26 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :find_course_as_instructor!, only: [:edit, :update]
   before_filter :find_course_by_url!, only: [:show]
+  before_filter :prepare_steps, only: [:new, :edit, :create, :update]
+
+  STEPS = [
+    {id: 'details', label: 'Details'},
+    {id: 'dates_location', label: 'Dates & Location'},
+    {id: 'pricing', label: 'Pricing'},
+    {id: 'page', label: 'Landing page'}
+  ]
 
   def index
     @courses = Course.all
   end
 
   def show
+    add_body_class('landing-page')
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
   end
 
   def new
     @course = Course.new
-    @course.min_seats = 5
-    @course.max_seats = 15
-    @course.price_per_seat_in_cents = 19900
-    @course.build_location
   end
 
   def create
@@ -24,23 +30,29 @@ class CoursesController < ApplicationController
     @location = @course.location
 
     if @course.save
-      flash[:success] = "Course created successfully."
-      redirect_to course_path(@course)
+      redirect_to_next_step
     else
-      flash[:error] = "Course failed to be created."
       render :new
     end
   end
 
+  def redirect_to_next_step
+    if next_step
+      redirect_to edit_course_step_path(@course, :step => next_step[:id])
+    else
+      redirect_to course_path(@course)
+    end
+  end
+
   def edit
+    @course.set_default_values_if_nil
   end
 
   def update
     if @course.update_attributes(course_params)
-      flash[:success] = "Course updated successfully."
-      redirect_to edit_course_path(@course)
+      redirect_to_next_step
     else
-      flash[:error] = "Course failed to be updated."
+      puts @course
       render :edit
     end
   end
@@ -69,5 +81,23 @@ class CoursesController < ApplicationController
     else
       Course.find(params[:id])
     end
+  end
+
+  def prepare_steps
+    if !current_step
+      redirect_to :step => 'details'
+    end
+  end
+
+  helper_method :current_step
+  def current_step
+    @steps ||= STEPS
+    step = @steps.find { |s| s[:id] == params[:step] }
+  end
+
+  helper_method :next_step
+  def next_step
+    index = @steps.index(current_step)
+    @steps[index + 1]
   end
 end

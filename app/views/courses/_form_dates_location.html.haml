@@ -1,0 +1,19 @@
+%h2.offset Dates
+
+.form-group.string.optional
+  = form.label :starts_at, 'Date'
+  .controls
+    = form.input_field :starts_at, as: :string, class: 'datepicker small inline'
+    %label= '-'
+    = form.input_field :ends_at, as: :string, class: 'datepicker small inline'
+
+%h2.offset Location
+
+= form.simple_fields_for(:location) do |location|
+  = location.input :name, label: 'Venue name'
+  = location.input :address
+  = location.input :address_2
+  = location.input :city
+  = location.input :state
+  = location.input :zip
+  = location.input :phone

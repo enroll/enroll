@@ -81,9 +81,10 @@ describe CourseHelper do
     it "returns a link to the course reservation page" do
       course = create(:course)
 
-      link = link_to 'Reserve your seat',
+      price = number_to_currency(price_in_dollars(course.price_per_seat_in_cents))
+      link = link_to "Enroll - #{price}",
         new_course_reservation_path(course),
-        :class => 'btn btn-primary btn-large reserve upcase'
+        :class => 'btn btn-primary btn-large reserve'
 
       course_reservation_link(course).should == link
     end

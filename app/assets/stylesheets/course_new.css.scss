@@ -1,0 +1,43 @@
+@import '_colors';
+
+.new-course {
+  .sidebar {
+    border-right: 1px solid $gray-light;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+ul.course-progress {
+  list-style: none;
+  padding: 0 15px 0 0;
+  text-align: right;
+
+  li {
+    margin-bottom: 15px;
+    a {
+      color: $gray-medium;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+
+  li.active, li.active a {
+    font-weight: 500;
+    color: $primary1;
+  }
+}
+
+form.course-form {
+  margin-top: 50px;
+}
+
+form.step-pricing, form.step-page {
+  .form-actions {
+    margin: 0;
+  }
+}
+
+.course-pricing {
+  margin-top: 20px;
+}

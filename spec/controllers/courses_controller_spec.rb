@@ -3,6 +3,7 @@ require 'spec_helper'
 describe CoursesController do
   let(:course) { build(:course) }
   let(:course_attributes) { attributes_for(:course).merge({ location_attributes: attributes_for(:location)}) }
+  let(:saved_course) { create(:course, instructor: user) }
   let(:user) { create(:user) }
 
   context "GET show" do
@@ -39,46 +40,6 @@ describe CoursesController do
   end
 
   context "POST create" do
-    context "when logged in" do
-      before { sign_in(user) }
-
-      it "creates a course" do
-        expect {
-          post :create, course: course_attributes
-        }.to change(Course, :count)
-      end
-
-      it "redirects to the reservation" do
-        post :create, course: course_attributes
-        response.should be_redirect
-        response.should redirect_to(course_path(assigns[:course]))
-      end
-
-      it "sets the success flash" do
-        post :create, course: course_attributes
-        flash[:success].should_not be_nil
-      end
-
-      it "sets the instructor" do
-        post :create, course: course_attributes
-        user.courses.count.should == 1
-      end
-
-      context "when submitting invalid data" do
-        before { Course.any_instance.stubs(:save).returns(false) }
-
-        it "renders the new page" do
-          post :create, course: { junk: '1' }
-          response.should render_template :new
-        end
-
-        it "sets the error flash" do
-          post :create, course: { junk: '1' }
-          flash[:error].should_not be_nil
-        end
-      end
-    end
-
     context "when not logged in" do
       it "redirects to root" do
         post :create, course: course_attributes
@@ -88,19 +49,82 @@ describe CoursesController do
     end
   end
 
-  context "GET edit" do
-    before { course.save }
+  context "creating courses through multi-step form" do
+    before { sign_in(user) }
 
-    context "when logged in and course owner" do
-      it "renders the edit page" do
-        course.instructor = user
-        course.save
-        sign_in(user)
-        get :edit, id: course.to_param
-        response.should be_success
-        response.should render_template :edit
+    context "visiting new course page" do
+      it "redirects to the first step" do
+        get :new
+        response.should redirect_to new_course_step_path(:step => 'details')
       end
     end
+
+    context "unexisting step" do
+      it "redirects to the first step" do
+        get :new, :step => 'blah'
+        response.should redirect_to new_course_step_path(:step => 'details')
+
+        get :edit, id: saved_course.to_param, step: 'blah'
+        response.should redirect_to edit_course_step_path(:step => 'details')
+      end
+    end
+
+    context "step: details" do
+      let(:details_attributes) { {name: 'foo', tagline: 'bar'} }
+
+      it "renders the form" do
+        get :new, :step => 'details'
+        response.should be_success
+      end
+
+      it "creates new course" do
+        expect {
+          post :create, step: 'details', course: details_attributes
+        }.to change(Course, :count)
+        Course.last.name.should == 'foo'
+      end
+
+      it "sets the instructor" do
+        post :create, step: 'details', course: details_attributes
+        Course.last.instructor.should == user
+      end
+
+      it "redirects to the next step" do
+        post :create, step: 'details', course: details_attributes
+        response.should redirect_to edit_course_step_path(Course.last.id, 'dates_location')
+      end
+
+      context "invalid data" do
+        it "renders the form" do
+          post :create, step: 'details', course: {junk: 1}
+          response.should render_template :new
+        end
+      end
+    end
+
+    context "step: dates and location" do
+      it "renders the form" do
+        get :edit, id: saved_course.to_param, step: 'dates_location'
+        response.should render_template :edit
+      end
+
+      it "redirects to pricing step" do
+        put :update, id: saved_course.to_param, step: 'dates_location', course: {location_attributes: {name: 'library'}}
+        response.should redirect_to edit_course_step_path(saved_course.to_param, 'pricing')
+      end
+    end
+
+    context "step: pricing" do
+      it "redirects to the page step" do
+        put :update, id: saved_course.to_param, step: 'pricing', course: {price_per_seat_in_cents: 1000}
+        response.should redirect_to edit_course_step_path(saved_course.to_param, 'page')
+      end
+    end
+
+  end
+
+  context "GET edit" do
+    before { course.save }
 
     context "when logged in but not course owner" do
       it "redirects to the root page" do
@@ -116,44 +140,6 @@ describe CoursesController do
         get :edit, id: course.to_param
         response.should be_redirect
         response.should redirect_to(root_path)
-      end
-    end
-  end
-
-  context "PUT update" do
-    before do
-      course.instructor = user
-      course.save
-
-      sign_in(user)
-    end
-
-    it "updates the course" do
-      put :update, id: course.to_param, course: { name: 'Linux Administration 101' }
-      course.reload.name.should == 'Linux Administration 101'
-    end
-
-    it "redirects to the edit course page" do
-      put :update, id: course.to_param, course: { name: 'Linux Administration 101' }
-      response.should redirect_to edit_course_path(course)
-    end
-
-    it "sets the success flash" do
-      put :update, id: course.to_param, course: { name: 'Linux Administration 101' }
-      flash[:success].should_not be_nil
-    end
-
-    context "when submitting invalid data" do
-      before { Course.any_instance.stubs(:update_attributes).returns(false) }
-
-      it "renders the edit page" do
-        put :update, id: course.to_param, course: { junk: '1' }
-        response.should render_template :edit
-      end
-
-      it "sets the error flash" do
-        put :update, id: course.to_param, course: { junk: '1' }
-        flash[:error].should_not be_nil
       end
     end
   end

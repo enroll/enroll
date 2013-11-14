@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  DEFAULT_DESCRIPTION = [["About the course", "Basic details here..."], ["Prerequisites", "Things students should know..."], ["Syllabus", "Roadmap of the course..."]].map { |t| "# #{t[0]}\n\n#{t[1]}"}.join("\n\n")
+
   acts_as_url :name
 
   has_many :reservations, dependent: :destroy
@@ -128,6 +130,23 @@ class Course < ActiveRecord::Base
     if location_attributes.any?
       self.location = Location.where(location_attributes).first_or_create
     end
+  end
+
+  def set_default_values_if_nil
+    self.min_seats ||= 5
+    self.max_seats ||= 15
+    self.price_per_seat_in_cents ||= 19900
+    self.build_location unless self.location
+    self.description = DEFAULT_DESCRIPTION unless self.description.present?
+  end
+
+  def as_json(options)
+    {
+      name: name,
+      location: location,
+      date: starts_at.strftime("%B %e, %Y"),
+      description: description
+    }
   end
 
   private

@@ -1,0 +1,15 @@
+.container.new-course
+  .row
+    .sidebar.col-sm-3
+      %ul.course-progress
+        - for step in @steps
+          %li{:class => step[:id] == current_step[:id] ? 'active' : ''}
+            = link_to_if action_name == "edit", step[:label], :step => step[:id]
+    .col-sm-9
+      = simple_form_for(@course, :html => {:class => "course-form form disable-submit-on-return step-#{current_step[:id]}"}) do |form|
+        = render "form_header", :form => form
+        = render "form_#{current_step[:id]}", :form => form
+        = render "form_actions", :form => form
+
+:coffeescript
+  new CourseForm(el: 'form.course-form')

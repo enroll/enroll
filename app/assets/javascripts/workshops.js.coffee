@@ -32,7 +32,7 @@ ready = ->
     $('.datepicker-date').text date.toDateString()
     $('.datepicker-time').text date.toLocaleTimeString()
 
-  $("form.disable-submit-on-return").keydown (e) ->
+  $("form.disable-submit-on-return input").keydown (e) ->
     code = e.keyCode or e.which
     if code is 13
       e.preventDefault()
