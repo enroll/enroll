@@ -27,9 +27,13 @@ class CoursesController < ApplicationController
     @course.instructor = current_user
     @location = @course.location
 
+    puts "saving course"
+
     if @course.save
       redirect_to_next_step
     else
+      puts "Failed to save course"
+      puts @course.errors.messages
       render :new
     end
   end

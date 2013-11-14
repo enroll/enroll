@@ -1,4 +1,5 @@
 include NavigationHelper
+include FormatHelper
 
 module CourseHelper
   def reservations_needed(course)
