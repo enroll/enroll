@@ -1,49 +1,57 @@
 @import '_mixins';
 
-.course-header {
-  height: 188px;
-  @include retina('images/hero-default', 'jpg', 844px, 188px);
-  position: relative;
+body.courses.show {
+  @include retina('images/landing-background', 'jpg', 1500px, 850px);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  background-attachment: fixed;
 
-  .course-title {
-    background: #fff;
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.7);
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 10px 15px;
-    background: rgba(0,0,0,0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  nav.navbar {
+    background: transparent;
+    // background: rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
 
-    table.course-info {
-      float: right;
+    .navbar-inner {
+      a.navbar-btn {
+        background: transparent;
 
-      td {
-        padding: 10px;
-        vertical-align: middle;
-      }
-
-      td * {
-        font-style: normal;
-      }
-
-      td.location {
-        width: 150px;
-      }
-
-      .location {
-      }
-
-      .price {
-        font-size: 40px;
-        font-weight: 400;
+        .caret {
+          border-top-color: #fff;
+          border-bottom-color: #fff;
+        }
       }
     }
+  }
+}
+
+.course-header {
+  .course-title {
+    width: 100%;
+    padding-top: 20px;
+    color: #fff;
 
     h2 {
-      margin: 0;
-      font-weight: 300;
+      text-align: center;
+      font-size: 50px;
+      color: #fff;
+      font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
+      font-weight: 100;
+    }
+
+    em { // Date and location
+      font-style: normal;
+      display: block;
+      font-weight: 200;
+
+      i {
+        font-size: 18px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      &.location {
+        text-align: right;
+      }
     }
 
     h3 {
@@ -56,7 +64,11 @@
 }
 
 .course-content {
-  padding-top: 20px;
+  margin-top: 30px;
+  padding: 30px;
+  padding-top: 40px;
+  background: #fff;
+  background: rgba(255,255,255,0.9);
 }
 
 .course-sidebar {

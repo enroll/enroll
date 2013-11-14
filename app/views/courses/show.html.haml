@@ -4,15 +4,17 @@
 .container
   .course-header
     .course-title
-      %table.course-info
-        %tr
-          %td.location
-            %em.location== #{@course.location.city}, #{@course.location.state}
-            - if @course.starts_at.present?
-              %em.date
-                == #{@course.starts_at.strftime("%B %e, %Y")}
       %h2= @course.name
-      %h3= @course.tagline
+      .row
+        .col-sm-6
+          %em.location
+            %i.icon-map
+            == #{@course.location.city}, #{@course.location.state}
+        .col-sm-6
+          %em.date
+            %i.icon-calendar
+            == #{@course.starts_at.strftime("%B %e, %Y")}
+      / %h3= @course.tagline
 
   .course-content.row
     .col-sm-8
