@@ -17,6 +17,7 @@ class CoursesController < ApplicationController
 
   def show
     add_body_class('landing-page')
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
   end
 
   def new
