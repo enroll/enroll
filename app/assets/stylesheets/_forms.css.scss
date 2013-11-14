@@ -55,12 +55,16 @@ form.form {
       padding-top: 5px;
       padding-bottom: 5px;
     }
+
+    &.large {
+      height: 300px;
+    }
   }
 
   textarea.form-control {
     font-weight: normal;
     padding: 7px $input-padding-sides;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   abbr[title] {
@@ -87,6 +91,17 @@ form.form {
 
   p.help-block {
     font-size: 12px;
+  }
+
+  // Wide from group
+  .form-group.wide {
+    label {
+      float: none;
+      text-align: left;
+    }
+    .controls {
+      margin-left: 0;
+    }
   }
 }
 

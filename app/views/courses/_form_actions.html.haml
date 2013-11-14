@@ -1,2 +1,5 @@
 .actions
-  = form.button(:submit, "Next: #{next_step[:label]}", class: 'btn btn-primary')
+  - if next_step
+    = form.button(:submit, "Next: #{next_step[:label]}", class: 'btn btn-primary')
+  - else
+    = form.button(:submit, "Finish", class: 'btn btn-primary')

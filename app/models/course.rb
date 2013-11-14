@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  DEFAULT_DESCRIPTION = [["About the course", "Basic details here..."], ["Prerequisities", "Things students should know..."], ["Syllabus", "Roadmap of the course..."]].map { |t| "# #{t[0]}\n\n#{t[1]}"}.join("\n\n")
+
   acts_as_url :name
 
   has_many :reservations, dependent: :destroy
@@ -135,6 +137,7 @@ class Course < ActiveRecord::Base
     self.max_seats ||= 15
     self.price_per_seat_in_cents ||= 19900
     self.build_location unless self.location
+    self.description = DEFAULT_DESCRIPTION unless self.description.present?
   end
 
   private

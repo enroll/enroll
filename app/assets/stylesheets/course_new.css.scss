@@ -4,6 +4,7 @@
   .sidebar {
     border-right: 1px solid $gray-light;
     padding-top: 50px;
+    padding-bottom: 50px;
   }
 }
 
@@ -30,8 +31,10 @@ form.course-form {
   margin-top: 50px;
 }
 
-form.step-pricing .actions {
-  margin: 0;
+form.step-pricing, form.step-page {
+  .actions {
+    margin: 0;
+  }
 }
 
 .course-pricing {
