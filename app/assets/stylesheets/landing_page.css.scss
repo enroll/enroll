@@ -107,7 +107,8 @@ a.btn.reserve {
   top: 5px;
   left: 50%;
   margin-left: -$width/2;
-  @include gradient-vertical($color1, $color2);
+  background: $color1;
+  border: 1px solid darken($color1, 10);
   text-align: center;
   color: #fff;
   font-weight: 500;
@@ -121,6 +122,6 @@ a.btn.reserve {
   }
 
   &:active {
-    @include gradient-vertical(darken($color1, 2), darken($color2, 2));
+    background: darken($color1, 2);
   }
 }
