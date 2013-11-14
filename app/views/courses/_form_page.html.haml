@@ -1,7 +1,13 @@
 %h2 Landing page
 
 .form-group.wide
+  = form.label :description, 'Page contents'
   %p.help-block
     Enter text you would like on your landing page. Use the # symbol to mark headings.
   .controls
     = form.input_field :description, label: 'Page', class: 'large'
+
+.form-group.wide
+  = form.label :instructor_biography, 'About the instructor'
+  .controls
+    = form.input_field :instructor_biography
