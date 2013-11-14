@@ -28,20 +28,16 @@ class CoursesController < ApplicationController
     @course.instructor = current_user
     @location = @course.location
 
-    puts "saving course"
-
     if @course.save
       redirect_to_next_step
     else
-      puts "Failed to save course"
-      puts @course.errors.messages
       render :new
     end
   end
 
   def redirect_to_next_step
     if next_step
-      redirect_to edit_course_path(@course, :step => next_step[:id])
+      redirect_to edit_course_step_path(@course, :step => next_step[:id])
     else
       redirect_to course_path(@course)
     end
@@ -55,6 +51,7 @@ class CoursesController < ApplicationController
     if @course.update_attributes(course_params)
       redirect_to_next_step
     else
+      puts @course
       render :edit
     end
   end
@@ -86,16 +83,15 @@ class CoursesController < ApplicationController
   end
 
   def prepare_steps
-    unless params[:step]
+    if !current_step
       redirect_to new_course_step_path(:step => 'details')
     end
-
-    @steps = STEPS
   end
 
   helper_method :current_step
   def current_step
-    @steps.find { |s| s[:id] == params[:step] } || @steps[0]
+    @steps ||= STEPS
+    @steps.find { |s| s[:id] == params[:step] }
   end
 
   helper_method :next_step

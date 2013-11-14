@@ -25,8 +25,15 @@ nav.navbar {
       padding: 3px 7px;
       @include border-radius(3px);
       margin-left: 10px;
-      margin-top: 12px;
+      margin-top: 14px;
       border: none;
+      display: inline-block;
+      &.user-dropdown {
+        margin-top: 12px;
+      }
+      &:hover {
+        text-decoration: none;
+      }
     }
     // Dropdowns in the navbar
     a.user-dropdown {
