@@ -22,7 +22,8 @@ ul.course-progress {
     }
   }
 
-  li.active a {
+  li.active, li.active a {
+    font-weight: 500;
     color: $primary1;
   }
 }
