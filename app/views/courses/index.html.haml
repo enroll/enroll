@@ -1,13 +1,31 @@
 .container
-  %h2 Courses I'm Attending
+  %h1 My Courses
 
-  %table.table
-    %tbody
-      = render partial: 'course_table_listing', collection: @courses.future, as: :course, locals: {future: true}
+  %ul.course-list
+    %li.header
+      %strong Teaching
+      .actions
+        %a{:href => '#'}
+          %i.icon-circled-plus
+          Create
+    - @courses_teaching.each do |course|
+      %li
+        %strong
+          %i.icon-briefcase
+          = course.name
+        .actions
+          = link_to 'Manage &rsaquo;'.html_safe, dashboard_course_path(course), :class => 'btn btn-primary small'
 
-  %h2 Courses I Attended
+/ .container
+/   %h2 Courses I'm Attending
 
-  %table.table
-    %tbody
-      = render partial: 'course_table_listing', collection: @courses.past, as: :course, locals: {future: false}
+/   %table.table
+/     %tbody
+/       = render partial: 'course_table_listing', collection: @courses.future, as: :course, locals: {future: true}
+
+/   %h2 Courses I Attended
+
+/   %table.table
+/     %tbody
+/       = render partial: 'course_table_listing', collection: @courses.past, as: :course, locals: {future: false}
 

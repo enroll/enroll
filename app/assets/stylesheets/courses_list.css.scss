@@ -1,0 +1,63 @@
+@import 'twitter/bootstrap/_mixins';
+@import '_colors';
+@import '_mixins';
+
+ul.course-list {
+  $border-color: $gray-medium-light;
+
+  list-style: none;
+  padding: 0;
+  width: 350px;
+  margin: auto;
+  border: 1px solid $border-color;
+  @include border-radius(3px);
+  // padding: 20px 0;
+
+  strong {
+    font-weight: 500;
+  }
+
+  li {
+    @include clearfix();
+    // margin-bottom: 
+    padding: 10px 25px;
+
+    .actions {
+      float: right;
+      margin-top: -1px;
+    }
+  }
+
+  li.header {
+    color: $gray-medium;
+    border-bottom: 1px solid $border-color;
+    padding-top: 17px;
+    padding-bottom: 15px;
+
+    a, strong {
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    a {
+      color: $gray-medium;
+      &:hover {
+        text-decoration: none;
+        color: $primary1;
+      }
+    }
+
+    strong {
+    }
+  }
+
+  li:nth-child(2) {
+    padding-top: 20px;
+  }
+
+  li:last-child {
+    padding-bottom: 20px;
+  }
+
+
+}

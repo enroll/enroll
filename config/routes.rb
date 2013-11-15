@@ -12,11 +12,15 @@ Enroll::Application.routes.draw do
   get '/courses/new/:step', to: 'courses#new', as: :new_course_step
   get '/courses/:id/edit/:step', to: 'courses#edit', as: :edit_course_step
 
+  namespace :dashboard do
+    resources :courses
+  end
+
   resource :account, only: [:edit, :update] do
     # resources :courses
   end
 
   get '/go/:url', to: 'courses#show', as: :landing_page
 
-  root 'welcome#index'
+  root 'courses#index'
 end
