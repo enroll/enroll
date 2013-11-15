@@ -1,31 +1,23 @@
 .container
   %h1 My Courses
 
-  %ul.course-list
-    %li.header
-      %strong Teaching
-      .actions
-        %a{:href => '#'}
-          %i.icon-circled-plus
-          Create
-    - @courses_teaching.each do |course|
-      %li
-        %strong
-          %i.icon-briefcase
-          = course.name
-        .actions
-          = link_to 'Manage &rsaquo;'.html_safe, dashboard_course_path(course), :class => 'btn btn-primary small'
+  .row
+    .col-sm-6
+      %ul.course-list
+        %li.header
+          %strong Teaching
+          .actions
+            %a{:href => new_course_path}
+              %i.icon-circled-plus
+              Create
+        = render "courses_list", courses: @courses_teaching, link_label: 'Manage'
 
-/ .container
-/   %h2 Courses I'm Attending
-
-/   %table.table
-/     %tbody
-/       = render partial: 'course_table_listing', collection: @courses.future, as: :course, locals: {future: true}
-
-/   %h2 Courses I Attended
-
-/   %table.table
-/     %tbody
-/       = render partial: 'course_table_listing', collection: @courses.past, as: :course, locals: {future: false}
-
+    .col-sm-6
+      %ul.course-list
+        %li.header
+          %strong Studying
+          .actions
+            %a{:href => '#'}
+              %i.icon-network
+              Browse
+        = render "courses_list", courses: @courses_studying, link_label: 'Open'

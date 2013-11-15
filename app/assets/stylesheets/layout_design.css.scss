@@ -95,6 +95,7 @@ ul.navbar-nav {
 .container {
   max-width: $width;
   padding: 0;
-  padding-left: $padding;
-  padding-right: $padding;
+  // padding-left: $padding;
+  // padding-right: $padding;
+  box-sizing: border-box;
 }

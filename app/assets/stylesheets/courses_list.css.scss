@@ -7,11 +7,9 @@ ul.course-list {
 
   list-style: none;
   padding: 0;
-  width: 350px;
-  margin: auto;
   border: 1px solid $border-color;
   @include border-radius(3px);
-  // padding: 20px 0;
+  margin-bottom: 30px;
 
   strong {
     font-weight: 500;
@@ -25,6 +23,14 @@ ul.course-list {
     .actions {
       float: right;
       margin-top: -1px;
+      padding-top: 10px;
+    }
+
+    em {
+      font-style: normal;
+      padding-left: 20px;
+      color: $gray-medium;
+      font-size: 13px;
     }
   }
 
@@ -47,7 +53,9 @@ ul.course-list {
       }
     }
 
-    strong {
+
+    .actions {
+      padding-top: 0;
     }
   }
 

@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
   ]
 
   def index
-    @courses_teaching = current_user.courses_as_instructor
+    @courses_teaching = current_user.courses_as_instructor.future
     @courses_studying = current_user.courses_as_student
   end
 
