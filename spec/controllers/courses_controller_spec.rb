@@ -28,14 +28,17 @@ describe CoursesController do
     before { course.save }
 
     it "renders the index" do
+      sign_in(user)
       get :index
       response.should be_success
       response.should render_template :index
     end
 
     it "includes some courses" do
+      sign_in(user)
       get :index
-      assigns[:courses].should_not be_nil
+      assigns[:courses_teaching].should_not be_nil
+      assigns[:courses_studying].should_not be_nil
     end
   end
 
