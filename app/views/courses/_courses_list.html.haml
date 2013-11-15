@@ -7,3 +7,7 @@
       = link_to "#{link_label} &rsaquo;".html_safe, dashboard_course_path(course), :class => 'btn btn-primary small'
     %br/
     %em= course.starts_at.strftime("%B %e, %Y")
+
+- if courses.empty?
+  %li.empty
+    No courses!
