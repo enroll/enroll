@@ -6,7 +6,7 @@
           %i.icon-circled-left
         = @course.name
     %li{:class => action_name == 'show' ? 'active' : ''}
-      %a{:href => '#'}
+      %a{:href => dashboard_course_path(course)}
         %i.icon-line-graph
         Dashboard
     %li{:class => action_name == 'edit' ? 'active' : ''}
