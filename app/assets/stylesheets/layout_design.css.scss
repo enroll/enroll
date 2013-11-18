@@ -2,8 +2,20 @@
 @import '_colors';
 @import 'twitter/bootstrap/_variables';
 
-$width: 844px;
 $padding: 20px;
+
+@mixin body-width($width) {
+  .navbar-inner {
+    max-width: $width;
+  }
+  .container {
+    max-width: $width;
+  }
+}
+
+body {
+  @include body-width(844px);
+}
 
 // Nav Bar
 // ----------------------------------------------------------------------------
@@ -13,7 +25,6 @@ nav.navbar {
   border: none;
   margin-bottom: 0;
   .navbar-inner {
-    max-width: $width;
     padding-left: $padding;
     padding-right: $padding;
     margin: auto;
@@ -93,8 +104,7 @@ ul.navbar-nav {
 // ----------------------------------------------------------------------------
 
 .container {
-  max-width: $width;
-  padding: 0;
+  // padding: 0;
   // padding-left: $padding;
   // padding-right: $padding;
   box-sizing: border-box;

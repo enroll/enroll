@@ -1,0 +1,63 @@
+@import 'layout_design';
+@import '_colors';
+
+$sidebar-width: 200px;
+
+body.dashboard {
+  @include body-width(100%);
+  .container {
+    width: 100%;
+  }
+}
+
+.container.dashboard {
+  $padding: 15px;
+  padding: $padding;
+  padding-left: $sidebar-width + $padding;
+
+  .sidebar {
+    background: $primary1;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    bottom: 0;
+    width: $sidebar-width;
+    border-top: 1px solid $primary1-hilight;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .secondary-sidebar {
+    border-left: 1px solid $gray-light;
+  }
+}
+
+ul.dashboard-menu {
+  padding: 0;
+  list-style: none;
+
+  li {
+    border-bottom: 1px solid $primary1-hilight;
+    &, h2, a {
+      color: #fff;
+      font-size: 12px;
+    }
+    h2, > a {
+      display: block;
+      padding: 15px 15px;
+    }
+    a {
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    &.active {
+      background: #fff;
+      &, a {
+        color: $text1;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.container.dashboard
+  .sidebar
+    %ul.dashboard-menu
+      %li
+        %h2
+          %a{:href => courses_path}
+            %i.icon-circled-left
+          = @course.name
+      %li.active
+        %a{:href => '#'}
+          %i.icon-line-graph
+          Dashboard
+      %li
+        %a{:href => '#'}
+          %i.icon-tools
+          Settings
+
+  == Welcome to #{@course.name}!
+
+  .secondary-sidebar.pull-right
+    = render 'courses/manage_sidebar', course: @course

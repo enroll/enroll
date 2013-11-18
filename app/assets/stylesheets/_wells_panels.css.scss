@@ -6,3 +6,12 @@
   @include box-shadow(none);
   border: none;
 }
+
+.panel-info {
+  border: none;
+  @include box-shadow(none);
+  > .panel-heading {
+    background: transparent;
+    border: none;
+  }
+}

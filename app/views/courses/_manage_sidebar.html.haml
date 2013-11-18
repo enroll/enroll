@@ -21,15 +21,3 @@
           .quantity
             = days_until_start(course)
           .status-label Days left
-    .list-group
-      %a.list-group-item{href: "#"}
-        %span.glyphicon.glyphicon-home
-        Dashboard
-      %a.list-group-item{href: course_students_path(course), class: current_page?(course_students_path(course)) ? "active" : ""}
-        %span.glyphicon.glyphicon-user
-        %span.badge
-          = course.reservations.count
-        Students
-      %a.list-group-item{href: edit_course_path(course), class: current_page?(edit_course_path(course)) ? "active" : ""}
-        %span.glyphicon.glyphicon-cog
-        Settings
