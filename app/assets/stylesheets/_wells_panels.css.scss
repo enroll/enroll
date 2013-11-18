@@ -1,5 +1,6 @@
 @import '_mixins';
 @import 'twitter/bootstrap/_mixins';
+@import '_colors';
 
 .well {
   @include border-radius(0);
@@ -13,5 +14,6 @@
   > .panel-heading {
     background: transparent;
     border: none;
+    color: $primary1;
   }
 }

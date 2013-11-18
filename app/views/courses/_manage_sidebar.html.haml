@@ -8,16 +8,16 @@
           .glyphicon.glyphicon-arrow-up
           .goal-text
             Goal
-      .row.status-strip
-        .col-xs-4
-          .quantity
+      .status-strip
+        %div
+          %span.quantity
             = course.reservations.count
-          .status-label Enrolled
-        .col-xs-4
-          .quantity
+          %span.status-label Enrolled
+        %div
+          %span.quantity
             = reservations_needed(course)
-          .status-label Needed
-        .col-xs-4
-          .quantity
+          %span.status-label Needed
+        %div
+          %span.quantity
             = days_until_start(course)
-          .status-label Days left
+          %span.status-label Days left
