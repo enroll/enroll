@@ -11,6 +11,9 @@ form.form {
   $label-width: 100px;
   $label-margin: 15px;
   $label-total-width: $label-width + $label-margin;
+  $max-width: 600px;
+
+  max-width: 600px;
 
   label {
     font-size: 12px;
@@ -84,7 +87,8 @@ form.form {
     font-size: 11px;
   }
 
-  h2.offset {
+  h1.offset, h2.offset {
+    text-align: left;
     padding-left: $label-total-width;
     padding-bottom: 5px;
   }

@@ -1,0 +1,4 @@
+.container.dashboard
+  = render 'dashboard_menu', course: @course
+
+  = render 'courses/form', form_target: [:dashboard, @course]
