@@ -1,0 +1,18 @@
+.dashboard-sidebar
+  %ul.dashboard-menu
+    %li
+      %h2
+        %a{:href => courses_path}
+          %i.icon-circled-left
+        = @course.name
+    = dashboard_menu_link(dashboard_course_path(course), 'Dashboard', 'line-graph', 'courses', 'show')    
+    = dashboard_menu_link(edit_dashboard_course_path(course), 'Settings', 'tools', 'courses', 'edit')
+    = dashboard_menu_link(edit_dashboard_landing_page_path(course), 'Landing page', 'browser', 'landing_pages', 'edit')
+    %li
+      %a{:href => '#'}
+        %i.icon-download
+        Resources
+    %li
+      %a{:href => '#'}
+        %i.icon-users
+        Students
