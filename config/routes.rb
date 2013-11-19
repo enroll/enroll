@@ -14,6 +14,7 @@ Enroll::Application.routes.draw do
 
   namespace :dashboard do
     resources :courses
+    resources :landing_pages
   end
 
   resource :account, only: [:edit, :update] do

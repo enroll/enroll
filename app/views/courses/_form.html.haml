@@ -2,9 +2,7 @@
   .row
     .sidebar.col-sm-3
       %ul.course-progress
-        - for step in @steps
-          %li{:class => step[:id] == current_step[:id] ? 'active' : ''}
-            = link_to_if action_name == "edit", step[:label], :step => step[:id]
+        = render 'courses/steps'
     .col-sm-9
       = simple_form_for(form_target, :html => {:class => "course-form form disable-submit-on-return step-#{current_step[:id]}"}) do |form|
         = render "courses/form_header", :form => form

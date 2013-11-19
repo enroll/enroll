@@ -1,4 +1,5 @@
 @import '_colors';
+@import 'twitter/bootstrap/_mixins';
 
 .new-course {
   .sidebar {
@@ -25,6 +26,18 @@ ul.course-progress {
   li.active, li.active a {
     font-weight: 500;
     color: $primary1;
+  }
+}
+
+ul.course-progress.horizontal {
+  padding-left: 115px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  @include clearfix();
+  li {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 0;
   }
 }
 

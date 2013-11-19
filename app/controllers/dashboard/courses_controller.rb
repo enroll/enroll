@@ -11,6 +11,7 @@ class Dashboard::CoursesController < ApplicationController
 
   def edit
     add_body_class('dashboard')
+    @steps.reject! { |s| s[:id] == 'page' }
   end
 
   def update

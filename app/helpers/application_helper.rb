@@ -6,4 +6,12 @@ module ApplicationHelper
     options.delete :size
     image_tag url, options
   end
+
+  def classed(class_name, controller, action)
+    if controller_name == controller && action_name == action
+      class_name
+    else
+      ''
+    end
+  end
 end
