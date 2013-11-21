@@ -2,7 +2,7 @@
 @import '_colors';
 @import 'twitter/bootstrap/_mixins';
 
-body.landing-page {
+body.landing-page, div.landing-page-preview {
   @include retina('images/landing-background', 'jpg', 1500px, 850px);
   background-repeat: no-repeat;
   background-position: top center;
@@ -124,5 +124,38 @@ a.btn.reserve {
 
   &:active {
     background: darken($color1, 2);
+  }
+}
+
+// Crazy animations
+
+body {
+  // -webkit-perspective-origin-x: 50%;
+  // -webkit-perspective-origin-y: 0px;
+}
+
+.viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+
+  -webkit-transition: all .25s;
+  -webkit-property: -webkit-transform, opacity;
+  -webkit-transform: translateY(0) rotateX(0deg);
+
+  &.original.offscreen {
+    -webkit-transform: translateY(-5%);
+    opacity: 0.2;
+  }
+
+  &.preview {
+    -webkit-transform: translateY(50px) rotateX(0deg);
+  }
+
+  &.preview.offscreen {
+    -webkit-transform: translateY(100%) rotateX(0deg);
   }
 }

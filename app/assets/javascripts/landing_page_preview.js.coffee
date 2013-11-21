@@ -8,8 +8,18 @@ class window.LandingPagePreview extends Spine.Controller
   constructor: ->
     super
     @isActive = false
-    @$originalContent = $('.new-course')
     $(document).keyup(@didPressKey.bind(@))
+
+    $(document).ready =>
+      # Move the whole contents into a wrapper called "viewport"
+      $children = $(document.body).children().detach()
+      @$viewport = $("<div />").addClass('viewport').addClass('original')
+      @$viewport.append($children)
+      $(document.body).append(@$viewport)
+
+      # Prepare preview viewport
+      @$previewContent = @buildPreviewContent()
+      $(document.body).append(@$previewContent)
 
   didPressKey: (e) ->
     if @isActive && e.keyCode == 27
@@ -17,18 +27,27 @@ class window.LandingPagePreview extends Spine.Controller
 
   previewAction: ->
     @isActive = true
-    @updateDescription()
-    $(document.body).addClass('landing-page')
-    @$originalContent.hide()
-    @_buildPreviewContent()
-    @_buildExitButton()
-    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
 
-  _buildPreviewContent: ->
+    @$previewContent.removeClass('offscreen')
+    @$viewport.addClass('offscreen')
+
+
+    # @updateDescription()
+    # $(document.body).addClass('landing-page')
+
+    # @buildPreviewContent()
+    # @_buildExitButton()
+
+
+  buildPreviewContent: ->
     if !@$previewContent
       @$previewContent = $('<div />')
-      @$originalContent.after(@$previewContent)
-    @$previewContent.show()
+        .addClass('landing-page-preview')
+        .addClass('viewport')
+        .addClass('preview')
+        .addClass('offscreen')
+    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
+    @$previewContent
 
   _buildExitButton: ->
     if !@$exitButton
@@ -43,10 +62,14 @@ class window.LandingPagePreview extends Spine.Controller
 
   cancelAction: ->
     @isActive = false
-    $(document.body).removeClass('landing-page')
-    @$originalContent.show()
 
-    @$previewContent.hide()
-    @$exitButton.hide()
+    @$previewContent.addClass('offscreen')
+    @$viewport.removeClass('offscreen')
+
+    # $(document.body).removeClass('landing-page')
+    # @$originalContent.show()
+
+    # @$previewContent.hide()
+    # @$exitButton.hide()
 
     @$previewContainer or= $();
