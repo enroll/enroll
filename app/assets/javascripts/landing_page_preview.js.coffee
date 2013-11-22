@@ -32,7 +32,8 @@ class window.LandingPagePreview extends Spine.Controller
     @$viewport.addClass('offscreen')
 
 
-    # @updateDescription()
+    @updateDescription()
+    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
     # $(document.body).addClass('landing-page')
 
     # @buildPreviewContent()
