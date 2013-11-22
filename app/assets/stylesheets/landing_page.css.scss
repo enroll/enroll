@@ -142,20 +142,20 @@ body {
   height: 100%;
   z-index: 1000;
 
-  -webkit-transition: all .25s;
-  -webkit-property: -webkit-transform, opacity;
-  -webkit-transform: translateY(0) rotateX(0deg);
+
+  @include transition-transform(0.25s);
+  @include translate(0, 0);
+
 
   &.original.offscreen {
-    -webkit-transform: translateY(-5%);
-    opacity: 0.2;
+    @include translate(0, -10%);
   }
 
   &.preview {
-    -webkit-transform: translateY(50px) rotateX(0deg);
+    @include translate(0, 50px);
   }
 
   &.preview.offscreen {
-    -webkit-transform: translateY(100%) rotateX(0deg);
+    @include translate(0, 100%);
   }
 }
