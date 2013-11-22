@@ -248,7 +248,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
-  anjlab-bootstrap-rails (>= 3.0.0.0)
+  anjlab-bootstrap-rails (>= 3.0.0.3)
   bootstrap-glyphicons
   coffee-rails (~> 4.0.0)
   devise (~> 3.0.1)
