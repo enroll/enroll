@@ -32,7 +32,7 @@ ul.course-progress {
 ul.course-progress.horizontal {
   padding-left: 115px;
   margin-top: 20px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
   @include clearfix();
   li {
     float: left;
@@ -41,7 +41,7 @@ ul.course-progress.horizontal {
   }
 }
 
-form.course-form {
+.form-wrapper {
   margin-top: 50px;
 }
 

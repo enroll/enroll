@@ -6,12 +6,10 @@ class Dashboard::CoursesController < ApplicationController
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
 
   def show
-    add_body_class('dashboard')
   end
 
   def edit
-    add_body_class('dashboard')
-    @steps.reject! { |s| s[:id] == 'page' }
+    @steps = @steps.reject { |s| s[:id] == 'page' }
   end
 
   def update
