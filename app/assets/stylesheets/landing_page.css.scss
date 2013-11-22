@@ -134,28 +134,40 @@ body {
   // -webkit-perspective-origin-y: 0px;
 }
 
-.viewport {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
+html {
+  .viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
 
-
-  @include transition-transform(0.25s);
-  @include translate(0, 0);
-
-
-  &.original.offscreen {
-    @include translate(0, -10%);
+    &.preview {
+      &.offscreen {
+        display: none;
+      }
+    }
   }
+}
 
-  &.preview {
-    @include translate(0, 50px);
-  }
+html.cssanimations.csstransforms {
+  .viewport {
+    @include transition-transform(0.25s);
+    @include translate(0, 0);
 
-  &.preview.offscreen {
-    @include translate(0, 100%);
+    &.original {
+      &.offscreen {
+        @include translate(0, -10%);
+      }
+    }
+
+    &.preview {
+      @include translate(0, 50px);
+      &.offscreen {
+        display: block;
+        @include translate(0, 100%);  
+      }
+    }
   }
 }

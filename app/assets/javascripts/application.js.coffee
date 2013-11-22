@@ -20,6 +20,8 @@
 #= require spine
 #= require tilt-jade/runtime
 #= require markdown
+#= require modernizr.custom.18921.js
+
 
 #= require_tree ./templates
 #= require_tree .
