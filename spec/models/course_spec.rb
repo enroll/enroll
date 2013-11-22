@@ -418,6 +418,7 @@ describe Course do
       course.instructor.stripe_recipient_id = "asdf1234"
       course.name = "Some course name"
       course.starts_at = course.ends_at = 1.day.ago
+      course.save
     end
 
     it "creates a Stripe payout" do
@@ -431,16 +432,30 @@ describe Course do
       course.pay_instructor!
     end
 
-    it "returns true if payout initiated successfully" do
-      Payout.stubs(:create).returns(stub 'payout', :request => true)
+    context "payout initiates successfully" do
+      before { Payout.stubs(:create).returns(stub 'payout', :request => true) }
 
-      course.pay_instructor!.should be_true
+      it "returns true" do
+        course.pay_instructor!.should be_true
+      end
+
+      it "sets instructor_paid_at" do
+        course.pay_instructor!
+        course.reload.instructor_paid_at.should_not be_nil
+      end
     end
 
-    it "returns false if payout did NOT initiate successfully" do
-      Payout.stubs(:create).returns(stub 'payout', :request => false)
+    context "payout did NOT initiate successfully" do
+      before { Payout.stubs(:create).returns(stub 'payout', :request => false) }
 
-      course.pay_instructor!.should be_false
+      it "returns false" do
+        course.pay_instructor!.should be_false
+      end
+
+      it "does not set instructor_paid_at" do
+        course.pay_instructor!
+        course.reload.instructor_paid_at.should be_nil
+      end
     end
 
     it "returns false if course has not happened yet" do
@@ -453,6 +468,13 @@ describe Course do
     it "returns false if course is free" do
       Payout.stubs(:create).returns(stub 'payout', :request => true)
       course.price_per_seat_in_cents = nil
+
+      course.pay_instructor!.should be_false
+    end
+
+    it "returns false if course has already been paid" do
+      Payout.stubs(:create).returns(stub 'payout', :request => true)
+      course.instructor_paid_at = 1.day.ago
 
       course.pay_instructor!.should be_false
     end

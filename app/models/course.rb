@@ -132,15 +132,22 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def pay_instructor!
-    return false if future?
-    return false if free?
+  def instructor_paid?
+    instructor_paid_at.present?
+  end
 
-    Payout.create({ 
+  def pay_instructor!
+    return false if future? || free? || instructor_paid?
+
+    payout_result = Payout.create({ 
       amount_in_cents: instructor_payout_amount(self), 
       description: self.name,
       stripe_recipient_id: self.instructor.stripe_recipient_id
     }).request
+
+    update_attribute(:instructor_paid_at, Time.now) if payout_result
+
+    payout_result
   end
 
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131024192538) do
+ActiveRecord::Schema.define(version: 20131122222444) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20131024192538) do
     t.datetime "campaign_ending_soon_reminded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "instructor_paid_at"
   end
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
