@@ -1,6 +1,6 @@
 # Paying Instructors
 
-A payout needs to be initiated with Stripe from our enroll account to the Instructor's bank account. 
+A payout needs to be initiated with Stripe from our enroll account to the Instructor's bank account.
 
 For now, we'll initiate each transfer manually via the console since it involves moneys, and potentially large amounts of it.
 
@@ -10,9 +10,28 @@ Find the course that needs to be paid out.
 
 ```ruby
 course = Course.find(some_id)
+=> #<Course>
+course.title # check the title of the course
+=> "Ruby on Rails for Beginners"
+course.pay_instructor!
+=> true
 ```
 
-Find out all of the details about the course. Note that all amounts are in cents.
+Now I'd go check out the [Strie interface](https://manage.stripe.com) to make sure  there's a transfer there. 
+
+The transfer should be completed in the next 1-2 business days.
+
+---
+
+
+
+
+
+
+
+
+
+
 
 ```ruby
 course.revenue # total amount the course made
@@ -53,8 +72,3 @@ payout.status
 => "requested"
 ```
 
-Ok, now go check out Stripe one more time and make sure there's a transfer there.
-
-The only way (for now) to tie the payout back to the instructor is through the `stripe_recipient_id`.
-
-The transfer should be completed in the next 1-2 business days.
