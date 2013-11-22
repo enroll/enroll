@@ -2,7 +2,7 @@
   = render 'dashboard/dashboard_menu', course: @course
 
   .container.new-course
-    %ul.course-progress.horizontal
+    %ul.course-progress.horizontal{:class => "step-#{current_step[:id]}"}
       = render 'courses/steps'
     = simple_form_for([:dashboard, @course], :html => {:class => "course-form form disable-submit-on-return step-#{current_step[:id]}"}) do |form|
       = render "courses/form_header", :form => form
