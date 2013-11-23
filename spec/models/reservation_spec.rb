@@ -81,7 +81,7 @@ describe Reservation do
         end
 
         it "enqueues a campaign success notification job" do
-          Resque.expects(:enqueue) # the other enque call
+          Resque.stubs(:enqueue).with(ChargeCreditCards, course.id) # the other enqueue call
           Resque.expects(:enqueue).with(CampaignSuccessNotification, course.id)
           reservation.check_campaign_success
         end
@@ -90,7 +90,7 @@ describe Reservation do
           it "does not charge credit cards" do
             course.update_attribute(:price_per_seat_in_cents, 0)
             
-            Resque.expects(:enqueue) # the other enque call
+            Resque.stubs(:enqueue).with(CampaignSuccessNotification, course.id) # the other enqueue call
             Resque.expects(:enqueue).with(ChargeCreditCards, course.id).never
             reservation.check_campaign_success
           end
@@ -98,7 +98,7 @@ describe Reservation do
 
         context "when workshop is not free" do
           it "enqueues a charge credit cards job" do
-            Resque.expects(:enqueue) # the other enque call
+            Resque.stubs(:enqueue).with(CampaignSuccessNotification, course.id) # the other enqueue call
             Resque.expects(:enqueue).with(ChargeCreditCards, course.id)
             reservation.check_campaign_success
           end
