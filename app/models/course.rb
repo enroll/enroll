@@ -148,6 +148,10 @@ class Course < ActiveRecord::Base
     price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
   end
 
+  def paid?
+    !free?
+  end
+
   def has_students?
     reservations.count > 0
   end
