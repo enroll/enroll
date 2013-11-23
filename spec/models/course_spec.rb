@@ -328,6 +328,13 @@ describe Course do
       end
     end
 
+    it "charges the amount on the reservation even if it differs from course" do
+      @reservation.charge_amount = 2000
+      Stripe::Charge.expects(:create).with(has_entries(amount: 2000,
+                                                       currency: 'usd'))
+      course.charge_credit_cards!
+    end
+
     it "does not charge when the course is free" do
       course.update_attribute(:price_per_seat_in_cents, 0)
       Stripe::Charge.expects(:create).never

@@ -84,7 +84,7 @@ class Course < ActiveRecord::Base
 
       begin
         charge = Stripe::Charge.create(
-          amount: self.price_per_seat_in_cents,
+          amount: reservation.charge_amount,
           currency: 'usd',
           customer: reservation.student.stripe_customer_id
         )

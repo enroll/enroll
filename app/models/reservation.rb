@@ -7,11 +7,17 @@ class Reservation < ActiveRecord::Base
   validates :course,  presence: true
   validates :student, presence: true
 
+  before_create :set_charge_amount_from_course
+
   after_create :send_enrollment_notification
   after_create :check_campaign_success
 
   def charged?
     charge_succeeded_at.present?
+  end
+
+  def set_charge_amount_from_course
+    self.charge_amount = course.price_per_seat_in_cents
   end
 
   def send_enrollment_notification

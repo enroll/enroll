@@ -42,6 +42,25 @@ describe Reservation do
     end
   end
 
+  context "#charge_amount" do
+    context "paid course" do
+      before { course.price_per_seat_in_cents = 5000 }
+
+      it "saves the course's price as charge amount when reservation created" do
+        reservation.charge_amount.should be_nil
+        reservation.save
+        reservation.charge_amount.should == 5000
+      end
+
+      it "does not change the charge amount when course price changes" do
+        reservation.save
+        course.price_per_seat_in_cents = 10000
+        reservation.save
+        reservation.reload.charge_amount.should == 5000
+      end
+    end
+  end
+
   context "#send_enrollment_notification" do
     before { reservation.save }
 
