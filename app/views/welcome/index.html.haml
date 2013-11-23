@@ -9,18 +9,18 @@
 
 .container
   .row
-    .col-md-4
+    .col-sm-4
       %h4 All Courses
       %ul
         - Course.all.each do |course|
           %li= link_to course.name, course_path(course)
-    .col-md-4
+    .col-sm-4
       %h4 My Courses
       - if user_signed_in?
         %ul
           - current_user.courses_as_instructor.all.each do |course|
             %li= link_to course.name, course_path(course)
-    .col-md-4
+    .col-sm-4
       %h4 My Reservations
       - if user_signed_in?
         %ul

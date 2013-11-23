@@ -16,7 +16,7 @@ gem 'pg'
 gem 'resque',         '1.24.1'
 gem 'sass-rails',     '~> 4.0.0'
 gem 'sentry-raven',   '0.6.0'
-gem 'simple_form',    github: 'plataformatec/simple_form'
+gem 'simple_form',    '~> 3.0.0'
 gem 'stringex'
 gem 'stripe'
 gem 'turbolinks'
@@ -27,7 +27,7 @@ gem 'uglifier',       '>= 1.3.0'
 # Production gems that need further explanation:
 
 # Try out bootstrap 3
-gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', require: 'bootstrap-rails'
+gem 'anjlab-bootstrap-rails', '>= 3.0.0.3', require: 'bootstrap-rails'
 gem 'bootstrap-glyphicons'
 
 group :development, :test do
