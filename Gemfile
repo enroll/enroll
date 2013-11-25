@@ -18,6 +18,7 @@ gem 'sass-rails',     '~> 4.0.0'
 gem 'sentry-raven',   '0.6.0'
 gem 'simple_form',    '~> 3.0.0'
 gem 'stringex'
+gem 'stripe'
 gem 'turbolinks'
 gem 'unicorn'
 gem 'uglifier',       '>= 1.3.0'
@@ -37,6 +38,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'email_spec'
   gem 'timecop'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
