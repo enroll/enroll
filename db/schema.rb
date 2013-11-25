@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122222444) do
+ActiveRecord::Schema.define(version: 20131123022258) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20131122222444) do
     t.string   "stripe_token"
     t.datetime "charge_succeeded_at"
     t.string   "charge_failure_message"
+    t.integer  "charge_amount"
   end
 
   add_index "reservations", ["course_id"], name: "index_reservations_on_course_id", using: :btree

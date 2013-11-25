@@ -61,6 +61,47 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def charge_credit_cards!
+    return if self.free?
+    
+    self.reservations.each do |reservation|
+      next if reservation.charged?
+
+      if reservation.stripe_token.nil? && reservation.student.stripe_customer_id.nil?
+        Raven.capture_message(
+          "Reservation id=#{reservation.id} has no way to be charged.",
+          level: "warn",
+          logger: "root"
+        )
+        next
+      end
+
+      unless reservation.student.stripe_customer_id
+        customer = Stripe::Customer.create(
+          card: reservation.stripe_token,
+          description: reservation.student.email
+        )
+        reservation.student.update_attribute(:stripe_customer_id, customer.id)
+      end
+
+      begin
+        charge = Stripe::Charge.create(
+          amount: reservation.charge_amount,
+          currency: 'usd',
+          customer: reservation.student.stripe_customer_id
+        )
+
+        reservation.update_attributes(
+          charge_succeeded_at: Time.now,
+          stripe_token: nil
+        )
+      rescue Stripe::CardError => e
+        reservation.update_attribute(:charge_failure_message, e.message)
+        Raven.capture_exception(e)
+      end
+    end
+  end
+
   def send_course_created_notification
     Resque.enqueue(CourseCreatedNotification, self.id)
   end
@@ -107,6 +148,10 @@ class Course < ActiveRecord::Base
 
   def free?
     price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
+  end
+
+  def paid?
+    !free?
   end
 
   def has_students?
