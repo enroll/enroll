@@ -25,6 +25,8 @@ class Course < ActiveRecord::Base
   after_save :set_defaults
   after_create :send_course_created_notification
 
+  delegate :instructor_payout_amount, to: CashRegister
+
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
 
@@ -173,6 +175,24 @@ class Course < ActiveRecord::Base
     if location_attributes.any?
       self.location = Location.where(location_attributes).first_or_create
     end
+  end
+
+  def instructor_paid?
+    instructor_paid_at.present?
+  end
+
+  def pay_instructor!
+    return false if future? || free? || instructor_paid?
+
+    payout_result = Payout.create({ 
+      amount_in_cents: instructor_payout_amount(self), 
+      description: self.name,
+      stripe_recipient_id: self.instructor.stripe_recipient_id
+    }).request
+
+    update_attribute(:instructor_paid_at, Time.now) if payout_result
+
+    payout_result
   end
 
   private

@@ -555,4 +555,71 @@ describe Course do
       course.send_course_created_notification!
     end
   end
+
+  describe "#pay_instructor!" do
+    before do
+      course.instructor.stripe_recipient_id = "asdf1234"
+      course.name = "Some course name"
+      course.starts_at = course.ends_at = 1.day.ago
+      course.save
+    end
+
+    it "creates a Stripe payout" do
+      CashRegister.expects(:instructor_payout_amount).with(course).returns(50123)
+      Payout.expects(:create).with({
+        amount_in_cents: 50123,
+        description: "Some course name",
+        stripe_recipient_id: "asdf1234"
+      }).returns(stub 'payout', :request => true)
+
+      course.pay_instructor!
+    end
+
+    context "payout initiates successfully" do
+      before { Payout.stubs(:create).returns(stub 'payout', :request => true) }
+
+      it "returns true" do
+        course.pay_instructor!.should be_true
+      end
+
+      it "sets instructor_paid_at" do
+        course.pay_instructor!
+        course.reload.instructor_paid_at.should_not be_nil
+      end
+    end
+
+    context "payout did NOT initiate successfully" do
+      before { Payout.stubs(:create).returns(stub 'payout', :request => false) }
+
+      it "returns false" do
+        course.pay_instructor!.should be_false
+      end
+
+      it "does not set instructor_paid_at" do
+        course.pay_instructor!
+        course.reload.instructor_paid_at.should be_nil
+      end
+    end
+
+    it "returns false if course has not happened yet" do
+      Payout.stubs(:create).returns(stub 'payout', :request => true)
+      course.ends_at = course.starts_at = 1.day.from_now
+
+      course.pay_instructor!.should be_false
+    end
+
+    it "returns false if course is free" do
+      Payout.stubs(:create).returns(stub 'payout', :request => true)
+      course.price_per_seat_in_cents = nil
+
+      course.pay_instructor!.should be_false
+    end
+
+    it "returns false if course has already been paid" do
+      Payout.stubs(:create).returns(stub 'payout', :request => true)
+      course.instructor_paid_at = 1.day.ago
+
+      course.pay_instructor!.should be_false
+    end
+  end
 end

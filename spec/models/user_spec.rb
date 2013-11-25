@@ -93,4 +93,40 @@ describe User do
       user.should_not be_student
     end
   end
+
+  describe "#save_payment_settings!" do
+    before { user.email = "someemail@example.com" }
+
+    it 'create a Stripe recipient' do
+      Stripe::Recipient.expects(:create).with({
+        name: "John Doe",
+        type: "individual",
+        email: "someemail@example.com",
+        bank_account: "abc123"
+      })
+
+      user.save_payment_settings!({
+        name: "John Doe",
+        stripe_bank_account_token: "abc123"
+      })
+    end
+
+    it 'sets the stripe_recipient_id for the user' do
+      Stripe::Recipient.stubs(:create).returns(stub(id: "some-recipient-id"))
+      user.save_payment_settings!({
+        name: "John Doe",
+        stripe_bank_account_token: "abc123"
+      })
+      user.stripe_recipient_id.should == "some-recipient-id"
+    end
+
+    it 'sets the name for the user' do 
+      Stripe::Recipient.stubs(:create).returns(stub(id: "some-recipient-id"))
+      user.save_payment_settings!({
+        name: "John Doe",
+        email: "someemail@example.com"
+      })
+      user.name.should == "John Doe"
+    end
+  end
 end
