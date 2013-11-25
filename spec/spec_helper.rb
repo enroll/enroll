@@ -5,7 +5,6 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'rspec/instafail'
 require 'vcr'
-require 'fakeweb'
 require 'email_spec'
 require 'vcr'
 
@@ -23,6 +22,7 @@ VCR.configure do |c|
   c.default_cassette_options = { :record => :once }
   # c.allow_http_connections_when_no_cassette = true
   c.configure_rspec_metadata!
+  c.debug_logger = File.open('log/vcr.log', 'w')
 end
 
 RSpec.configure do |config|
@@ -53,13 +53,4 @@ RSpec.configure do |config|
   config.before(:suite) do
     Resque.inline = true
   end
-end
-
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/vcr_cassettes'
-  c.hook_into :fakeweb
-  c.default_cassette_options = { :record => :once }
-  c.allow_http_connections_when_no_cassette = true
-  c.configure_rspec_metadata!
-  c.debug_logger = File.open('log/vcr.log', 'w')
 end

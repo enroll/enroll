@@ -38,7 +38,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'vcr'
-  gem 'fakeweb'
   gem 'dotenv-rails'
   gem 'email_spec'
   gem 'timecop'
