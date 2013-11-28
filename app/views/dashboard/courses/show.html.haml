@@ -1,26 +1,15 @@
 .container.dashboard
   = render 'dashboard/dashboard_menu', course: @course
 
-  %h2 Statistics
-
-  .dashboard-stats
-    .stat
-      %strong= @course.reservations.count
-      %small
-        %em Enrolled
-        %br/
-        students
-    .stat
-      %strong= reservations_needed(@course)
-      %small
-        %em Needed
-        %br/
-        students
-    .stat
-      %strong= days_until_start(@course)
-      %small
-        %em Days
-        %br/
-        left
+  .row
+    .col-sm-8
+      = render 'stats'
+    .col-sm-4
+      %h2 Share
+      .share-buttons
+        = share_button(:facebook, course_short_url(@course), '<i class="icon-social-s-facebook"></i>'.html_safe)
+        = share_button(:twitter, course_short_url(@course), '<i class="icon-social-twitter"></i>'.html_safe)
+        %a.social{href: share_dashboard_course_path(@course)}
+          %i.icon-link
 
   %h2 Events

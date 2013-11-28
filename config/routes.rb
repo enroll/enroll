@@ -13,7 +13,11 @@ Enroll::Application.routes.draw do
   get '/courses/:id/edit/:step', to: 'courses#edit', as: :edit_course_step
 
   namespace :dashboard do
-    resources :courses
+    resources :courses do
+      member do
+        get :share
+      end
+    end
     resources :landing_pages
   end
 

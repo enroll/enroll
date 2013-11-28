@@ -1,0 +1,6 @@
+%div
+  = share_button(:facebook, course_short_url(@course), "#{icon('social-s-facebook')} Share on Facebook".html_safe)
+  = share_button(:twitter, course_short_url(@course), "#{icon('social-twitter')} Share on Twitter".html_safe, "Just enrolled in #{@course.name}. You should be there!")
+.social-url
+  %small Or just copy the link:
+  = text_field_tag('course-url', course_short_url(@course), disabled: true)

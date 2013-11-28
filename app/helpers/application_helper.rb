@@ -6,4 +6,8 @@ module ApplicationHelper
     options.delete :size
     image_tag url, options
   end
+
+  def icon(icon)
+    ('<i class="icon-%s"></i>' % icon).html_safe
+  end
 end

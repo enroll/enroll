@@ -1,6 +1,6 @@
 class Dashboard::CoursesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_course_as_instructor!, only: [:show, :edit, :update]
+  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share]
 
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
