@@ -1,5 +1,6 @@
 @import 'layout_design';
 @import '_colors';
+@import 'twitter/bootstrap/mixins';
 
 $sidebar-width: 200px;
 
@@ -60,6 +61,34 @@ ul.dashboard-menu {
       background: #fff;
       &, a {
         color: $text1;
+      }
+    }
+  }
+}
+
+// Stats
+
+.dashboard-stats {
+  @include clearfix();
+  .stat {
+    float: left;
+    margin-right: 30px;
+    strong, small {
+      display: inline-block;
+    }
+    strong {
+      color: $primary1-hilight;
+      font-size: 42px;
+      font-weight: 400;
+      margin-top: 5px;
+    }
+    small {
+      color: $gray-medium;
+      text-transform: uppercase;
+      margin-left: 10px;
+      em {
+        font-style: normal;
+        color: $gray-medium-dark;
       }
     }
   }

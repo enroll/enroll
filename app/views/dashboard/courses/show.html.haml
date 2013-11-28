@@ -1,7 +1,26 @@
 .container.dashboard
   = render 'dashboard/dashboard_menu', course: @course
 
-  == Welcome to #{@course.name}!
+  %h2 Statistics
 
-  .secondary-sidebar.pull-right
-    = render 'courses/manage_sidebar', course: @course
+  .dashboard-stats
+    .stat
+      %strong= @course.reservations.count
+      %small
+        %em Enrolled
+        %br/
+        students
+    .stat
+      %strong= reservations_needed(@course)
+      %small
+        %em Needed
+        %br/
+        students
+    .stat
+      %strong= days_until_start(@course)
+      %small
+        %em Days
+        %br/
+        left
+
+  %h2 Events
