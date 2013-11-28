@@ -143,7 +143,7 @@ class Course < ActiveRecord::Base
   def as_json(options)
     {
       name: name,
-      location: location,
+      location: location || {},
       date: starts_at.strftime("%B %e, %Y"),
       description: description
     }
