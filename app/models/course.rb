@@ -194,6 +194,7 @@ class Course < ActiveRecord::Base
       date: starts_at.strftime("%B %e, %Y"),
       description: description
     }
+  end
 
   def instructor_paid?
     instructor_paid_at.present?
