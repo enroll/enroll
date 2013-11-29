@@ -124,6 +124,20 @@ describe CoursesController do
       end
     end
 
+    context "last step (landing page)" do
+      it "redirects to the course page" do
+        put :update, id: saved_course.to_param, step: 'page', course: {description: '# foo'}
+        response.should redirect_to course_path(saved_course.to_param)
+      end
+
+      it "creates an event about course creation" do
+        expect {
+          put :update, id: saved_course.to_param, step: 'page', course: {description: '# foo'}
+        }.to change { Event.count }.by(1)
+        Event.last.event_type.should == 'course_created'
+      end
+    end
+
   end
 
   context "GET edit" do

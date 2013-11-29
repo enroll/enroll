@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :find_course_as_instructor!, only: [:edit, :update]
   before_filter :find_course_by_url!, only: [:show]
-  
+
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
 
@@ -45,10 +45,16 @@ class CoursesController < ApplicationController
   end
 
   def update
-    if @course.update_attributes(course_params)
+    saved = @course.update_attributes(course_params)
+    return render :edit unless saved
+
+    if next_step
       redirect_to_next_step
     else
-      render :edit
+      event = Event.new
+      event.event_type = :course_created
+      event.save!
+      redirect_to course_path(@course)
     end
   end
 
