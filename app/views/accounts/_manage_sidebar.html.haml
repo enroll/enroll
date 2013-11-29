@@ -3,10 +3,10 @@
     .panel-heading
       Account Settings
     .list-group
-      %a.list-group-item{href: "#"}
+      %a.list-group-item{href: edit_payment_settings_path, class: controller.controller_name == "payment_settings" ? "active" : ""}
         %span.glyphicon.glyphicon-usd
         %span.badge
         Payment Settings
-      %a.list-group-item{href: edit_account_path, class: current_page?(edit_account_path) ? "active" : ""}
+      %a.list-group-item{href: edit_account_path, class: controller.controller_name == "accounts" ? "active" : ""}
         %span.glyphicon.glyphicon-user
         Personal Details

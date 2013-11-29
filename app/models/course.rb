@@ -27,6 +27,8 @@ class Course < ActiveRecord::Base
   after_save :set_defaults
   after_create :send_course_created_notification
 
+  delegate :instructor_payout_amount, to: CashRegister
+
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
 
@@ -57,6 +59,47 @@ class Course < ActiveRecord::Base
       if course.students.count < course.min_seats
         course.update_attribute :campaign_ending_soon_reminded_at, Time.now
         Resque.enqueue CampaignEndingSoonNotification, course.id
+      end
+    end
+  end
+
+  def charge_credit_cards!
+    return if self.free?
+
+    self.reservations.each do |reservation|
+      next if reservation.charged?
+
+      if reservation.stripe_token.nil? && reservation.student.stripe_customer_id.nil?
+        Raven.capture_message(
+          "Reservation id=#{reservation.id} has no way to be charged.",
+          level: "warn",
+          logger: "root"
+        )
+        next
+      end
+
+      unless reservation.student.stripe_customer_id
+        customer = Stripe::Customer.create(
+          card: reservation.stripe_token,
+          description: reservation.student.email
+        )
+        reservation.student.update_attribute(:stripe_customer_id, customer.id)
+      end
+
+      begin
+        charge = Stripe::Charge.create(
+          amount: reservation.charge_amount,
+          currency: 'usd',
+          customer: reservation.student.stripe_customer_id
+        )
+
+        reservation.update_attributes(
+          charge_succeeded_at: Time.now,
+          stripe_token: nil
+        )
+      rescue Stripe::CardError => e
+        reservation.update_attribute(:charge_failure_message, e.message)
+        Raven.capture_exception(e)
       end
     end
   end
@@ -109,6 +152,10 @@ class Course < ActiveRecord::Base
     price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
   end
 
+  def paid?
+    !free?
+  end
+
   def has_students?
     reservations.count > 0
   end
@@ -147,6 +194,23 @@ class Course < ActiveRecord::Base
       date: starts_at.strftime("%B %e, %Y"),
       description: description
     }
+
+  def instructor_paid?
+    instructor_paid_at.present?
+  end
+
+  def pay_instructor!
+    return false if future? || free? || instructor_paid?
+
+    payout_result = Payout.create({
+      amount_in_cents: instructor_payout_amount(self),
+      description: self.name,
+      stripe_recipient_id: self.instructor.stripe_recipient_id
+    }).request
+
+    update_attribute(:instructor_paid_at, Time.now) if payout_result
+
+    payout_result
   end
 
   private

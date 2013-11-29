@@ -21,6 +21,9 @@ gem 'sentry-raven',   '0.6.0'
 gem 'simple_form',    '~> 3.0.0'
 gem 'spine-rails'
 gem 'stringex'
+gem 'state_machine',  '1.2.0'
+gem 'stringex'
+gem 'stripe',         '1.8.3'
 gem 'tilt-jade'
 gem 'unicorn'
 gem 'uglifier',       '>= 1.3.0'
@@ -38,8 +41,12 @@ group :development, :test do
   gem 'rspec-instafail'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'vcr'
+  gem 'dotenv-rails'
   gem 'email_spec'
   gem 'timecop'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

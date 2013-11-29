@@ -199,6 +199,149 @@ describe Course do
     end
   end
 
+  describe "#charge_credit_cards!", :vcr do
+    before do
+      course.price_per_seat_in_cents = 1000
+      course.save
+
+      @user = create(:student, email: 'stripe-student@example.com')
+
+      @stripe_token = Stripe::Token.create(
+          :card => {
+          :number => "4242424242424242",
+          :exp_month => 10,
+          :exp_year => 2014,
+          :cvc => "314"
+        },
+      )
+      @reservation = course.reservations.create(
+        student: @user, 
+        stripe_token: @stripe_token.id
+      )
+    end
+
+    context "when user doesn't have a stripe customer" do
+      before do
+        Stripe::Charge.stubs(:create)
+      end
+
+      it "creates a customer" do
+        Stripe::Customer.expects(:create)
+                        .with(card: @stripe_token.id, 
+                              description: 'stripe-student@example.com')
+                        .returns(stub(id: 1))
+        course.charge_credit_cards!
+      end
+
+      it "associates the customer with the user" do
+        Stripe::Customer.stubs(:create).returns(stub(id: 1))
+        course.charge_credit_cards!
+        @user.stripe_customer_id.should == 1
+      end
+    end
+
+    context "when user has a stripe customer" do
+      before do
+        customer = Stripe::Customer.create(card: @stripe_token.id)
+        @user.update_attribute(:stripe_customer_id, customer.id)
+      end 
+
+      it "does not create a customer" do
+        Stripe::Customer.expects(:create).never
+      end
+    end
+
+    context "when the reservation has not been charged" do
+      before { @reservation.update_attribute(:charge_succeeded_at, nil) }
+
+      it "charges the customer" do
+        Stripe::Charge.expects(:create).with(has_entries(amount: 1000,
+                                                         currency: 'usd'))
+        course.charge_credit_cards!
+      end
+
+      context "when charge succeeds" do
+        it "updates the reservation with the charged date" do
+          course.charge_credit_cards!
+          @reservation.charge_succeeded_at.should_not be_nil
+        end
+
+        it "clears the token" do
+          course.charge_credit_cards!
+          @reservation.stripe_token.should be_nil
+        end
+      end
+
+      context "when charge fails" do
+        let(:exception) { Stripe::CardError.new("Card declined", "param", "code") }
+
+        it "updates the reservation with the charge error" do
+          Stripe::Charge.expects(:create).raises(exception)
+
+          course.charge_credit_cards!
+          @reservation.charge_failure_message.should == "Card declined"
+        end
+
+        it "charges other reservations" do
+          @user.update_attribute(:stripe_customer_id, 1)
+          user_two = create(:student, stripe_customer_id: 2)
+          course.reservations.create(student: user_two)
+
+          Stripe::Charge.expects(:create)
+                        .with(has_entry(customer: 1))
+                        .raises(exception)
+          Stripe::Charge.expects(:create)
+                        .with(has_entry(customer: 2))
+
+          course.charge_credit_cards!
+        end
+      end
+
+      context "when there is no token and no stripe customer" do
+        before do
+          @reservation.update_attributes(
+            charge_succeeded_at: nil,
+            stripe_token: nil
+          )
+          @user.update_attribute(:stripe_customer_id, nil)
+        end
+
+        it "logs an error message" do
+          Raven.expects(:capture_message)
+          course.charge_credit_cards!
+        end
+
+        it "doesn't create a customer" do
+          Stripe::Customer.expects(:create).never
+          course.charge_credit_cards!
+        end
+      end
+    end
+
+    context "when the reservation has been charged" do
+      it "does not charge the customer" do
+        @reservation.update_attribute(:charge_succeeded_at, Time.now)
+
+        Stripe::Charge.expects(:create).never
+
+        course.charge_credit_cards!
+      end
+    end
+
+    it "charges the amount on the reservation even if it differs from course" do
+      @reservation.charge_amount = 2000
+      Stripe::Charge.expects(:create).with(has_entries(amount: 2000,
+                                                       currency: 'usd'))
+      course.charge_credit_cards!
+    end
+
+    it "does not charge when the course is free" do
+      course.update_attribute(:price_per_seat_in_cents, 0)
+      Stripe::Charge.expects(:create).never
+      Stripe::Customer.expects(:create).never
+    end
+  end
+
   describe "#start_date" do
     it "returns a date value" do
       course.starts_at = Time.parse("January 1 2014 12:01 PM EST")
@@ -410,6 +553,73 @@ describe Course do
         with(course).returns(mock 'mail', :deliver => true)
 
       course.send_course_created_notification!
+    end
+  end
+
+  describe "#pay_instructor!" do
+    before do
+      course.instructor.stripe_recipient_id = "asdf1234"
+      course.name = "Some course name"
+      course.starts_at = course.ends_at = 1.day.ago
+      course.save
+    end
+
+    it "creates a Stripe payout" do
+      CashRegister.expects(:instructor_payout_amount).with(course).returns(50123)
+      Payout.expects(:create).with({
+        amount_in_cents: 50123,
+        description: "Some course name",
+        stripe_recipient_id: "asdf1234"
+      }).returns(stub 'payout', :request => true)
+
+      course.pay_instructor!
+    end
+
+    context "payout initiates successfully" do
+      before { Payout.stubs(:create).returns(stub 'payout', :request => true) }
+
+      it "returns true" do
+        course.pay_instructor!.should be_true
+      end
+
+      it "sets instructor_paid_at" do
+        course.pay_instructor!
+        course.reload.instructor_paid_at.should_not be_nil
+      end
+    end
+
+    context "payout did NOT initiate successfully" do
+      before { Payout.stubs(:create).returns(stub 'payout', :request => false) }
+
+      it "returns false" do
+        course.pay_instructor!.should be_false
+      end
+
+      it "does not set instructor_paid_at" do
+        course.pay_instructor!
+        course.reload.instructor_paid_at.should be_nil
+      end
+    end
+
+    it "returns false if course has not happened yet" do
+      Payout.stubs(:create).returns(stub 'payout', :request => true)
+      course.ends_at = course.starts_at = 1.day.from_now
+
+      course.pay_instructor!.should be_false
+    end
+
+    it "returns false if course is free" do
+      Payout.stubs(:create).returns(stub 'payout', :request => true)
+      course.price_per_seat_in_cents = nil
+
+      course.pay_instructor!.should be_false
+    end
+
+    it "returns false if course has already been paid" do
+      Payout.stubs(:create).returns(stub 'payout', :request => true)
+      course.instructor_paid_at = 1.day.ago
+
+      course.pay_instructor!.should be_false
     end
   end
 end

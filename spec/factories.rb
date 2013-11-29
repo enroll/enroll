@@ -28,6 +28,20 @@ FactoryGirl.define do
     name "The Corner Pub"
   end
 
+  factory :payout do
+    amount_in_cents 15000 # $150 USD
+    description 'How to raise seed funding'
+    stripe_recipient_id 12345
+
+    factory :payout_requested do
+      status "requested"
+    end
+
+    factory :payout_completed do
+      status "paid"
+    end
+  end
+
   factory :user do
     sequence(:email) {|n| "user#{n}@example.com" }
     password "password"

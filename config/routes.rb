@@ -25,6 +25,8 @@ Enroll::Application.routes.draw do
     # resources :courses
   end
 
+  resource :payment_settings, only: [:edit, :update]
+
   get '/go/:url', to: 'courses#show', as: :landing_page
 
   root 'welcome#index'

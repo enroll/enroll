@@ -20,6 +20,36 @@ updateCourseCalculator = ->
   else
     $(".max-seat-revenue").text "$#{$maxRevenue}"
 
+sendPaymentSettingsToStripeAndSubmit = ->
+  $form = $(this)
+  $form.find('.btn-primary').prop('disabled', true)
+
+  Stripe.bankAccount.createToken({
+    country: 'US',
+    routingNumber: $('#user_routing_number').val(),
+    accountNumber: $('#user_account_number').val(),
+  }, stripeResponseHandler)
+
+  return false
+
+stripeResponseHandler = (status, response) ->
+  $form = $('.edit_payment_settings')
+
+  if (response.error)
+    $('.alert').remove()
+
+    $outerDiv = $('<div class="alert alert-dismissable alert-danger">')
+    $outerDiv.text(response.error.message + ".")
+    $outerDiv.prepend($('<strong>Whoops! </strong>'))
+    $outerDiv.hide()
+    $('header.navbar').after($outerDiv)
+    $('.alert').fadeIn()
+
+    $form.find('.btn-primary').prop('disabled', false)
+  else
+    $("#user_stripe_bank_account_token").val(response.id)
+    $form[0].submit()
+
 ready = ->
   $('.datepicker').datepicker(
     format: "yyyy-mm-dd"
@@ -80,5 +110,9 @@ ready = ->
     $('.free-text').remove()
     $('#revenue-calculator').show()
     updateCourseCalculator()
+
+  $('.edit_payment_settings').on 'submit', sendPaymentSettingsToStripeAndSubmit
+
+  Stripe.setPublishableKey('pk_test_vSOC9sUGEcBMh7kdQ5sjcsdM');
 
 $(document).on('ready page:load', ready)

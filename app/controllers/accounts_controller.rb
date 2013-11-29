@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
       flash[:success] = "Account updated successfully."
       redirect_to edit_account_path
     else
-      flash[:error] = "Unable to update your user account. Sorry about that."
+      flash.now[:error] = "Unable to update your user account. Sorry about that."
       render :edit
     end
   end

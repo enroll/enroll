@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016030039) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20131123022258) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -34,6 +31,7 @@ ActiveRecord::Schema.define(version: 20131016030039) do
     t.datetime "campaign_ending_soon_reminded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "instructor_paid_at"
   end
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
@@ -53,12 +51,25 @@ ActiveRecord::Schema.define(version: 20131016030039) do
     t.string   "address_2"
   end
 
+  create_table "payouts", force: true do |t|
+    t.string  "stripe_transfer_id"
+    t.string  "stripe_recipient_id"
+    t.string  "status"
+    t.string  "description"
+    t.integer "amount_in_cents"
+  end
+
+  add_index "payouts", ["status"], name: "index_payouts_on_status", using: :btree
+
   create_table "reservations", force: true do |t|
     t.integer  "course_id"
     t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "stripe_token"
+    t.datetime "charge_succeeded_at"
+    t.string   "charge_failure_message"
+    t.integer  "charge_amount"
   end
 
   add_index "reservations", ["course_id"], name: "index_reservations_on_course_id", using: :btree
@@ -77,6 +88,9 @@ ActiveRecord::Schema.define(version: 20131016030039) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_customer_id"
+    t.string   "name"
+    t.string   "stripe_recipient_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
