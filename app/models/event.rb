@@ -7,11 +7,13 @@ class Event < ActiveRecord::Base
 
   validates :event_type, :presence => true
 
+  before_create :store_date
+
   def to_s
     if event_type == COURSE_CREATED
       "Course created"
     elsif event_type == PAGE_VISITED
-      "Page visited"
+      "#{self.count} students visited landing page"
     else
       "???"
     end
@@ -23,5 +25,11 @@ class Event < ActiveRecord::Base
     event.course = options[:course]
     event.user = options[:user]
     event.save!
+  end
+
+  protected
+
+  def store_date
+    self.date = Date.today
   end
 end

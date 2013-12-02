@@ -8,8 +8,11 @@ class Dashboard::CoursesController < ApplicationController
   include GroupingHelper
 
   def show
-    events = @course.events.order('created_at DESC')
-    @events = group_list_by_date(events, :created_at)
+    events = Event
+      .select('date, event_type, count(1) as count, max(created_at) created_at')
+      .where('course_id = ?', @course.id)
+      .group('date, event_type')
+    @events = events.to_a.group_by(&:date)
   end
 
   def edit
