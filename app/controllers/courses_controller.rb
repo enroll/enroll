@@ -14,6 +14,7 @@ class CoursesController < ApplicationController
   def show
     add_body_class('landing-page')
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+    Event.create_event(Event::PAGE_VISITED, course: @course)
   end
 
   def new
@@ -51,10 +52,7 @@ class CoursesController < ApplicationController
     if next_step
       redirect_to_next_step
     else
-      event = Event.new
-      event.event_type = Event::COURSE_CREATED
-      event.course = @course
-      event.save!
+      Event.create_event(Event::COURSE_CREATED, course: @course)
       redirect_to course_path(@course)
     end
   end

@@ -22,6 +22,14 @@ describe CoursesController do
       response.should be_success
       response.should render_template :show
     end
+
+    it "creates an event about page being visited" do
+      get :show, url: course.url
+      Event.last.tap { |e|
+          e.event_type.should == Event::PAGE_VISITED
+          e.course.should == course
+        }
+    end
   end
 
   context "GET index" do
