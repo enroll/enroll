@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
     class_name: 'Course', source: :course, foreign_key: :student_id
   has_many :courses_as_instructor, class_name: 'Course',
     foreign_key: :instructor_id, dependent: :destroy
+  has_many :events
 
   def courses
     (courses_as_instructor + courses_as_student).uniq

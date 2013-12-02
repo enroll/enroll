@@ -52,7 +52,8 @@ class CoursesController < ApplicationController
       redirect_to_next_step
     else
       event = Event.new
-      event.event_type = :course_created
+      event.event_type = Event::COURSE_CREATED
+      event.course = @course
       event.save!
       redirect_to course_path(@course)
     end

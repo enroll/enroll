@@ -5,7 +5,10 @@ class Dashboard::CoursesController < ApplicationController
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
 
+  include GroupingHelper
+
   def show
+    @events = group_list_by_date(@course.events, :created_at)
   end
 
   def edit

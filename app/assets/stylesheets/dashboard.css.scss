@@ -104,3 +104,22 @@ ul.dashboard-menu {
   }
 
 }
+
+// Events
+
+.event-list {
+  h3 {
+    color: $gray-medium;
+    font-size: 13px;
+    float: left;
+    width: 100px;
+    margin-top: 0;
+    font-weight: 400;
+    padding-top: 4px;
+  }
+  ul {
+    padding: 0;
+    margin-left: 100px;
+    list-style: none;
+  }
+}

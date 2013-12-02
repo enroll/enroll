@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
 
   has_many :reservations, dependent: :destroy
   has_many :students, through: :reservations, class_name: 'User'
+  has_many :events
 
   belongs_to :location
   belongs_to :instructor, class_name: 'User'

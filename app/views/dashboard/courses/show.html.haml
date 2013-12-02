@@ -13,3 +13,10 @@
           %i.icon-link
 
   %h2 Events
+
+  .event-list
+    - for date, events in @events
+      %h3= date
+      %ul
+        - for event in events
+          %li= event

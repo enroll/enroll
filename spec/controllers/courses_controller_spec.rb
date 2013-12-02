@@ -134,7 +134,10 @@ describe CoursesController do
         expect {
           put :update, id: saved_course.to_param, step: 'page', course: {description: '# foo'}
         }.to change { Event.count }.by(1)
-        Event.last.event_type.should == 'course_created'
+        Event.last.tap { |e|
+          e.event_type.should == 'course_created'
+          e.course.should == saved_course
+        }
       end
     end
 
