@@ -19,4 +19,4 @@
       %h3= date
       %ul
         - for event in events
-          %li= event
+          %li{:class => event.event_type}= event

@@ -53,6 +53,15 @@ describe ReservationsController do
         post :create, course_id: course.to_param, reservation: reservation_attributes
         flash[:success].should_not be_nil
       end
+
+      it "creates an event about reservation" do
+        post :create, course_id: course.to_param, reservation: reservation_attributes
+        Event.last.tap { |e|
+          e.event_type.should == Event::STUDENT_ENROLLED
+          e.user.should == user
+          e.course.should == course
+        }
+      end
     end
 
     context "with a new user" do

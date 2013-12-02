@@ -1,6 +1,9 @@
 class Event < ActiveRecord::Base
+  include ActionView::Helpers::TextHelper
+
   COURSE_CREATED = 'course_created'
   PAGE_VISITED = 'page_visited'
+  STUDENT_ENROLLED = 'student_enrolled'
 
   belongs_to :course
   belongs_to :user
@@ -13,7 +16,9 @@ class Event < ActiveRecord::Base
     if event_type == COURSE_CREATED
       "Course created"
     elsif event_type == PAGE_VISITED
-      "#{self.count} students visited landing page"
+      "#{self.count} students visited landing page."
+    elsif event_type == STUDENT_ENROLLED
+      "#{pluralize(self.count, 'student')} enrolled!"
     else
       "???"
     end

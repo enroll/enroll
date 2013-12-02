@@ -121,5 +121,10 @@ ul.dashboard-menu {
     padding: 0;
     margin-left: 100px;
     list-style: none;
+
+    li.student_enrolled {
+      color: $primary1;
+      font-weight: 500;
+    }
   }
 }

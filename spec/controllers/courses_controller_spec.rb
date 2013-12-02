@@ -26,9 +26,9 @@ describe CoursesController do
     it "creates an event about page being visited" do
       get :show, url: course.url
       Event.last.tap { |e|
-          e.event_type.should == Event::PAGE_VISITED
-          e.course.should == course
-        }
+        e.event_type.should == Event::PAGE_VISITED
+        e.course.should == course
+      }
     end
   end
 

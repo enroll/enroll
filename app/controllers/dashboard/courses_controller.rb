@@ -9,7 +9,8 @@ class Dashboard::CoursesController < ApplicationController
 
   def show
     events = Event
-      .select('date, event_type, count(1) as count, max(created_at) created_at')
+      .select('date, event_type, count(1) as count, max(created_at) ts')
+      .order('ts desc')
       .where('course_id = ?', @course.id)
       .group('date, event_type')
     @events = events.to_a.group_by(&:date)

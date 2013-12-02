@@ -19,6 +19,7 @@ class ReservationsController < ApplicationController
     @reservation.save
 
     if user_signed_in? && @reservation.valid?
+      Event.create_event(Event::STUDENT_ENROLLED, course: @course, user: current_user)
       flash[:success] = "Reservation created successfully."
       redirect_to course_reservation_path(@course, @reservation)
     else
