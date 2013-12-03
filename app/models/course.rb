@@ -157,6 +157,14 @@ class Course < ActiveRecord::Base
     !free?
   end
 
+  def price_per_seat_in_dollars
+    price_per_seat_in_cents / 100
+  end
+
+  def price_per_seat_in_dollars=(dollars)
+    self.price_per_seat_in_cents = dollars * 100
+  end
+
   def has_students?
     reservations.count > 0
   end

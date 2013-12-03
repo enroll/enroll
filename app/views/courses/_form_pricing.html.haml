@@ -12,9 +12,8 @@
     %table
       = form.input :min_seats, label: '"Worth it" # of Seats', wrapper: 'pricing-block', hint: "If fewer than this number of people sign up, you're not on the hook to teach."
       = form.input :max_seats, label: 'Maximum # of Seats', wrapper: 'pricing-block', hint: "The most people you can fit in the room, or the most you want to teach to."
-      = form.input :price_per_seat_in_cents, label: 'Cost per Seat', wrapper: 'pricing-block'
+      = form.input :price_per_seat_in_dollars, label: 'Cost per Seat', wrapper: 'pricing-block'
   #revenue-calculator.col-sm-6.well
-    %h5.text-center.upcase Course Revenue Calculator
     %table.table.text-right
       %thead
         %tr
@@ -52,3 +51,6 @@
           %td.border-top
             %strong
               %span.max-seat-revenue $2,985
+
+:coffeescript
+  new CoursePricing(el: '.course-pricing')

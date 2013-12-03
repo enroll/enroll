@@ -1,25 +1,3 @@
-updateCourseCalculator = ->
-  $minSeats = $('#course_min_seats').val()
-  $('.min-seats').text($minSeats)
-
-  $maxSeats = $('#course_max_seats').val()
-  $('.max-seats').text($maxSeats)
-
-  $cost = $('#course_price_per_seat_in_cents').val()
-  $('.ticket-price').text("$#{parseInt($cost)/100}")
-
-  $minRevenue = parseInt($minSeats) * (parseInt($cost) / 100)
-  $maxRevenue = parseInt($maxSeats) * (parseInt($cost) / 100)
-
-  if isNaN $minRevenue
-    $(".min-seat-revenue").text "$0"
-  else
-    $(".min-seat-revenue").text "$#{$minRevenue}"
-  if isNaN $maxRevenue
-    $(".max-seat-revenue").text "$0"
-  else
-    $(".max-seat-revenue").text "$#{$maxRevenue}"
-
 sendPaymentSettingsToStripeAndSubmit = ->
   $form = $(this)
   $form.find('.btn-primary').prop('disabled', true)
@@ -92,24 +70,6 @@ ready = ->
 
   $('#log-in').on 'shown.bs.collapse', ->
     $('#log-in .email').focus()
-
-  $('#course_min_seats').on 'propertychange input', updateCourseCalculator
-  $('#course_max_seats').on 'propertychange input', updateCourseCalculator
-  $('#course_price_per_seat_in_cents').on 'propertychange input', updateCourseCalculator
-
-  $('#for-fun').click ->
-    $cost = $('#course_price_per_seat_in_cents')
-    $cost.val(0).hide()
-    $('.free-text').remove()
-    $cost.parent().append("<strong class='free-text'>FREE</strong>")
-    $('#revenue-calculator').hide()
-
-  $('#for-profit').click ->
-    $cost = $('#course_price_per_seat_in_cents')
-    $cost.val(19900).show()
-    $('.free-text').remove()
-    $('#revenue-calculator').show()
-    updateCourseCalculator()
 
   $('.edit_payment_settings').on 'submit', sendPaymentSettingsToStripeAndSubmit
 

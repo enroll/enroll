@@ -5,7 +5,8 @@
 .well {
   @include border-radius(0);
   @include box-shadow(none);
-  border: none;
+  border: 1px solid $gray-medium-light;
+  background: transparent;
 }
 
 .panel-info {
