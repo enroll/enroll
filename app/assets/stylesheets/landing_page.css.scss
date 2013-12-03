@@ -153,20 +153,20 @@ html {
 
 html.cssanimations.csstransforms {
   .viewport {
-    @include transition-transform(0.25s);
-    @include translate(0, 0);
-
+    @include transition(opacity .25s);
     &.original {
+      opacity: 1;
       &.offscreen {
-        @include translate(0, -10%);
+        opacity: 0.1;
       }
     }
 
     &.preview {
+      @include transition-transform(0.25s);
       @include translate(0, 50px);
       &.offscreen {
         display: block;
-        @include translate(0, 100%);  
+        @include translate(0, 100%);
       }
     }
   }

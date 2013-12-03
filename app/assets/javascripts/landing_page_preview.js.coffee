@@ -21,24 +21,10 @@ class window.LandingPagePreview extends Spine.Controller
       @$previewContent = @buildPreviewContent()
       $(document.body).append(@$previewContent)
 
-  didPressKey: (e) ->
-    if @isActive && e.keyCode == 27
-      @cancelAction()
+      # Prepare the exit button
+      @$exitButton = @buildExitButton()
 
-  previewAction: ->
-    @isActive = true
-
-    @$previewContent.removeClass('offscreen')
-    @$viewport.addClass('offscreen')
-
-
-    @updateDescription()
-    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
-    # $(document.body).addClass('landing-page')
-
-    # @buildPreviewContent()
-    # @_buildExitButton()
-
+  # Building elements
 
   buildPreviewContent: ->
     if !@$previewContent
@@ -50,27 +36,37 @@ class window.LandingPagePreview extends Spine.Controller
     @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
     @$previewContent
 
-  _buildExitButton: ->
+  buildExitButton: ->
     if !@$exitButton
       @$exitButton = $(JST['templates/landing_page_exit_button']());
       @$exitButton.click(@cancelAction.bind(@))
       $(document.body).append(@$exitButton)
+    @$exitButton.hide()
+
+  # Previewing
+
+  didPressKey: (e) ->
+    if @isActive && e.keyCode == 27
+      @cancelAction()
+
+  previewAction: ->
+    @isActive = true
+
+    @$previewContent.removeClass('offscreen')
+    @$viewport.addClass('offscreen')
     @$exitButton.show()
 
-  updateDescription: ->
-    # Update description from textarea
+    @updatePreview()
+
+  updatePreview: ->
     @course.description = markdown.toHTML(@$description.val())
+    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
+
+  # Cancelling
 
   cancelAction: ->
     @isActive = false
 
     @$previewContent.addClass('offscreen')
     @$viewport.removeClass('offscreen')
-
-    # $(document.body).removeClass('landing-page')
-    # @$originalContent.show()
-
-    # @$previewContent.hide()
-    # @$exitButton.hide()
-
-    @$previewContainer or= $();
+    @$exitButton.hide()
