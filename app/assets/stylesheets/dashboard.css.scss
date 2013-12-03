@@ -2,7 +2,7 @@
 @import '_colors';
 @import 'twitter/bootstrap/mixins';
 
-$sidebar-width: 200px;
+$sidebar-width: 210px;
 
 body.dashboard {
   @include body-width(100%);
@@ -44,6 +44,8 @@ ul.dashboard-menu {
 
   li {
     border-bottom: 1px solid $primary1-hilight;
+    position: relative;
+
     &, h2, a {
       color: #fff;
       font-size: 12px;
@@ -57,10 +59,23 @@ ul.dashboard-menu {
       font-weight: 500;
     }
 
+    a.sidebar-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border: 1px solid #fff;
+      @include border-radius(3px);
+    }
+
     &.active {
       background: #fff;
       &, a {
         color: $text1;
+      }
+
+      a.sidebar-button {
+        border-color: $text1;
       }
     }
   }

@@ -7,7 +7,8 @@
         = @course.name
     = dashboard_menu_link(dashboard_course_path(course), 'Dashboard', 'line-graph', 'courses', 'show')
     = dashboard_menu_link(edit_dashboard_course_path(course), 'Settings', 'tools', 'courses', 'edit')
-    = dashboard_menu_link(edit_dashboard_landing_page_path(course), 'Landing page', 'browser', 'landing_pages', 'edit')
+    = dashboard_menu_link(edit_dashboard_landing_page_path(course), 'Landing page', 'browser', 'landing_pages', 'edit') do
+      = link_to 'Open <i class="icon-chevron-right"></i>'.html_safe, landing_page_path(course.url), :class => 'sidebar-button', :target => '_blank'
     %li
       %a{:href => '#'}
         %i.icon-download
