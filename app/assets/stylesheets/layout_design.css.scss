@@ -69,7 +69,8 @@ nav.navbar {
     }
     // Logo
     a.navbar-brand {
-      @include retina('images/logo-header', 'png', 73px, 21px);
+      @include retina('images/logo-header', 'png', 70px, 16px);
+      background-position: 0 6px;
       background-repeat: no-repeat;
       display: block;
       width: 100px;
