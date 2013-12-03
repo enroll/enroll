@@ -18,7 +18,7 @@
 
   .course-content.row
     .col-sm-8
-      %p!= @markdown.render(@course.description)
+      %p!= @markdown.render(@course.description || "")
     .course-sidebar.col-sm-4
       - if @course.future?
         = course_reservation_link(@course)

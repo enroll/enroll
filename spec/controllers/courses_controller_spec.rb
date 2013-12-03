@@ -7,6 +7,8 @@ describe CoursesController do
   let(:user) { create(:user) }
 
   context "GET show" do
+    render_views
+    
     before { course.save }
 
     it "renders the show page" do
@@ -29,6 +31,13 @@ describe CoursesController do
         e.event_type.should == Event::PAGE_VISITED
         e.course.should == course
       }
+    end
+
+    it "works ok with description being nil" do
+      course.description = nil
+      course.save!
+      get :show, url: course.url
+      response.should be_success
     end
   end
 
