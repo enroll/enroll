@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
     if event_type == COURSE_CREATED
       "Course created"
     elsif event_type == PAGE_VISITED
-      "#{self.count} students visited landing page."
+      "#{pluralize(self.count, 'student')} visited landing page."
     elsif event_type == STUDENT_ENROLLED
       "#{pluralize(self.count, 'student')} enrolled!"
     else
