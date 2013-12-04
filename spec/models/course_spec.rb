@@ -622,4 +622,11 @@ describe Course do
       course.pay_instructor!.should be_false
     end
   end
+
+  describe "#price_per_seat_in_dollars" do
+    it 'does not fail when there is no price set' do
+      course.price_per_seat_in_cents = nil
+      course.price_per_seat_in_dollars.should == nil
+    end
+  end
 end

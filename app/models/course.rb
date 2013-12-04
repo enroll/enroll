@@ -158,6 +158,7 @@ class Course < ActiveRecord::Base
   end
 
   def price_per_seat_in_dollars
+    return nil unless price_per_seat_in_cents
     price_per_seat_in_cents / 100
   end
 
