@@ -28,14 +28,12 @@ class window.CoursePricing extends Spine.Controller
     @$(el).on 'propertychange input', @updateCourseCalculator
 
   selectFunAction: ->
-    console.log 'selecting FUN'
     @$cost.val(0).hide()
     $('.free-text').remove()
     $cost.parent().append("<strong class='free-text'>FREE</strong>")
     @$calculator.hide()
 
   selectProfitAction: ->
-    console.log 'selecting PROFIT'
     @$cost.val(199).show()
     $('.free-text').remove()
     @$calculator.show()
