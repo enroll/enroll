@@ -11,4 +11,16 @@ class Location < ActiveRecord::Base
       state: state
     }
   end
+
+  def to_s
+    s = name
+    if state.present? && city.present?
+      s += ", #{city}, #{city}"
+    elsif state.present?
+      s += ", #{state}"
+    elsif city.present?
+      s += ", #{city}"
+    end
+    s
+  end
 end
