@@ -32,6 +32,18 @@ class Event < ActiveRecord::Base
     event.save!
   end
 
+  def self.grouped_by_date_and_type(options)
+    course = options[:course]
+
+    events = Event
+      .select('date, event_type, count(1) as count, max(created_at) ts')
+      .order('ts desc')
+      .where('course_id = ?', course.id)
+      .group('date, event_type')
+
+    events.to_a.group_by(&:date)
+  end
+
   protected
 
   def store_date

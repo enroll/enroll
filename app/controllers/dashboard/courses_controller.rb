@@ -5,15 +5,8 @@ class Dashboard::CoursesController < ApplicationController
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
 
-  include GroupingHelper
-
   def show
-    events = Event
-      .select('date, event_type, count(1) as count, max(created_at) ts')
-      .order('ts desc')
-      .where('course_id = ?', @course.id)
-      .group('date, event_type')
-    @events = events.to_a.group_by(&:date)
+    @events = Event.grouped_by_date_and_type(course: @course)
   end
 
   def edit

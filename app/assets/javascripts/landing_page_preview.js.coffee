@@ -1,3 +1,5 @@
+ESCAPE_KEY = 27
+
 class window.LandingPagePreview extends Spine.Controller
   events:
     'click a.preview': 'previewAction'
@@ -38,7 +40,7 @@ class window.LandingPagePreview extends Spine.Controller
 
   buildExitButton: ->
     if !@$exitButton
-      @$exitButton = $(JST['templates/landing_page_exit_button']());
+      @$exitButton = $(JST['templates/landing_page_exit_button']())
       @$exitButton.click(@cancelAction.bind(@))
       $(document.body).append(@$exitButton)
     @$exitButton.hide()
@@ -46,7 +48,7 @@ class window.LandingPagePreview extends Spine.Controller
   # Previewing
 
   didPressKey: (e) ->
-    if @isActive && e.keyCode == 27
+    if @isActive && e.keyCode == ESCAPE_KEY
       @cancelAction()
 
   previewAction: ->
