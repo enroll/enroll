@@ -27,7 +27,11 @@ module CourseHelper
   end
 
   def course_reservation_link(course, options={})
-    price = number_to_currency(price_in_dollars(course.price_per_seat_in_cents))
+    if course.paid?
+      price = number_to_currency(price_in_dollars(course.price_per_seat_in_cents))
+    else
+      price = "FREE"
+    end
     link_to "Enroll - #{price}",
       new_course_reservation_path(course),
       :class => options[:class] ||= 'btn btn-primary btn-large reserve'
