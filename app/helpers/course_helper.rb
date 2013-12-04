@@ -1,4 +1,5 @@
 include NavigationHelper
+include FormatHelper
 
 module CourseHelper
   def reservations_needed(course)
@@ -26,9 +27,10 @@ module CourseHelper
   end
 
   def course_reservation_link(course, options={})
-    link_to 'Reserve your seat',
+    price = number_to_currency(price_in_dollars(course.price_per_seat_in_cents))
+    link_to "Enroll - #{price}",
       new_course_reservation_path(course),
-      :class => options[:class] ||= 'btn btn-primary btn-large reserve upcase'
+      :class => options[:class] ||= 'btn btn-primary btn-large reserve'
   end
 
   def facebook_og_meta_tags(course)

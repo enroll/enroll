@@ -1,8 +1,11 @@
 class Course < ActiveRecord::Base
+  DEFAULT_DESCRIPTION = [["About the course", "Basic details here..."], ["Prerequisites", "Things students should know..."], ["Syllabus", "Roadmap of the course..."]].map { |t| "# #{t[0]}\n\n#{t[1]}"}.join("\n\n")
+
   acts_as_url :name
 
   has_many :reservations, dependent: :destroy
   has_many :students, through: :reservations, class_name: 'User'
+  has_many :events
 
   belongs_to :location
   belongs_to :instructor, class_name: 'User'
@@ -63,7 +66,7 @@ class Course < ActiveRecord::Base
 
   def charge_credit_cards!
     return if self.free?
-    
+
     self.reservations.each do |reservation|
       next if reservation.charged?
 
@@ -154,6 +157,14 @@ class Course < ActiveRecord::Base
     !free?
   end
 
+  def price_per_seat_in_dollars
+    price_per_seat_in_cents / 100
+  end
+
+  def price_per_seat_in_dollars=(dollars)
+    self.price_per_seat_in_cents = dollars * 100
+  end
+
   def has_students?
     reservations.count > 0
   end
@@ -177,6 +188,23 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def set_default_values_if_nil
+    self.min_seats ||= 5
+    self.max_seats ||= 10
+    self.price_per_seat_in_cents ||= 10000
+    self.build_location unless self.location
+    self.description = DEFAULT_DESCRIPTION unless self.description.present?
+  end
+
+  def as_json(options)
+    {
+      name: name,
+      location: location || {},
+      date: starts_at.strftime("%B %e, %Y"),
+      description: description
+    }
+  end
+
   def instructor_paid?
     instructor_paid_at.present?
   end
@@ -184,8 +212,8 @@ class Course < ActiveRecord::Base
   def pay_instructor!
     return false if future? || free? || instructor_paid?
 
-    payout_result = Payout.create({ 
-      amount_in_cents: instructor_payout_amount(self), 
+    payout_result = Payout.create({
+      amount_in_cents: instructor_payout_amount(self),
       description: self.name,
       stripe_recipient_id: self.instructor.stripe_recipient_id
     }).request

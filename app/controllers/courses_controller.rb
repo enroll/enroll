@@ -3,19 +3,22 @@ class CoursesController < ApplicationController
   before_filter :find_course_as_instructor!, only: [:edit, :update]
   before_filter :find_course_by_url!, only: [:show]
 
+  include CoursesEditingConcern
+  before_filter :prepare_steps, only: [:new, :edit, :create, :update]
+
   def index
-    @courses = Course.all
+    @courses_teaching = current_user.courses_as_instructor.future
+    @courses_studying = current_user.courses_as_student
   end
 
   def show
+    add_body_class('landing-page')
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+    Event.create_event(Event::PAGE_VISITED, course: @course)
   end
 
   def new
     @course = Course.new
-    @course.min_seats = 5
-    @course.max_seats = 15
-    @course.price_per_seat_in_cents = 19900
-    @course.build_location
   end
 
   def create
@@ -24,50 +27,34 @@ class CoursesController < ApplicationController
     @location = @course.location
 
     if @course.save
-      flash[:success] = "Course created successfully."
-      redirect_to course_path(@course)
+      redirect_to_next_step
     else
-      flash[:error] = "Course failed to be created."
       render :new
     end
   end
 
+  def redirect_to_next_step
+    if next_step
+      redirect_to edit_course_step_path(@course, :step => next_step[:id])
+    else
+      redirect_to course_path(@course)
+    end
+  end
+
   def edit
+    @course.set_default_values_if_nil
   end
 
   def update
-    if @course.update_attributes(course_params)
-      flash[:success] = "Course updated successfully."
-      redirect_to edit_course_path(@course)
+    saved = @course.update_attributes(course_params)
+    return render :edit unless saved
+
+    if next_step
+      redirect_to_next_step
     else
-      flash[:error] = "Course failed to be updated."
-      render :edit
+      Event.create_event(Event::COURSE_CREATED, course: @course)
+      redirect_to course_path(@course)
     end
   end
 
-  private
-
-  def course_params
-    params.require(:course).permit(
-      :name, :url, :tagline, :starts_at, :ends_at, :description,
-      :instructor_biography, :min_seats, :max_seats, :price_per_seat_in_cents,
-      location_attributes: [
-        :name, :address, :address_2, :city, :state, :zip, :phone
-      ]
-    )
-  end
-
-  def find_course_as_instructor!
-    @course = current_user.courses_as_instructor.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
-  end
-
-  def find_course_by_url!
-    @course = if params[:url].present?
-      Course.find_by!(url: params[:url])
-    else
-      Course.find(params[:id])
-    end
-  end
 end

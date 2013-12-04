@@ -17,7 +17,6 @@ a > img {
 
 #log-in,
 #sign-up {
-  margin-top: -20px;
   margin-bottom: 20px;
   background-color: lighten($dark-gray, 3%);
   color: #fff;
@@ -77,50 +76,6 @@ a > img {
   }
 }
 
-.manage-sidebar {
-  .panel {
-    .panel-heading {
-      .progress {
-        height: 20px;
-        margin-bottom: 2px;
-      }
-
-      .funded-label {
-        font-size: 10px;
-        text-transform: uppercase;
-        text-align: center;
-        line-height: 10px;
-        margin-bottom: 10px;
-
-        .goal-text {
-          margin-top: 3px
-        }
-      }
-
-      .status-strip {
-        border-top: 1px solid rgba(0,0,0,0.05);
-        padding: 5px 10px 0;
-
-        .col-xs-4 {
-          padding-right: 5px;
-          padding-left: 5px;
-        }
-      }
-
-      .quantity {
-        font-weight: 700;
-        font-size: 18px;
-        margin-bottom: -5px;
-      }
-      .status-label {
-        font-size: 10px;
-        text-transform: uppercase;
-      }
-
-    }
-  }
-}
-
 #course-dropdown {
   > li > a.dropdown-toggle {
     text-align: left;
@@ -154,7 +109,6 @@ a > img {
 
 #settings-menu {
   > li > a.dropdown-toggle {
-    padding: 10px 12px;
 
     > img {
       height: 30px;

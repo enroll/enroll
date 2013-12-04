@@ -1,0 +1,13 @@
+.container.new-course
+  .row
+    .sidebar.col-sm-3
+      %ul.course-progress
+        = render 'courses/steps'
+    .col-sm-9.form-wrapper
+      = simple_form_for(form_target, :html => {:class => "course-form form disable-submit-on-return step-#{current_step[:id]}"}) do |form|
+        = render "courses/form_header", :form => form
+        = render "courses/form_#{current_step[:id]}", :form => form
+        = render "courses/form_actions", :form => form
+
+:coffeescript
+  new CourseForm(el: 'form.course-form')

@@ -1,0 +1,21 @@
+%h2 Statistics
+
+.dashboard-stats
+  .stat
+    %strong= @course.reservations.count
+    %small
+      %em Enrolled
+      %br/
+      students
+  .stat
+    %strong= reservations_needed(@course)
+    %small
+      %em Needed
+      %br/
+      students
+  .stat
+    %strong= days_until_start(@course)
+    %small
+      %em Days
+      %br/
+      left

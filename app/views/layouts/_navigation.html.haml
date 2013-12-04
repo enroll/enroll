@@ -1,25 +1,26 @@
 %nav.navbar.navbar-static-top.navbar-inverse
-  .navbar-header
-    %button.navbar-toggle{type:"button", "data-toggle" => "collapse", "data-target" => ".navbar-ex1-collapse"}
-      %span.sr-only
-        Toggle navigation
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
-    = link_to "enroll", root_path, :class => 'navbar-brand'
+  .navbar-inner
+    .navbar-header
+      %button.navbar-toggle{type:"button", "data-toggle" => "collapse", "data-target" => ".navbar-ex1-collapse"}
+        %span.sr-only
+          Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "enroll", root_path, :class => 'navbar-brand'
 
-  .collapse.navbar-collapse.navbar-ex1-collapse
-    - if user_signed_in?
-      = render 'layouts/course_chooser'
-      = render 'layouts/settings_menu'
-    - else
-      %ul#sign-up-or-in.nav.navbar-nav.pull-right
-        %li
-          %a.btn-log-in{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#log-in"}
-            Log In
-        %li
-          %a.btn-sign-up{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#sign-up"}
-            Sign Up
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      - if user_signed_in?
+        /= render 'layouts/course_chooser'
+        = render 'layouts/settings_menu'
+      - else
+        %ul#sign-up-or-in.nav.navbar-nav
+          %li
+            %a.navbar-btn.btn-log-in{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#log-in"}
+              Log In
+          %li
+            %a.navbar-btn.btn-sign-up{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#sign-up"}
+              Sign Up
 
 - unless user_signed_in?
   #sign-up.collapse{class: nav_signupbox_class}

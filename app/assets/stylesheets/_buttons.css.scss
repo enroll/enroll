@@ -1,0 +1,36 @@
+@import '_colors';
+@import '_mixins';
+
+.btn {
+  font-weight: 400;
+  @include border-radius(3px);
+
+  &:focus {
+    outline: none;
+  }
+
+  &.small {
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+.btn-primary {
+  background: $primary1;
+  border: none;
+  font-weight: 400;
+}
+
+.btn-info {
+  color: $primary-text2;
+}
+
+.btn-info, .btn-info.active, .btn-info:hover, .btn-info:active {
+  background: $primary1;
+  border-color: $primary1;
+}
+
+.actions {
+  margin-top: -10px;
+}
