@@ -629,4 +629,11 @@ describe Course do
       course.price_per_seat_in_dollars.should == nil
     end
   end
+
+  describe "#price_per_seat_in_dollars=" do
+    it 'sets price in dollars as string' do
+      course.price_per_seat_in_dollars = '20'
+      course.price_per_seat_in_cents.should == 2000
+    end
+  end
 end

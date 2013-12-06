@@ -4,13 +4,13 @@ class Dashboard::CoursesController < ApplicationController
 
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
+  before_filter :update_steps_for_dashboard, only: [:edit, :update]
 
   def show
     @events = Event.grouped_by_date_and_type(course: @course)
   end
 
   def edit
-    @steps = @steps.reject { |s| s[:id] == 'page' }
   end
 
   def update
@@ -30,5 +30,9 @@ class Dashboard::CoursesController < ApplicationController
     else
       redirect_to dashboard_course_path(@course)
     end
+  end
+
+  def update_steps_for_dashboard
+    @steps = @steps.reject { |s| s[:id] == 'page' }
   end
 end

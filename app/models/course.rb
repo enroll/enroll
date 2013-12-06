@@ -163,7 +163,7 @@ class Course < ActiveRecord::Base
   end
 
   def price_per_seat_in_dollars=(dollars)
-    self.price_per_seat_in_cents = dollars * 100
+    self.price_per_seat_in_cents = dollars.to_f * 100
   end
 
   def has_students?
