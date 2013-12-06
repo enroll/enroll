@@ -10,6 +10,8 @@ role :app, %w{enroll@test1.enroll.io}
 role :web, %w{enroll@test1.enroll.io}
 role :db,  %w{enroll@test1.enroll.io}
 
+# server 'test.1enroll.io', user: 'enroll', roles: %w{web app db}
+
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server

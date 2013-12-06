@@ -6,7 +6,6 @@ gem 'rails', '~> 4.0.0'
 
 # Standard gems
 gem 'angularjs-rails'
-gem 'capistrano'
 gem 'coffee-rails',   '~> 4.0.0'
 gem 'devise',         '~> 3.0.1'
 gem 'entypo-rails'
@@ -51,6 +50,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
   gem 'foreman'
   gem 'guard'
   gem 'guard-bundler'
