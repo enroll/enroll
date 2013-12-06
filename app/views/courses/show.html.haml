@@ -2,19 +2,7 @@
   = facebook_og_meta_tags(@course)
 
 .container.landing-page
-  .course-header
-    .course-title
-      %h2= @course.name
-      .row
-        .col-sm-6
-          %em.location
-            %i.icon-map
-            = @course.location
-        .col-sm-6
-          %em.date
-            %i.icon-calendar
-            == #{@course.starts_at.strftime("%B %e, %Y")}
-      / %h3= @course.tagline
+  = render 'courses/course_landing_header'
 
   .course-content.row
     .col-sm-8

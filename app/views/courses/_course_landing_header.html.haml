@@ -1,0 +1,13 @@
+.course-header
+  .course-title
+    %h2= @course.name
+    .row
+      .col-sm-6
+        %em.location
+          %i.icon-map
+          = @course.location
+      .col-sm-6
+        %em.date
+          %i.icon-calendar
+          == #{@course.starts_at.strftime("%B %e, %Y")}
+    / %h3= @course.tagline

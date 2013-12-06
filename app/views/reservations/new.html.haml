@@ -1,0 +1,11 @@
+.container.landing-page
+  = render 'courses/course_landing_header'
+  .course-content.row
+    = simple_form_for(@reservation, :url => course_reservations_path, html: {class: 'form stacked small-labels'}) do |f|
+      = f.error_notification
+
+      = simple_fields_for(@user) do |uf|
+        = uf.input(:email)
+        = uf.input(:password, label: 'Memorable password')
+
+      = f.submit('Confirm reservation', class: 'btn btn-primary large')

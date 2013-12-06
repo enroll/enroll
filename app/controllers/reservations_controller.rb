@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
   before_filter :require_course!
 
   def new
+    add_body_class('landing-page')
     @reservation = @course.reservations.build
     @user = current_user || User.new
   end
