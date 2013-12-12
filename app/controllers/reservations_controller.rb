@@ -10,7 +10,7 @@ class ReservationsController < ApplicationController
 
   def create
     add_body_class('landing-page')
-    token = params[:reservation][:stripe_token]
+    token = params[:reservation].try(:[], :stripe_token)
 
     # TODO: There's no point in storing Stripe token to reservation,
     # it will expire before we charge it. Stripe recommends using that
