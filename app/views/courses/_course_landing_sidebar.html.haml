@@ -45,6 +45,13 @@
   .sidebar-large-icon
     %i.icon-map
   .tc= @course.location
+  %hr/
+
+- if @course.instructor_biography
+  .sidebar-large-icon
+    %i.icon-graduation-cap
+  .tc= @course.instructor_biography
+
 
 / - if @course.starts_at.present?
 /   %h4= @course.starts_at.strftime("%B %e, %Y")
