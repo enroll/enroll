@@ -10,4 +10,10 @@ module ApplicationHelper
   def icon(icon)
     ('<i class="icon-%s"></i>' % icon).html_safe
   end
+
+  # Render that supports passing a block
+  # Shortcut to `render layout: '...', locals: {...}`
+  def yrender(partial, locals, &block)
+    render(layout: partial, locals: locals, &block)
+  end
 end
