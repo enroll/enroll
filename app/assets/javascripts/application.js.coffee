@@ -13,6 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.spin
+#= require jquery.timepicker.js
 #= require sugar
 #= require angular
 #= require angular-strap

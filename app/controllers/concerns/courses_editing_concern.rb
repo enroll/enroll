@@ -39,6 +39,9 @@ module CoursesEditingConcern
       :instructor_biography, :min_seats, :max_seats, :price_per_seat_in_dollars,
       location_attributes: [
         :name, :address, :address_2, :city, :state, :zip, :phone
+      ],
+      schedules_attributes: [
+        :date, :starts_at, :ends_at
       ]
     )
   end
