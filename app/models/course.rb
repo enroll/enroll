@@ -6,6 +6,7 @@ class Course < ActiveRecord::Base
   has_many :reservations, dependent: :destroy
   has_many :students, through: :reservations, class_name: 'User'
   has_many :events
+  has_many :schedules, class_name: 'CourseSchedule'
 
   belongs_to :location
   belongs_to :instructor, class_name: 'User'
@@ -27,11 +28,14 @@ class Course < ActiveRecord::Base
 
   after_save :set_defaults
   after_create :send_course_created_notification
+  before_save :remove_previous_schedules
 
   delegate :instructor_payout_amount, to: CashRegister
 
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
+
+  accepts_nested_attributes_for :schedules
 
   def self.fail_campaigns
     # This marks campaigns that haven't reached the minimum number of seats by
@@ -222,6 +226,12 @@ class Course < ActiveRecord::Base
     update_attribute(:instructor_paid_at, Time.now) if payout_result
 
     payout_result
+  end
+
+  def remove_previous_schedules
+    self.schedules.each do |schedule|
+      schedule.delete unless schedule.new_record?
+    end
   end
 
   private

@@ -22,6 +22,8 @@ class window.CourseSchedule extends Spine.Controller
 
     @setupDatepicker()
 
+    @render(@schedules)
+
   setupDatepicker: ->
     @format = 'yyyy-mm-dd'
     @parsedFormat = DPGlobal.parseFormat(@format)
@@ -52,8 +54,9 @@ class window.CourseSchedule extends Spine.Controller
   # Changing any date
 
   changeDateAction: ->
-    console.log 'date was changed lol'
+    @updateDays()
 
+  updateDays: ->
     start = @parseDate(@$courseStartField.val())
     end = @parseDate(@$courseEndField.val())
 
@@ -71,7 +74,9 @@ class window.CourseSchedule extends Spine.Controller
       @$courseSchedule.hide()
       return
     
+    @render(days)
 
+  render: (days) ->
     @$courseSchedule.html(template(days: days)).show()
     @$courseSchedule.find('input.start.time-select').timepicker(scrollDefaultTime: '9:00am')
     @$courseSchedule.find('input.end.time-select').timepicker(scrollDefaultTime: '4:00pm')

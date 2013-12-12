@@ -20,4 +20,4 @@
       = location.input :phone
 
 :coffeescript
-  new CourseSchedule(el: '.course-schedule')
+  new CourseSchedule(el: '.course-schedule', schedules: #{form.object.schedules.to_json})

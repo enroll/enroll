@@ -4,7 +4,7 @@ each day in days
   .form-group.clearfix
     label.control-label= day.label
     .controls
-      input(type="hidden", value=day.identifier, name="schedule[][date]")
-      input.form-control.mini.start.time-select(type="text", placeholder="Start time", name="schedule[][starts_at]")
+      input(type="hidden", value=day.identifier, name="course[schedules_attributes][][date]")
+      input.form-control.mini.start.time-select(type="text", placeholder="Start time", name="course[schedules_attributes][][starts_at]", value=day.starts_at)
       &nbsp;-&nbsp;
-      input.form-control.mini.end.time-select(placeholder="End time", name="schedule[][ends_at]")
+      input.form-control.mini.end.time-select(placeholder="End time", name="course[schedules_attributes][][ends_at]", value=day.ends_at)

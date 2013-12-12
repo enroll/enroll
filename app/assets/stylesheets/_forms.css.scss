@@ -135,4 +135,8 @@ form.form {
   &:nth-child(even) {
     // background: #fbf8f8;
   }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
