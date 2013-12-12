@@ -95,12 +95,12 @@ body.landing-page, div.landing-page-preview {
 
 .course-sidebar {
   padding: 0 30px;
-}
 
-a.btn.reserve {
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  a.btn.btn-large {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .exit-button {
@@ -175,5 +175,27 @@ html.cssanimations.csstransforms {
         @include translate(0, 100%);
       }
     }
+  }
+}
+
+
+// Statistics
+
+.course-stats {
+  strong, small {
+    display: block;
+    text-align: center;
+  }
+
+  strong {
+    color: $primary1-hilight;
+    font-weight: 500;
+    font-size: 22px;
+  }
+
+  small {
+    text-transform: uppercase;
+    // color: $gray-medium-dark;
+    color: $primary1-hilight2;
   }
 }

@@ -3,15 +3,29 @@
 
 - if enroll_button
   - if enrolled_for?(@course)
-    %a.btn.btn-primary.disabled Already enrolled
+    %a.btn.btn-primary.btn-large.disabled Already enrolled
   - else
     - if @course.future?
       = course_reservation_link(@course)
     - elsif @course.campaign_failed?
-      %a.btn.btn-primary.disabled Course not funded
+      %a.btn.btn-primary.btn-large.disabled Course not funded
     - else
-      %a.btn.btn-primary.disabled Course complete
+      %a.btn.btn-primary.btn-large.disabled Course complete
+      
   %hr/
+  
+.course-stats.row
+  .col-sm-4
+    %strong= @course.reservations.count
+    %small Enrolled
+  .col-sm-4
+    %strong= reservations_needed(@course)
+    %small Needed
+  .col-sm-4
+    %strong= @course.max_seats
+    %small Capacity
+
+%hr/
 
 - if @course.starts_at.present?
   %h4= @course.starts_at.strftime("%B %e, %Y")
