@@ -26,7 +26,16 @@ describe Reservation do
   context "when a reservation is made" do
     it "delivers an enrollment notification" do
       reservation.expects(:send_enrollment_notification)
-      reservation.save
+      reservation.save!
+    end
+
+    it "fails if student is already enrolled for that course" do
+      reservation.save!
+
+      reservation = Reservation.new
+      reservation.student = student
+      reservation.course = course
+      reservation.save.should == false
     end
   end
 
@@ -48,21 +57,21 @@ describe Reservation do
 
       it "saves the course's price as charge amount when reservation created" do
         reservation.charge_amount.should be_nil
-        reservation.save
+        reservation.save!
         reservation.charge_amount.should == 5000
       end
 
       it "does not change the charge amount when course price changes" do
-        reservation.save
+        reservation.save!
         course.price_per_seat_in_cents = 10000
-        reservation.save
+        reservation.save!
         reservation.reload.charge_amount.should == 5000
       end
     end
   end
 
   context "#send_enrollment_notification" do
-    before { reservation.save }
+    before { reservation.save! }
 
     it "enqueues an enrollment notification job" do
       Resque.expects(:enqueue).with(EnrollmentNotification, reservation.id)
@@ -83,7 +92,7 @@ describe Reservation do
     context "when minimum seats is zero" do
       before do
         course.min_seats = 0
-        reservation.save
+        reservation.save!
       end
 
       it "does not enqueue a job" do
@@ -96,7 +105,7 @@ describe Reservation do
       context "when reservation satisfies minimum seats" do
         before do
           course.min_seats = 1
-          reservation.save
+          reservation.save!
         end
 
         it "enqueues a campaign success notification job" do
@@ -127,7 +136,7 @@ describe Reservation do
       context "when reservation is short of minimum seats" do
         before do
           course.min_seats = 2
-          reservation.save
+          reservation.save!
         end
 
         it "does not enqueue a job" do
@@ -140,8 +149,10 @@ describe Reservation do
         before do
           course.min_seats = 1
           course.save
-          create(:reservation, course: course)
-          reservation.save
+          # Have to enroll as different student 2nd time
+          other_student = create(:student)
+          create(:reservation, course: course, student: other_student)
+          reservation.save!
         end
 
         it "does not send a notification" do
@@ -151,7 +162,7 @@ describe Reservation do
 
         it "charges credit card for the reservation" do
           reservation.charged?.should be_false
-          reservation.save
+          reservation.save!
           reservation.reload.charged?.should be_true
         end
       end
