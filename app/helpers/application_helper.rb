@@ -20,4 +20,8 @@ module ApplicationHelper
   def short_date(date)
     date.strftime("%b #{date.day.ordinalize}")
   end
+
+  def long_date(date)
+    date.strftime("%B %e, %Y")
+  end
 end

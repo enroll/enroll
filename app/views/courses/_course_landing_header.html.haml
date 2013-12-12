@@ -10,5 +10,5 @@
       .col-sm-6
         %em.date
           %i.icon-calendar
-          == #{@course.starts_at.strftime("%B %e, %Y")}
+          = long_date(@course.starts_at)
     / %h3= @course.tagline

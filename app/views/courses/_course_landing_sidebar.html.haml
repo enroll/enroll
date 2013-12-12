@@ -27,11 +27,24 @@
 
 %hr/
 
-%table.schedule
-  - @course.schedules.each do |sch|
-    %tr
-      %th= short_date(sch.date)
-      %td= sch.range_str
+.sidebar-large-icon
+  %i.icon-calendar
+
+- if @course.schedules.present?
+  %table.schedule
+    - @course.schedules.each do |sch|
+      %tr
+        %th= short_date(sch.date)
+        %td= sch.range_str
+- else
+  .tc= long_date(@course.starts_at)
+
+%hr/
+
+- if @course.location.present?
+  .sidebar-large-icon
+    %i.icon-map
+  .tc= @course.location
 
 / - if @course.starts_at.present?
 /   %h4= @course.starts_at.strftime("%B %e, %Y")

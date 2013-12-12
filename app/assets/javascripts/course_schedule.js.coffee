@@ -69,14 +69,14 @@ class window.CourseSchedule extends Spine.Controller
         label: @formatDate(start)
       newDate = start.setDate(start.getDate() + 1)
       start = new Date(newDate);
-
-    if days.length == 0
-      @$courseSchedule.hide()
-      return
     
     @render(days)
 
   render: (days) ->
+    if days.length == 0
+      @$courseSchedule.hide()
+      return
+      
     @$courseSchedule.html(template(days: days)).show()
     @$courseSchedule.find('input.start.time-select').timepicker(scrollDefaultTime: '9:00am')
     @$courseSchedule.find('input.end.time-select').timepicker(scrollDefaultTime: '4:00pm')
