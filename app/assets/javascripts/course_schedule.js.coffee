@@ -43,7 +43,7 @@ class window.CourseSchedule extends Spine.Controller
     DPGlobal.formatDate(date, @parsedFormat, 'en')
 
   dateToIdentifier: (date) ->
-    "#{date.getFullYear()}-#{date.getMonth()}-#{date.getDate()}"
+    "#{date.getFullYear()}-#{date.getMonth()+1}-#{date.getDate()}"
 
   # Changing start date
 

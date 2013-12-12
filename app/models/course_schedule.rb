@@ -31,17 +31,27 @@ class CourseSchedule < ActiveRecord::Base
     self[:ends_at] = str_to_midnight_seconds(value)
   end
 
+  def range_str
+    if starts_at && ends_at
+      "#{starts_at} - #{ends_at}"
+    elsif starts_at
+      "starting #{starts_at}"
+    elsif ends_at
+      "ends #{ends_at}"
+    end
+  end
+
   protected
 
   def str_to_midnight_seconds(str)
     return nil unless str.present?
-    time = Time.strptime(str, "%H:%M%p")
+    time = Time.strptime(str, "%I:%M%p")
     time.seconds_since_midnight
   end
 
   def midnight_seconds_to_str(seconds)
     return nil unless seconds
     time = Time.now.midnight + seconds.seconds
-    time.strftime("%H:%M%p").downcase
+    time.strftime("%I:%M%p").downcase
   end
 end

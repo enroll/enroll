@@ -199,3 +199,17 @@ html.cssanimations.csstransforms {
     color: $primary1-hilight2;
   }
 }
+
+// Schedule table
+
+table.schedule {
+  th {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  td {
+    font-size: 13px;
+    padding-top: 2px;
+    padding-left: 12px;
+  }
+}

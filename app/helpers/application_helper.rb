@@ -16,4 +16,8 @@ module ApplicationHelper
   def yrender(partial, locals, &block)
     render(layout: partial, locals: locals, &block)
   end
+
+  def short_date(date)
+    date.strftime("%b #{date.day.ordinalize}")
+  end
 end
