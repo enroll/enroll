@@ -13,22 +13,22 @@
           - unless current_user
             = uf.input :password, label: 'Memorable password', required: true
 
-        .card-error-message
+        - if @course.paid?
+          .card-error-message
+          %div.form-group
+            = f.label :card_number, :label => 'Card number', :required => true
+            = f.input_field :card_number, :name => nil, :"data-stripe" => "number", :value => nil
 
-        %div.form-group
-          = f.label :card_number, :label => 'Card number', :required => true
-          = f.input_field :card_number, :name => nil, :"data-stripe" => "number", :value => nil
+          .row
+            .form-group.col-sm-4.card-code
+              = f.label :card_code, :label => 'Security code', :required => true
+              = f.input_field :card_code, :name => nil, :"data-stripe" => "cvc", :class => "small", :value => nil
 
-        .row
-          .form-group.col-sm-4.card-code
-            = f.label :card_code, :label => 'Security code', :required => true
-            = f.input_field :card_code, :name => nil, :"data-stripe" => "cvc", :class => "small", :value => nil
-
-          .form-group.col-sm-8.card-month
-            = f.label :card_month, :label => 'Card Expiration', :required => true
-            %div
-              = select_month Date.today, {add_month_numbers: true}, {name: nil, id: "card_month", :"data-stripe" => "exp_month"}
-              = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year", :"data-stripe" => "exp_year"}
+            .form-group.col-sm-8.card-month
+              = f.label :card_month, :label => 'Card Expiration', :required => true
+              %div
+                = select_month Date.today, {add_month_numbers: true}, {name: nil, id: "card_month", :"data-stripe" => "exp_month"}
+                = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year", :"data-stripe" => "exp_year"}
 
         .form-actions
           .clearfix
@@ -43,4 +43,4 @@
       = render 'courses/course_landing_sidebar', enroll_button: false
 
 :coffeescript
-  new ReservationForm(el: '#new_reservation')
+  new ReservationForm(el: '#new_reservation', stripeEnabled: #{@course.paid?})

@@ -40,13 +40,7 @@ class ReservationsController < ApplicationController
     @reservation.student = @user
 
     if @reservation.save
-      # ...here: create Stripe customer for this card
-      customer = Stripe::Customer.create(
-        card: token,
-        description: @user.email
-      )
-      @user.stripe_customer_id = customer.id
-      @user.save!(validate: false)
+      update_stripe_customer(@user, token)
 
       Event.create_event(Event::STUDENT_ENROLLED, course: @course, user: current_user)
       redirect_to course_reservation_path(@course, @reservation)
@@ -71,5 +65,30 @@ class ReservationsController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password)
+  end
+
+  def update_stripe_customer(user, token)
+    return unless token.present?
+
+    customer = nil
+
+    if user.stripe_customer_id
+      begin
+        customer = Stripe::Customer.retrieve(user.stripe_customer_id)
+      rescue Stripe::InvalidRequestError => e
+      end
+    end
+
+    if !customer || customer.deleted
+      customer = Stripe::Customer.create(
+        card: token,
+        description: @user.email
+      )      
+    end
+
+    user.stripe_customer_id = customer.id
+    user.save!(validate: false)
+
+    customer
   end
 end

@@ -20,12 +20,15 @@ class window.ReservationForm extends Spine.Controller
 
   constructor: ->
     super
-      
 
   submitAction: (ev) ->
     ev.preventDefault()
 
     @startLoading()
+
+    if !@stripeEnabled
+      @submit()
+      return    
 
     Stripe.card.createToken @$el, (status, response) =>
       if status != 200
@@ -38,7 +41,7 @@ class window.ReservationForm extends Spine.Controller
       token = response.id
       this.$tokenField.val(token);
 
-      @el.get(0).submit()
+      @submit()
 
   startLoading: ->
     @hideMessage()
@@ -56,3 +59,8 @@ class window.ReservationForm extends Spine.Controller
 
   hideMessage: ->
     @$cardErrorMessage.hide().text('')    
+
+  # Submitting
+
+  submit: ->
+    @el.get(0).submit()
