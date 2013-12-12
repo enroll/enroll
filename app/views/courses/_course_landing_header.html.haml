@@ -1,6 +1,7 @@
 .course-header
   .course-title
-    %h2= @course.name
+    %h2
+      %a{href: landing_page_path(@course.url)}= @course.name
     .row
       .col-sm-6
         %em.location

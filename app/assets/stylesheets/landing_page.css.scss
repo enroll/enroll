@@ -39,6 +39,13 @@ body.landing-page, div.landing-page-preview {
       color: #fff;
       font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
       font-weight: 100;
+
+      a {
+        color: #fff;
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
 
     em { // Date and location
