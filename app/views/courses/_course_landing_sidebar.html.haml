@@ -27,22 +27,27 @@
 
 %hr/
 
-- if @course.starts_at.present?
-  %h4= @course.starts_at.strftime("%B %e, %Y")
-  %h5
-    = @course.starts_at.strftime("%l:%M %p")
-    \-
-    \#{@course.ends_at.strftime("%l:%M %p %Z")}
-- if @course.location.present?
-  %address
-    %strong= @course.location.name
-    %br/
-    = @course.location.address
-    %br/
-    = @course.location.address_2
-    %br/
-    = @course.location.city
-    , #{@course.location.state}#{@course.location.zip}
-    %br/
-    %abbr{title: "Phone"} P:
-    = @course.location.phone
+
+23.11.2013
+&nbsp;&nbsp;&nbsp;
+8:00a - 2:00p
+
+/ - if @course.starts_at.present?
+/   %h4= @course.starts_at.strftime("%B %e, %Y")
+/   %h5
+/     = @course.starts_at.strftime("%l:%M %p")
+/     \-
+/     \#{@course.ends_at.strftime("%l:%M %p %Z")}
+/ - if @course.location.present?
+/   %address
+/     %strong= @course.location.name
+/     %br/
+/     = @course.location.address
+/     %br/
+/     = @course.location.address_2
+/     %br/
+/     = @course.location.city
+/     , #{@course.location.state}#{@course.location.zip}
+/     %br/
+/     %abbr{title: "Phone"} P:
+/     = @course.location.phone
