@@ -6,6 +6,9 @@ class ReservationsController < ApplicationController
     add_body_class('landing-page')
     @reservation = @course.reservations.build
     @user = current_user || User.new
+    if @user.enrolled_for?(@course)
+      redirect_to landing_page_path(@course.url)
+    end
   end
 
   def create

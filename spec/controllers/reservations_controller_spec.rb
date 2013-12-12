@@ -24,6 +24,12 @@ describe ReservationsController do
       assigns[:course].should_not be_nil
       assigns[:reservation].should_not be_nil
     end
+
+    it "redirects to show if already enrolled" do
+      create(:reservation, course: course, student: user)
+      get :new, course_id: course.to_param
+      response.should redirect_to landing_page_path(course.url)
+    end
   end
 
   context "POST create" do
