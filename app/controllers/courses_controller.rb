@@ -37,7 +37,7 @@ class CoursesController < ApplicationController
     if next_step
       redirect_to edit_course_step_path(@course, :step => next_step[:id])
     else
-      redirect_to course_path(@course)
+      redirect_to dashboard_course_path(@course)
     end
   end
 
