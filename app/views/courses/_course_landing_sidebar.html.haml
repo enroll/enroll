@@ -44,7 +44,7 @@
 - if @course.location.present?
   .sidebar-large-icon
     %i.icon-map
-  .tc= @course.location
+  .tc= @course.location.to_full_s
   %hr/
 
 - if @course.instructor_biography

@@ -23,4 +23,8 @@ class Location < ActiveRecord::Base
     end
     s
   end
+
+  def to_full_s
+    "#{name}<br/>#{address}, #{city}<br />#{zip} #{state}".html_safe
+  end
 end
