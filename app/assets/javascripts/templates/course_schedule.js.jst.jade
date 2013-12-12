@@ -1,0 +1,10 @@
+h2.bordered.offset Schedule
+
+each day in days
+  .form-group.clearfix
+    label.control-label= day.label
+    .controls
+      input(type="hidden", value=day.identifier, name="schedule[][date]")
+      input.form-control.mini.start.time-select(type="text", placeholder="Start time", name="schedule[][starts_at]")
+      &nbsp;-&nbsp;
+      input.form-control.mini.end.time-select(placeholder="End time", name="schedule[][ends_at]")
