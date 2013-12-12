@@ -22,6 +22,7 @@ class ReservationsController < ApplicationController
 
     # We're gonna create customer like they recommend below...
 
+    @reservation = @course.reservations.build
     @user = current_user
 
     unless @user
@@ -33,7 +34,6 @@ class ReservationsController < ApplicationController
       end
     end
 
-    @reservation = @course.reservations.build
     @reservation.student = @user
 
     if @reservation.save
