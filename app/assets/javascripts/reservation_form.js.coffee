@@ -56,31 +56,3 @@ class window.ReservationForm extends Spine.Controller
 
   hideMessage: ->
     @$cardErrorMessage.hide().text('')    
-
-
-
-    # this.disableForm();
-
-    # this.$loader.show();
-
-    # Stripe.card.createToken(this.$el, function(status, response) {
-    #   if (status != 200) {
-    #     this.$alert.text(response.error.message);
-    #     this.$alert.show();
-    #     this.enableForm();
-    #     this.$loader.hide();
-    #     return;
-    #   } else {
-    #     this.$alert.hide();
-    #   }
-
-    #   var token = response.id;
-    #   this.$tokenField.val(token);
-
-    #   // console.log(response);
-    #   this.$el.get(0).submit();
-
-    # }.bind(this));
-
-
-    # return false;
