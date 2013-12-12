@@ -25,6 +25,6 @@ class Location < ActiveRecord::Base
   end
 
   def to_full_s
-    "#{name}<br/>#{address}, #{city}<br />#{zip} #{state}".html_safe
+    "<strong>#{name}</strong><br/>#{address}, #{city}<br />#{zip} #{state}".html_safe
   end
 end
