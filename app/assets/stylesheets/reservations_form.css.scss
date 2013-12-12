@@ -1,0 +1,19 @@
+@import '_colors';
+
+.form-group.card-month select {
+  margin-top: 8px;
+}
+
+form#new_reservation {
+  .hint {
+    color: $gray-medium;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 12px;
+  }
+
+  .form-actions {
+    border-top: 1px solid $gray-medium-light;
+    padding-top: 15px;
+  }
+}

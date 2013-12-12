@@ -79,10 +79,6 @@ form.form {
 
   .form-actions {
     margin-left: $label-total-width;
-
-    .btn {
-      padding: 13px 25px;
-    }
   }
 
   span.help-block {
@@ -119,9 +115,14 @@ form.form.stacked {
     float: none;
     text-align: left;
     width: auto;
+    padding-top: 0;
   }
 
   .controls {
+    margin-left: 0;
+  }
+
+  .form-actions {
     margin-left: 0;
   }
 }

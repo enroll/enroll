@@ -27,14 +27,17 @@ module CourseHelper
   end
 
   def course_reservation_link(course, options={})
-    if course.paid?
-      price = number_to_currency(price_in_dollars(course.price_per_seat_in_cents))
-    else
-      price = "FREE"
-    end
-    link_to "Enroll - #{price}",
+    link_to "Enroll - #{course_price_text(course)}",
       new_course_reservation_path(course),
       :class => options[:class] ||= 'btn btn-primary btn-large reserve'
+  end
+
+  def course_price_text(course)
+    if course.paid?
+      number_to_currency(price_in_dollars(course.price_per_seat_in_cents))
+    else
+      "FREE"
+    end
   end
 
   def facebook_og_meta_tags(course)
