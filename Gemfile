@@ -46,6 +46,9 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'email_spec'
   gem 'timecop'
+end
+
+group :test do
   gem 'vcr'
   gem 'webmock'
 end

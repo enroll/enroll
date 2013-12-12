@@ -8,9 +8,10 @@
         = f.input_field :stripe_token, :as => :hidden
 
         = simple_fields_for(@user) do |uf|
-          = uf.input :name, required: true
-          = uf.input :email, required: true
-          = uf.input :password, label: 'Memorable password', required: true
+          = uf.input :name, required: true, disabled: !!current_user
+          = uf.input :email, required: true, disabled: !!current_user
+          - unless current_user
+            = uf.input :password, label: 'Memorable password', required: true
 
         .card-error-message
 

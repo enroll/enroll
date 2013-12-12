@@ -65,6 +65,11 @@ form.form {
     &.large {
       height: 300px;
     }
+
+    &.disabled {
+      color: $gray-medium;
+      background: $gray-light-light;
+    }
   }
 
   textarea.form-control {
