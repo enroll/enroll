@@ -18,7 +18,6 @@ class window.CoursePricing extends Spine.Controller
 
   constructor: ->
     super
-    console.log 'constructing course pricing...', @$el
     @bindChangeEvent('#course_min_seats')
     @bindChangeEvent('#course_max_seats')
     @bindChangeEvent('#course_price_per_seat_in_dollars')
@@ -30,7 +29,7 @@ class window.CoursePricing extends Spine.Controller
   selectFunAction: ->
     @$cost.val(0).hide()
     $('.free-text').remove()
-    $cost.parent().append("<strong class='free-text'>FREE</strong>")
+    @$cost.parent().append("<strong class='free-text'>FREE</strong>")
     @$calculator.hide()
 
   selectProfitAction: ->
