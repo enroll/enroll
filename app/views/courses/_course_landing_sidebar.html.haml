@@ -1,11 +1,18 @@
+// Enroll button isn't displayed when this partial
+// is rendered from the form page.
+
 - if enroll_button
-  - if @course.future?
-    = course_reservation_link(@course)
-  - elsif @course.campaign_failed?
-    Course not funded
+  - if enrolled_for?(@course)
+    %a.btn.btn-primary.disabled Already enrolled
   - else
-    Course complete
+    - if @course.future?
+      = course_reservation_link(@course)
+    - elsif @course.campaign_failed?
+      %a.btn.btn-primary.disabled Course not funded
+    - else
+      %a.btn.btn-primary.disabled Course complete
   %hr/
+
 - if @course.starts_at.present?
   %h4= @course.starts_at.strftime("%B %e, %Y")
   %h5

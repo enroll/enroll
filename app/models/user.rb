@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     Reservation.where(course_id: course.id, student_id: self.id).first
   end
 
+  def enrolled_for?(course)
+    !!reservation_for_course(course)
+  end
+
   def instructor?
     courses_as_instructor.any?
   end

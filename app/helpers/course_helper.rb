@@ -48,4 +48,8 @@ module CourseHelper
     meta_tags << %Q[<meta property="og:image" content="/assets/images/enroll-io-logo.png" />]
     meta_tags.join("\n").html_safe
   end
+
+  def enrolled_for?(course)
+    current_user && current_user.enrolled_for?(course)
+  end
 end
