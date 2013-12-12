@@ -12,6 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require jquery.spin
 #= require sugar
 #= require angular
 #= require angular-strap
@@ -32,3 +33,12 @@
 $(document).on('ready page:load', ->
   angular.bootstrap(document, ['EnrollApp'])
 )
+
+# General
+
+$(document).ready ->
+  $('form.simple_form').find('input').keyup (ev) ->
+    wrapper = $(@).parents('.has-error:first')
+    wrapper
+      .removeClass('has-error')
+      .find('.text-danger').fadeOut()

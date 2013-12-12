@@ -30,6 +30,7 @@ form.form {
 
   .controls {
     margin-left: $label-total-width;
+    position: relative;
   }
 
   .form-control {
@@ -91,8 +92,37 @@ form.form {
     padding-bottom: 5px;
   }
 
+  // Errors
+
   p.help-block {
     font-size: 12px;
+  }
+
+  .form-group.has-error {
+    // padding-bottom: 15px;
+  }
+
+  span.text-danger {
+    background: $error;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    padding: 2px 5px;
+    top: 30px;
+    left: -4px;
+    @include border-radius(3px);
+
+    &:before {
+      content: '';
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid $error;
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -5px;
+      left: 5px;
+    }
   }
 
   // Wide from group

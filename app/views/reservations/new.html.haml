@@ -1,14 +1,18 @@
+= render 'shared/stripe'
+
 .container.landing-page
   = render 'courses/course_landing_header'
   .course-content.row
     .col-sm-8
       = simple_form_for(@reservation, :url => course_reservations_path, html: {class: 'form stacked small-labels'}) do |f|
-        = f.error_notification
+        = f.input_field :stripe_token, :as => :hidden
 
         = simple_fields_for(@user) do |uf|
-          = uf.input(:name)
-          = uf.input(:email)
-          = uf.input(:password, label: 'Memorable password')
+          = uf.input :name, required: true
+          = uf.input :email, required: true
+          = uf.input :password, label: 'Memorable password', required: true
+
+        .card-error-message
 
         %div.form-group
           = f.label :card_number, :label => 'Card number', :required => true
@@ -26,9 +30,16 @@
               = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year", :"data-stripe" => "exp_year"}
 
         .form-actions
-          = f.submit("Enroll - #{course_price_text(@course)}", class: 'btn btn-primary btn-large')
+          .clearfix
+            .pull-left
+              = f.submit("Enroll - #{course_price_text(@course)}", class: 'btn btn-primary btn-large')
+            .pull-left
+              .spinner
           .hint
             You will only be charged if the course takes place. Payments are securely processed via Stripe.
 
     .course-sidebar.col-sm-4
       = render 'courses/course_landing_sidebar', enroll_button: false
+
+:coffeescript
+  new ReservationForm(el: '#new_reservation')

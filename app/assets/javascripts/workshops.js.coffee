@@ -73,6 +73,4 @@ ready = ->
 
   $('.edit_payment_settings').on 'submit', sendPaymentSettingsToStripeAndSubmit
 
-  Stripe.setPublishableKey('pk_test_vSOC9sUGEcBMh7kdQ5sjcsdM');
-
 $(document).on('ready page:load', ready)

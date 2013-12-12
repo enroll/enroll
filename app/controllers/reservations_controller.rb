@@ -9,6 +9,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    add_body_class('landing-page')
     @reservation = @course.reservations.build :stripe_token => params[:stripeToken]
 
     unless user_signed_in?
@@ -21,10 +22,8 @@ class ReservationsController < ApplicationController
 
     if user_signed_in? && @reservation.valid?
       Event.create_event(Event::STUDENT_ENROLLED, course: @course, user: current_user)
-      flash[:success] = "Reservation created successfully."
       redirect_to course_reservation_path(@course, @reservation)
     else
-      flash[:error] = "Reservation failed to be created."
       render :new
     end
   end
