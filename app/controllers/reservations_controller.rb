@@ -40,8 +40,7 @@ class ReservationsController < ApplicationController
     @reservation.student = @user
 
     if @reservation.save
-      @user.update_stripe_customer(token)
-
+      Resque.enqueue UserUpdateStripeCustomer, @user.id, token
       Event.create_event(Event::STUDENT_ENROLLED, course: @course, user: current_user)
       redirect_to course_reservation_path(@course, @reservation)
     else
