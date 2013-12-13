@@ -10,7 +10,7 @@
         %h2 Personal Info
 
         = simple_fields_for(@user) do |uf|
-          = uf.input :name, required: true, disabled: !!current_user
+          = uf.input :name, required: true
           = uf.input :email, required: true, disabled: !!current_user
           - unless current_user
             = uf.input :password, label: 'Memorable password', required: true
