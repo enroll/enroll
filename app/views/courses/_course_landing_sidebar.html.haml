@@ -2,7 +2,9 @@
 // is rendered from the form page.
 
 - if enroll_button
-  - if enrolled_for?(@course)
+  - if @course.instructor == current_user
+    %a.btn.btn-primary.btn-large{href: dashboard_course_path(@course)} Go to dashboard
+  - elsif enrolled_for?(@course)
     %a.btn.btn-primary.btn-large.disabled Already enrolled
   - else
     - if @course.future?
@@ -11,7 +13,7 @@
       %a.btn.btn-primary.btn-large.disabled Course not funded
     - else
       %a.btn.btn-primary.btn-large.disabled Course complete
-      
+
   %hr/
   
 .course-stats.row
