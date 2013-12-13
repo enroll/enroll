@@ -29,7 +29,7 @@ class window.LandingPagePreview extends Spine.Controller
         .addClass('viewport')
         .addClass('preview')
         .addClass('offscreen')
-    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
+    @renderLoading()
     @$previewContent
 
   buildExitButton: ->
@@ -53,8 +53,16 @@ class window.LandingPagePreview extends Spine.Controller
 
     @updatePreview()
 
+  renderLoading: ->
+    # Renders template that contains "loading text" to entertain user while we
+    # wait for Ajax to finish.
+    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
+
   updatePreview: ->
     # Load from server at this point
+    data = @$el.parents('form:first').find('textarea, input[type=text]').serialize()
+    $.post @previewPath, data, (res) =>
+      @$previewContent.html(res)
 
   # Cancelling
 
