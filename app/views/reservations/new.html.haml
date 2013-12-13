@@ -7,6 +7,8 @@
       = simple_form_for(@reservation, :url => course_reservations_path, html: {class: 'form stacked small-labels'}) do |f|
         = f.input_field :stripe_token, :as => :hidden
 
+        %h2 Personal Info
+
         = simple_fields_for(@user) do |uf|
           = uf.input :name, required: true, disabled: !!current_user
           = uf.input :email, required: true, disabled: !!current_user
@@ -14,6 +16,8 @@
             = uf.input :password, label: 'Memorable password', required: true
 
         - if @course.paid?
+          %h2 Payment Details
+
           .card-error-message
           %div.form-group
             = f.label :card_number, :label => 'Card number', :required => true
