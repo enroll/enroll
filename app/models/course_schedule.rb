@@ -6,6 +6,8 @@ class CourseSchedule < ActiveRecord::Base
   # validates :starts_at, presence: true
   # validates :ends_at, presence: true
 
+  TIME_FORMAT = "%I:%M%p"
+
   def as_json(options = {})
     {
       identifier: date,
@@ -45,13 +47,13 @@ class CourseSchedule < ActiveRecord::Base
 
   def str_to_midnight_seconds(str)
     return nil unless str.present?
-    time = Time.strptime(str, "%I:%M%p")
+    time = Time.strptime(str, TIME_FORMAT)
     time.seconds_since_midnight
   end
 
   def midnight_seconds_to_str(seconds)
     return nil unless seconds
     time = Time.now.midnight + seconds.seconds
-    time.strftime("%I:%M%p").downcase
+    time.strftime(TIME_FORMAT).downcase
   end
 end
