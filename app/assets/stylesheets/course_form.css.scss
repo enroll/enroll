@@ -56,4 +56,10 @@ form.step-pricing, form.step-page {
 
 .course-pricing {
   margin-top: 20px;
+
+  table label.control-label {
+    float: none;
+    text-align: left;
+    width: auto;
+  }
 }
