@@ -2,17 +2,17 @@
   = render 'dashboard/dashboard_menu', course: @course
 
   .row
-    .col-sm-8
+    .col-sm-6
       = render 'stats'
-    .col-sm-4
-      %h2 Share
+    .col-sm-6
+      %h1 Share
       .share-buttons
         = share_button(:facebook, course_short_url(@course), '<i class="icon-social-s-facebook"></i>'.html_safe)
         = share_button(:twitter, course_short_url(@course), '<i class="icon-social-twitter"></i>'.html_safe)
         %a.social{href: share_dashboard_course_path(@course)}
           %i.icon-link
 
-  %h2 Activity stream
+  %h1 Activity stream
 
   .event-list
     - for date, events in @events
