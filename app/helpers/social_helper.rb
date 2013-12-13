@@ -8,7 +8,7 @@ module SocialHelper
     url = NETWORKS[network]
     return '' unless url
     url.sub!(':url', CGI.escape(target_url))
-       .sub!(':text', CGI.escape(text))
+    url.sub!(':text', CGI.escape(text))
     content_tag :a, label,
       :href => '#',
       :class => "social #{network} #{cls}",
