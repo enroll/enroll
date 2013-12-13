@@ -73,8 +73,6 @@ class window.CourseSchedule extends Spine.Controller
 
     days = []
 
-    console.log @schedulesByDays
-
     while start <= end
       identifier = @dateToIdentifier(start)
       day = 
