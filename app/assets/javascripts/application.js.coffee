@@ -19,7 +19,6 @@
 #= require bootstrap-datepicker
 #= require spine
 #= require tilt-jade/runtime
-#= require markdown
 #= require modernizr.custom.18921.js
 
 

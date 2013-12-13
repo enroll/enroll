@@ -6,11 +6,10 @@
         .col-sm-6
           em.location
             i.icon-map
-            | #{course.location.city}, #{course.location.state}
         .col-sm-6
           em.date
             i.icon-calendar
-            = course.date
 
   .course-content
-    != course.description
+    .tc
+      .spinner

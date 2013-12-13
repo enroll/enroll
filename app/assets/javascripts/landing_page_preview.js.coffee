@@ -54,8 +54,7 @@ class window.LandingPagePreview extends Spine.Controller
     @updatePreview()
 
   updatePreview: ->
-    @course.description = markdown.toHTML(@$description.val())
-    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
+    # Load from server at this point
 
   # Cancelling
 
