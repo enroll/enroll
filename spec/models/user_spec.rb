@@ -131,16 +131,15 @@ describe User do
   end
 
   describe "#update_stripe_customer" do
-    context "existing stripe customer" do
-      let :customer do
-        customer = stub(deleted: false, id: 'cus1')
-        customer.stubs(:card=)
-        customer.stubs(:save)
-        customer
-      end
+    let :customer do
+      stub(deleted: false, id: 'cus1')
+    end
 
+    context "existing stripe customer" do
       before do
         user.stripe_customer_id = 'cus1'
+        customer.stubs(:card=)
+        customer.stubs(:save)
         Stripe::Customer.stubs(:retrieve).with('cus1').returns(customer)
       end
 
@@ -155,6 +154,21 @@ describe User do
         customer.expects(:save)
 
         user.update_stripe_customer('card2')
+      end
+    end
+
+    context "creating new stripe customer" do
+      before do
+        Stripe::Customer.stubs(:create).returns(customer)
+        user.stripe_customer_id = nil
+      end
+
+      it "creates the customer and then does NOT update it" do
+        customer.expects(:card=).never
+        customer.expects(:save).never
+        Stripe::Customer.expects(:create).returns(customer)
+
+        user.update_stripe_customer('card4')
       end
     end
   end

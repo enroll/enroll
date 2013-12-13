@@ -75,15 +75,18 @@ class User < ActiveRecord::Base
       end
     end
 
-    if !customer || customer.deleted
+    if customer && !customer.deleted
+      # Customer exists, update the card using token from the form
+      customer.card = token
+      customer.save
+    else
+      # Customer doesn't exist yet, create a customer with token from the form
       customer = Stripe::Customer.create(
         card: token,
         description: email
       )      
     end
 
-    customer.card = token
-    customer.save
 
     self.stripe_customer_id = customer.id
     self.save!(validate: false)
