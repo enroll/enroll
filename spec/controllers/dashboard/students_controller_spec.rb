@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe StudentsController do
+describe Dashboard::StudentsController do
   let(:course) { build(:course) }
   let(:user) { create(:user) }
 
