@@ -13,6 +13,10 @@
       %a.btn.btn-primary.btn-large.disabled Course not funded
     - else
       %a.btn.btn-primary.btn-large.disabled Course complete
+- else
+  %a.btn.btn-primary.btn-large{href: landing_page_path(@course.url)}
+    %i.icon-chevron-left
+    Back to course
 
   %hr/
   
