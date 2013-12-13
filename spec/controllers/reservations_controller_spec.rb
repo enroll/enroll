@@ -33,15 +33,22 @@ describe ReservationsController do
   end
 
   context "POST create" do
+    let :customer do
+      customer = stub(id: '123')
+      customer.stubs(:card=)
+      customer.stubs(:save)
+      customer
+    end
+
     before do
-      Stripe::Customer.stubs(:create).returns(stub(id: '123'))
+      Stripe::Customer.stubs(:create).returns(customer)
     end
 
     context "when course is paid" do
       it "creates customer with card token and saves customer token" do
         Stripe::Customer.expects(:create)
           .with(card: 'aaa', description: user.email)
-          .returns(stub(id: '123'))
+          .returns(customer)
         post :create,
           course_id: course.to_param,
           reservation: reservation_attributes.merge(stripe_token: 'aaa')
