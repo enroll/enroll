@@ -129,4 +129,33 @@ describe User do
       user.name.should == "John Doe"
     end
   end
+
+  describe "#update_stripe_customer" do
+    context "existing stripe customer" do
+      let :customer do
+        customer = stub(deleted: false, id: 'cus1')
+        customer.stubs(:card=)
+        customer.stubs(:save)
+        customer
+      end
+
+      before do
+        user.stripe_customer_id = 'cus1'
+        Stripe::Customer.stubs(:retrieve).with('cus1').returns(customer)
+      end
+
+      it "does NOT create a new customer" do
+        Stripe::Customer.expects(:create).never
+        user.update_stripe_customer('card1')
+        user.stripe_customer_id.should == 'cus1'
+      end
+
+      it "changes card token" do
+        customer.expects(:card=).with('card2')
+        customer.expects(:save)
+
+        user.update_stripe_customer('card2')
+      end
+    end
+  end
 end

@@ -60,4 +60,34 @@ class User < ActiveRecord::Base
   def staff?
     true
   end
+
+  # Stripe
+
+  def update_stripe_customer(token)
+    return unless token.present?
+
+    customer = nil
+
+    if stripe_customer_id
+      begin
+        customer = Stripe::Customer.retrieve(stripe_customer_id)
+      rescue Stripe::InvalidRequestError => e
+      end
+    end
+
+    if !customer || customer.deleted
+      customer = Stripe::Customer.create(
+        card: token,
+        description: email
+      )      
+    end
+
+    customer.card = token
+    customer.save
+
+    self.stripe_customer_id = customer.id
+    self.save!(validate: false)
+
+    customer
+  end
 end
