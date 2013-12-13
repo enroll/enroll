@@ -8,6 +8,3 @@
       = render "courses/form_header", :form => form
       = render "courses/form_#{current_step[:id]}", :form => form
       = render "courses/form_actions", :form => form
-
-  :coffeescript
-    new CourseForm(el: 'form.course-form')

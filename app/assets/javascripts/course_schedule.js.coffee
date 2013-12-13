@@ -19,10 +19,19 @@ class window.CourseSchedule extends Spine.Controller
     # TODO: Hide only if no schedule was passed
     @$courseSchedule.hide()
 
-
     @setupDatepicker()
 
-    @render(@schedules)
+    # This variable holds schedules by dates, so if you  change date away from
+    # 12/25, and then change it back, it will restore the schedule.
+    @schedulesByDays = {}
+
+    # Restore the schedule cache from Rails object
+    for day in @schedules
+      @schedulesByDays[day.identifier] =
+        startsAt: day.starts_at
+        endsAt: day.ends_at
+
+    @updateDays()
 
   setupDatepicker: ->
     @format = 'yyyy-mm-dd'
@@ -57,20 +66,42 @@ class window.CourseSchedule extends Spine.Controller
     @updateDays()
 
   updateDays: ->
+    @storeSchedulesByDays()
+
     start = @parseDate(@$courseStartField.val())
     end = @parseDate(@$courseEndField.val())
 
     days = []
 
+    console.log @schedulesByDays
+
     while start <= end
-      days.push
+      identifier = @dateToIdentifier(start)
+      day = 
         date: start
-        identifier: @dateToIdentifier(start)
+        identifier: identifier
         label: @formatDate(start)
+        
+      if @schedulesByDays[identifier]
+        schedule = @schedulesByDays[identifier]
+        day.startsAt = schedule.startsAt
+        day.endsAt = schedule.endsAt
+
+      days.push(day)
+              
       newDate = start.setDate(start.getDate() + 1)
       start = new Date(newDate);
     
     @render(days)
+
+  storeSchedulesByDays: ->
+    # Caches entered schedules
+    @$courseSchedule.find('div.day').each (i, row) =>
+      $row = $(row)
+      date = $row.find('input.date').val()
+      startsAt = $row.find('input.start').val()
+      endsAt = $row.find('input.end').val()
+      @schedulesByDays[date] = {startsAt: startsAt, endsAt, endsAt}
 
   render: (days) ->
     if days.length == 0
