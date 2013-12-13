@@ -78,7 +78,7 @@ body.landing-page, div.landing-page-preview {
   padding-top: 40px;
   background: #fff;
 
-  h1 {
+  h1:not(.centered) {
     margin: 0;
     font-size: 16px;
     font-weight: 500;
@@ -226,4 +226,11 @@ div.sidebar-large-icon {
 
 .sidebar-location strong {
   font-weight: 500;
+}
+
+// Successfuly enrolled
+
+div.enrolled {
+  text-align: center;
+  padding-bottom: 100px;
 }

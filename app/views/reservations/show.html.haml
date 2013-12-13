@@ -1,0 +1,21 @@
+.container.landing-page
+  = render 'courses/course_landing_header'
+  .course-content.row
+    %h1.centered= "Welcome to #{@course.name}!"
+
+    .enrolled
+      %p You have been enrolled for this course.
+
+      %a.btn.btn-primary.btn-large{href: landing_page_path(@course.url)}
+        %i.icon-chevron-left
+        Back to course
+
+    .tc
+      %p Tell your friends:
+      %p
+        = share_button(:facebook, course_short_url(@course), icon('social-s-facebook'), '', 'rounded')
+        = share_button(:twitter, course_short_url(@course), icon('social-twitter'), "Just enrolled in #{@course.name}. You should be there!", 'rounded')
+
+    /%h2 Tell your friends about it
+
+    /= render "courses/share"

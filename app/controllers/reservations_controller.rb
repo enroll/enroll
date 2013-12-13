@@ -49,6 +49,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    add_body_class('landing-page')
     @reservation = @course.reservations.find(params[:id])
     @student = @reservation.student
   end

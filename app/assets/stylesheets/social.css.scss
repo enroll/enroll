@@ -1,4 +1,5 @@
 @import '_colors';
+@import '_mixins';
 
 a.social {
   color: #fff;
@@ -12,6 +13,26 @@ a.social {
 
   &.facebook {
     background: #4862a3;
+  }
+
+  &.rounded {
+    @include border-radius(50%);
+    padding: 3px 5px;
+    background: $gray-light;
+
+    &.twitter:hover {
+      background: #1daeeb;
+    }
+
+    &.facebook:hover {
+      background: #4862a3;
+    }
+
+    i {
+      font-size: 22px;
+      position: relative;
+      left: 2px;
+    }
   }
 }
 
