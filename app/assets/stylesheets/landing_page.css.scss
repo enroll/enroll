@@ -1,10 +1,12 @@
 @import '_mixins';
 @import '_colors';
 @import 'twitter/bootstrap/_mixins';
+@import 'layout_design';
 
 body.landing-page, div.landing-page-preview {
-  // @include retina('images/landing-background', 'jpg', 1500px, 850px);
-  background-image: url('images/landing-background.jpg');
+  @include body-width(844px);
+  
+  @include retina('images/landing-background', 'jpg', 1084px, 850px);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;

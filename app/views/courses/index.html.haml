@@ -10,7 +10,7 @@
             %a{:href => new_course_path}
               %i.icon-circled-plus
               Create
-        = render "courses_list", courses: @courses_teaching do |course|
+        = yrender "courses_list", courses: @courses_teaching do |course|
           = link_to "Manage &rsaquo;".html_safe, dashboard_course_path(course), :class => 'btn btn-primary small'
 
     .col-sm-6
