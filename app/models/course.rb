@@ -28,7 +28,6 @@ class Course < ActiveRecord::Base
 
   after_save :set_defaults
   after_create :send_course_created_notification
-  before_save :remove_previous_schedules
 
   delegate :instructor_payout_amount, to: CashRegister
 
@@ -228,10 +227,11 @@ class Course < ActiveRecord::Base
     payout_result
   end
 
-  def remove_previous_schedules
+  def schedules_attributes=(value)
     self.schedules.each do |schedule|
-      schedule.delete unless schedule.new_record?
+      schedule.delete
     end
+    super(value)
   end
 
   private
