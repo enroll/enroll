@@ -13,12 +13,6 @@ class window.LandingPagePreview extends Spine.Controller
     $(document).keyup(@didPressKey.bind(@))
 
     $(document).ready =>
-      # Move the whole contents into a wrapper called "viewport"
-      $children = $(document.body).children().detach()
-      @$viewport = $("<div />").addClass('viewport').addClass('original')
-      @$viewport.append($children)
-      $(document.body).append(@$viewport)
-
       # Prepare preview viewport
       @$previewContent = @buildPreviewContent()
       $(document.body).append(@$previewContent)
@@ -35,7 +29,7 @@ class window.LandingPagePreview extends Spine.Controller
         .addClass('viewport')
         .addClass('preview')
         .addClass('offscreen')
-    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
+    @renderLoading()
     @$previewContent
 
   buildExitButton: ->
@@ -55,14 +49,20 @@ class window.LandingPagePreview extends Spine.Controller
     @isActive = true
 
     @$previewContent.removeClass('offscreen')
-    @$viewport.addClass('offscreen')
-    @$exitButton.show()
+    @$exitButton.fadeIn(250)
 
     @updatePreview()
 
-  updatePreview: ->
-    @course.description = markdown.toHTML(@$description.val())
+  renderLoading: ->
+    # Renders template that contains "loading text" to entertain user while we
+    # wait for Ajax to finish.
     @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
+
+  updatePreview: ->
+    # Load from server at this point
+    data = @$el.parents('form:first').find('textarea, input[type=text]').serialize()
+    $.post @previewPath, data, (res) =>
+      @$previewContent.html(res)
 
   # Cancelling
 
@@ -70,5 +70,4 @@ class window.LandingPagePreview extends Spine.Controller
     @isActive = false
 
     @$previewContent.addClass('offscreen')
-    @$viewport.removeClass('offscreen')
-    @$exitButton.hide()
+    @$exitButton.fadeOut(50)
