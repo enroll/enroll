@@ -21,6 +21,7 @@ Enroll::Application.routes.draw do
       member do
         get :share
       end
+      resources :students, only: [:index]
     end
     resources :landing_pages
   end

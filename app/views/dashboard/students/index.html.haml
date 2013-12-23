@@ -1,0 +1,30 @@
+.container.dashboard
+  = render 'dashboard/dashboard_menu', course: @course
+
+  - if @course.has_students?
+    .actions.h1.pull-right
+      %a.btn.btn-success.email-all-link{href: mailto_users(@course.students)}
+        %i.icon-mail
+        Email All
+
+  %h1.tl Enrolled Students
+
+  - if @course.has_students?
+    %table.table.table-striped
+      %thead
+        %th
+        %th Name
+        %th Enrolled
+        %th
+      %tbody
+        - @course.students.each do |student|
+          %tr
+            %td= gravatar_for(student.email, class: 'img-rounded', size: 38)
+            %td= student.email
+            %td= student.reservation_for_course(@course).created_at
+            %td
+              %a.btn.btn-primary.pull-right{href: "mailto:#{student.email}"}
+                %i.icon-mail
+                Email
+  - else
+    %p Ain't no one signed up yet. Shame.
