@@ -15,7 +15,7 @@ describe Location do
 
       location.state = "California"
       location.zip = "94107"
-      location.zip_and_state.should == "94107 California"
+      location.zip_and_state.should == "California 94107"
 
       location.state = "California"
       location.zip = nil

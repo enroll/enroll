@@ -25,7 +25,7 @@ class Location < ActiveRecord::Base
   end
 
   def zip_and_state
-    [zip, state].select(&:present?).join(" ")
+    [state, zip].select(&:present?).join(" ")
   end
 
   def address_1_and_2
