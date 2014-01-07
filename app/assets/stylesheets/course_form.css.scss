@@ -49,6 +49,8 @@ ul.course-progress.horizontal {
 }
 
 form.step-pricing, form.step-page {
+  max-width: 800px;
+
   .form-actions {
     margin: 0;
   }
