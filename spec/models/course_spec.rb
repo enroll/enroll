@@ -403,6 +403,11 @@ describe Course do
         course.location.should be_nil
       }.to_not change(Location, :count)
     end
+
+    it "changes attribute to blank value" do
+      course.location_attributes = { name: 'Test', address: '' }
+      course.location.address.should == ''
+    end
   end
 
   describe ".future" do

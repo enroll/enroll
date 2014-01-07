@@ -185,11 +185,14 @@ class Course < ActiveRecord::Base
     campaign_failed_at.present?
   end
 
-  def location_attributes=(location_attributes)
-    location_attributes.delete_if { |k, v| v.blank? }
-    if location_attributes.any?
-      self.location = Location.where(location_attributes).first_or_create
+  def location_attributes=(all_atrs)
+    atrs = all_atrs.dup
+    atrs.delete_if { |k, v| v.blank? }
+    if atrs.any?
+      self.location = Location.where(atrs).first_or_create
     end
+
+    self.location.try :update_attributes, all_atrs
   end
 
   def set_default_values_if_nil
