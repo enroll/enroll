@@ -13,7 +13,7 @@ form.form {
   $label-total-width: $label-width + $label-margin;
   $max-width: 600px;
 
-  max-width: 600px;
+  max-width: $max-width;
 
   label {
     font-size: 12px;
