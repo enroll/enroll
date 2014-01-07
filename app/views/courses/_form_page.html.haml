@@ -1,7 +1,7 @@
 .landing-page-fields
-  .pull-right.actions
+  .pull-right.actions.h1
     %a.preview.btn.btn-success{:href => '#'} Preview
-  %h2 Landing page
+  %h1 Landing page
 
   .form-group.wide
     = form.label :description, 'Page contents'
@@ -18,5 +18,6 @@
 :coffeescript
   new LandingPagePreview(
     el: '.landing-page-fields',
-    course: #{@course.to_json}
+    course: #{@course.to_json},
+    previewPath: #{preview_course_path(@course).to_json}
   )

@@ -1,4 +1,4 @@
-class StudentsController < ApplicationController
+class Dashboard::StudentsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_course!
 
