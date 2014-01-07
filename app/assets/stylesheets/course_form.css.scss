@@ -65,3 +65,18 @@ form.step-pricing, form.step-page {
     width: auto;
   }
 }
+
+.form-group.url {
+  .url-label {
+    font-weight: 500;
+    color: $primary1;
+    padding-top: 7px;
+  }
+
+  .url-input {
+  }
+
+  input {
+    color: $primary1;
+  }
+}
