@@ -56,7 +56,7 @@
 
 - if @course.instructor_biography
   .sidebar-large-icon
-    %i.icon-graduation-cap
+    = gravatar_for(@course.instructor.email, class: 'instructor-avatar', size: 55)
   .tc= @course.instructor_biography
 
 

@@ -231,6 +231,10 @@ div.sidebar-large-icon {
   font-weight: 500;
 }
 
+img.instructor-avatar {
+  @include border-radius(50%);
+}
+
 // Successfuly enrolled
 
 div.enrolled {
