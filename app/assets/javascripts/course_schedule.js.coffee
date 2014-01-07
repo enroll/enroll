@@ -52,7 +52,9 @@ class window.CourseSchedule extends Spine.Controller
     DPGlobal.formatDate(date, @parsedFormat, 'en')
 
   dateToIdentifier: (date) ->
-    "#{date.getFullYear()}-#{date.getMonth()+1}-#{date.getDate()}"
+    month = date.getMonth() + 1
+    month = "0#{month}" if month <= 9
+    "#{date.getFullYear()}-#{month}-#{date.getDate()}"
 
   # Changing start date
 
