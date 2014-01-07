@@ -54,7 +54,7 @@
     .tc= @course.location.to_full_s
     %hr/
 
-- if @course.instructor_biography
+- if @course.instructor_biography.present?
   .sidebar-large-icon
     = gravatar_for(@course.instructor.email, class: 'instructor-avatar', size: 55)
   .tc= @course.instructor_biography
