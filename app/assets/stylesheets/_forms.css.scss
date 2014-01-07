@@ -12,6 +12,7 @@ form.form {
   $label-margin: 15px;
   $label-total-width: $label-width + $label-margin;
   $max-width: 600px;
+  $font-size: 14px;
 
   max-width: 600px;
 
@@ -20,7 +21,7 @@ form.form {
     font-weight: 500;
   }
 
-  .form-group > label {
+  label.control-label {
     float: left;
     width: $label-width;
     text-align: right;
@@ -39,6 +40,7 @@ form.form {
     padding: 7px $input-padding-sides;
     color: $text1;
     font-weight: 500;
+    font-size: $font-size;
     height: auto;
 
     &:focus {
@@ -48,6 +50,12 @@ form.form {
 
     &.small {
       width: 120px;
+    }
+
+    &.mini {
+      width: 80px;
+      font-size: 13px;
+      display: inline-block;
     }
 
     &.inline {
@@ -61,6 +69,11 @@ form.form {
 
     &.large {
       height: 300px;
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 300;
+      color: $gray-medium-light;
     }
   }
 
@@ -90,7 +103,7 @@ form.form {
   h1.offset, h2.offset {
     text-align: left;
     padding-left: $label-total-width;
-    padding-bottom: 5px;
+    padding-bottom: 7px;
   }
 
   p.help-block {
@@ -112,4 +125,18 @@ form.form {
 
 .datepicker table tr td.today.active {
   color: #fff !important;
+}
+
+.form-section {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid $gray-light;
+
+  &:nth-child(even) {
+    // background: #fbf8f8;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
