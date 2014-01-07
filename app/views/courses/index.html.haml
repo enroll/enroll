@@ -17,9 +17,5 @@
       %ul.course-list
         %li.header
           %strong Attending
-          .actions
-            %a{:href => '#'}
-              %i.icon-network
-              Browse
         = yrender "courses_list", courses: @courses_studying do |course|
           = link_to "Open &rsaquo;".html_safe, landing_page_path(course.url), :class => 'btn btn-primary small'
