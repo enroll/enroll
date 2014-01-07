@@ -11,6 +11,7 @@ class Dashboard::CoursesController < ApplicationController
   end
 
   def edit
+    @course.build_location unless @course.location
   end
 
   def update
