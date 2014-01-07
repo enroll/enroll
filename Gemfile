@@ -20,6 +20,7 @@ gem 'sass-rails',     '~> 4.0.0'
 gem 'sentry-raven',   '0.6.0'
 gem 'simple_form',    '~> 3.0.0'
 gem 'spine-rails'
+gem 'spinjs-rails'
 gem 'stringex'
 gem 'state_machine',  '1.2.0'
 gem 'stringex'
@@ -45,6 +46,9 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'email_spec'
   gem 'timecop'
+end
+
+group :test do
   gem 'vcr'
   gem 'webmock'
 end

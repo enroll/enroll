@@ -636,4 +636,15 @@ describe Course do
       course.price_per_seat_in_cents.should == 2000
     end
   end
+
+  describe "#schedules_attributes=" do
+    it "preserves schedules between saves" do
+      course.save! # only works on a saved course
+      course.schedules_attributes = [{date: '2013-12-31', starts_at: '9:00am'}]
+      course.save!
+      course.schedules.count.should == 1
+      course.save!
+      course.schedules.count.should == 1
+    end
+  end
 end

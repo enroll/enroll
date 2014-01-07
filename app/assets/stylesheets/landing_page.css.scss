@@ -42,6 +42,13 @@ body.landing-page, div.landing-page-preview {
       color: #fff;
       font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
       font-weight: 100;
+
+      a {
+        color: #fff;
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
 
     em { // Date and location
@@ -73,9 +80,8 @@ body.landing-page, div.landing-page-preview {
   padding: 30px;
   padding-top: 40px;
   background: #fff;
-  background: rgba(255,255,255,0.9);
 
-  h1 {
+  h1:not(.centered) {
     margin: 0;
     font-size: 16px;
     font-weight: 500;
@@ -92,12 +98,12 @@ body.landing-page, div.landing-page-preview {
 
 .course-sidebar {
   padding: 0 30px;
-}
 
-a.btn.reserve {
-  width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  a.btn.btn-large {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .exit-button {
@@ -173,4 +179,61 @@ html.cssanimations.csstransforms {
       }
     }
   }
+}
+
+
+// Statistics
+
+.course-stats {
+  strong, small {
+    display: block;
+    text-align: center;
+  }
+
+  strong {
+    color: $primary1-hilight;
+    font-weight: 500;
+    font-size: 22px;
+  }
+
+  small {
+    text-transform: uppercase;
+    // color: $gray-medium-dark;
+    color: $primary1-hilight2;
+  }
+}
+
+// Schedule table
+
+table.schedule {
+  th {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  td {
+    font-size: 13px;
+    padding-top: 2px;
+    padding-left: 12px;
+  }
+}
+
+// Sidebar huge icons
+
+div.sidebar-large-icon {
+  display: block;
+  text-align: center;
+  font-size: 36px;
+  padding-bottom: 5px;
+  color: $gray-medium-light;
+}
+
+.sidebar-location strong {
+  font-weight: 500;
+}
+
+// Successfuly enrolled
+
+div.enrolled {
+  text-align: center;
+  padding-bottom: 100px;
 }

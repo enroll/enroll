@@ -10,7 +10,5 @@
     = simple_form_for([:dashboard, @course], :html => {:class => "course-form form disable-submit-on-return step-#{current_step[:id]}"}) do |form|
       = render "courses/form_header", :form => form
       = render "courses/form_#{current_step[:id]}", :form => form
-      = render "courses/form_actions", :form => form
-
-  :coffeescript
-    new CourseForm(el: 'form.course-form')
+      .form-actions
+        = form.button(:submit, "Save", class: 'btn btn-primary btn-large')

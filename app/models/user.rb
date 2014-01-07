@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     Reservation.where(course_id: course.id, student_id: self.id).first
   end
 
+  def enrolled_for?(course)
+    !!reservation_for_course(course)
+  end
+
   def instructor?
     courses_as_instructor.any?
   end
@@ -55,5 +59,38 @@ class User < ActiveRecord::Base
   # between Enroll staff and Enroll customers
   def staff?
     true
+  end
+
+  # Stripe
+
+  def update_stripe_customer(token)
+    return unless token.present?
+
+    customer = nil
+
+    if stripe_customer_id
+      begin
+        customer = Stripe::Customer.retrieve(stripe_customer_id)
+      rescue Stripe::InvalidRequestError => e
+      end
+    end
+
+    if customer && !customer.deleted
+      # Customer exists, update the card using token from the form
+      customer.card = token
+      customer.save
+    else
+      # Customer doesn't exist yet, create a customer with token from the form
+      customer = Stripe::Customer.create(
+        card: token,
+        description: email
+      )      
+    end
+
+
+    self.stripe_customer_id = customer.id
+    self.save!(validate: false)
+
+    customer
   end
 end

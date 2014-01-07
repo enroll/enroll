@@ -1,15 +1,23 @@
-%h2.offset Dates
+.course-schedule
+  .form-section
+    %h2.bordered.offset Dates
 
-= form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, :required => true
-= form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, :required => true
+    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, :required => true
+    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, :required => true
 
-%h2.offset Location
+  .form-section.course-schedule
 
-= form.simple_fields_for(:location) do |location|
-  = location.input :name, label: 'Venue name'
-  = location.input :address
-  = location.input :address_2
-  = location.input :city
-  = location.input :state
-  = location.input :zip
-  = location.input :phone
+  .form-section
+    %h2.bordered.offset Location
+
+    = form.simple_fields_for(:location) do |location|
+      = location.input :name, label: 'Venue name'
+      = location.input :address
+      = location.input :address_2
+      = location.input :city
+      = location.input :state
+      = location.input :zip
+      = location.input :phone
+
+:coffeescript
+  new CourseSchedule(el: '.course-schedule', schedules: #{form.object.schedules.to_json})

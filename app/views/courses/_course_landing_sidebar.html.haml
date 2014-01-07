@@ -1,0 +1,81 @@
+// Enroll button isn't displayed when this partial
+// is rendered from the form page.
+
+- if enroll_button
+  - if @course.instructor == current_user
+    %a.btn.btn-primary.btn-large{href: dashboard_course_path(@course)} Go to dashboard
+  - elsif enrolled_for?(@course)
+    %a.btn.btn-primary.btn-large.disabled Already enrolled
+  - else
+    - if @course.future?
+      = course_reservation_link(@course)
+    - elsif @course.campaign_failed?
+      %a.btn.btn-primary.btn-large.disabled Course not funded
+    - else
+      %a.btn.btn-primary.btn-large.disabled Course complete
+- else
+  %a.btn.btn-primary.btn-large{href: landing_page_path(@course.url)}
+    %i.icon-chevron-left
+    Back to course
+
+%hr/
+  
+.course-stats.row
+  .col-sm-4
+    %strong= @course.reservations.count
+    %small Enrolled
+  .col-sm-4
+    %strong= reservations_needed(@course)
+    %small Needed
+  .col-sm-4
+    %strong= @course.max_seats
+    %small Capacity
+
+%hr/
+
+.sidebar-large-icon
+  %i.icon-calendar
+
+- if @course.schedules.present?
+  %table.schedule
+    - @course.schedules.each do |sch|
+      %tr
+        %th= short_date(sch.date)
+        %td= sch.range_str
+- else
+  .tc= long_date(@course.starts_at)
+
+%hr/
+
+- if @course.location.present?
+  .sidebar-location
+    .sidebar-large-icon
+      %i.icon-map
+    .tc= @course.location.to_full_s
+    %hr/
+
+- if @course.instructor_biography
+  .sidebar-large-icon
+    %i.icon-graduation-cap
+  .tc= @course.instructor_biography
+
+
+/ - if @course.starts_at.present?
+/   %h4= @course.starts_at.strftime("%B %e, %Y")
+/   %h5
+/     = @course.starts_at.strftime("%l:%M %p")
+/     \-
+/     \#{@course.ends_at.strftime("%l:%M %p %Z")}
+/ - if @course.location.present?
+/   %address
+/     %strong= @course.location.name
+/     %br/
+/     = @course.location.address
+/     %br/
+/     = @course.location.address_2
+/     %br/
+/     = @course.location.city
+/     , #{@course.location.state}#{@course.location.zip}
+/     %br/
+/     %abbr{title: "Phone"} P:
+/     = @course.location.phone

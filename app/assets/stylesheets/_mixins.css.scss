@@ -23,10 +23,14 @@
           transform: $transform;
 }
 
-.tl {
-  text-align: left !important;
+.tc {
+  text-align: center;
 }
 
-.tc {
-  text-align: center !important;
+.tj {
+  text-align: justify;
+}
+
+.tl {
+  text-align: left !important;
 }

@@ -33,6 +33,21 @@
 
 .actions {
   margin-top: -10px;
+}
+
+.btn-large {
+  padding: 13px 25px;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 12px;
+  padding: 4px 7px;
+  @include border-radius(0);
+
+  &.label-primary {
+    background: $primary1;
+  }
 
   &.h1 {
     margin-top: 0;

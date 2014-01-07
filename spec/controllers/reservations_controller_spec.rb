@@ -24,14 +24,36 @@ describe ReservationsController do
       assigns[:course].should_not be_nil
       assigns[:reservation].should_not be_nil
     end
+
+    it "redirects to show if already enrolled" do
+      create(:reservation, course: course, student: user)
+      get :new, course_id: course.to_param
+      response.should redirect_to landing_page_path(course.url)
+    end
   end
 
   context "POST create" do
-    context "when course is paid" do
-      it "captures the stripe token" do
-        post :create, course_id: course.to_param, reservation: reservation_attributes, stripeToken: "1"
+    let :customer do
+      customer = stub(id: '123')
+      customer.stubs(:card=)
+      customer.stubs(:save)
+      customer
+    end
 
-        user.reservations.last.stripe_token.should == "1"
+    before do
+      Stripe::Customer.stubs(:create).returns(customer)
+    end
+
+    context "when course is paid" do
+      it "creates customer with card token and saves customer token" do
+        Stripe::Customer.expects(:create)
+          .with(card: 'aaa', description: user.email)
+          .returns(customer)
+        post :create,
+          course_id: course.to_param,
+          reservation: reservation_attributes.merge(stripe_token: 'aaa')
+
+        user.reload.stripe_customer_id.should == '123'
       end
     end
 
@@ -47,11 +69,6 @@ describe ReservationsController do
       it "redirects to the reservation" do
         post :create, course_id: course.to_param, reservation: reservation_attributes
         response.should redirect_to(course_reservation_path(course, assigns[:reservation]))
-      end
-
-      it "sets the success flash" do
-        post :create, course_id: course.to_param, reservation: reservation_attributes
-        flash[:success].should_not be_nil
       end
 
       it "creates an event about reservation" do
@@ -91,7 +108,7 @@ describe ReservationsController do
 
       it "requires an email and password" do
         post :create, course_id: course.to_param, user: { email: '', password: '' }
-        flash[:error].should_not be_nil
+        assigns(:user).errors.messages.should_not be_empty
       end
     end
 
@@ -104,11 +121,6 @@ describe ReservationsController do
       it "renders the new page" do
         post :create, course_id: course.to_param, reservation: {}
         response.should render_template :new
-      end
-
-      it "sets the error flash" do
-        post :create, course_id: course.to_param, reservation: {}
-        flash[:error].should_not be_nil
       end
     end
   end

@@ -2,47 +2,10 @@
   = facebook_og_meta_tags(@course)
 
 .container.landing-page
-  .course-header
-    .course-title
-      %h2= @course.name
-      .row
-        .col-sm-6
-          %em.location
-            %i.icon-map
-            = @course.location
-        .col-sm-6
-          %em.date
-            %i.icon-calendar
-            == #{@course.starts_at.strftime("%B %e, %Y")}
-      / %h3= @course.tagline
+  = render 'courses/course_landing_header'
 
   .course-content.row
     .col-sm-8
       %p!= @markdown.render(@course.description || "")
     .course-sidebar.col-sm-4
-      - if @course.future?
-        = course_reservation_link(@course)
-      - elsif @course.campaign_failed?
-        Course not funded
-      - else
-        Course complete
-      %hr/
-      - if @course.starts_at.present?
-        %h4= @course.starts_at.strftime("%B %e, %Y")
-        %h5
-          = @course.starts_at.strftime("%l:%M %p")
-          \-
-          \#{@course.ends_at.strftime("%l:%M %p %Z")}
-      - if @course.location.present?
-        %address
-          %strong= @course.location.name
-          %br/
-          = @course.location.address
-          %br/
-          = @course.location.address_2
-          %br/
-          = @course.location.city
-          , #{@course.location.state}#{@course.location.zip}
-          %br/
-          %abbr{title: "Phone"} P:
-          = @course.location.phone
+      = render 'courses/course_landing_sidebar', enroll_button: true

@@ -29,17 +29,6 @@ stripeResponseHandler = (status, response) ->
     $form[0].submit()
 
 ready = ->
-  $('.datepicker').datepicker(
-    format: "yyyy-mm-dd"
-    todayHighlight: true
-    todayBtn: 'linked'
-    autoclose: true
-  ).on 'changeDate', (ev) ->
-    $('#course_course_starts_at').val(ev.date)
-    date = new Date(ev.date)
-    $('.datepicker-date').text date.toDateString()
-    $('.datepicker-time').text date.toLocaleTimeString()
-
   $("form.disable-submit-on-return input").keydown (e) ->
     code = e.keyCode or e.which
     if code is 13
@@ -72,7 +61,5 @@ ready = ->
     $('#log-in .email').focus()
 
   $('.edit_payment_settings').on 'submit', sendPaymentSettingsToStripeAndSubmit
-
-  Stripe.setPublishableKey('pk_test_vSOC9sUGEcBMh7kdQ5sjcsdM');
 
 $(document).on('ready page:load', ready)

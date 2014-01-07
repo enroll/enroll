@@ -1,0 +1,50 @@
+= render 'shared/stripe'
+
+.container.landing-page
+  = render 'courses/course_landing_header'
+  .course-content.row
+    .col-sm-8
+      = simple_form_for(@reservation, :url => course_reservations_path, html: {class: 'form stacked small-labels'}) do |f|
+        = f.input_field :stripe_token, :as => :hidden
+
+        %h2 Personal Info
+
+        = simple_fields_for(@user) do |uf|
+          = uf.input :name, required: true
+          = uf.input :email, required: true, disabled: !!current_user
+          - unless current_user
+            = uf.input :password, label: 'Memorable password', required: true
+
+        - if @course.paid?
+          %h2 Payment Details
+
+          .card-error-message
+          %div.form-group
+            = f.label :card_number, :label => 'Card number', :required => true
+            = f.input_field :card_number, :name => nil, :"data-stripe" => "number", :value => nil
+
+          .row
+            .form-group.col-sm-4.card-code
+              = f.label :card_code, :label => 'Security code', :required => true
+              = f.input_field :card_code, :name => nil, :"data-stripe" => "cvc", :class => "small", :value => nil
+
+            .form-group.col-sm-8.card-month
+              = f.label :card_month, :label => 'Card Expiration', :required => true
+              %div
+                = select_month Date.today, {add_month_numbers: true}, {name: nil, id: "card_month", :"data-stripe" => "exp_month"}
+                = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year", :"data-stripe" => "exp_year"}
+
+        .form-actions
+          .clearfix
+            .pull-left
+              = f.submit("Enroll - #{course_price_text(@course)}", class: 'btn btn-primary btn-large')
+            .pull-left
+              .spinner
+          .hint
+            You will only be charged if the course takes place. Payments are securely processed via Stripe.
+
+    .course-sidebar.col-sm-4
+      = render 'courses/course_landing_sidebar', enroll_button: false
+
+:coffeescript
+  new ReservationForm(el: '#new_reservation', stripeEnabled: #{@course.paid?})

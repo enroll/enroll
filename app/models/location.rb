@@ -15,12 +15,16 @@ class Location < ActiveRecord::Base
   def to_s
     s = name
     if state.present? && city.present?
-      s += ", #{city}, #{city}"
+      s += ", #{city}, #{state}"
     elsif state.present?
       s += ", #{state}"
     elsif city.present?
       s += ", #{city}"
     end
     s
+  end
+
+  def to_full_s
+    "<strong>#{name}</strong><br/>#{address}, #{city}<br />#{zip} #{state}".html_safe
   end
 end
