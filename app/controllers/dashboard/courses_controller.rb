@@ -14,7 +14,7 @@ class Dashboard::CoursesController < ApplicationController
   end
 
   def update
-    if @course.update_attributes!(course_params)
+    if @course.update_attributes(course_params)
       redirect_to_next_step
       # redirect_to edit_dashboard_course_path(@course, :step => params[:step])
     else

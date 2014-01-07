@@ -133,6 +133,7 @@ form.form {
     padding: 2px 5px;
     top: 30px;
     left: -4px;
+    z-index: 10;
     @include border-radius(3px);
 
     &:before {
