@@ -1,3 +1,29 @@
+## Deploying on DigitalOcean/Other VPS
+
+Bootstrap new servers with: https://github.com/enroll/enroll-bootstrap
+
+### Prepare SSH
+
+Edit `~/.ssh/config`:
+
+    Host staging.enroll.io
+      ForwardAgent yes
+
+    Host enroll.io
+      ForwardAgent yes
+
+Run `ssh-add`.
+
+### Deploy
+
+Run:
+
+    be cap staging deploy
+
+For production:
+
+    be cap production deploy
+
 ## Running on Heroku
 
 Staging is currently running on Heroku.
