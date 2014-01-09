@@ -21,3 +21,11 @@ production:
   pool: 5
   username: enroll
   password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: enroll_staging
+  pool: 5
+  username: enroll
+  password:
