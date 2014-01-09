@@ -18,10 +18,12 @@ module ApplicationHelper
   end
 
   def short_date(date)
+    return nil unless date
     date.strftime("%b #{date.day.ordinalize}")
   end
 
   def long_date(date)
+    return nil unless date
     date.strftime("%B %e, %Y")
   end
 end

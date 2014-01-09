@@ -28,7 +28,7 @@
     %strong= reservations_needed(@course)
     %small Needed
   .col-sm-4
-    %strong= @course.max_seats
+    %strong= @course.max_seats || "?"
     %small Capacity
 
 %hr/
