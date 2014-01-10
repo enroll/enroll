@@ -32,5 +32,5 @@
 
     .actions
       - if @course.ready_to_publish?
-        %a.btn.btn-primary.btn-large Publish
+        = link_to "Publish", publish_dashboard_course_path(@course), class: 'btn btn-primary btn-large'
       = link_to "Change details", edit_dashboard_course_path(@course), class: 'btn btn-large btn-default'

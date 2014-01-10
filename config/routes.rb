@@ -21,7 +21,7 @@ Enroll::Application.routes.draw do
       member do
         get :share
         get :review
-        post :publish
+        get :publish
       end
       resources :students, only: [:index]
     end

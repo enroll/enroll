@@ -34,6 +34,12 @@
     border: none;
   }
 
+  &.alert-success {
+    color: #fff;
+    background: $success;
+    border: none;
+  }
+
   .btn {
     color: #fff;
     border: 1px solid #fff;

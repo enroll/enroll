@@ -249,6 +249,11 @@ class Course < ActiveRecord::Base
     starts_at.present? && ends_at.present?
   end
 
+  def publish!
+    self.is_published = true
+    self.save!
+  end
+
   private
 
   # temporary

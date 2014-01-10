@@ -22,6 +22,11 @@ class Dashboard::CoursesController < ApplicationController
     end
   end
 
+  def publish
+    @course.publish!
+    redirect_to dashboard_course_path(@course, published: 1)
+  end
+
   protected
 
   def redirect_to_next_step

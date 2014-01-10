@@ -54,10 +54,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  def review
-    
-  end
-
   protected
 
   def setup_markdown
