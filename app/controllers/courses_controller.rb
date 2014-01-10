@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   before_filter :setup_markdown, only: [:show, :preview]
 
   def index
-    @courses_teaching = current_user.courses_as_instructor.future
+    @courses_teaching = current_user.courses_as_instructor
     @courses_studying = current_user.courses_as_student
   end
 

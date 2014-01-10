@@ -237,10 +237,19 @@ class Course < ActiveRecord::Base
     super(value)
   end
 
+  def published?
+    is_published
+  end
+
+  def draft?
+    !published?
+  end
+
   private
 
   # temporary
   def set_defaults
     self.ends_at = self.starts_at + 4.hours if self.starts_at_changed?
   end
+
 end
