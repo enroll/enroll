@@ -6,6 +6,8 @@
     %a.btn.btn-primary.btn-large{href: dashboard_course_path(@course)} Go to dashboard
   - elsif enrolled_for?(@course)
     %a.btn.btn-primary.btn-large.disabled Already enrolled
+  - elsif @course.draft?
+    %a.btn.btn-primary.btn-large.disabled Sign up
   - else
     - if !@course.starts_at
       %a.btn.btn-primary.btn-large.disabled Date unknown

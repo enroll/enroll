@@ -32,6 +32,11 @@
   color: $primary-text2;
 }
 
+.btn-warning {
+  background: $warning;
+  border: none;
+}
+
 .btn-info, .btn-info.active, .btn-info:hover, .btn-info:active {
   background: $primary1;
   border-color: $primary1;
