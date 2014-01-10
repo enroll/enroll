@@ -55,11 +55,26 @@ class window.CourseSchedule extends Spine.Controller
     month = "0#{month}" if month <= 9
     "#{date.getFullYear()}-#{month}-#{date.getDate()}"
 
+  # Changing campaign end date
+
+  changeCampaignEndDateAction: ->
+    start = @parseDate(@$courseStartField.val())
+    campaignEndDate = new Date()
+
+    # Set campaign end date to 7 days prior to today
+    campaignEndDate.setTime(start.getTime() - 6 * 24 * 60 * 60 * 1000)
+    $(".campaign_ends_at .date")[0].innerText = @formatDate(campaignEndDate)
+    $(".campaign_ends_at .campaign-help").show()
+
+    $(".campaign_ends_at .days_until_campaign_ends")[0].innerText = campaignEndDate.daysFromNow()
+
   # Changing start date
 
   changeStartDateAction: ->
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
+
+    @changeCampaignEndDateAction()
     @changeDateAction()
 
   # Changing any date
