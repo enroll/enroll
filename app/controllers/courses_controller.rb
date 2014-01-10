@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    saved = @course.update_attributes(course_params)
+    saved = @course.update_attributes!(course_params)
     return render :edit unless saved
 
     if next_step

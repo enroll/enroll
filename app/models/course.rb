@@ -28,6 +28,7 @@ class Course < ActiveRecord::Base
 
   after_save :set_defaults
   after_create :send_course_created_notification
+  before_save :revert_locked_fields_if_published
 
   delegate :instructor_payout_amount, to: CashRegister
 
@@ -259,6 +260,15 @@ class Course < ActiveRecord::Base
   # temporary
   def set_defaults
     self.ends_at = self.starts_at + 4.hours if self.starts_at_changed?
+  end
+
+  def revert_locked_fields_if_published
+    if published?
+      self.price_per_seat_in_cents = self.price_per_seat_in_cents_was
+      self.starts_at = self.starts_at_was
+      self.ends_at = self.ends_at_was
+      self.url = self.url_was
+    end
   end
 
 end
