@@ -10,7 +10,6 @@ class window.CourseSchedule extends Spine.Controller
 
   events:
     'changeDate input#course_starts_at': 'changeStartDateAction'
-    'changeDate input#course_starts_at': 'changeDateAction'
     'changeDate input#course_ends_at': 'changeDateAction'
 
   constructor: ->
@@ -61,6 +60,7 @@ class window.CourseSchedule extends Spine.Controller
   changeStartDateAction: ->
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
+    @changeDateAction()
 
   # Changing any date
 
