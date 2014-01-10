@@ -18,3 +18,19 @@
     color: $primary1;
   }
 }
+
+.alert {
+  @include border-radius(3px);
+
+  &.alert-warning {
+    color: #fff;
+    background: $warning;
+    border: none;
+  }
+
+  .btn {
+    color: #fff;
+    border: 1px solid #fff;
+    margin-top: -7px;
+  }
+}
