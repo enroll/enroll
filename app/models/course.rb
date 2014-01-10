@@ -245,6 +245,10 @@ class Course < ActiveRecord::Base
     !published?
   end
 
+  def ready_to_publish?
+    starts_at.present? && ends_at.present?
+  end
+
   private
 
   # temporary

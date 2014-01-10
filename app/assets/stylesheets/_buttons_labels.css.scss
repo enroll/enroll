@@ -67,4 +67,8 @@
   &.label-warning {
     background: $warning;
   }
+
+  &.label-error {
+    background: $error;
+  }
 }

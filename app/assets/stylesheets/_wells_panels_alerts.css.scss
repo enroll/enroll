@@ -19,6 +19,12 @@
   }
 }
 
+.centered-box {
+  text-align: center;
+  width: 400px;
+  margin: auto;
+}
+
 .alert {
   @include border-radius(3px);
 
