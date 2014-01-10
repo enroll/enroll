@@ -652,4 +652,11 @@ describe Course do
       course.schedules.count.should == 1
     end
   end
+
+  describe "#as_json" do
+    it "returns nil for date if date is nil" do
+      course.starts_at = nil
+      course.as_json[:starts_at].should == nil
+    end
+  end
 end

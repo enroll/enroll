@@ -203,11 +203,11 @@ class Course < ActiveRecord::Base
     self.description = DEFAULT_DESCRIPTION unless self.description.present?
   end
 
-  def as_json(options)
+  def as_json(options={})
     {
       name: name,
       location: location || {},
-      date: starts_at.strftime("%B %e, %Y"),
+      date: starts_at.try(:strftime, "%B %e, %Y"),
       description: description
     }
   end

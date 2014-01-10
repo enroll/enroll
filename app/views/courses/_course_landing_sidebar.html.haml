@@ -7,7 +7,9 @@
   - elsif enrolled_for?(@course)
     %a.btn.btn-primary.btn-large.disabled Already enrolled
   - else
-    - if @course.future?
+    - if !@course.starts_at
+      %a.btn.btn-primary.btn-large.disabled Date unknown
+    - elsif @course.future?
       = course_reservation_link(@course)
     - elsif @course.campaign_failed?
       %a.btn.btn-primary.btn-large.disabled Course not funded
@@ -28,24 +30,25 @@
     %strong= reservations_needed(@course)
     %small Needed
   .col-sm-4
-    %strong= @course.max_seats
+    %strong= @course.max_seats || "?"
     %small Capacity
 
 %hr/
 
-.sidebar-large-icon
-  %i.icon-calendar
+- if @course.starts_at.present?
+  .sidebar-large-icon
+    %i.icon-calendar
 
-- if @course.schedules.present?
-  %table.schedule
-    - @course.schedules.each do |sch|
-      %tr
-        %th= short_date(sch.date)
-        %td= sch.range_str
-- else
-  .tc= long_date(@course.starts_at)
+  - if @course.schedules.present?
+    %table.schedule
+      - @course.schedules.each do |sch|
+        %tr
+          %th= short_date(sch.date)
+          %td= sch.range_str
+  - else
+    .tc= long_date(@course.starts_at)
 
-%hr/
+  %hr/
 
 - if @course.location.present?
   .sidebar-location

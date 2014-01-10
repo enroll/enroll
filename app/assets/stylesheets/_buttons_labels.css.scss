@@ -22,6 +22,12 @@
   font-weight: 400;
 }
 
+.btn-default {
+  background: $gray-light;
+  color: $gray-dark;
+  border: none;
+}
+
 .btn-info {
   color: $primary-text2;
 }
