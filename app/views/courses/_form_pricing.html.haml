@@ -12,7 +12,7 @@
   .row
     .col-sm-6
       %table
-        = form.input :min_seats, label: '"Worth it" # of Seats', wrapper: 'pricing-block', hint: "If fewer than this number of people sign up, you're not on the hook to teach."
+        = form.input :min_seats, label: '"Worth it" # of Seats', wrapper: 'pricing-block', hint: "If fewer than this number of people sign up, you're not on the hook to teach. <span class='seats-help' data-toggle='tooltip'> What's this mean?</span>"
         = form.input :max_seats, label: 'Maximum # of Seats', wrapper: 'pricing-block', hint: "The most people you can fit in the room, or the most you want to teach to."
         = form.input :price_per_seat_in_dollars, label: 'Cost per Seat', wrapper: 'pricing-block'
     #revenue-calculator.col-sm-6.well
@@ -56,3 +56,7 @@
 
   :coffeescript
     new CoursePricing(el: '.course-pricing')
+    $('.seats-help').tooltip({
+      placement: "bottom",
+      title: 'You will have up to one week before the course is held to sign up the minimum number of seats or the course will not be run.  If you want run the course no matter what, set the "Worth It" number to 0.'
+    })
