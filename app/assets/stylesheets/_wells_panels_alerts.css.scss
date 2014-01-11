@@ -1,0 +1,48 @@
+@import '_mixins';
+@import 'twitter/bootstrap/_mixins';
+@import '_colors';
+
+.well {
+  @include border-radius(0);
+  @include box-shadow(none);
+  border: 1px solid $gray-medium-light;
+  background: transparent;
+}
+
+.panel-info {
+  border: none;
+  @include box-shadow(none);
+  > .panel-heading {
+    background: transparent;
+    border: none;
+    color: $primary1;
+  }
+}
+
+.centered-box {
+  text-align: center;
+  width: 400px;
+  margin: auto;
+}
+
+.alert {
+  @include border-radius(3px);
+
+  &.alert-warning {
+    color: #fff;
+    background: $warning;
+    border: none;
+  }
+
+  &.alert-success {
+    color: #fff;
+    background: $success;
+    border: none;
+  }
+
+  .btn {
+    color: #fff;
+    border: 1px solid #fff;
+    margin-top: -7px;
+  }
+}

@@ -1,6 +1,8 @@
 .container.dashboard
   = render 'dashboard/dashboard_menu', course: @course
 
+  = render 'dashboard/courses/draft_warning'
+
   - if @course.has_students?
     .actions.h1.pull-right
       %a.btn.btn-success.email-all-link{href: mailto_users(@course.students)}
