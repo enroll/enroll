@@ -6,5 +6,5 @@
       .col-sm-3.url-label
         http://enroll.io/go/
       .col-sm-9.url-input
-        = form.input_field :url, class: 'inline'
+        = form.input_field :url, class: 'inline', disabled: form.object.published?
 = form.input :tagline
