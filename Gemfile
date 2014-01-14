@@ -49,13 +49,13 @@ group :development, :test do
 end
 
 group :test do
-  gem 'vcr'
   gem 'webmock'
 end
 
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-resque', github: 'sshingler/capistrano-resque', require: false
   gem 'capistrano-bundler'
   gem 'foreman'
   gem 'guard'

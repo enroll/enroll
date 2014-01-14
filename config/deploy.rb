@@ -1,21 +1,14 @@
 set :application, 'enroll'
-
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
-
 set :deploy_to, '/var/apps/enroll'
-
 set :scm, :git
 set :repo_url, 'git@github.com:enroll/enroll.git'
 set :ssh_options, {forward_agent: true}
-
-# set :format, :pretty
 set :log_level, :debug
-
 set :linked_files, %w{config/database.yml}
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-# set :keep_releases, 5
+
+# Resque
+set :resque_environment_task, true
 
 namespace :deploy do
 
@@ -37,5 +30,7 @@ namespace :deploy do
   end
 
   after :finishing, 'deploy:cleanup'
+
+  after 'deploy:restart', 'resque:restart'
 
 end
