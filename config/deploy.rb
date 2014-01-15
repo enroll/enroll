@@ -4,7 +4,7 @@ set :scm, :git
 set :repo_url, 'git@github.com:enroll/enroll.git'
 set :ssh_options, {forward_agent: true}
 set :log_level, :debug
-set :linked_files, %w{config/database.yml .env}
+set :linked_files, %w{config/database.yml}
 set :linked_dirs, ["tmp/pids", "log"]
 
 
