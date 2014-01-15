@@ -23,6 +23,11 @@ class window.CoursePricing extends Spine.Controller
     @bindChangeEvent('#course_price_per_seat_in_dollars')
     @updateCourseCalculator()
 
+    if @isFree
+      @selectFunAction()
+    else
+      @selectProfitAction()
+
   bindChangeEvent: (el) ->
     @$(el).on 'propertychange input', @updateCourseCalculator
 

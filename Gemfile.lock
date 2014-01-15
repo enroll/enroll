@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/sshingler/capistrano-resque.git
+  revision: 2c73a2a1fed67cb88591141469a500969f7d91ca
+  specs:
+    capistrano-resque (0.1.0)
+      capistrano
+      resque
+      resque-scheduler
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -186,6 +195,10 @@ GEM
       redis-namespace (~> 1.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque-scheduler (2.2.0)
+      redis (>= 3.0.0)
+      resque (>= 1.20.0, < 1.25)
+      rufus-scheduler (~> 2.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.14.1)
@@ -204,6 +217,8 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    rufus-scheduler (2.0.24)
+      tzinfo (>= 0.3.22)
     safe_yaml (0.9.7)
     sass (3.2.12)
     sass-rails (4.0.1)
@@ -292,6 +307,7 @@ DEPENDENCIES
   capistrano
   capistrano-bundler
   capistrano-rails
+  capistrano-resque!
   coffee-rails (~> 4.0.0)
   devise (~> 3.0.1)
   dotenv-rails

@@ -1,6 +1,6 @@
 class Dashboard::CoursesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share]
+  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share, :review, :publish]
 
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
@@ -20,6 +20,11 @@ class Dashboard::CoursesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def publish
+    @course.publish!
+    redirect_to dashboard_course_path(@course, published: 1)
   end
 
   protected

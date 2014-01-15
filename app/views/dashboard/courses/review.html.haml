@@ -1,0 +1,36 @@
+.container.dashboard
+  = render 'dashboard/dashboard_menu', course: @course
+
+  .centered-box.course-review
+    %h1 Publish course
+
+    Publishing will make the course public and you won't be able to change these details:
+
+    %table.course-details
+      %tr
+        %th Price:
+        %td= course_price_text(@course)
+      %tr
+        %th Start date:
+        %td
+          - if @course.starts_at.present?
+            = long_date(@course.starts_at)
+          - else
+            .label.label-error.mini
+              %strong Missing
+      %tr
+        %th End date:
+        %td
+          - if @course.ends_at.present?
+            = long_date(@course.ends_at)
+          - else
+            .label.label-error.mini
+              %strong Missing
+      %tr
+        %th URL:
+        %td= landing_page_url(@course.url)
+
+    .actions
+      - if @course.ready_to_publish?
+        = link_to "Publish", publish_dashboard_course_path(@course), class: 'btn btn-primary btn-large'
+      = link_to "Change details", edit_dashboard_course_path(@course), class: 'btn btn-large btn-default'

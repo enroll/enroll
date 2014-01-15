@@ -2,8 +2,8 @@
   .form-section
     %h2.bordered.offset Dates
 
-    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, :required => true
-    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, :required => true
+    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, required: true, disabled: form.object.published?
+    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, required: true, disabled: form.object.published?
 
   .form-section.course-schedule
 

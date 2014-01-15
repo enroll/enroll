@@ -6,9 +6,13 @@ set :stage, :production
 # Supports bulk-adding hosts to roles, the primary
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
-role :app, %w{enroll@test1.enroll.io}
-role :web, %w{enroll@test1.enroll.io}
-role :db,  %w{enroll@test1.enroll.io}
+role :app, %w{enroll@enroll.io}
+role :web, %w{enroll@enroll.io}
+role :db,  %w{enroll@enroll.io}
+
+role :resque_worker, %w{enroll@enroll.io}
+role :resque_scheduler, %w{enroll@enroll.io}
+set :rails_env, 'production'
 
 # server 'test.1enroll.io', user: 'enroll', roles: %w{web app db}
 
