@@ -3,7 +3,7 @@
 
   @media (-webkit-min-device-pixel-ratio: 2), (-moz-min-device-pixel-ratio: 2) {
     & {
-      background-image: url($file + '@2x.' + $type);
+      background-image: asset-url($file + '@2x.' + $type, image);
       -webkit-background-size: $width $height;
     }
   }

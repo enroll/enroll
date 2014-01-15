@@ -70,7 +70,7 @@ nav.navbar {
     }
     // Logo
     a.navbar-brand {
-      @include retina('images/logo-header', 'png', 70px, 16px);
+      @include retina('logo-header', 'png', 70px, 16px);
       background-position: 0 6px;
       background-repeat: no-repeat;
       display: block;
