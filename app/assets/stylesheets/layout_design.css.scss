@@ -12,6 +12,9 @@ $layout-width: 844px;
   .container {
     max-width: $width;
   }
+  .alert {
+    max-width: $width;
+  }
 }
 
 body {

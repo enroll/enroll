@@ -28,8 +28,9 @@
 
 .alert {
   @include border-radius(3px);
-  width: $layout-width - 20px;
+  width: 100%;
   margin: auto;
+  margin-bottom: 20px;
 
   &.alert-warning {
     color: #fff;
