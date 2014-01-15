@@ -3,6 +3,7 @@
 @import 'twitter/bootstrap/_variables';
 
 $padding: 20px;
+$layout-width: 844px;
 
 @mixin body-width($width) {
   .navbar-inner {
@@ -14,7 +15,7 @@ $padding: 20px;
 }
 
 body {
-  @include body-width(844px);
+  @include body-width($layout-width);
 }
 
 // Nav Bar
