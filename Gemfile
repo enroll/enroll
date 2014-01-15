@@ -8,6 +8,7 @@ gem 'rails', '~> 4.0.0'
 gem 'angularjs-rails'
 gem 'coffee-rails',   '~> 4.0.0'
 gem 'devise',         '~> 3.0.1'
+gem 'dotenv-rails'
 gem 'entypo-rails'
 gem 'haml',           '~> 4.0.3'
 gem 'jbuilder',       '~> 1.0.1'
@@ -42,7 +43,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'vcr'
-  gem 'dotenv-rails'
   gem 'email_spec'
   gem 'timecop'
 end
@@ -66,5 +66,4 @@ end
 
 group :production, :staging do
   gem 'rails_12factor'
-  gem 'dotenv-rails'
 end
