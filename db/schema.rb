@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110094651) do
+ActiveRecord::Schema.define(version: 20140111000417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140110094651) do
     t.text     "description"
     t.integer  "location_id"
     t.integer  "instructor_id"
-    t.integer  "min_seats"
+    t.integer  "min_seats",                        default: 0
     t.integer  "max_seats"
     t.integer  "price_per_seat_in_cents"
     t.text     "instructor_biography"
