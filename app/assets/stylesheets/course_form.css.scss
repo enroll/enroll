@@ -71,6 +71,7 @@ form.step-pricing, form.step-page {
     font-weight: 500;
     color: $primary1;
     padding-top: 7px;
+    font-size: 13px;
   }
 
   .url-input {
@@ -78,5 +79,6 @@ form.step-pricing, form.step-page {
 
   input {
     color: $primary1;
+    font-size: 13px !important;
   }
 }
