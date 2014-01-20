@@ -280,6 +280,7 @@ class Course < ActiveRecord::Base
   def revert_locked_fields_if_published
     if published?
       self.price_per_seat_in_cents = self.price_per_seat_in_cents_was
+      self.min_seats = self.min_seats_was
       self.starts_at = self.starts_at_was
       self.ends_at = self.ends_at_was
       self.url = self.url_was

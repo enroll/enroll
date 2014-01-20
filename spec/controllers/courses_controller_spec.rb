@@ -166,6 +166,7 @@ describe CoursesController do
     context "draft mode" do
       before {
         saved_course.price_per_seat_in_cents = 200
+        saved_course.min_seats = 10
         saved_course.starts_at = Date.today
         saved_course.ends_at = Date.today
         saved_course.url = "foo"
@@ -176,6 +177,11 @@ describe CoursesController do
       it "does not allow changing price" do
         put :update, id: saved_course.to_param, step: 'pricing', course: {price_per_seat_in_dollars: 5}
         saved_course.reload.price_per_seat_in_cents.should == 200
+      end
+
+      it "does not allow changing min seats" do
+        put :update, id: saved_course.to_param, step: 'pricing', course: {min_seats: 5}
+        saved_course.reload.min_seats.should == 10
       end
 
       it "does not allow changing dates" do

@@ -13,7 +13,7 @@
   .row
     .col-sm-6
       %table
-        = form.input :min_seats, label: '"Worth it" # of Seats', wrapper: 'pricing-block', hint: "If fewer than this number of people sign up, you're not on the hook to teach."
+        = form.input :min_seats, label: '"Worth it" # of Seats', wrapper: 'pricing-block', hint: "If fewer than this number of people sign up, you're not on the hook to teach.", disabled: form.object.published?
         = form.input :max_seats, label: 'Maximum # of Seats', wrapper: 'pricing-block', hint: "The most people you can fit in the room, or the most you want to teach to."
         = form.input :price_per_seat_in_dollars, label: 'Cost per Seat', wrapper: 'pricing-block', disabled: form.object.published?
     #revenue-calculator.col-sm-6.well

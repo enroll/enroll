@@ -43,6 +43,13 @@
           - else
             = missing_label
       %tr
+        %th Minimum students:
+        %td
+          - if @course.min_seats.present?
+            = @course.min_seats
+          - else
+            = missing_label   
+      %tr
         %th URL:
         %td= landing_page_url(@course.url)
 
