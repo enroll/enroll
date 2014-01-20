@@ -182,6 +182,19 @@ class Course < ActiveRecord::Base
     !future?
   end
 
+  def days_until_start
+    days_until = (starts_at.to_date - Date.today).numerator
+    days_until > 0 ? days_until : 0
+  end
+
+  def too_soon?
+    if days_until_start < 14
+      true
+    else
+      false
+    end
+  end
+
   def campaign_failed?
     campaign_failed_at.present?
   end
@@ -247,7 +260,8 @@ class Course < ActiveRecord::Base
   end
 
   def ready_to_publish?
-    starts_at.present? && ends_at.present?
+    starts_at.present? && ends_at.present? &&
+      starts_at > Date.today
   end
 
   def publish!

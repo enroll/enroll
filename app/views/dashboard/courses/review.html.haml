@@ -2,6 +2,17 @@
   = render 'dashboard/dashboard_menu', course: @course
 
   .centered-box.course-review
+    - if @course.starts_at.present?
+      - if !@course.future?
+        .alert.alert-error
+          Start date of the course must be in the future.
+      - elsif @course.too_soon?
+        .alert.alert-error
+          The course is scheduled to begin in just
+          %strong== #{@course.days_until_start} days.
+          You can publish it, but it may be easier to find enough students if you schedule your course at least two weeks from now.
+
+
     %h1 Publish course
 
     Publishing will make the course public and you won't be able to change these details:
