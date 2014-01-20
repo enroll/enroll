@@ -252,7 +252,7 @@ class Course < ActiveRecord::Base
   end
 
   def published?
-    is_published
+    !!published_at
   end
 
   def draft?
@@ -261,11 +261,12 @@ class Course < ActiveRecord::Base
 
   def ready_to_publish?
     starts_at.present? && ends_at.present? &&
-      starts_at > Date.today
+      starts_at > Date.today &&
+      location.present?
   end
 
   def publish!
-    self.is_published = true
+    self.published_at = Time.zone.now
     self.save!
   end
 

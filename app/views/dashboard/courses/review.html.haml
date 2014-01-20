@@ -27,16 +27,21 @@
           - if @course.starts_at.present?
             = long_date(@course.starts_at)
           - else
-            .label.label-error.mini
-              %strong Missing
+            = missing_label
       %tr
         %th End date:
         %td
           - if @course.ends_at.present?
             = long_date(@course.ends_at)
           - else
-            .label.label-error.mini
-              %strong Missing
+            = missing_label
+      %tr
+        %th Location:
+        %td
+          - if @course.location.present?
+            = @course.location
+          - else
+            = missing_label
       %tr
         %th URL:
         %td= landing_page_url(@course.url)

@@ -51,4 +51,10 @@ module CourseHelper
   def enrolled_for?(course)
     current_user && current_user.enrolled_for?(course)
   end
+
+  def missing_label
+    content_tag 'div', class: 'label label-error mini' do
+      content_tag 'strong', 'Missing'
+    end
+  end
 end
