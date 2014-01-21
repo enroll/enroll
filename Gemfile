@@ -62,6 +62,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-shell'
   gem 'pry-rails'
+  gem 'tinder'
 end
 
 group :production, :staging do
