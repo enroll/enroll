@@ -51,6 +51,10 @@ div#welcome {
     }
   }
 
+  .spinner {
+    margin-top: 90px;
+  }
+
   h1, h2 {
     @include font1();
     color: $welcome-color;
