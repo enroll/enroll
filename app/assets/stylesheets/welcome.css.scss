@@ -1,26 +1,63 @@
 @import '_mixins';
+@import '_typo';
 @import '_colors';
 @import 'twitter/bootstrap/_mixins';
 @import 'layout_design';
 
+$welcome-color: #363227;
+
+@mixin font1() {
+  font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.btn-transparent {
+  color: $welcome-color;
+  border-color: $welcome-color;
+  font-size: 13px;
+  font-weight: 500;
+
+  &.large {
+    font-size: 14px;
+    padding: 12px 20px 12px 20px;
+    margin-top: 20px;
+  }
+}
+
 div#welcome {
   .head {
-    height: 430px;
-    @include retina('main-landing', 'jpg', 1084px, 432px);
+    height: 390px;
+    @include retina('welcome-head', 'jpg', 1084px, 390px);
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover !important;
+
+    text-align: center;
   }
 
   .top-bar {
     @include retina('welcome-logo', 'png', 71px, 16px);
     background-repeat: no-repeat;
-    background-position: 5px 40px;
+    background-position: 5px 30px;
     height: 100px;
+    padding-top: 26px;
 
     .btn {
       float: right;
-      margin-top: 33px;
     }
+  }
+
+  h1, h2 {
+    @include font1();
+    color: $welcome-color;
+    font-weight: 200 !important;
+  }
+
+  h1 {
+    font-size: 72px;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 32px;
   }
 }
