@@ -260,9 +260,13 @@ class Course < ActiveRecord::Base
   end
 
   def ready_to_publish?
-    starts_at.present? && ends_at.present? &&
+    dates_present &&
       starts_at > Date.today &&
       location.present?
+  end
+
+  def dates_present?
+    starts_at.present? && ends_at.present?
   end
 
   def publish!

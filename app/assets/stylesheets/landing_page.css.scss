@@ -9,7 +9,7 @@ body.landing-page, div.landing-page-preview {
   @include retina('landing-background', 'jpg', 1084px, 850px);
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: cover;
+  background-size: cover !important;
   background-attachment: fixed;
 
   nav.navbar {

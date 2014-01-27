@@ -17,7 +17,7 @@ body.dashboard {
   padding-left: $sidebar-width + $padding;
 
   .dashboard-sidebar {
-    background: $primary1;
+    background: #1c2a39;
     position: absolute;
     position: fixed;
     left: 0;
@@ -43,7 +43,7 @@ ul.dashboard-menu {
   list-style: none;
 
   li {
-    border-bottom: 1px solid $primary1-hilight;
+    border-bottom: 1px solid lighten(#1c2a39, 10%);
     position: relative;
 
     &, h2, a {
