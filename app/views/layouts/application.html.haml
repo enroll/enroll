@@ -1,0 +1,9 @@
+!!!
+%html{lang: "en"}
+  %body
+    = render 'layouts/head'
+    = render 'layouts/navigation'
+    = render 'shared/messages'
+    = yield
+    = render 'layouts/footer'
+    = render 'layouts/analytics' unless Rails.env == "development"
