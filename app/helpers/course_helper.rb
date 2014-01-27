@@ -12,8 +12,7 @@ module CourseHelper
   def days_until_start(course)
     return "?" unless course.starts_at
 
-    days_until = (course.starts_at.to_date - Date.today).numerator
-    days_until > 0 ? days_until : 0
+    course.days_until_start
   end
 
   def percentage_to_full(course)
@@ -51,5 +50,11 @@ module CourseHelper
 
   def enrolled_for?(course)
     current_user && current_user.enrolled_for?(course)
+  end
+
+  def missing_label
+    content_tag 'div', class: 'label label-error mini' do
+      content_tag 'strong', 'Missing'
+    end
   end
 end

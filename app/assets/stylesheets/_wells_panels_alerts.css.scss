@@ -44,6 +44,12 @@
     border: none;
   }
 
+  &.alert-error {
+    color: #fff;
+    background: $error;
+    border: none;
+  }
+
   .btn {
     color: #fff;
     border: 1px solid #fff;
