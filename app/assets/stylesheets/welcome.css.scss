@@ -21,11 +21,16 @@ $welcome-color: #363227;
     padding: 12px 20px 12px 20px;
     margin-top: 20px;
   }
+
+  &:active, &.active {
+    background: $welcome-color;
+    color: #fff;
+  }
 }
 
 div#welcome {
   .head {
-    height: 390px;
+    height: 370px;
     @include retina('welcome-head', 'jpg', 1084px, 390px);
     background-repeat: no-repeat;
     background-position: top center;
@@ -59,5 +64,33 @@ div#welcome {
 
   h2 {
     font-size: 32px;
+    margin-top: 0;
+  }
+}
+
+// Transparent form
+
+form.form.transparent {
+  margin: auto;
+  max-width: 300px;
+
+  label {
+    font-size: 14px;
+    color: $welcome-color;
+    padding-top: 9px;
+  }
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    background: transparent;
+    border: none;
+    @include box-shadow(none);
+    border-bottom: 1px solid $welcome-color;
+    font-size: 16px;
+    padding-left: 0;
+    color: $welcome-color;
   }
 }
