@@ -37,6 +37,11 @@
   border: none;
 }
 
+.btn-transparent {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
 .btn-info, .btn-info.active, .btn-info:hover, .btn-info:active {
   background: $primary1;
   border-color: $primary1;

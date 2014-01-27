@@ -1,0 +1,26 @@
+@import '_mixins';
+@import '_colors';
+@import 'twitter/bootstrap/_mixins';
+@import 'layout_design';
+
+div#welcome {
+  .head {
+    height: 430px;
+    @include retina('main-landing', 'jpg', 1084px, 432px);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover !important;
+  }
+
+  .top-bar {
+    @include retina('welcome-logo', 'png', 71px, 16px);
+    background-repeat: no-repeat;
+    background-position: 5px 40px;
+    height: 100px;
+
+    .btn {
+      float: right;
+      margin-top: 33px;
+    }
+  }
+}

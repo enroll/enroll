@@ -1,8 +1,11 @@
 !!!
 %html{lang: "en"}
+  = render 'layouts/head'
   %body
-    = render 'layouts/head'
-    = render 'layouts/navigation'
+    - if content_for?(:navigation)
+      = yield(:navigation)
+    - else
+      = render 'layouts/navigation'
     = render 'shared/messages'
     = yield
     = render 'layouts/footer'
