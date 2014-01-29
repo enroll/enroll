@@ -5,6 +5,7 @@
 @import 'layout_design';
 
 $welcome-color: #363227;
+$welcome-color2: #938c7a;
 
 @mixin font1() {
   font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
@@ -55,10 +56,10 @@ div#welcome {
     margin-top: 90px;
   }
 
-  h1, h2 {
+  h1, h2, h3 {
     @include font1();
     color: $welcome-color;
-    font-weight: 200 !important;
+    font-weight: 200;
   }
 
   h1 {
@@ -69,6 +70,15 @@ div#welcome {
   h2 {
     font-size: 32px;
     margin-top: 0;
+  }
+
+  h3 {
+    font-size: 24px;
+    color: $welcome-color2;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 50px;
+    line-height: 140%;
   }
 }
 
@@ -96,5 +106,38 @@ form.form.transparent {
     font-size: 16px;
     padding-left: 0;
     color: $welcome-color;
+  }
+}
+
+// Diagram
+
+.diagram {
+  .part {
+    text-align: center;
+    font-size: 13px;
+    color: $welcome-color2;
+  }
+
+  .icon {
+    width: 100%;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.build {
+      @include retina('icon-build', 'png', 71px, 58px);
+    }
+
+    &.share {
+      @include retina('icon-share', 'png', 66px, 46px);
+    }
+
+    &.signup {
+      @include retina('icon-signup', 'png', 53px, 61px);
+    }
+
+    &.teach {
+      @include retina('icon-teach', 'png', 48px, 37px);
+    }
   }
 }
