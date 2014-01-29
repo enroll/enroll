@@ -1,12 +1,3 @@
-GIT
-  remote: git://github.com/sshingler/capistrano-resque.git
-  revision: 2c73a2a1fed67cb88591141469a500969f7d91ca
-  specs:
-    capistrano-resque (0.1.0)
-      capistrano
-      resque
-      resque-scheduler
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,6 +47,10 @@ GEM
     capistrano-rails (1.1.0)
       capistrano (>= 3.0.0)
       capistrano-bundler (>= 1.0.0)
+    capistrano-resque (0.1.0)
+      capistrano
+      resque
+      resque-scheduler
     celluloid (0.15.2)
       timers (~> 1.1.0)
     coderay (1.1.0)
@@ -325,7 +320,7 @@ DEPENDENCIES
   capistrano
   capistrano-bundler
   capistrano-rails
-  capistrano-resque!
+  capistrano-resque
   coffee-rails (~> 4.0.0)
   devise (~> 3.0.1)
   dotenv-rails
