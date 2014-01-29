@@ -116,6 +116,7 @@ form.form.transparent {
     text-align: center;
     font-size: 13px;
     color: $welcome-color2;
+    margin-top: 40px;
   }
 
   .icon {
@@ -138,6 +139,22 @@ form.form.transparent {
 
     &.teach {
       @include retina('icon-teach', 'png', 48px, 37px);
+    }
+  }
+
+  span {
+    display: block;
+    width: 150px;
+    margin: auto;
+  }
+}
+
+// Responsive
+
+@media screen and (max-width: 480px) {
+  div#welcome {
+    h1 {
+      font-size: 48px;
     }
   }
 }
