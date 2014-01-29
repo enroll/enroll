@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/sshingler/capistrano-resque.git
-  revision: 2c73a2a1fed67cb88591141469a500969f7d91ca
+  remote: https://github.com/sshingler/capistrano-resque.git
+  revision: 1d5063c4ed07093fa73c6265740e86dbf5717fa1
   specs:
     capistrano-resque (0.1.0)
       capistrano
