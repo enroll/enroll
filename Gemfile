@@ -54,8 +54,7 @@ end
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
-  # gem 'capistrano-resque', git: 'https://github.com/sshingler/capistrano-resque.git', require: false
-  gem 'capistrano-resque'
+  gem 'capistrano-resque', git: 'https://github.com/sshingler/capistrano-resque.git', require: false
   gem 'capistrano-bundler'
   gem 'foreman'
   gem 'guard'
