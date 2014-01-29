@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://gems.github.com'
 
 ruby '2.0.0'
 
