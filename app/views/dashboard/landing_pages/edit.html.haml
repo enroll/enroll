@@ -1,7 +1,7 @@
 .container.dashboard
   = render 'dashboard/dashboard_menu', course: @course
 
-  = render 'dashboard/courses/draft_warning'
+  = render 'dashboard/courses/course_warning'
   
   = simple_form_for(@course, :url => dashboard_landing_page_path(@course.id), :html => {:class => "course-form form disable-submit-on-return step-page"}) do |form|
     = render 'courses/form_page', form: form

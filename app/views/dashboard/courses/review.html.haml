@@ -2,6 +2,17 @@
   = render 'dashboard/dashboard_menu', course: @course
 
   .centered-box.course-review
+    - if @course.starts_at.present?
+      - if !@course.future?
+        .alert.alert-error
+          Start date of the course must be in the future.
+      - elsif @course.too_soon?
+        .alert.alert-error
+          The course is scheduled to begin in just
+          %strong== #{@course.days_until_start} days.
+          You can publish it, but it may be easier to find enough students if you schedule your course at least two weeks from now.
+
+
     %h1 Publish course
 
     Publishing will make the course public and you won't be able to change these details:
@@ -16,16 +27,28 @@
           - if @course.starts_at.present?
             = long_date(@course.starts_at)
           - else
-            .label.label-error.mini
-              %strong Missing
+            = missing_label
       %tr
         %th End date:
         %td
           - if @course.ends_at.present?
             = long_date(@course.ends_at)
           - else
-            .label.label-error.mini
-              %strong Missing
+            = missing_label
+      %tr
+        %th Location:
+        %td
+          - if @course.location.present?
+            = @course.location
+          - else
+            = missing_label
+      %tr
+        %th Minimum students:
+        %td
+          - if @course.min_seats.present?
+            = @course.min_seats
+          - else
+            = missing_label   
       %tr
         %th URL:
         %td= landing_page_url(@course.url)

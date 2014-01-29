@@ -182,6 +182,19 @@ class Course < ActiveRecord::Base
     !future?
   end
 
+  def days_until_start
+    days_until = (starts_at.to_date - Date.today).numerator
+    days_until > 0 ? days_until : 0
+  end
+
+  def too_soon?
+    if days_until_start < 14
+      true
+    else
+      false
+    end
+  end
+
   def campaign_failed?
     campaign_failed_at.present?
   end
@@ -239,7 +252,7 @@ class Course < ActiveRecord::Base
   end
 
   def published?
-    is_published
+    !!published_at
   end
 
   def draft?
@@ -247,11 +260,17 @@ class Course < ActiveRecord::Base
   end
 
   def ready_to_publish?
+    dates_present &&
+      starts_at > Date.today &&
+      location.present?
+  end
+
+  def dates_present?
     starts_at.present? && ends_at.present?
   end
 
   def publish!
-    self.is_published = true
+    self.published_at = Time.zone.now
     self.save!
   end
 
@@ -265,6 +284,7 @@ class Course < ActiveRecord::Base
   def revert_locked_fields_if_published
     if published?
       self.price_per_seat_in_cents = self.price_per_seat_in_cents_was
+      self.min_seats = self.min_seats_was
       self.starts_at = self.starts_at_was
       self.ends_at = self.ends_at_was
       self.url = self.url_was
