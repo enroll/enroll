@@ -1,0 +1,4 @@
+- if params[:published]
+  .alert.alert-success
+    Course was published!
+    %a.btn.pull-right{href: landing_page_path(@course.url), target: '_blank'} Open &rsaquo;

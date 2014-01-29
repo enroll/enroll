@@ -41,7 +41,14 @@
             .pull-left
               .spinner
           .hint
-            You will only be charged if the course takes place. Payments are securely processed via Stripe.
+            - if @course.min_seats > 0 && @course.reservations.count >= @course.min_seats
+              This course has met requirement for minimum seats and will take place. You will be charged immediately.
+            - elsif @course.min_seats > 0
+              The course will only take place if
+              %strong.dark= "you and " + (@course.min_seats - (@course.reservations.count+1)).to_s + " more students"
+              enroll. You will be charged once this minimum enrollment is met.
+            - else
+              Your credit card will be charged immediately.
 
     .course-sidebar.col-sm-4
       = render 'courses/course_landing_sidebar', enroll_button: false

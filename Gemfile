@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://gems.github.com'
 
 ruby '2.0.0'
 
@@ -8,6 +9,7 @@ gem 'rails', '~> 4.0.0'
 gem 'angularjs-rails'
 gem 'coffee-rails',   '~> 4.0.0'
 gem 'devise',         '~> 3.0.1'
+gem 'dotenv-rails'
 gem 'entypo-rails'
 gem 'haml',           '~> 4.0.3'
 gem 'jbuilder',       '~> 1.0.1'
@@ -42,19 +44,18 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'vcr'
-  gem 'dotenv-rails'
   gem 'email_spec'
   gem 'timecop'
 end
 
 group :test do
-  gem 'vcr'
   gem 'webmock'
 end
 
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-resque', git: 'https://github.com/sshingler/capistrano-resque.git', require: false
   gem 'capistrano-bundler'
   gem 'foreman'
   gem 'guard'
@@ -62,6 +63,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-shell'
   gem 'pry-rails'
+  gem 'tinder'
 end
 
 group :production, :staging do

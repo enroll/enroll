@@ -3,10 +3,15 @@
     %strong
       %i.icon-briefcase
       = course.name
+      - if course.draft?
+        %span.label.label-warning.mini D
     .actions
       = yield(course)
     %br/
-    %em= course.starts_at.strftime("%B %e, %Y")
+    - if course.starts_at
+      %em= course.starts_at.strftime("%B %e, %Y")
+    - else
+      %em Time unknown
 
 - if courses.empty?
   %li.empty

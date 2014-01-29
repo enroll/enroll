@@ -1,6 +1,9 @@
 .container.dashboard
   = render 'dashboard/dashboard_menu', course: @course
 
+  = render 'course_warning'
+  = render 'published_notice'
+
   .row
     .col-sm-6
       = render 'stats'

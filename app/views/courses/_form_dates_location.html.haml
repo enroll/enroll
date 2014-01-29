@@ -2,8 +2,8 @@
   .form-section
     %h2.bordered.offset Dates
 
-    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, :required => true, label: "Start date"
-    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, :required => true, label: "End date"
+    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, :required => true, label: "Start date", disabled: form.object.published?
+    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, :required => true, label: "End date", disabled: form.object.published?
     .form-group.campaign_ends_at
       %label.control-label Campaign end date
       .controls
@@ -14,6 +14,7 @@
           days to get the minimum signups for your course.
           .small
             Courses on Enroll only run if they reach their specified minimum number of signups.
+
   .form-section.course-schedule
 
   .form-section

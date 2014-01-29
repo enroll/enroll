@@ -3,6 +3,7 @@
 @import 'twitter/bootstrap/_variables';
 
 $padding: 20px;
+$layout-width: 844px;
 
 @mixin body-width($width) {
   .navbar-inner {
@@ -11,10 +12,13 @@ $padding: 20px;
   .container {
     max-width: $width;
   }
+  .alert {
+    max-width: $width;
+  }
 }
 
 body {
-  @include body-width(844px);
+  @include body-width($layout-width);
 }
 
 // Nav Bar
@@ -69,7 +73,7 @@ nav.navbar {
     }
     // Logo
     a.navbar-brand {
-      @include retina('images/logo-header', 'png', 70px, 16px);
+      @include retina('logo-header', 'png', 70px, 16px);
       background-position: 0 6px;
       background-repeat: no-repeat;
       display: block;

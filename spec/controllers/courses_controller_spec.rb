@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CoursesController do
   let(:course) { build(:course) }
   let(:course_attributes) { attributes_for(:course).merge({ location_attributes: attributes_for(:location)}) }
-  let(:saved_course) { create(:course, instructor: user) }
+  let(:saved_course) { create(:course, instructor: user, name: 'foo') }
   let(:user) { create(:user) }
 
   context "GET show" do
@@ -158,6 +158,44 @@ describe CoursesController do
       end
     end
 
+  end
+
+  context "PUT update" do
+    before { sign_in(user) }
+
+    context "draft mode" do
+      before {
+        saved_course.price_per_seat_in_cents = 200
+        saved_course.min_seats = 10
+        saved_course.starts_at = Date.today
+        saved_course.ends_at = Date.today
+        saved_course.url = "foo"
+        saved_course.save!
+        saved_course.publish!
+      }
+
+      it "does not allow changing price" do
+        put :update, id: saved_course.to_param, step: 'pricing', course: {price_per_seat_in_dollars: 5}
+        saved_course.reload.price_per_seat_in_cents.should == 200
+      end
+
+      it "does not allow changing min seats" do
+        put :update, id: saved_course.to_param, step: 'pricing', course: {min_seats: 5}
+        saved_course.reload.min_seats.should == 10
+      end
+
+      it "does not allow changing dates" do
+        put :update, id: saved_course.to_param, step: 'dates_location', course: {starts_at: '2014-01-01', ends_at: '2014-01-01'}
+        saved_course.reload
+        saved_course.starts_at.should == Date.today
+        saved_course.ends_at.should == Date.today
+      end
+
+      it "does not allow changing url" do
+        put :update, id: saved_course.to_param, step: 'details', course: {url: 'bazinga'}
+        saved_course.reload.url.should == 'foo'
+      end
+    end 
   end
 
   context "GET edit" do

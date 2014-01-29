@@ -3,6 +3,7 @@
 @import 'twitter/bootstrap/mixins';
 
 $sidebar-width: 210px;
+$sidebar-color: #4d555e;
 
 body.dashboard {
   @include body-width(100%);
@@ -17,7 +18,7 @@ body.dashboard {
   padding-left: $sidebar-width + $padding;
 
   .dashboard-sidebar {
-    background: $primary1;
+    background: $sidebar-color;
     position: absolute;
     position: fixed;
     left: 0;
@@ -43,7 +44,7 @@ ul.dashboard-menu {
   list-style: none;
 
   li {
-    border-bottom: 1px solid $primary1-hilight;
+    border-bottom: 1px solid lighten($sidebar-color, 10%);
     position: relative;
 
     &, h2, a {

@@ -9,6 +9,10 @@ role :app, %w{enroll@staging.enroll.io}
 role :web, %w{enroll@staging.enroll.io}
 role :db,  %w{enroll@staging.enroll.io}
 
+role :resque_worker, %w{enroll@staging.enroll.io}
+role :resque_scheduler, %w{enroll@staging.enroll.io}
+set :rails_env, 'staging'
+
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server

@@ -659,4 +659,12 @@ describe Course do
       course.as_json[:starts_at].should == nil
     end
   end
+
+  describe "#publish!" do
+    it "publishes the course" do
+      course.published?.should == false
+      course.publish!
+      course.reload.published?.should == true
+    end
+  end
 end

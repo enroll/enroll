@@ -1,5 +1,9 @@
 .container.dashboard
   = render 'dashboard/dashboard_menu', course: @course
+  
+  = render 'dashboard/courses/course_warning'
+
+
   %h2 Share this course!
 
   = render "courses/share"
