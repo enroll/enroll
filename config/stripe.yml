@@ -6,8 +6,8 @@ test:
   <<: *development
 
 production: &production
-  publishable_key: "<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
-  secret_key: "<%= ENV['STRIPE_SECRET_KEY'] %>"
+  publishable_key: pk_live_LvegTNyjDtP0kI5ffND2Og2x
+  secret_key: sk_live_z3RWQGVvlr2CXQfme0JmCE9J
 
 staging:
   <<: *production
