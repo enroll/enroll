@@ -49,16 +49,6 @@ describe Users::RegistrationsController do
         post :create, user: user_attributes
         assigns(:course).should be_instance_of(Course)
       end
-
-      it "re-renders the root page" do
-        post :create, user: user_attributes
-        response.should render_template(:index)
-      end
-
-      it "sets the error flash" do
-        post :create, user: user_attributes
-        flash[:error].should_not be_nil
-      end
     end
   end
 

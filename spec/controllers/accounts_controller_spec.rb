@@ -27,7 +27,7 @@ describe AccountsController do
       it 'redirects the user to the login page' do
         get :edit
         response.should be_redirect
-        response.should redirect_to(root_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
   end
@@ -73,7 +73,7 @@ describe AccountsController do
       it 'redirects the user to the login page' do
         put :update, user: { email: 'updatedemail@example.com' }
         response.should be_redirect
-        response.should redirect_to(root_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
   end
