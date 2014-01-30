@@ -61,10 +61,10 @@ describe CoursesController do
 
   context "POST create" do
     context "when not logged in" do
-      it "redirects to root" do
+      it "redirects to login" do
         post :create, course: course_attributes
         response.should be_redirect
-        response.should redirect_to(root_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
   end
@@ -211,10 +211,10 @@ describe CoursesController do
     end
 
     context "when not logged in" do
-      it "redirects to the root page" do
+      it "redirects to the login page" do
         get :edit, id: course.to_param
         response.should be_redirect
-        response.should redirect_to(root_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
   end

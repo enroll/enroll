@@ -1,4 +1,5 @@
 @import '_mixins';
+@import '_typo';
 @import '_colors';
 @import 'twitter/bootstrap/_mixins';
 @import 'layout_design';
@@ -30,6 +31,10 @@ body.landing-page, div.landing-page-preview {
   }
 }
 
+.center {
+  text-align: center;
+}
+
 .course-header {
   .course-title {
     width: 100%;
@@ -40,7 +45,7 @@ body.landing-page, div.landing-page-preview {
       text-align: center;
       font-size: 50px;
       color: #fff;
-      font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
+      @include font1();
       font-weight: 100;
 
       a {

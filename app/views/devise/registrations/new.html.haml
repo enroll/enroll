@@ -1,0 +1,11 @@
+.container
+  %h1.offset Sign up
+
+
+  = simple_form_for @user, url: registration_path(:user), html: {class: "form"} do |f|
+    = f.simple_fields_for @course do |c|
+      = c.input :name, required: false, autofocus: true, label: "Course Name", input_html: {autocomplete: 'off'}
+      = f.input :email, input_html: {autocomplete: 'off'}
+      = f.input :password
+      .form-actions
+        = f.button :submit, "Sign Up", class: "btn btn-primary"

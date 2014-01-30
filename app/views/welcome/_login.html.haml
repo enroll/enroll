@@ -1,0 +1,6 @@
+= simple_form_for :user, url: session_path(:user), html: {class: 'form transparent'} do |f|
+  %h2 Sign in
+
+  = f.input :email, required: false, autofocus: true, label: 'E-mail:', input_html: {autocomplete: 'off'}
+  = f.input :password, :required => false, label: 'Password:'
+  = f.button :submit, "Sign in", class: 'btn btn-transparent'

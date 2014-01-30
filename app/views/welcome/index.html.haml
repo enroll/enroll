@@ -1,28 +1,85 @@
-.jumbotron.front-page
-  .container
-    %h1.logo enroll
-    %p You teach.
-    %p We take care of the rest.
-    - unless user_signed_in?
-      %button.btn.btn-primary{"data-toggle" => "collapse", "data-target" => "#sign-up"}
-        Sign Up To Teach
+- content_for :navigation do
+  // nothing
 
-.container
-  .row
-    .col-sm-4
-      %h4 All Courses
-      %ul
-        - Course.all.each do |course|
-          %li= link_to course.name, course_path(course)
-    .col-sm-4
-      %h4 My Courses
-      - if user_signed_in?
-        %ul
-          - current_user.courses_as_instructor.all.each do |course|
-            %li= link_to course.name, course_path(course)
-    .col-sm-4
-      %h4 My Reservations
-      - if user_signed_in?
-        %ul
-          - current_user.courses_as_student.all.each do |course|
-            %li= link_to course.name, course_path(course)
+#welcome
+  .head
+    .top-bar.container
+      %a.sign-in.btn.btn-transparent Sign in
+
+    .about.container
+      %h1 You teach.
+      %h2 We take care of the rest.
+
+      %a.sign-up.btn.btn-transparent.large{href: current_user ? new_course_path : '#'}
+        Teach a course
+        %i.icon-chevron-right
+
+    .sign-in.container
+      = render 'login'
+
+    .sign-up.container
+      = render 'signup'
+
+    .spinner
+      
+
+  .how-works.container
+    %h3
+      Enroll is a platform for teaching courses.
+      %br/
+      We manage all of those pesky little details.
+
+    .diagram.row
+      .part.col-sm-3
+        .icon.build
+        %span Build a beautiful course page. No designer needed.
+      .part.col-sm-3
+        .icon.share
+        %span Get the word out. Get students. Easy.
+      .part.col-sm-3
+        .icon.signup
+        %span We handle ticketing and payment. So you don't have to.
+      .part.col-sm-3
+        .icon.teach
+        %span You teach. We took care of the rest. Good for us. Good for you.
+
+  .features
+    .container
+      %h3 Seeing is believing.
+
+      .row
+        .feature.col-sm-6
+          = image_tag 'features/landing.png', width: 167, height: 119
+          %h4 Polished landing pages
+          %p In exactly 23.7 seconds, we create a professional looking page for your course.
+        .feature.col-sm-6
+          = image_tag 'features/payment.png', width: 167, height: 119
+          %h4 Simple and safe payments
+          %p Students pay with a credit card via our integrated form. No more sending your students to PayPal.
+        .feature.col-sm-6
+          = image_tag 'features/kickstarter.png', width: 167, height: 119
+          %h4 Test out demand
+          %p You only teach if desired number of students enroll. Students only pay if you teach. Everybody wins.
+        .feature.col-sm-6
+          = image_tag 'features/students.png', width: 167, height: 119
+          %h4 Communicate with your students
+          %p Enrolling is just the beginning. Talk with students before, and after, the course takes place.
+
+
+  .container.center
+
+    %h3 Don't take our word for it. Try it for yourself.
+    
+    %a.sign-up.btn.btn-transparent.large{href: current_user ? new_course_path : '#'}
+      Teach a course
+      %i.icon-chevron-right
+
+  .footer.container
+    .pull-right 
+      = link_to 'About Us'
+      |
+      = link_to 'Contact'
+    %div © Enroll, LLC.
+
+:coffeescript
+  new Welcome(el: '#welcome')
