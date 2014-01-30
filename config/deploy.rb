@@ -39,7 +39,7 @@ namespace :deploy do
 end
 
 # Campfire
-campfire = Tinder::Campfire.new 'launchwise', :token => 'd357c54f65cf0a68b0fa66a4f6d0552c1c5f2a86'
+campfire = Tinder::Campfire.new 'launchwise', :token => '42a2b525c7066a643cbf5ec448ee98728994923a'
 room = campfire.find_room_by_name 'Enroll'
 
 namespace :campfire do
