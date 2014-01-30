@@ -16,8 +16,8 @@
       - else
         %ul#sign-up-or-in.nav.navbar-nav
           %li
-            %a.navbar-btn.btn-log-in{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#log-in"}
+            %a.navbar-btn.btn-log-in{href: new_user_session_path}
               Log In
           %li
-            %a.navbar-btn.btn-sign-up{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#sign-up"}
+            %a.navbar-btn.btn-sign-up{href: new_user_registration_path}
               Sign Up

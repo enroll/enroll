@@ -1,4 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  def new
+    @user = User.new
+    @course = Course.new
+  end
+
   def create
     @user = User.new(user_params)
     @course = Course.new(course_params)
