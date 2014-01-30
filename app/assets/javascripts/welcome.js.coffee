@@ -22,9 +22,6 @@ class window.Welcome extends Spine.Controller
 
     @$('.feature a').magnificPopup({
       type: 'image'
-      retina: {
-        ratio: 2
-      }
       image: {
         cursor: null
       }
