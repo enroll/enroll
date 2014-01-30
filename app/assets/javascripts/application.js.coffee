@@ -23,6 +23,7 @@
 #= require tilt-jade/runtime
 #= require modernizr.custom.18921.js
 #= require retina_tag
+#= require magnific-popup
 
 
 #= require_tree ./templates
