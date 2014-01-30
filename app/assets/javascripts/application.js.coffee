@@ -17,7 +17,7 @@
 #= require sugar
 #= require angular
 #= require angular-strap
-#= require twitter/bootstrap
+#= require bootstrap
 #= require bootstrap-datepicker
 #= require spine
 #= require tilt-jade/runtime

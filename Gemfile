@@ -35,8 +35,7 @@ gem 'uglifier',       '>= 1.3.0'
 # Production gems that need further explanation:
 
 # Try out bootstrap 3
-gem 'anjlab-bootstrap-rails', '>= 3.0.0.3', require: 'bootstrap-rails'
-gem 'bootstrap-glyphicons'
+gem 'bootstrap-sass', '~> 3.1.0'
 
 group :development, :test do
   gem 'factory_girl_rails'

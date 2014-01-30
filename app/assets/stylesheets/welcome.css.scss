@@ -1,7 +1,7 @@
 @import '_mixins';
 @import '_typo';
 @import '_colors';
-@import 'twitter/bootstrap/_mixins';
+@import 'bootstrap/_mixins';
 @import 'layout_design';
 
 $welcome-color: #363227;
@@ -127,6 +127,7 @@ form.form.transparent {
   .part {
     text-align: center;
     @include welcome-typo-body();
+    padding-bottom: 15px;
   }
 
   .icon {
@@ -179,12 +180,10 @@ div.features {
     margin-bottom: 45px;
 
     img {
-      float: left;
       border: 1px solid #d8d8d8;
     }
 
     h4, p {
-      margin-left: 190px;
     }
 
     p {

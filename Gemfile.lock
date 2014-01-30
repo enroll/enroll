@@ -37,15 +37,11 @@ GEM
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
     angularjs-rails (1.2.10)
-    anjlab-bootstrap-rails (3.0.3.0)
-      railties (>= 3.0)
-      sass (>= 3.2)
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
-    bootstrap-glyphicons (0.0.1)
-      railties (>= 3.0)
-      sass (>= 3.2)
+    bootstrap-sass (3.1.0.0)
+      sass (~> 3.2)
     builder (3.1.4)
     capistrano (3.1.0)
       i18n
@@ -324,8 +320,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
-  anjlab-bootstrap-rails (>= 3.0.0.3)
-  bootstrap-glyphicons
+  bootstrap-sass (~> 3.1.0)
   capistrano
   capistrano-bundler
   capistrano-rails

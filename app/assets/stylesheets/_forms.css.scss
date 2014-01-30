@@ -1,6 +1,6 @@
 @import '_mixins';
 @import '_colors';
-@import 'twitter/bootstrap/_mixins';
+@import 'bootstrap/mixins';
 
 @mixin inner-shadow {
   @include box-shadow(inset 0 1px 3px rgba(0,0,0,.2));
