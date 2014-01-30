@@ -22,20 +22,6 @@
             %a.navbar-btn.btn-sign-up{href: '#sign-up-or-in', "data-toggle" => "collapse", "data-target" => "#sign-up"}
               Sign Up
 
-- unless user_signed_in?
-  #sign-up.collapse{class: nav_signupbox_class}
-    .container
-      .row
-        = simple_form_for(@user || User.new, url: registration_path(:user), wrapper: "bootstrap-horizontal", html: {class: "form-horizontal"}) do |f|
-          = f.simple_fields_for @course do |c|
-            = c.input :name, required: false, autofocus: true, label: "Course Name",
-                      label_html: { class: 'control-label col-sm-2' },
-                      input_html: { class: 'course-title-popover' }
-            = f.input :email, label_html: { class: 'control-label col-sm-2' }
-            = f.input :password, label_html: { class: 'control-label col-sm-2' }
-            .col-sm-12
-              = f.button :submit, "Sign Up To Teach", class: "btn-primary pull-right"
-
   #log-in.collapse{class: nav_loginbox_class}
     .container
       .row

@@ -10,19 +10,17 @@
       %h1 You teach.
       %h2 We manage everything about it.
 
-      %a.btn.btn-transparent.large
+      %a.sign-up.btn.btn-transparent.large{href: current_user ? new_course_path : '#'}
         Teach a course
         %i.icon-chevron-right
 
-    .sign-in.container.hidden
-      = simple_form_for :user, url: session_path(:user), html: {class: 'form transparent'} do |f|
-        %h2 Sign in
+    .sign-in.container
+      = render 'login'
 
-        = f.input :email, required: false, autofocus: true, label: 'E-mail:', input_html: {autocomplete: 'off'}
-        = f.input :password, :required => false, label: 'Password:'
-        = f.button :submit, "Sign in", class: 'btn btn-transparent'
+    .sign-up.container
+      = render 'signup'
 
-    .spinner.hidden
+    .spinner
       
 
   .how-works.container
