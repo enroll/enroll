@@ -35,7 +35,7 @@ class window.ReservationForm extends Spine.Controller
 
   startLoading: ->
     @hideMessage()
-    @$spinner.spin(SPINNER_SETTINGS)
+    @$spinner.spin(SPINNER_DEFAULT)
     @$submit.prop('disabled', true)
 
   finishLoading: ->

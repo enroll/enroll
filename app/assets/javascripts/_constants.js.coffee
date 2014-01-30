@@ -1,4 +1,4 @@
-window.SPINNER_SETTINGS =
+window.SPINNER_DEFAULT =
   lines: 13
   length: 5
   width: 2
@@ -8,11 +8,10 @@ window.SPINNER_SETTINGS =
   trail: 20
   shadow: false
 
-window.SPINNER_WELCOME = $.extend(SPINNER_SETTINGS, {
+window.SPINNER_WELCOME = $.extend(SPINNER_DEFAULT, {
   color: '#363227'
   length: 15
   radius: 12
-  lines: 13
   width: 4
   trail: 25
 })
