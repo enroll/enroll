@@ -1,0 +1,14 @@
+development: &development
+  domain: none
+  tracking_id: none
+
+test:
+  <<: *development
+
+production: &production
+  domain: http://enroll.io
+  tracking_id: UA-44803746-2
+
+staging:
+  domain: http://staging.enroll.io
+  tracking_id: UA-44803746-3
