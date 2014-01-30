@@ -57,3 +57,5 @@ end
 after 'deploy:started', 'campfire:started'
 after 'deploy:finished', 'campfire:finished'
 after 'deploy:reverted', 'campfire:reverted'
+
+after 'deploy:publishing', 'deploy:restart'
