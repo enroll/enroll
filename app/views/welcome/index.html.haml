@@ -45,5 +45,34 @@
         .icon.teach
         %span You teach. We took care of the rest. Good for us.
 
+  .features
+    .container
+      %h3 Here are some screenshots bro.
+
+      .row
+        .feature.col-sm-6
+          = image_tag 'features/landing.png', width: 167, height: 119
+          %h4 Polished landing pages
+          %p It takes exactly 23 seconds to come up with a professional looking page for your course.
+        .feature.col-sm-6
+          = image_tag 'features/payment.png', width: 167, height: 119
+          %h4 Simple and safe payments
+          %p I don’t know what to say.
+        .feature.col-sm-6
+          = image_tag 'features/kickstarter.png', width: 167, height: 119
+          %h4 Kickstarter a course
+          %p You can always set a course to only take place if certain number of students sign up.
+        .feature.col-sm-6
+          = image_tag 'features/students.png', width: 167, height: 119
+          %h4 Talk to your students
+          %p Test test...
+
+  .footer.container
+    .pull-right 
+      = link_to 'About Us'
+      |
+      = link_to 'Contact'
+    %div © Enroll, LLC.
+
 :coffeescript
   new Welcome(el: '#welcome')

@@ -22,6 +22,7 @@
 #= require spine
 #= require tilt-jade/runtime
 #= require modernizr.custom.18921.js
+#= require retina_tag
 
 
 #= require_tree ./templates
