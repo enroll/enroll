@@ -36,6 +36,12 @@
     color: #fff;
     background: $warning;
     border: none;
+
+    &.inverted {
+      background: transparent;
+      color: $warning;
+      border: 1px solid $warning;
+    }
   }
 
   &.alert-success {
@@ -48,6 +54,12 @@
     color: #fff;
     background: $error;
     border: none;
+
+    &.inverted {
+      background: transparent;
+      color: $error;
+      border: 1px solid $error;
+    }
   }
 
   .btn {

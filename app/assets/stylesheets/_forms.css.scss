@@ -32,19 +32,6 @@ form.form {
   .controls {
     margin-left: $label-total-width;
     position: relative;
-
-    // text instead of input
-
-    .date {
-      color: $gray-medium-dark;
-      padding-top: 6px;
-      display: inline-block;
-      width: 100px;
-    }
-    .campaign-help {
-      display: none;
-      width: 300px;
-    }
   }
 
   .form-control {

@@ -7,10 +7,13 @@ class window.CourseSchedule extends Spine.Controller
     'input#course_starts_at': '$courseStartField'
     'input#course_ends_at': '$courseEndField'
     'div.course-schedule': '$courseSchedule'
+    'div.campaign-end-notice': '$campaignEndNotice'
 
   events:
     'changeDate input#course_starts_at': 'changeStartDateAction'
+    'keyup input#course_starts_at': 'changeStartDateAction'
     'changeDate input#course_ends_at': 'changeDateAction'
+    'keyup input#course_ends_at': 'changeDateAction'
 
   constructor: ->
     super
@@ -57,16 +60,22 @@ class window.CourseSchedule extends Spine.Controller
 
   # Changing campaign end date
 
-  changeCampaignEndDateAction: ->
+  changeCampaignEndDate: ->
     start = @parseDate(@$courseStartField.val())
+
     campaignEndDate = new Date()
+    numberOfDays = 6
+    campaignEndDate.setTime(start.getTime() - numberOfDays * 24 * 60 * 60 * 1000)
+    daysLeft = campaignEndDate.daysFromNow()
 
-    # Set campaign end date to 7 days prior to today
-    campaignEndDate.setTime(start.getTime() - 6 * 24 * 60 * 60 * 1000)
-    $(".campaign_ends_at .date")[0].innerText = @formatDate(campaignEndDate)
-    $(".campaign_ends_at .campaign-help").show()
-
-    $(".campaign_ends_at .days_until_campaign_ends")[0].innerText = campaignEndDate.daysFromNow()
+    # Render the template
+    html = JST['templates/course_campaign_notice']({
+      isEnoughTime: (daysLeft > 0)
+      endDate: @formatDate(campaignEndDate),
+      daysLeft: daysLeft
+    })
+    console.log html
+    @$campaignEndNotice.html(html).show()
 
   # Changing start date
 
@@ -74,7 +83,7 @@ class window.CourseSchedule extends Spine.Controller
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
 
-    @changeCampaignEndDateAction()
+    @changeCampaignEndDate()
     @changeDateAction()
 
   # Changing any date
