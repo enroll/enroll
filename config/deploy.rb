@@ -2,6 +2,7 @@ set :application, 'enroll'
 set :deploy_to, '/var/apps/enroll'
 set :scm, :git
 set :repo_url, 'git@github.com:enroll/enroll.git'
+set :branch, fetch(:branch, 'master')
 set :ssh_options, {forward_agent: true}
 set :log_level, :debug
 set :linked_files, %w{config/database.yml}
