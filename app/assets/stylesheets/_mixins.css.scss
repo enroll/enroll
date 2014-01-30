@@ -1,5 +1,5 @@
 @mixin retina($file, $type, $width, $height) {
-  background-image: url($file + '.' + $type);
+  background-image: asset-url($file + '.' + $type);
 
   @media (-webkit-min-device-pixel-ratio: 2), (-moz-min-device-pixel-ratio: 2) {
     & {
