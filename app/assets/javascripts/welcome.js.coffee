@@ -23,9 +23,10 @@ class window.Welcome extends Spine.Controller
     @$('.feature a').magnificPopup({
       type: 'image'
       retina: {
-        # ratio: -> window.devicePixelRatio > 1.5 ? 2 : 1
         ratio: 2
-        # replaceSrc: (item, ratio) -> item.src.replace(/\.\w+$/, (m) -> console.log m; '@2x' + m )
+      }
+      image: {
+        cursor: null
       }
     })
 
