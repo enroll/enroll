@@ -2,6 +2,7 @@
 @import '_typo';
 @import '_colors';
 @import 'bootstrap/_mixins';
+@import 'bootstrap/variables';
 @import 'layout_design';
 
 $welcome-color: #363227;
@@ -162,7 +163,7 @@ form.form.transparent {
 
 // Responsive
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: $screen-xs-min) {
   div#welcome {
     h1 {
       font-size: 48px;
@@ -190,6 +191,12 @@ div.features {
     p {
       @include welcome-typo-body();
     }
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .feature {
+    text-align: center;
   }
 }
 
