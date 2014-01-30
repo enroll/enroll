@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://gems.github.com'
 
 ruby '2.0.0'
 
@@ -54,7 +55,7 @@ end
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
-  gem 'capistrano-resque', github: 'sshingler/capistrano-resque', require: false
+  gem 'capistrano-resque', git: 'https://github.com/sshingler/capistrano-resque.git', require: false
   gem 'capistrano-bundler'
   gem 'foreman'
   gem 'guard'
