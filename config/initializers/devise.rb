@@ -256,15 +256,15 @@ class CustomFailure < Devise::FailureApp
     end
   end
 
-  def redirect
-    store_location!
-    if flash[:timedout] && flash[:alert]
-      flash.keep(:timedout)
-      flash.keep(:alert)
-    else
-      flash[:alert] = i18n_message
-    end
-    redirect_to "/"
-  end
+  # def redirect
+  #   store_location!
+  #   if flash[:timedout] && flash[:alert]
+  #     flash.keep(:timedout)
+  #     flash.keep(:alert)
+  #   else
+  #     flash[:alert] = i18n_message
+  #   end
+  #   redirect_to "/"
+  # end
 end
 
