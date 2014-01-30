@@ -44,13 +44,13 @@ room = campfire.find_room_by_name 'Enroll'
 
 namespace :campfire do
   task :started do
-    room.speak "Deploy to #{fetch(:stage)} started!"
+    room.speak "Deploy #{fetch(:branch)} to #{fetch(:stage)} started!"
   end
   task :finished do
-    room.speak "Deploy to #{fetch(:stage)} finished!"
+    room.speak "Deploy #{fetch(:branch)} to #{fetch(:stage)} finished!"
   end
   task :reverted do
-    room.speak "Deploy to #{fetch(:stage)} reverted!"
+    room.speak "Deploy #{fetch(:branch)} to #{fetch(:stage)} reverted!"
   end
 end
 
