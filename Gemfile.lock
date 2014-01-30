@@ -87,8 +87,10 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
-    faraday (0.9.0)
-      multipart-post (>= 1.2, < 3)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     ffi (1.9.3)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -113,9 +115,6 @@ GEM
     hashie (2.0.5)
     hike (1.2.3)
     http_parser.rb (0.5.3)
-    httparty (0.12.0)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.6.9)
     jade-js-source (0.28.0)
     jbuilder (1.0.2)
@@ -146,8 +145,7 @@ GEM
       metaclass (~> 0.0.1)
     mono_logger (1.1.0)
     multi_json (1.8.4)
-    multi_xml (0.5.5)
-    multipart-post (2.0.0)
+    multipart-post (1.2.0)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -283,12 +281,15 @@ GEM
       tilt
     timecop (0.7.1)
     timers (1.1.0)
-    tinder (1.4.1)
-      activesupport
-      eventmachine
-      httparty
-      mime-types
-      twitter-stream
+    tinder (1.9.3)
+      eventmachine (~> 1.0)
+      faraday (~> 0.8)
+      faraday_middleware (~> 0.9)
+      hashie (>= 1.0, < 3)
+      json (~> 1.8.0)
+      mime-types (~> 1.19)
+      multi_json (~> 1.7)
+      twitter-stream (~> 0.1)
     tins (0.13.1)
     treetop (1.4.15)
       polyglot
@@ -331,6 +332,7 @@ DEPENDENCIES
   email_spec
   entypo-rails
   factory_girl_rails
+  faraday (= 0.8.8)
   foreman
   guard
   guard-bundler
@@ -361,7 +363,7 @@ DEPENDENCIES
   stripe (= 1.8.3)
   tilt-jade
   timecop
-  tinder
+  tinder (= 1.9.3)
   uglifier (>= 1.3.0)
   unicorn
   vcr

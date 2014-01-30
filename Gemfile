@@ -11,6 +11,7 @@ gem 'coffee-rails',   '~> 4.0.0'
 gem 'devise',         '~> 3.0.1'
 gem 'dotenv-rails'
 gem 'entypo-rails'
+gem 'faraday', '0.8.8'
 gem 'haml',           '~> 4.0.3'
 gem 'jbuilder',       '~> 1.0.1'
 gem 'jquery-rails'
@@ -63,7 +64,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-shell'
   gem 'pry-rails'
-  gem 'tinder'
+  gem 'tinder', '1.9.3'
 end
 
 group :production, :staging do
