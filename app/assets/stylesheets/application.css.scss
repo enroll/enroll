@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require _colors
- *= require twitter/bootstrap
  *= require entypo
  *= require bootstrap-datepicker
  *= require jquery.timepicker.css
@@ -18,3 +17,4 @@
  *= require_tree .
 
  */
+ @import "bootstrap";
