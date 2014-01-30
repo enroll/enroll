@@ -28,7 +28,7 @@ module Enroll
     # Google Analytics Domain
     def ga_domain
       @ga_config ||= YAML.load_file(Rails.root.join('config', 'ga.yml').to_s)[Rails.env]
-      @ga_domain ||= ga_config["domain"]
+      @ga_domain ||= @ga_config["domain"]
     end
     attr_writer :ga_domain
 
