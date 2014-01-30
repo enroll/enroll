@@ -26,7 +26,7 @@ For production:
 
 To deploy a specific branch:
 
-    cap -s branch=awesome-branch staging deploy
+    BRANCH=awesome cap staging deploy
 
 Deploying will also restart Resque worker to handle sending emails and other background tasks. **If server crashes it is needed to deploy the app, so that worker would get started!** (There is no automatic startup script.)
 
