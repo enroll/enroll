@@ -84,12 +84,6 @@ class window.CourseSchedule extends Spine.Controller
     })
     @$campaignEndNotice.html(html).show()
 
-  # Changing start date
-
-  changeStartDateAction: ->
-    if @$courseEndField.val() == ''
-      @$courseEndField.val(@$courseStartField.val())
-
   # Changing any date
 
   changeDateAction: ->
