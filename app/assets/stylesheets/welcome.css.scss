@@ -1,0 +1,216 @@
+@import '_mixins';
+@import '_typo';
+@import '_colors';
+@import 'bootstrap/_mixins';
+@import 'bootstrap/variables';
+@import 'layout_design';
+
+$welcome-color: #363227;
+$welcome-color2: #938c7a;
+
+@mixin font1() {
+  font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+@mixin welcome-typo-body() {
+  font-size: 13px;
+  color: $welcome-color2;
+}
+
+.btn-transparent {
+  color: $welcome-color;
+  border-color: $welcome-color;
+  font-size: 13px;
+  font-weight: 500;
+
+  &.large {
+    font-size: 14px;
+    padding: 12px 20px 12px 20px;
+    margin-top: 20px;
+  }
+
+  &:active, &.active {
+    background: $welcome-color;
+    color: #fff;
+  }
+}
+
+div#welcome {
+  .head {
+    height: 370px;
+    @include retina('welcome-head', 'jpg', 1084px, 390px);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover !important;
+
+    text-align: center;
+  }
+
+  .top-bar {
+    @include retina('welcome-logo', 'png', 71px, 16px);
+    background-repeat: no-repeat;
+    background-position: 5px 30px;
+    height: 100px;
+    padding-top: 26px;
+
+    .btn {
+      float: right;
+    }
+  }
+
+  .spinner {
+    margin-top: 90px;
+  }
+
+  h1, h2, h3, h4 {
+    @include font1();
+    color: $welcome-color;
+    font-weight: 200;
+  }
+
+  h1 {
+    font-size: 72px;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 32px;
+    margin-top: 0;
+  }
+
+  h3 {
+    font-size: 24px;
+    color: $welcome-color2;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    line-height: 140%;
+  }
+
+  h4 {
+    color: #222222;
+    font-weight: 400;
+    font-size: 17px;
+  }
+}
+
+// Transparent form
+
+form.form.transparent {
+  margin: auto;
+  max-width: 300px;
+
+  label {
+    font-size: 14px;
+    color: $welcome-color;
+    padding-top: 9px;
+  }
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    background: transparent;
+    border: none;
+    @include box-shadow(none);
+    border-bottom: 1px solid $welcome-color;
+    font-size: 16px;
+    padding-left: 0;
+    color: $welcome-color;
+  }
+}
+
+// Diagram
+
+.diagram {
+  .part {
+    text-align: center;
+    @include welcome-typo-body();
+    padding-bottom: 15px;
+  }
+
+  .icon {
+    width: 100%;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.build {
+      @include retina('icon-build', 'png', 71px, 58px);
+    }
+
+    &.share {
+      @include retina('icon-share', 'png', 66px, 46px);
+    }
+
+    &.signup {
+      @include retina('icon-signup', 'png', 53px, 61px);
+    }
+
+    &.teach {
+      @include retina('icon-teach', 'png', 48px, 37px);
+    }
+  }
+
+  span {
+    display: block;
+    width: 150px;
+    margin: auto;
+  }
+}
+
+// Responsive
+
+@media screen and (max-width: $screen-xs-min) {
+  div#welcome {
+    h1 {
+      font-size: 48px;
+    }
+  }
+}
+
+// Features
+
+div.features {
+  background: #fcf8ee;
+  margin-top: 50px;
+
+  .feature {
+    margin-bottom: 45px;
+
+    img {
+      border: 1px solid #d8d8d8;
+      margin: 0 auto;
+    }
+
+    h4, p {
+    }
+
+    p {
+      @include welcome-typo-body();
+    }
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .feature {
+    text-align: center;
+  }
+}
+
+// Footer
+
+div.footer {
+  padding: 40px 0 50px 100px;
+  @include retina('welcome-logo', 'png', 71px, 16px);
+  background-repeat: no-repeat;
+  background-position: 0 40px;
+
+  &, a {
+    font-size: 13px;
+    font-weight: 400;
+    color: #b8b8b8;
+  }
+}

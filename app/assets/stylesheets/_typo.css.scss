@@ -19,3 +19,7 @@ strong.dark {
   color: $gray-dark;
   // font-weight: normal;
 }
+
+@mixin font1() {
+  font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
+}

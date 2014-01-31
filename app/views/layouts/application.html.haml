@@ -1,0 +1,12 @@
+!!!
+%html{lang: "en"}
+  = render 'layouts/head'
+  %body{class: body_classes}
+    - if content_for?(:navigation)
+      = yield(:navigation)
+    - else
+      = render 'layouts/navigation'
+    = render 'shared/messages'
+    = yield
+    = render 'layouts/footer'
+    = render 'layouts/analytics' unless Rails.env == "development"

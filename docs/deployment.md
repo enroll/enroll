@@ -24,6 +24,10 @@ For production:
 
     be cap production deploy
 
+To deploy a specific branch:
+
+    BRANCH=awesome cap staging deploy
+
 Deploying will also restart Resque worker to handle sending emails and other background tasks. **If server crashes it is needed to deploy the app, so that worker would get started!** (There is no automatic startup script.)
 
 ## Continuous Integration

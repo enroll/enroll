@@ -1,4 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  def new
+    @user = User.new
+    @course = Course.new
+  end
 
   def create
     @user = User.new(user_params)
@@ -9,9 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_up(:user, @user)
       respond_with @user, location: after_sign_up_path_for(@user)
     else
-      flash.now[:error] = "Something went wrong."
       clean_up_passwords @user
-      render :template => "welcome/index"
+      render 'new'
     end
   end
 

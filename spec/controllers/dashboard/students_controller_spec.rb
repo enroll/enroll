@@ -28,18 +28,18 @@ describe Dashboard::StudentsController do
     context "when logged in and course does not belong to instructor" do
       before { sign_in(user) }
 
-      it "redirects to root" do
+      it "redirects to login" do
         get :index, course_id: course.id
         response.should be_redirect
-        response.should redirect_to(root_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
 
     context "when not logged in" do
-      it "redirects to root" do
+      it "redirects to login" do
         get :index, course_id: course.id
         response.should be_redirect
-        response.should redirect_to(root_path)
+        response.should redirect_to(new_user_session_path)
       end
     end
   end

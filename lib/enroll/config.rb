@@ -20,13 +20,15 @@ module Enroll
 
     # Google Analytics Tracking Code
     def ga_tracking_id
-      @ga_tracking_id ||= ENV["GA_TRACKING_ID"]
+      @ga_config ||= YAML.load_file(Rails.root.join('config', 'ga.yml').to_s)[Rails.env]
+      @ga_tracking_id ||= @ga_config["tracking_id"]
     end
     attr_writer :ga_tracking_id
 
     # Google Analytics Domain
     def ga_domain
-      @ga_domain ||= ENV["HOST"]
+      @ga_config ||= YAML.load_file(Rails.root.join('config', 'ga.yml').to_s)[Rails.env]
+      @ga_domain ||= @ga_config["domain"]
     end
     attr_writer :ga_domain
 

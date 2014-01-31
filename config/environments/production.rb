@@ -67,7 +67,7 @@ Enroll::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = {
     :host => ENV['HOST'],
-    :protocol => 'https'
+    :protocol => 'http'
   }
 
   config.action_mailer.smtp_settings = {

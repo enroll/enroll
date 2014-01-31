@@ -10,8 +10,7 @@ class window.CourseSchedule extends Spine.Controller
     'div.campaign-end-notice': '$campaignEndNotice'
 
   events:
-    'changeDate input#course_starts_at': 'changeStartDateAction'
-    'keyup input#course_starts_at': 'changeStartDateAction'
+    'changeDate input#course_starts_at': 'changeDateAction'
     'changeDate input#course_ends_at': 'changeDateAction'
     'keyup input#course_ends_at': 'changeDateAction'
 
@@ -70,11 +69,11 @@ class window.CourseSchedule extends Spine.Controller
 
     # Render the template
     html = JST['templates/course_campaign_notice']({
-      isEnoughTime: (daysLeft > 0)
+      isBarelyEnoughTime: (daysLeft > 0 && daysLeft <= 7)
+      isEnoughTime: (daysLeft > 7)
       endDate: @formatDate(campaignEndDate),
       daysLeft: daysLeft
     })
-    console.log html
     @$campaignEndNotice.html(html).show()
 
   # Changing start date
@@ -83,18 +82,23 @@ class window.CourseSchedule extends Spine.Controller
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
 
-    @changeCampaignEndDate()
-    @changeDateAction()
-
   # Changing any date
 
   changeDateAction: ->
+    if @$courseEndField.val() == ''
+      @$courseEndField.val(@$courseStartField.val())
+
     @updateDays()
+
+    @changeCampaignEndDate()
 
   updateDays: ->
     @storeSchedulesByDays()
 
-    start = @parseDate(@$courseStartField.val())
+    startVal = @$courseStartField.val()
+    if startVal == ''
+      return @$courseSchedule.hide()
+    start = @parseDate(startVal)
     end = @parseDate(@$courseEndField.val())
 
     days = []

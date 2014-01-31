@@ -3,5 +3,5 @@
 require 'raven'
 
 Raven.configure do |config|
-  config.dsn = 'https://fc347a4866a644ccae1272881fed4ee0:9b6ac53cbe844c24bdb5c9f8399cebc8@app.getsentry.com/11923'
+  config.dsn = 'https://6c21ec5fb70840c38a199d35facedc4d:3aa2984b908947deaa496fd998842734@app.getsentry.com/18653'
 end

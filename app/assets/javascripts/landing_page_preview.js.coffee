@@ -15,7 +15,6 @@ class window.LandingPagePreview extends Spine.Controller
     $(document).ready =>
       # Prepare preview viewport
       @$previewContent = @buildPreviewContent()
-      $(document.body).append(@$previewContent)
 
       # Prepare the exit button
       @$exitButton = @buildExitButton()
@@ -24,11 +23,17 @@ class window.LandingPagePreview extends Spine.Controller
 
   buildPreviewContent: ->
     if !@$previewContent
+      @$wrapper = $('<div />').addClass('viewport-wrapper')
+      $(document.body).append(@$wrapper)
+
       @$previewContent = $('<div />')
         .addClass('landing-page-preview')
         .addClass('viewport')
         .addClass('preview')
         .addClass('offscreen')
+
+      @$wrapper.append(@$previewContent)
+
     @renderLoading()
     @$previewContent
 
@@ -48,8 +53,11 @@ class window.LandingPagePreview extends Spine.Controller
   previewAction: ->
     @isActive = true
 
-    @$previewContent.removeClass('offscreen')
-    @$exitButton.fadeIn(250)
+    @$wrapper.show()
+    setTimeout =>
+      @$previewContent.removeClass('offscreen')
+      @$exitButton.fadeIn(250)
+    , 10
 
     @updatePreview()
 
@@ -71,3 +79,7 @@ class window.LandingPagePreview extends Spine.Controller
 
     @$previewContent.addClass('offscreen')
     @$exitButton.fadeOut(50)
+
+    setTimeout =>
+      @$wrapper.hide()
+    , 300
