@@ -57,10 +57,10 @@ class window.CourseSchedule extends Spine.Controller
     "#{date.getFullYear()}-#{month}-#{date.getDate()}"
 
   changeDateAction: ->
-    @updateDays()
-
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
+      
+    @updateDays()
 
   updateDays: ->
     @storeSchedulesByDays()
