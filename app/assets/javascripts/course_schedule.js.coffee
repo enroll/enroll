@@ -6,12 +6,15 @@ class window.CourseSchedule extends Spine.Controller
   elements:
     'input#course_starts_at': '$courseStartField'
     'input#course_ends_at': '$courseEndField'
+    'div.form-group.course_ends_at': '$courseEndGroup'
+    'div.form-group.multi-day': '$multiDayGroup'
     'div.course-schedule': '$courseSchedule'
 
   events:
     # 'changeDate input#course_starts_at': 'changeStartDateAction'
     'changeDate input#course_starts_at': 'changeDateAction'
     'changeDate input#course_ends_at': 'changeDateAction'
+    'click a.multi-day': 'multiDayAction'
 
   constructor: ->
     super
@@ -32,6 +35,9 @@ class window.CourseSchedule extends Spine.Controller
         endsAt: day.ends_at
 
     @updateDays()
+
+    # Hide ending date by default
+    @$courseEndGroup.hide()
 
   setupDatepicker: ->
     @format = 'yyyy-mm-dd'
@@ -109,3 +115,11 @@ class window.CourseSchedule extends Spine.Controller
     @$courseSchedule.html(template(days: days)).show()
     @$courseSchedule.find('input.start.time-select').timepicker(scrollDefaultTime: '9:00am')
     @$courseSchedule.find('input.end.time-select').timepicker(scrollDefaultTime: '4:00pm')
+
+  # Multi day courses
+
+  multiDayAction: (e) ->
+    e.preventDefault()
+
+    @$courseEndGroup.show()
+    @$multiDayGroup.hide()
