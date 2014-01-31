@@ -4,6 +4,8 @@ class window.CoursePricing extends Spine.Controller
     '#course_price_per_seat_in_dollars': '$cost'
     '#course_min_seats': '$minSeats'
     '#course_max_seats': '$maxSeats'
+    'label#for-profit': '$forProfitLabel'
+    'label#for-fun': '$forFunLabel'
 
     # Calculator
     '#revenue-calculator': '$calculator'
@@ -37,6 +39,9 @@ class window.CoursePricing extends Spine.Controller
     @$cost.parent().append("<strong class='free-text'>FREE</strong>")
     @$calculator.hide()
 
+    @$forFunLabel.addClass('active')
+    @$forProfitLabel.removeClass('active')
+
   selectProfitAction: ->
     if @$cost.val() == ''
       @$cost.val(199)
@@ -44,6 +49,9 @@ class window.CoursePricing extends Spine.Controller
     $('.free-text').remove()
     @$calculator.show()
     @updateCourseCalculator()
+
+    @$forFunLabel.removeClass('active')
+    @$forProfitLabel.addClass('active')
 
   # Updating calculator
 
