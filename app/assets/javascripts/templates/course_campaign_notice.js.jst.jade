@@ -1,0 +1,6 @@
+if isBarelyEnoughTime
+  .campaign-help.alert.alert-warning.inverted
+    div You'll have to get the minimum signups by <strong>#{endDate}</strong>, 7 days before the course starts. That gives you <strong>#{daysLeft}</strong> day(s).
+else if !isEnoughTime
+  .campaign-help.alert.alert-error.inverted
+    div Please select a date at least <strong>7 days</strong> in the future.

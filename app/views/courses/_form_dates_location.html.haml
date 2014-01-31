@@ -1,12 +1,14 @@
 .course-schedule
   .form-section
+    .campaign-end-notice.pull-right
+  
     %h2.bordered.offset Dates
 
-    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, required: true, disabled: form.object.published?
-    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, required: true, disabled: form.object.published?
+    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, required: true, label: "Start date", disabled: form.object.published?
+    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, required: true, label: "End date", disabled: form.object.published?
     .form-group.multi-day
       .controls
-        %a.multi-day{href: '#'} This is a multi-day course
+        %a.multi-day{href: '#'} This is a multi-day course.
 
   .form-section.course-schedule
 
