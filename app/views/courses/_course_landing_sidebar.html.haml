@@ -8,7 +8,6 @@
     %a.btn.btn-primary.btn-large.disabled Already enrolled
   - elsif @course.draft?
     = course_reservation_link(@course, disabled: true)
-    / %a.btn.btn-primary.btn-large.disabled= course_reservation_link(@course)
   - else
     - if !@course.starts_at
       %a.btn.btn-primary.btn-large.disabled Date unknown
