@@ -3,11 +3,6 @@ require "spec_helper"
 describe WelcomeController do
   let(:user) { create(:user) }
 
-  before do
-    Mixpanel::Tracker.any_instance.stubs(:track)
-    Mixpanel::Tracker.any_instance.stubs(:set)
-  end
-
   describe "#index" do
     it "generates a visitor_id and stores it in a cookie" do
       get :index

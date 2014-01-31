@@ -22,6 +22,7 @@ VCR.configure do |c|
   # c.allow_http_connections_when_no_cassette = true
   c.configure_rspec_metadata!
   c.debug_logger = File.open('log/vcr.log', 'w')
+  c.ignore_hosts 'api.mixpanel.com'
 end
 
 RSpec.configure do |config|
