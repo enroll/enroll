@@ -38,7 +38,9 @@ class window.CoursePricing extends Spine.Controller
     @$calculator.hide()
 
   selectProfitAction: ->
-    @$cost.val(199).show()
+    if @$cost.val() == ''
+      @$cost.val(199)
+    @$cost.show()
     $('.free-text').remove()
     @$calculator.show()
     @updateCourseCalculator()
