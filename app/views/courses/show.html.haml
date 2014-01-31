@@ -7,10 +7,10 @@
   .course-content.row
     - if !@preview && @course.instructor == current_user && @course.draft?
       .alert.alert-warning
-        %i.icon.icon-pencil
-        Course is in draft mode. This page is publicly viewable, but no one can enroll until you publish it.
-
         %a.btn.pull-right{href: review_dashboard_course_path(@course)} Publish
+        %div
+          %i.icon.icon-pencil
+          Draft mode: This page is publicly viewable, but no one can enroll until you publish it.
 
     .col-sm-8
       %p!= @markdown.render(@course.description || "")
