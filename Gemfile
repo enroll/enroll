@@ -47,6 +47,9 @@ group :development, :test do
   gem 'vcr'
   gem 'email_spec'
   gem 'timecop'
+
+  gem 'phantomjs'
+  gem 'teaspoon'
 end
 
 group :test do
