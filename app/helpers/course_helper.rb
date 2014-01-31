@@ -26,9 +26,13 @@ module CourseHelper
   end
 
   def course_reservation_link(course, options={})
-    link_to "Enroll - #{course_price_text(course)}",
-      new_course_reservation_path(course),
-      :class => options[:class] ||= 'btn btn-primary btn-large reserve'
+    klasses = options[:class] ||= 'btn btn-primary btn-large reserve'
+    path = new_course_reservation_path(course)
+    if options[:disabled]
+      klasses += ' disabled'
+      path = '#'
+    end
+    link_to "Enroll - #{course_price_text(course)}", path, :class => klasses
   end
 
   def course_price_text(course)
@@ -56,5 +60,9 @@ module CourseHelper
     content_tag 'div', class: 'label label-error mini' do
       content_tag 'strong', 'Missing'
     end
+  end
+
+  def instructor_logged_in?(course)
+    current_user && course.instructor == current_user
   end
 end

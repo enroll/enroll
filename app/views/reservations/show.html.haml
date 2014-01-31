@@ -1,7 +1,7 @@
-.container.landing-page
+.container.landing-page.welcome-to-course
   = render 'courses/course_landing_header'
   .course-content.row
-    %h1.tc= "Welcome to #{@course.name}!"
+    %h1.centered.tc= "Welcome to #{@course.name}!"
 
     .enrolled
       %p You have been enrolled for this course.

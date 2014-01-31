@@ -13,12 +13,14 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @preview = false
     add_body_class('landing-page')
     Event.create_event(Event::PAGE_VISITED, course: @course)
   end
 
   def preview
     @course.attributes = course_params
+    @preview = true
     render 'show', layout: false
   end
 

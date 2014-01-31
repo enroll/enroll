@@ -2,12 +2,10 @@
 // is rendered from the form page.
 
 - if enroll_button
-  - if @course.instructor == current_user
-    %a.btn.btn-primary.btn-large{href: dashboard_course_path(@course)} Go to dashboard
-  - elsif enrolled_for?(@course)
+  - if enrolled_for?(@course)
     %a.btn.btn-primary.btn-large.disabled Already enrolled
   - elsif @course.draft?
-    %a.btn.btn-primary.btn-large.disabled Sign up
+    = course_reservation_link(@course, disabled: true)
   - else
     - if !@course.starts_at
       %a.btn.btn-primary.btn-large.disabled Date unknown
