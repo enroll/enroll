@@ -9,7 +9,7 @@ class window.CourseSchedule extends Spine.Controller
     'div.course-schedule': '$courseSchedule'
 
   events:
-    'changeDate input#course_starts_at': 'changeStartDateAction'
+    # 'changeDate input#course_starts_at': 'changeStartDateAction'
     'changeDate input#course_starts_at': 'changeDateAction'
     'changeDate input#course_ends_at': 'changeDateAction'
 
@@ -56,16 +56,11 @@ class window.CourseSchedule extends Spine.Controller
     month = "0#{month}" if month <= 9
     "#{date.getFullYear()}-#{month}-#{date.getDate()}"
 
-  # Changing start date
-
-  changeStartDateAction: ->
-    if @$courseEndField.val() == ''
-      @$courseEndField.val(@$courseStartField.val())
-
-  # Changing any date
-
   changeDateAction: ->
     @updateDays()
+
+    if @$courseEndField.val() == ''
+      @$courseEndField.val(@$courseStartField.val())
 
   updateDays: ->
     @storeSchedulesByDays()

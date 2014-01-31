@@ -7,6 +7,7 @@ set :ssh_options, {forward_agent: true}
 set :log_level, :debug
 set :linked_files, %w{config/database.yml}
 set :linked_dirs, ["tmp/pids", "log"]
+set :test_log, "log/capistrano.test.log"
 
 require 'tinder'
 
@@ -53,6 +54,24 @@ namespace :campfire do
     room.speak "Deploy #{fetch(:branch)} to #{fetch(:stage)} reverted!"
   end
 end
+
+# Tests
+namespace :tests do
+  task :run do
+    puts "--> Running tests, please wait ..."
+    system 'bundle exec kitty'
+    test_log = fetch(:test_log)
+    unless system "bundle exec rake > #{test_log} 2>&1" #' > /dev/null'
+      puts "--> Tests failed. Run `cat #{test_log}` to see what went wrong."
+      exit
+    else      
+      puts "--> Tests passed :-)"
+      system "rm #{test_log}"
+    end
+  end
+end
+
+before 'deploy:starting', 'tests:run'
 
 after 'deploy:started', 'campfire:started'
 after 'deploy:finished', 'campfire:finished'
