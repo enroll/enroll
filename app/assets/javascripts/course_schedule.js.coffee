@@ -37,8 +37,10 @@ class window.CourseSchedule extends Spine.Controller
 
     @updateDays()
 
-    # Hide ending date by default
-    @$courseEndGroup.hide()
+    if @$courseEndField.val() != '' && @$courseStartField.val() != @$courseEndField.val()
+      @$courseEndGroup.show()
+    else
+      @$courseEndGroup.hide()
 
   setupDatepicker: ->
     @format = 'yyyy-mm-dd'
