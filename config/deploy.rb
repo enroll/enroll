@@ -7,7 +7,7 @@ set :ssh_options, {forward_agent: true}
 set :log_level, :debug
 set :linked_files, %w{config/database.yml}
 set :linked_dirs, ["tmp/pids", "log"]
-set :test_log, "logs/capistrano.test.log"
+set :test_log, "log/capistrano.test.log"
 
 require 'tinder'
 
@@ -70,7 +70,7 @@ namespace :tests do
   end
 end
 
-before 'deploy:update_code', 'tests:run'
+before 'deploy:starting', 'tests:run'
 
 after 'deploy:started', 'campfire:started'
 after 'deploy:finished', 'campfire:finished'
