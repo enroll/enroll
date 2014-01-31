@@ -7,4 +7,8 @@ class WelcomeController < ApplicationController
     @user = User.new
     @course = Course.new
   end
+
+  def boom
+    raise "hell"
+  end
 end
