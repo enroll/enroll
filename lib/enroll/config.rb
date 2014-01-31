@@ -32,6 +32,12 @@ module Enroll
     end
     attr_writer :ga_domain
 
+    # MixPanel
+    def mixpanel_token
+      @mixpanel_config ||= YAML.load_file(Rails.root.join('config', 'mixpanel.yml').to_s)[Rails.env]
+      @mixpanel_token ||= @mixpanel_config["token"]      
+    end
+
   end
 end
 

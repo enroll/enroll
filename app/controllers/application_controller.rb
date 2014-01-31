@@ -19,4 +19,47 @@ class ApplicationController < ActionController::Base
   def namespace_name
     self.class.to_s.split("::").first.downcase
   end
+
+  # Mixpanel
+  def mixpanel
+    return nil unless Enroll.mixpanel_token
+
+    unless @mixpanel
+      @mixpanel = Mixpanel::Tracker.new(Enroll.mixpanel_token)
+      @mixpanel.set current_user.email, {email: current_user.email} if current_user
+    end
+    
+    @mixpanel
+  end
+
+  def mixpanel_track_event(event)
+    return unless mixpanel
+
+    mixpanel.track(event, {distinct_id: visitor_id})
+  end
+
+  def visitor_id
+    @visitor_id ||= if current_user
+      if current_user.visitor_id
+        current_user.visitor_id
+      else
+        current_user.visitor_id = generate_visitor_id!
+        current_user.save!(validate: false)
+      end
+    else
+      generate_visitor_id!
+    end
+
+    @visitor_id
+  end
+
+  def generate_visitor_id!
+    if cookies[:visitor_id]
+      cookies[:visitor_id]
+    else
+      id = SecureRandom.base64
+      cookies.permanent[:visitor_id] = id
+      id
+    end
+  end
 end

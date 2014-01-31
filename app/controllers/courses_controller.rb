@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
     @preview = false
     add_body_class('landing-page')
     Event.create_event(Event::PAGE_VISITED, course: @course)
+    mixpanel_track_event 'Landing page'
   end
 
   def preview
@@ -47,6 +48,8 @@ class CoursesController < ApplicationController
   def update
     saved = @course.update_attributes!(course_params)
     return render :edit unless saved
+
+    mixpanel_track_event "Course Creation #{current_step[:label]}"
 
     if next_step
       redirect_to_next_step

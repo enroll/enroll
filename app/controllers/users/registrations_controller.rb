@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if @course.save
       sign_up(:user, @user)
+      mixpanel_track_event 'Sign Up'
       respond_with @user, location: after_sign_up_path_for(@user)
     else
       clean_up_passwords @user

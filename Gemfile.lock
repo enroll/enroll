@@ -80,6 +80,7 @@ GEM
     entypo-rails (2.2.1)
       railties (>= 3.1, <= 5)
     erubis (2.7.0)
+    escape (0.0.4)
     eventmachine (1.0.3)
     execjs (2.0.2)
     factory_girl (4.3.0)
@@ -142,6 +143,10 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
+    mixpanel (4.1.1)
+      escape
+      json
+      rack
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     mono_logger (1.1.0)
@@ -347,6 +352,7 @@ DEPENDENCIES
   jquery-rails
   kitty
   mail_gate (= 1.1.2)
+  mixpanel
   mocha (~> 0.13.3)
   pg
   phantomjs

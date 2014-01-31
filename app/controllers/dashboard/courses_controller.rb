@@ -8,6 +8,7 @@ class Dashboard::CoursesController < ApplicationController
 
   def show
     @events = Event.grouped_by_date_and_type(course: @course)
+    mixpanel_track_event 'Dashboard'
   end
 
   def edit

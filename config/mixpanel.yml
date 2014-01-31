@@ -1,0 +1,11 @@
+production:
+  token: 99fef476332b39a11020ead3aecceee5
+
+staging:
+  token: f46f1029f35c73c04f7d149f69428edc
+
+development:
+  token:
+
+test:
+  token: bazinga
