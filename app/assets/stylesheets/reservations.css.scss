@@ -1,6 +1,8 @@
 @import '_colors';
 @import '_mixins';
 
+// Form
+
 .form-group.card-month select {
   margin-top: 8px;
 }
@@ -43,5 +45,16 @@ form#new_reservation {
       position: absolute;
       bottom: -5px;
       left: 15px;
+  }
+}
+
+// Welcome page
+
+.welcome-to-course {
+  h1 {
+    margin-bottom: 20px;
+  }
+  p {
+    margin-bottom: 50px;
   }
 }
