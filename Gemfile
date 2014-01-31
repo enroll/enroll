@@ -50,6 +50,7 @@ group :development, :test do
 
   gem 'phantomjs'
   gem 'teaspoon'
+  gem 'kitty'
 end
 
 group :test do

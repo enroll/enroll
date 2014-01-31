@@ -125,6 +125,7 @@ GEM
     json (1.8.1)
     json2-rails (1.0.0)
     kgio (2.8.1)
+    kitty (0.0.4)
     launchy (2.4.2)
       addressable (~> 2.3)
     listen (2.4.0)
@@ -344,6 +345,7 @@ DEPENDENCIES
   haml (~> 4.0.3)
   jbuilder (~> 1.0.1)
   jquery-rails
+  kitty
   mail_gate (= 1.1.2)
   mocha (~> 0.13.3)
   pg

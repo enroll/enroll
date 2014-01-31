@@ -59,6 +59,7 @@ end
 namespace :tests do
   task :run do
     puts "--> Running tests, please wait ..."
+    system 'bundle exec kitty'
     test_log = fetch(:test_log)
     unless system "bundle exec rake > #{test_log} 2>&1" #' > /dev/null'
       puts "--> Tests failed. Run `cat #{test_log}` to see what went wrong."
