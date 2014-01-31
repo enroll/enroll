@@ -11,3 +11,9 @@ task "resque:preload" => :environment
 task "resque:setup" do
   ENV['QUEUE'] = '*'
 end
+
+
+Rake::Task['default'].prerequisites.clear
+Rake::Task['default'].clear
+
+task default: [:spec, :teaspoon]
