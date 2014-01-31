@@ -144,6 +144,19 @@ body {
   // -webkit-perspective-origin-y: 0px;
 }
 
+.viewport-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: transparent;
+  // pointer-events: none;
+  overflow: hidden;
+  display: none;
+}
+
 html {
   .viewport {
     position: absolute;
@@ -152,6 +165,7 @@ html {
     width: 100%;
     height: 100%;
     z-index: 1000;
+    display: block;
 
     &.preview {
       &.offscreen {
@@ -163,17 +177,10 @@ html {
 
 html.cssanimations.csstransforms {
   .viewport {
-    @include transition(opacity .25s);
-    &.original {
-      opacity: 1;
-      &.offscreen {
-        opacity: 0.1;
-      }
-    }
-
     &.preview {
       @include transition-transform(0.25s);
       @include translate(0, 50px);
+      display: block;
       &.offscreen {
         display: block;
         @include translate(0, 100%);
