@@ -5,6 +5,9 @@
   = render 'courses/course_landing_header'
 
   .course-content.row
+    - if @course.draft?
+      %a.draft-ribbon
+
     .col-sm-8
       %p!= @markdown.render(@course.description || "")
     .course-sidebar.col-sm-4
