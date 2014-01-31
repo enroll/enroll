@@ -66,6 +66,10 @@ form.step-pricing, form.step-page {
   }
 }
 
+.seats-help {
+  font-weight: bold;
+}
+
 .form-group.url {
   .url-label {
     font-weight: 500;
@@ -80,5 +84,19 @@ form.step-pricing, form.step-page {
   input {
     color: $primary1;
     font-size: 13px !important;
+  }
+}
+
+// Campaign end
+
+.campaign-end-notice {
+  width: 300px;
+  margin-top: 40px;
+  .campaign-help {
+    margin: 0;
+    margin-top: 10px;
+  }
+  strong {
+
   }
 }

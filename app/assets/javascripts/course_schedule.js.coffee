@@ -9,11 +9,12 @@ class window.CourseSchedule extends Spine.Controller
     'div.form-group.course_ends_at': '$courseEndGroup'
     'div.form-group.multi-day': '$multiDayGroup'
     'div.course-schedule': '$courseSchedule'
+    'div.campaign-end-notice': '$campaignEndNotice'
 
   events:
-    # 'changeDate input#course_starts_at': 'changeStartDateAction'
     'changeDate input#course_starts_at': 'changeDateAction'
     'changeDate input#course_ends_at': 'changeDateAction'
+    'keyup input#course_ends_at': 'changeDateAction'
     'click a.multi-day': 'multiDayAction'
 
   constructor: ->
@@ -36,8 +37,10 @@ class window.CourseSchedule extends Spine.Controller
 
     @updateDays()
 
-    # Hide ending date by default
-    @$courseEndGroup.hide()
+    if @$courseEndField.val() != '' && @$courseStartField.val() != @$courseEndField.val()
+      @$courseEndGroup.show()
+    else
+      @$courseEndGroup.hide()
 
   setupDatepicker: ->
     @format = 'yyyy-mm-dd'
@@ -62,11 +65,40 @@ class window.CourseSchedule extends Spine.Controller
     month = "0#{month}" if month <= 9
     "#{date.getFullYear()}-#{month}-#{date.getDate()}"
 
+  # Changing campaign end date
+
+  changeCampaignEndDate: ->
+    start = @parseDate(@$courseStartField.val())
+
+    campaignEndDate = new Date()
+    numberOfDays = 6
+    campaignEndDate.setTime(start.getTime() - numberOfDays * 24 * 60 * 60 * 1000)
+    daysLeft = campaignEndDate.daysFromNow()
+
+    # Render the template
+    html = JST['templates/course_campaign_notice']({
+      isBarelyEnoughTime: (daysLeft > 0 && daysLeft <= 7)
+      isEnoughTime: (daysLeft > 7)
+      endDate: @formatDate(campaignEndDate),
+      daysLeft: daysLeft
+    })
+    @$campaignEndNotice.html(html).show()
+
+  # Changing any date
+
   changeDateAction: ->
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
 
+    if @$courseEndField.val() != ''
+      start = @parseDate(@$courseStartField.val())
+      end = @parseDate(@$courseEndField.val())
+      if end < start
+        @$courseEndField.val(@$courseStartField.val())
+
     @updateDays()
+
+    @changeCampaignEndDate()
 
   updateDays: ->
     @storeSchedulesByDays()
