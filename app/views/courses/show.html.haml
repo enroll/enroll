@@ -5,7 +5,7 @@
   = render 'courses/course_landing_header'
 
   .course-content.row
-    - if @course.instructor == current_user && @course.draft?
+    - if !@preview && @course.instructor == current_user && @course.draft?
       .alert.alert-warning
         %i.icon.icon-pencil
         Course is in draft mode. This page is publicly viewable, but no one can enroll until you publish it.
