@@ -61,4 +61,8 @@ module CourseHelper
       content_tag 'strong', 'Missing'
     end
   end
+
+  def owner_logged_in?(course)
+    current_user && course.instructor == current_user
+  end
 end

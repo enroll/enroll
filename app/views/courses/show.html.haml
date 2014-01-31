@@ -6,7 +6,10 @@
 
   .course-content.row
     - if @course.draft?
-      %a.draft-ribbon
+      - if owner_logged_in?(@course)
+        %a.draft-ribbon{href: dashboard_course_path(@course)}
+      - else
+        %a.draft-ribbon
 
     .col-sm-8
       %p!= @markdown.render(@course.description || "")
