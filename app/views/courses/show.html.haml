@@ -1,6 +1,11 @@
 - content_for :head do
   = facebook_og_meta_tags(@course)
 
+- unless @preview
+  %a.landing-button.dashboard{href: dashboard_course_path(@course)}
+    %i.icon-line-graph
+    Go to Dashboard
+
 .container.landing-page
   = render 'courses/course_landing_header'
 

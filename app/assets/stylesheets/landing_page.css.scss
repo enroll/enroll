@@ -117,8 +117,8 @@ body.landing-page, div.landing-page-preview {
   }
 }
 
-.exit-button {
-  $width: 150px;
+.landing-button {
+  $width: 170px;
   $color1: #cf0000;
   $color2: #ae0000;
   width: $width;
@@ -128,7 +128,6 @@ body.landing-page, div.landing-page-preview {
   top: 5px;
   left: 50%;
   margin-left: -$width/2;
-  background: $color1;
   border: 1px solid darken($color1, 10);
   text-align: center;
   color: #fff;
@@ -136,6 +135,24 @@ body.landing-page, div.landing-page-preview {
   font-size: 14px;
   padding: 10px 0;
   cursor: pointer;
+  margin-top: -5px;
+  @include border-radius(0 0 4px 4px);
+  @include box-shadow(0 1px 1px rgba(0,0,0,0.2));
+
+  &.exit {
+    background: $color1;
+  }
+
+  &.dashboard {
+    background: $warning;
+    border: none;
+    text-shadow: 0 1px 0 darken($warning, 20);
+
+    &:active {
+      background: darken($warning, 15);
+      border: none;
+    }
+  }
 
   &:hover {
     color: #fff;
