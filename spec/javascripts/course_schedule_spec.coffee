@@ -23,3 +23,7 @@ describe 'CourseSchedule', ->
     schedule = new CourseSchedule(el: $el, schedules: [])
     $el.find('#course_starts_at').val('2014-01-01').trigger('changeDate')
     $el.find('.course-schedule .day').length.should.equal(1)
+
+  it 'does not show any schedule by default', ->
+    schedule = new CourseSchedule(el: $el, schedules: [])
+    $el.find('.course-schedule .day').length.should.equal(0)

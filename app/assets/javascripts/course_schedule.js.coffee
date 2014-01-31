@@ -59,13 +59,16 @@ class window.CourseSchedule extends Spine.Controller
   changeDateAction: ->
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
-      
+
     @updateDays()
 
   updateDays: ->
     @storeSchedulesByDays()
 
-    start = @parseDate(@$courseStartField.val())
+    startVal = @$courseStartField.val()
+    if startVal == ''
+      return @$courseSchedule.hide()
+    start = @parseDate(startVal)
     end = @parseDate(@$courseEndField.val())
 
     days = []
