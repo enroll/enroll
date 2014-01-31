@@ -62,7 +62,7 @@ module CourseHelper
     end
   end
 
-  def owner_logged_in?(course)
+  def instructor_logged_in?(course)
     current_user && course.instructor == current_user
   end
 end

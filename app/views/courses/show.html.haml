@@ -6,7 +6,7 @@
 
   .course-content.row
     - if @course.draft?
-      - if owner_logged_in?(@course)
+      - if instructor_logged_in?(@course)
         %a.draft-ribbon{href: dashboard_course_path(@course)}
       - else
         %a.draft-ribbon
