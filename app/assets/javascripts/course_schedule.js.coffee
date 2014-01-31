@@ -90,6 +90,12 @@ class window.CourseSchedule extends Spine.Controller
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
 
+    if @$courseEndField.val() != ''
+      start = @parseDate(@$courseStartField.val())
+      end = @parseDate(@$courseEndField.val())
+      if end < start
+        @$courseEndField.val(@$courseStartField.val())
+
     @updateDays()
 
     @changeCampaignEndDate()
