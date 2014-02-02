@@ -12,6 +12,7 @@
 
   = simple_form_for :email, url: admin_emails_path, html: {class: 'form stacked'} do |f|
     = f.input :sender
+    = f.input :cc_us, as: :boolean
     = f.input :subject
     = f.input :emails, as: :text, input_html: {class: 'large'}
     = f.input :content, as: :text, input_html: {class: 'large'}

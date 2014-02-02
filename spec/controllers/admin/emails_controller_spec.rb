@@ -66,4 +66,18 @@ describe Admin::EmailsController do
     content = "Hello there, check out http://enroll.io !"
     post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io'} 
   end
+
+  it "ccs to ourselves" do
+    emails = "foo@example.com"
+    content = "Hello there, check out http://enroll.io !"
+    post :create, email: {
+      emails: emails,
+      subject: 'bazinga',
+      content: content,
+      sender: 'we@enroll.io',
+      cc_us: 1
+    }
+
+    ActionMailer::Base.deliveries.last.cc.should == ['support@enroll.io']
+  end
 end

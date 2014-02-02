@@ -18,12 +18,16 @@ class Admin::EmailsController < ApplicationController
       content = params[:email][:content]
       content = self.add_token_to_content(content, token)
       
-      GenericMailer.generic_mail(
+      options = {
         from: params[:email][:sender],
         to: recipient,
         subject: params[:email][:subject],
         content: content
-      ).deliver!
+      }
+
+      options[:cc] = "support@enroll.io" if params[:email][:cc_us]
+
+      GenericMailer.generic_mail(options).deliver!
 
       mixpanel.set(recipient, {email: recipient})
       mixpanel_track_event('Initial Marketing Email', {distinct_id: token.distinct_id})
