@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    mixpanel_track_event 'Landing Page'
+    mixpanel_track_event 'Welcome Page'
     
   	if current_user
   		return redirect_to courses_path

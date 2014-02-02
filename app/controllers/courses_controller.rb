@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
     @preview = false
     add_body_class('landing-page')
     Event.create_event(Event::PAGE_VISITED, course: @course)
-    mixpanel_track_event 'Landing page'
+    mixpanel_track_event 'Landing Page'
   end
 
   def preview
