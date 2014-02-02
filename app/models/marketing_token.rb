@@ -1,6 +1,6 @@
 class MarketingToken < ActiveRecord::Base
-  def self.generate!
-    token = MarketingToken.new
+  def self.generate!(options)
+    token = MarketingToken.new(options)
     token.token = self.generate_token
     token.distinct_id = SecureRandom.base64
 

@@ -68,6 +68,7 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-shell'
+  gem 'letter_opener'
   gem 'pry-rails'
   gem 'tinder', '1.9.3'
 end

@@ -1,0 +1,20 @@
+.container
+  %h1 Sent Emails
+
+  %a.btn.btn-primary{href: new_admin_email_path}
+    %i.icon-mail
+    Send
+
+  %br/
+  %br/
+
+  %table.table
+    %tr
+      %th Email
+      %th Token
+      %th Distinct ID
+    - @tokens.each do |token|
+      %tr
+        %td= token.email
+        %td= token.token
+        %td= token.distinct_id

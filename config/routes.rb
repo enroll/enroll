@@ -31,7 +31,7 @@ Enroll::Application.routes.draw do
   namespace :admin do
     resources :emails
   end
-  get '/admin', to: 'admin/emails#new'
+  get '/admin', to: 'admin/emails#index'
 
   resource :account, only: [:edit, :update] do
     # resources :courses

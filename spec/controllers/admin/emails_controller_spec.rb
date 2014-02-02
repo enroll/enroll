@@ -21,7 +21,6 @@ describe Admin::EmailsController do
   
   it "sends an email to every address" do
     emails = "foo@example.com,bar@example.com\nbaz@example.com"
-
     post :create, email: {emails: emails, subject: 'bazinga', content: 'hello', sender: 'we@enroll.io'}
 
     ActionMailer::Base.deliveries.tap do |deliveries|
@@ -34,5 +33,37 @@ describe Admin::EmailsController do
 
       deliveries.last.from.should == ['we@enroll.io']
     end
+  end
+
+  it "generates token for each email" do
+    MarketingToken.count.should == 0
+    emails = "foo@example.com,bar@example.com\nbaz@example.com"
+    post :create, email: {emails: emails, subject: 'bazinga', content: 'hello', sender: 'we@enroll.io'}
+
+    MarketingToken.count.should == 3
+    MarketingToken.all.to_a.collect(&:email).should == ['foo@example.com', 'bar@example.com', 'baz@example.com']
+  end
+
+  it "replaces mentions of enroll.io with the customized link" do
+    emails = "foo@example.com"
+    content = "Hello there, check out http://enroll.io !"
+    post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io'} 
+
+    token = MarketingToken.last.token
+    mail_content = ActionMailer::Base.deliveries.last.body.raw_source.strip
+
+    mail_content.should == 'Hello there, check out <a href="http://enroll.io/?i=%s">http://enroll.io</a> !' % [token]
+  end
+
+  it "tracks the mixpanel event with the token's distinct_id" do
+    SecureRandom.expects(:base64).returns('SOME_DISTINCT_ID')
+
+    mixpanel = Mixpanel::Tracker.any_instance
+    mixpanel.expects(:set).with('foo@example.com', {email: 'foo@example.com'})
+    mixpanel.expects(:track).with('Initial Marketing Email', {distinct_id: 'SOME_DISTINCT_ID'})
+
+    emails = "foo@example.com"
+    content = "Hello there, check out http://enroll.io !"
+    post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io'} 
   end
 end

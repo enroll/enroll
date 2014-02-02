@@ -5,7 +5,12 @@
 .container
   %h1 Send a promotion email
 
-  = simple_form_for :email, html: {class: 'form stacked'} do |f|
+  %p
+    Every link to <strong>http://enroll.io</strong> will be replaced with a customized link, such as <strong>http://enroll.io/i=XX</strong>.
+  %p
+    This special link will be generated for every email sent.
+
+  = simple_form_for :email, url: admin_emails_path, html: {class: 'form stacked'} do |f|
     = f.input :sender
     = f.input :subject
     = f.input :emails, as: :text, input_html: {class: 'large'}

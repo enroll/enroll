@@ -1,6 +1,10 @@
 class Admin::EmailsController < ApplicationController
   http_basic_authenticate_with :name => "enroll", :password => "coffee"
 
+  def index
+    @tokens = MarketingToken.all
+  end
+
   def new
     
   end
@@ -9,14 +13,20 @@ class Admin::EmailsController < ApplicationController
     emails = emails_from_text(params[:email][:emails])
 
     emails.each do |recipient|
-      token = MarketingToken.generate!
+      token = MarketingToken.generate!(email: recipient)
+
+      content = params[:email][:content]
+      content = self.add_token_to_content(content, token)
       
       GenericMailer.generic_mail(
         from: params[:email][:sender],
         to: recipient,
         subject: params[:email][:subject],
-        content: params[:email][:content]
+        content: content
       ).deliver!
+
+      mixpanel.set(recipient, {email: recipient})
+      mixpanel_track_event('Initial Marketing Email', {distinct_id: token.distinct_id})
     end
 
     flash[:notice] = "#{emails.length} emails were sent!"
@@ -35,5 +45,10 @@ class Admin::EmailsController < ApplicationController
     }
 
     emails
+  end
+
+  def add_token_to_content(content, token)
+    content.gsub 'http://enroll.io', \
+      '<a href="http://enroll.io/?i=%s">http://enroll.io</a>' % [token.token]
   end
 end
