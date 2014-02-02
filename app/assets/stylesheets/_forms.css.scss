@@ -90,6 +90,10 @@ form.form {
     font-weight: normal;
     padding: 7px $input-padding-sides;
     font-size: 13px;
+
+    &.large {
+      height: 200px !important;
+    }
   }
 
   abbr[title] {

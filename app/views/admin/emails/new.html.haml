@@ -1,0 +1,15 @@
+%a.landing-button.dashboard
+  %i.icon-globe
+  = Rails.env
+
+.container
+  %h1 Send a promotion email
+
+  = simple_form_for :email, html: {class: 'form stacked'} do |f|
+    = f.input :sender
+    = f.input :subject
+    = f.input :emails, as: :text, input_html: {class: 'large'}
+    = f.input :content, as: :text, input_html: {class: 'large'}
+
+    .form-actions
+      = f.button(:submit, "Send", class: 'btn btn-primary btn-large')

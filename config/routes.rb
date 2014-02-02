@@ -28,6 +28,11 @@ Enroll::Application.routes.draw do
     resources :landing_pages
   end
 
+  namespace :admin do
+    resources :emails
+  end
+  get '/admin', to: 'admin/emails#new'
+
   resource :account, only: [:edit, :update] do
     # resources :courses
   end
