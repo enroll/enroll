@@ -3,7 +3,7 @@
 @import 'bootstrap/variables';
 
 $padding: 20px;
-$layout-width: 844px;
+$layout-width: 850px;
 
 @mixin body-width($width) {
   .navbar-inner {
@@ -25,9 +25,12 @@ body {
 // ----------------------------------------------------------------------------
 
 nav.navbar {
-  background-color: $primary1;
+  @include retina('header-background', 'png', 1px, 45px);
+  background-repeat: repeat-x;
   border: none;
   margin-bottom: 0;
+  height: 45px;
+  min-height: 45px;
   .navbar-inner {
     padding-left: $padding;
     padding-right: $padding;
@@ -36,15 +39,15 @@ nav.navbar {
     a.navbar-btn {
       color: #fff;
       font-size: 10pt;
-      background-color: $primary2;
+      background-color: rgba(0,0,0,0.05);
       padding: 3px 7px;
       @include border-radius(3px);
       margin-left: 10px;
-      margin-top: 14px;
+      margin-top: 0;
       border: none;
       display: inline-block;
       &.user-dropdown {
-        margin-top: 12px;
+        margin-top: 8px;
       }
       &:hover {
         text-decoration: none;
@@ -79,7 +82,7 @@ nav.navbar {
       display: block;
       width: 100px;
       height: 30px;
-      margin-top: 14px;
+      margin-top: 10px;
       text-indent: -9999px;
     }
   }
@@ -100,7 +103,7 @@ ul.navbar-nav {
     margin-bottom: 15px;
 
     a:not([class=navbar-brand]) {
-      padding: 10px;
+      // padding: 10px;
     }
   }
 }
@@ -108,11 +111,16 @@ ul.navbar-nav {
 // Container
 // ----------------------------------------------------------------------------
 
+body {
+  background: #e4e7ec;
+}
+
 .container {
   // padding: 0;
   // padding-left: $padding;
   // padding-right: $padding;
   box-sizing: border-box;
+  background: #fcfcfc;
 }
 
 #footer {

@@ -5,13 +5,6 @@
 $sidebar-width: 210px;
 $sidebar-color: #4d555e;
 
-body.dashboard {
-  @include body-width(100%);
-  .container {
-    width: 100%;
-  }
-}
-
 .container.dashboard {
   $padding: 30px;
   padding: $padding;
