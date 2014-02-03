@@ -1,5 +1,9 @@
 @import '_colors';
 
+body {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
 h1 {
   font-size: 36px;
   font-weight: 100;
@@ -20,6 +24,19 @@ strong.dark {
   // font-weight: normal;
 }
 
+@mixin font0 {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
 @mixin font1() {
   font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+a {
+  color: $primary1;
+
+  &:hover {
+    color: $primary1;
+    text-decoration: none;
+  }
 }

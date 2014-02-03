@@ -1,16 +1,20 @@
 .container
-  .course-header
-    %a.back-button
-      %i.icon-reply
+  .course-header.row
+    .col-sm-10
+      .pull-left
+        %a.back-button
+          %i.icon-reply
 
-    %h1
-      = @course.name
-      - if @course.draft?
-        %span.draft Draft
+      .title.clearfix.pull-left
+        %h1.pull-left= @course.name
+        - if @course.draft?
+          .pull-left.draft Draft
 
-    %a.link= landing_page_url(@course.url)
+        %a.link{href: landing_page_url(@course.url), target: '_blank'}= landing_page_url(@course.url)
 
-    .numbers
+    .col-sm-2.numbers
       %a.number
         %strong 5
         %span Students
+
+  lol
