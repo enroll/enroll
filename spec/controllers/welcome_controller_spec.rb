@@ -8,7 +8,15 @@ describe WelcomeController do
       get :index
       cookies[:visitor_id].should_not be_nil
       cookies[:visitor_id].length.should > 5
-    end 
+    end
+
+    it "generates and stores visitor_id in current_user" do
+      sign_in(user)
+
+      get :index
+
+      controller.send(:visitor_id).length.should > 10
+    end
 
     it "stores visitor_id from cookie to user object" do
       cookies[:visitor_id] = "visitor1"

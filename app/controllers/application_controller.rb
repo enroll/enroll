@@ -52,6 +52,7 @@ class ApplicationController < ActionController::Base
       else
         current_user.visitor_id = generate_visitor_id!
         current_user.save!(validate: false)
+        current_user.visitor_id
       end
     else
       generate_visitor_id!
