@@ -39,6 +39,30 @@ describe WelcomeController do
 
       cookies[:visitor_id].should == token.distinct_id
     end
+
+    it "identifies mixpanel user by distinct_id if they DO NOT have visitor id yet" do
+      user.visitor_id = nil
+      user.email = 'foo@example.com'
+      user.save!(validate: false)
+      sign_in(user)
+
+      controller.stubs(:generate_visitor_id!).returns('abc')
+
+      Mixpanel::Tracker.any_instance.expects(:set).with('abc', {email: 'foo@example.com'})
+
+      get :index
+    end
+
+    it "identifies mixpanel user by distinct_id if they HAVE visitor id" do
+      user.visitor_id = 'bcd'
+      user.email = 'foo@example.com'
+      user.save!(validate: false)
+      sign_in(user)
+
+      Mixpanel::Tracker.any_instance.expects(:set).with('bcd', {email: 'foo@example.com'})
+
+      get :index
+    end
   end
 
   describe "#about" do

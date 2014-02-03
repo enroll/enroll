@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
     unless @mixpanel
       @mixpanel = Mixpanel::Tracker.new(Enroll.mixpanel_token)
-      @mixpanel.set current_user.email, {email: current_user.email} if current_user
+      @mixpanel.set visitor_id, {email: current_user.email} if current_user
     end
     
     @mixpanel
