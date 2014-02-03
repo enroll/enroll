@@ -26,7 +26,7 @@ class Admin::EmailsController < ApplicationController
         content: content
       }
 
-      options[:cc] = "support@enroll.io" if params[:email][:cc_us]
+      options[:cc] = "support@enroll.io" if params[:email][:cc_us].to_i == 1
 
       GenericMailer.generic_mail(options).deliver!
 

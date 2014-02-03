@@ -21,7 +21,7 @@ describe Admin::EmailsController do
   
   it "sends an email to every address" do
     emails = "foo@example.com,bar@example.com\nbaz@example.com"
-    post :create, email: {emails: emails, subject: 'bazinga', content: 'hello', sender: 'we@enroll.io'}
+    post :create, email: {emails: emails, subject: 'bazinga', content: 'hello', sender: 'we@enroll.io', cc_us: '0'}
 
     ActionMailer::Base.deliveries.tap do |deliveries|
       deliveries.count.should == 3
@@ -32,6 +32,7 @@ describe Admin::EmailsController do
       deliveries.last.body.raw_source.strip.should == 'hello'
 
       deliveries.last.from.should == ['we@enroll.io']
+      deliveries.last.cc.should == nil
     end
   end
 
@@ -75,7 +76,7 @@ describe Admin::EmailsController do
       subject: 'bazinga',
       content: content,
       sender: 'we@enroll.io',
-      cc_us: 1
+      cc_us: '1'
     }
 
     ActionMailer::Base.deliveries.last.cc.should == ['support@enroll.io']
