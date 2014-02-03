@@ -53,6 +53,6 @@ class Admin::EmailsController < ApplicationController
 
   def add_token_to_content(content, token)
     content.gsub 'http://enroll.io', \
-      '<a href="http://enroll.io/?i=%s">http://enroll.io</a>' % [token.token]
+      'http://enroll.io/?i=%s' % [token.token]
   end
 end

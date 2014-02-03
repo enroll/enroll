@@ -52,7 +52,7 @@ describe Admin::EmailsController do
     token = MarketingToken.last.token
     mail_content = ActionMailer::Base.deliveries.last.body.raw_source.strip
 
-    mail_content.should == 'Hello there, check out <a href="http://enroll.io/?i=%s">http://enroll.io</a> !' % [token]
+    mail_content.should == 'Hello there, check out http://enroll.io/?i=%s !' % [token]
   end
 
   it "tracks the mixpanel event with the token's distinct_id" do
