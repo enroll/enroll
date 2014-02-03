@@ -32,4 +32,11 @@ describe WelcomeController do
       cookies[:visitor_id].should == token.distinct_id
     end
   end
+
+  describe "#about" do
+    it "responds with the about page" do
+      get :about
+      response.should be_ok
+    end
+  end
 end

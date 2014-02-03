@@ -36,6 +36,18 @@ $welcome-color2: #938c7a;
 }
 
 div#welcome {
+  &.small {
+    .head {
+      height: 98px;
+      @include retina('welcome-head-small', 'jpg', 1084px, 98px);
+    }
+
+    .top-bar.container {
+      padding-top: 36px;
+      background-position: 5px 40px;
+    }
+  }
+
   .head {
     height: 370px;
     @include retina('welcome-head', 'jpg', 1084px, 390px);

@@ -12,6 +12,12 @@ class WelcomeController < ApplicationController
     @course = Course.new
   end
 
+  def about
+    
+  end
+
+  protected
+
   def update_visitor_id_from_marketing_token
     if params[:i]
       token = MarketingToken.where(token: params[:i]).first

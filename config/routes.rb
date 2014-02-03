@@ -41,5 +41,7 @@ Enroll::Application.routes.draw do
 
   get '/go/:url', to: 'courses#show', as: :landing_page
 
+  get '/about', to: 'welcome#about', as: :about_page
+
   root 'welcome#index'
 end
