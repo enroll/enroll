@@ -60,7 +60,7 @@ describe Admin::EmailsController do
     SecureRandom.expects(:base64).returns('SOME_DISTINCT_ID')
 
     mixpanel = Mixpanel::Tracker.any_instance
-    mixpanel.expects(:set).with('foo@example.com', {email: 'foo@example.com'})
+    mixpanel.expects(:set).with('SOME_DISTINCT_ID', {email: 'foo@example.com'})
     mixpanel.expects(:track).with('Initial Marketing Email', {distinct_id: 'SOME_DISTINCT_ID'})
 
     emails = "foo@example.com"

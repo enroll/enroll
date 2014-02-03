@@ -30,7 +30,7 @@ class Admin::EmailsController < ApplicationController
 
       GenericMailer.generic_mail(options).deliver!
 
-      mixpanel_set(recipient, {email: recipient})
+      mixpanel_set(token.distinct_id, {email: recipient})
       mixpanel_track_event(params[:email][:event], {distinct_id: token.distinct_id})
     end
 
