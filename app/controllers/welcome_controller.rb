@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
   def index
+    update_visitor_id_from_marketing_token()
+
     mixpanel_track_event 'Welcome Page'
     
   	if current_user
@@ -8,5 +10,14 @@ class WelcomeController < ApplicationController
 
     @user = User.new
     @course = Course.new
+  end
+
+  def update_visitor_id_from_marketing_token
+    if params[:i]
+      token = MarketingToken.where(token: params[:i]).first
+      return unless token
+
+      cookies[:visitor_id] = token.distinct_id
+    end
   end
 end

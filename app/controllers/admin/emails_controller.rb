@@ -6,7 +6,6 @@ class Admin::EmailsController < ApplicationController
   end
 
   def new
-    
   end
 
   def create

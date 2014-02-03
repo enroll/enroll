@@ -16,5 +16,20 @@ describe WelcomeController do
       get :index
       user.reload.visitor_id.should == 'visitor1'
     end
+
+    it "uses marketing token to get us a pre-generated cookie" do
+      # Prepare the token
+      token = MarketingToken.generate!(email: 'foo@bar.com')
+
+      # Let's assume there already is a cookie
+      cookies[:visitor_id] = "ugly old token"
+
+      # Expect the welcome event to be tracked with the new token
+      Mixpanel::Tracker.any_instance.expects(:track).with('Welcome Page', {distinct_id: token.distinct_id})
+
+      get :index, i: token.token
+
+      cookies[:visitor_id].should == token.distinct_id
+    end
   end
 end
