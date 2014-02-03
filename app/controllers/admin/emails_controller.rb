@@ -12,7 +12,8 @@ class Admin::EmailsController < ApplicationController
     emails = emails_from_text(params[:email][:emails])
 
     emails.each do |recipient|
-      token = MarketingToken.generate!(email: recipient)
+      token = MarketingToken.where(email: recipient).first || \
+        MarketingToken.generate!(email: recipient)
 
       content = params[:email][:content]
       content = self.add_token_to_content(content, token)

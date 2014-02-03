@@ -1,9 +1,9 @@
-%a.landing-button.dashboard
-  %i.icon-globe
-  = Rails.env
+= render 'env'
 
 .container
   %h1 Send a promotion email
+
+  %a.btn.btn-primary{href: admin_emails_path} Back
 
   %p
     Every link to <strong>http://enroll.io</strong> will be replaced with a customized link, such as <strong>http://enroll.io/i=XX</strong>.

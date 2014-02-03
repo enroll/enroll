@@ -80,4 +80,13 @@ describe Admin::EmailsController do
 
     ActionMailer::Base.deliveries.last.cc.should == ['support@enroll.io']
   end
+
+  it "uses the same token for an existing email address" do
+    emails = "foo@example.com"
+    content = "Hello there, check out http://enroll.io !"
+    post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io'} 
+    post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io'} 
+
+    MarketingToken.count.should == 1
+  end
 end
