@@ -1,2 +1,16 @@
 .container
-  Dashboard
+  .course-header
+    %a.back-button
+      %i.icon-reply
+
+    %h1
+      = @course.name
+      - if @course.draft?
+        %span.draft Draft
+
+    %a.link= landing_page_url(@course.url)
+
+    .numbers
+      %a.number
+        %strong 5
+        %span Students
