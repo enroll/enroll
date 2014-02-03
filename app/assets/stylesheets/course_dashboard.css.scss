@@ -44,7 +44,26 @@ a.back-button {
 
   i {
     position: relative;
-    top: 0;
+    top: -1px;
     left: 1px;
+  }
+}
+
+a.number {
+  $border: lighten($primary1, 15%);
+  border: 1px solid $border;
+  display: inline-block;
+  @include border-radius(3px);
+  strong, span {
+    padding: 5px 15px;
+    display: inline-block;
+  }
+  strong {
+    border-right: 1px solid $border;
+    font-weight: normal;
+    font-size: 18px;
+  }
+  span {
+    font-size: 14px;
   }
 }
