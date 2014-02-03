@@ -3,8 +3,7 @@
 
 #welcome
   .head
-    .top-bar.container
-      %a.sign-in.btn.btn-transparent Sign in
+    = render 'top_bar'
 
     .about.container
       %h1 You teach.
@@ -91,7 +90,7 @@
 
   .footer.container
     .pull-right 
-      = link_to 'About Us'
+      = link_to 'About Us', about_page_path
       |
       %a{href: "mailto:support@enroll.io"} Contact
     %div © Enroll, LLC.
