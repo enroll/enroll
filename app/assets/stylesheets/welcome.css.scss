@@ -7,6 +7,7 @@
 
 $welcome-color: #363227;
 $welcome-color2: #938c7a;
+$welcome-color-light: #b6b2a8;
 
 @mixin font1() {
   font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
@@ -36,6 +37,12 @@ $welcome-color2: #938c7a;
 }
 
 div#welcome {
+  @include welcome-typo-body();
+
+  p.light {
+    color: $welcome-color-light;
+  }
+  
   &.small {
     .head {
       height: 98px;
@@ -104,6 +111,10 @@ div#welcome {
     color: #222222;
     font-weight: 400;
     font-size: 17px;
+  }
+
+  h5 {
+    color: $welcome-color;
   }
 }
 
@@ -224,5 +235,25 @@ div.footer {
     font-size: 13px;
     font-weight: 400;
     color: #b8b8b8;
+  }
+}
+
+// About Us
+
+.about-profile {
+  h5, p {
+    padding-left: 100px;
+  }
+
+  img {
+    float: left;
+    margin-right: 10px;
+    margin-top: 25px;
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .about-logo {
+    text-align: center;
   }
 }
