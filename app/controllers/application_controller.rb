@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     @mixpanel
   end
 
-  def mixpanel_track_event(event, options)
+  def mixpanel_track_event(event, options={})
     return unless mixpanel
 
     distinct_id = options[:distinct_id] || visitor_id
