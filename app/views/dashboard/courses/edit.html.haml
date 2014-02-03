@@ -1,14 +1,12 @@
-.container.dashboard
-  = render 'dashboard/dashboard_menu', course: @course
+.container.course-dashboard
+  = render 'header'
 
-  = render 'course_warning'
-
-  .container.new-course
-    %h1 Settings
-    %ul.course-progress.horizontal{:class => "step-#{current_step[:id]}"}
-      = render 'courses/steps'
-    = simple_form_for([:dashboard, @course], :html => {:class => "course-form form disable-submit-on-return step-#{current_step[:id]}"}) do |form|
-      = render "courses/form_header", :form => form
-      = render "courses/form_#{current_step[:id]}", :form => form
-      .form-actions
-        = form.button(:submit, "Save", class: 'btn btn-primary btn-large')
+  .content.row.container
+    .sidebar.col-sm-4
+      = render 'sidebar'        
+    .main.col-sm-8
+      = simple_form_for([:dashboard, @course], :html => {:class => "course-form form stacked disable-submit-on-return step-#{current_step[:id]}"}) do |form|
+        = render "courses/form_header", :form => form
+        = render "courses/form_#{current_step[:id]}", :form => form
+        .form-actions
+          = form.button(:submit, "Save", class: 'btn btn-primary btn-large')
