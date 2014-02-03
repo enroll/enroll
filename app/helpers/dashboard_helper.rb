@@ -12,4 +12,11 @@ module DashboardHelper
       end
     end
   end
+
+  def dashboard_check_link(title, url_options, checked)
+    klasses = []
+    raise url_options.to_a.inspect
+    raise params.to_a.inspect
+    # content_tag :li, :class => 
+  end
 end

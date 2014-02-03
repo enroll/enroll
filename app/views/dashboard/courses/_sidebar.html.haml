@@ -1,7 +1,6 @@
 %ul.tasks
   %li.checked
     %a{href: edit_dashboard_course_path(@course, step: 'details')} Change details
-  %li.active
-    %a Select date
+  = dashboard_check_link('Select date', {controller: 'dashboard/courses', action: 'edit', step: 'dates_location'}, false)
   %li
     %a Select location
