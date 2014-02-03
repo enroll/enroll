@@ -39,6 +39,12 @@ class ApplicationController < ActionController::Base
     mixpanel.track(event, {distinct_id: distinct_id})
   end
 
+  def mixpanel_set(id, args)
+    return unless mixpanel
+
+    mixpanel.set(id, args)
+  end
+
   def visitor_id
     @visitor_id ||= if current_user
       if current_user.visitor_id
