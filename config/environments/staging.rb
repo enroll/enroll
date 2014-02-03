@@ -71,20 +71,15 @@ Enroll::Application.configure do
     :protocol => 'http'
   }
 
-  config.action_mailer.delivery_method = :mail_gate
-  config.action_mailer.mail_gate_settings = {
-    :whitelist => /enroll.io|shay.frendt@gmail.com|jessmartin@gmail.com|nap@zerosum.org/,
-    :subject_prefix => '[Staging] ',
-    :delivery_method => :smtp,
-    :delivery_settings => {
-      :address        => ENV["MAILGUN_SMTP_SERVER"],
-      :port           => ENV["MAILGUN_SMTP_PORT"],
-      :domain         => ENV["MAILGUN_DOMAIN"],
-      :user_name      => ENV["MAILGUN_SMTP_LOGIN"],
-      :password       => ENV["MAILGUN_SMTP_PASSWORD"],
-      :authentication => 'plain'
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address        => ENV["MAILGUN_SMTP_SERVER"],
+    :port           => ENV["MAILGUN_SMTP_PORT"],
+    :domain         => ENV["MAILGUN_DOMAIN"],
+    :user_name      => ENV["MAILGUN_SMTP_LOGIN"],
+    :password       => ENV["MAILGUN_SMTP_PASSWORD"],
+    :authentication => 'plain'
     }
-  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
