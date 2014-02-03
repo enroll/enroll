@@ -6,6 +6,7 @@ class Admin::EmailsController < ApplicationController
   end
 
   def new
+    @available_events = ["Initial Marketing Email"]
   end
 
   def create
@@ -30,7 +31,7 @@ class Admin::EmailsController < ApplicationController
       GenericMailer.generic_mail(options).deliver!
 
       mixpanel.set(recipient, {email: recipient})
-      mixpanel_track_event('Initial Marketing Email', {distinct_id: token.distinct_id})
+      mixpanel_track_event(params[:email][:event], {distinct_id: token.distinct_id})
     end
 
     flash[:notice] = "#{emails.length} emails were sent!"

@@ -11,6 +11,7 @@
     This special link will be generated for every email sent.
 
   = simple_form_for :email, url: admin_emails_path, html: {class: 'form stacked'} do |f|
+    = f.input :event, collection: @available_events, prompt: nil
     = f.input :sender
     = f.input :cc_us, as: :boolean
     = f.input :subject

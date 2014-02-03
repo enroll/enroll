@@ -64,7 +64,7 @@ describe Admin::EmailsController do
 
     emails = "foo@example.com"
     content = "Hello there, check out http://enroll.io !"
-    post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io'} 
+    post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io', event: 'Initial Marketing Email'} 
   end
 
   it "ccs to ourselves" do
@@ -88,5 +88,17 @@ describe Admin::EmailsController do
     post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io'} 
 
     MarketingToken.count.should == 1
+  end
+
+  it "allows to select mixpanel event" do
+    SecureRandom.expects(:base64).returns('SOME_DISTINCT_ID')
+
+    mixpanel = Mixpanel::Tracker.any_instance
+    mixpanel.stubs(:set)
+    mixpanel.expects(:track).with('AWESOME EVENT', {distinct_id: 'SOME_DISTINCT_ID'})
+
+    emails = "foo@example.com"
+    content = "Hello there, check out http://enroll.io !"
+    post :create, email: {emails: emails, subject: 'bazinga', content: content, sender: 'we@enroll.io', event: 'AWESOME EVENT'} 
   end
 end

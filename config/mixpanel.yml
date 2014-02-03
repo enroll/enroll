@@ -5,7 +5,7 @@ staging:
   token: f46f1029f35c73c04f7d149f69428edc
 
 development:
-  token:
+  token: bazinga
 
 test:
   token: bazinga
