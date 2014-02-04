@@ -206,7 +206,7 @@ html.cssanimations.csstransforms {
   .viewport {
     &.preview {
       @include transition-transform(0.25s);
-      @include translate(0, 50px);
+      @include translate(0, 45px);
       display: block;
       &.offscreen {
         display: block;
@@ -241,6 +241,7 @@ html.cssanimations.csstransforms {
 // Schedule table
 
 table.schedule {
+  margin: auto;
   th {
     font-size: 13px;
     font-weight: 600;

@@ -6,29 +6,53 @@ class Dashboard::CoursesController < ApplicationController
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
   before_filter :update_steps_for_dashboard, only: [:edit, :update]
 
+  def new
+    @course = Course.new
+    render 'edit'
+  end
+
+  def create
+    @course = Course.new
+    @course.instructor = current_user
+    create_update
+  end
+
   def show
+    if @course.draft?
+      return redirect_to edit_dashboard_course_path(@course, step: 'details')
+    end
     @events = Event.grouped_by_date_and_type(course: @course)
     mixpanel_track_event 'Dashboard'
   end
 
   def edit
-    @course.build_location unless @course.location
+    @course.set_default_values_if_nil
   end
 
   def update
-    if @course.update_attributes(course_params)
-      redirect_to edit_dashboard_course_path(@course, :step => params[:step])
-    else
-      render :edit
-    end
+    create_update
   end
 
   def publish
-    @course.publish!
+    unless @course.publish!
+      flash[:error] = "Cannot publish course with date in the past"
+    end
     redirect_to dashboard_course_path(@course, published: 1)
   end
 
   protected
+
+  def create_update
+    if @course.update_attributes(course_params)
+      if next_step
+        redirect_to_next_step
+      else
+        redirect_to review_dashboard_course_path(@course)
+      end
+    else
+      render :edit
+    end
+  end
 
   def redirect_to_next_step
     if next_step
@@ -39,6 +63,5 @@ class Dashboard::CoursesController < ApplicationController
   end
 
   def update_steps_for_dashboard
-    @steps = @steps.reject { |s| s[:id] == 'page' }
   end
 end

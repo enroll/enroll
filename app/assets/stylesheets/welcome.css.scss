@@ -18,6 +18,10 @@ $welcome-color-light: #b6b2a8;
   color: $welcome-color2;
 }
 
+body.welcome {
+  background-color: transparent;
+}
+
 .btn-transparent {
   color: $welcome-color;
   border-color: $welcome-color;

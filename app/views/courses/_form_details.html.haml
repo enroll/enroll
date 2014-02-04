@@ -1,14 +1,15 @@
 .course-details
-  = form.input :name, label: 'Course name'
-  .form-group.url
-    = form.label :url, 'Short URL', class: 'control-label'
-    .controls
-      .row
-        .col-sm-3.url-label
-          http://enroll.io/go/
-        .col-sm-9.url-input
-          = form.input_field :url, class: 'inline', disabled: form.object.published?
-  = form.input :tagline
+  .form-section
+    = form.input :name, label: 'Course name'
+    .form-group.url
+      = form.label :url, 'Short URL', class: 'control-label'
+      .controls
+        .row
+          .col-sm-3.url-label
+            http://enroll.io/go/
+          .col-sm-9.url-input
+            = form.input_field :url, class: 'inline', disabled: form.object.published?
+    = form.input :tagline
 
 :coffeescript
   new CourseDetails(el: '.course-details')

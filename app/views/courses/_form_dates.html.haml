@@ -2,27 +2,15 @@
   .form-section
     .campaign-end-notice.pull-right
   
-    %h2.bordered.offset Dates
+    %h2 Dates
 
     = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, required: true, label: "Start date", disabled: form.object.published?
     = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, required: true, label: "End date", disabled: form.object.published?
     .form-group.multi-day
       .controls
-        %a.multi-day{href: '#'} This is a multi-day course.
+        %a.multi-day{href: '#'} Is this a multi-day course?
 
   .form-section.course-schedule
-
-  .form-section
-    %h2.bordered.offset Location
-
-    = form.simple_fields_for(:location) do |location|
-      = location.input :name, label: 'Venue name'
-      = location.input :address
-      = location.input :address_2
-      = location.input :city
-      = location.input :state
-      = location.input :zip
-      = location.input :phone
 
 :coffeescript
   new CourseSchedule(el: '.course-schedule', schedules: #{form.object.schedules.to_json})

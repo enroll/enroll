@@ -30,6 +30,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(user)
-    edit_course_path(user.courses.last)
+    edit_dashboard_course_path(user.courses.last)
   end
 end

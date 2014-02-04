@@ -103,6 +103,7 @@ form.form {
 
   .form-actions {
     margin-left: $label-total-width;
+    margin-top: 20px;
   }
 
   span.help-block {
@@ -197,18 +198,4 @@ form.form.small-labels {
 
 .datepicker table tr td.today.active {
   color: #fff !important;
-}
-
-.form-section {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid $gray-light;
-
-  &:nth-child(even) {
-    // background: #fbf8f8;
-  }
-
-  &:last-child {
-    border-bottom: none;
-  }
 }

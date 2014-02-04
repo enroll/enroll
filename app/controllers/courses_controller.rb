@@ -25,40 +25,6 @@ class CoursesController < ApplicationController
     render 'show', layout: false
   end
 
-  def new
-    @course = Course.new
-  end
-
-  def create
-    @course = Course.new(course_params)
-    @course.instructor = current_user
-    @location = @course.location
-
-    if @course.save
-      redirect_to_next_step
-    else
-      render :new
-    end
-  end
-
-  def edit
-    @course.set_default_values_if_nil
-  end
-
-  def update
-    saved = @course.update_attributes!(course_params)
-    return render :edit unless saved
-
-    mixpanel_track_event "Course Creation #{current_step[:label]}"
-
-    if next_step
-      redirect_to_next_step
-    else
-      Event.create_event(Event::COURSE_CREATED, course: @course)
-      redirect_to course_path(@course)
-    end
-  end
-
   protected
 
   def setup_markdown

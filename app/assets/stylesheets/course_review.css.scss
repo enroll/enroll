@@ -4,7 +4,6 @@
   padding-top: 40px;
 
   table.course-details {
-    margin: auto;
     margin-top: 40px;
     margin-bottom: 40px;
 
@@ -12,16 +11,13 @@
     }
 
     th {
-      text-align: right;
-      width: 50%;
+      width: 150px;
       padding-right: 10px;
       color: $gray-medium;
       font-weight: normal;
     }
 
     td {
-      text-align: left;
-      width: 50%;
       padding-left: 10px;
       font-weight: 500;
     }
@@ -29,12 +25,5 @@
 
   .actions {
     margin-top: 20px;
-
-    a {
-      display: block;
-      width: 150px;
-      margin: auto;
-      margin-bottom: 10px;
-    }
   }
 }

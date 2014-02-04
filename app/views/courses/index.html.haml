@@ -1,4 +1,4 @@
-.container
+.container.course-dashboard
   %h1.tc.offset My Courses
 
   .row
@@ -7,7 +7,7 @@
         %li.header
           %strong Teaching
           .actions
-            %a{:href => new_course_path}
+            %a{:href => new_dashboard_course_path}
               %i.icon-circled-plus
               Create
         = yrender "courses_list", courses: @courses_teaching do |course|

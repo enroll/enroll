@@ -6,6 +6,11 @@ a.social {
   padding: 10px 15px;
   display: inline-block;
   background: $gray-medium;
+  @include border-radius(3px);
+
+  &:hover {
+    color: #fff;
+  }
 
   &.twitter {
     background: #1daeeb;
@@ -37,8 +42,6 @@ a.social {
 }
 
 div.social-url {
-  padding-top: 10px;
-
   small {
     display: block;
     color: $dark-gray;
@@ -46,7 +49,7 @@ div.social-url {
   }
 
   input {
-    width: 325px;
+    width: 100%;
     padding: 5px 5px;
   }
 }

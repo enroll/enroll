@@ -38,9 +38,9 @@ class window.CourseSchedule extends Spine.Controller
     @updateDays()
 
     if @$courseEndField.val() != '' && @$courseStartField.val() != @$courseEndField.val()
-      @$courseEndGroup.show()
+      @switchToMultiDay()
     else
-      @$courseEndGroup.hide()
+      @switchToSingleDay()
 
   setupDatepicker: ->
     @format = 'yyyy-mm-dd'
@@ -104,10 +104,15 @@ class window.CourseSchedule extends Spine.Controller
     @storeSchedulesByDays()
 
     startVal = @$courseStartField.val()
+    endVal = @$courseEndField.val()
     if startVal == ''
       return @$courseSchedule.hide()
+
     start = @parseDate(startVal)
-    end = @parseDate(@$courseEndField.val())
+    if endVal == ''
+      end = @parseDate(startVal)
+    else
+      end = @parseDate(endVal)
 
     days = []
 
@@ -126,7 +131,7 @@ class window.CourseSchedule extends Spine.Controller
       days.push(day)
               
       newDate = start.setDate(start.getDate() + 1)
-      start = new Date(newDate);
+      start = new Date(newDate)
     
     @render(days)
 
@@ -153,5 +158,12 @@ class window.CourseSchedule extends Spine.Controller
   multiDayAction: (e) ->
     e.preventDefault()
 
+    @switchToMultiDay()
+
+  switchToMultiDay: ->
     @$courseEndGroup.show()
     @$multiDayGroup.hide()
+
+  switchToSingleDay: ->
+    @$courseEndGroup.hide()
+    @$multiDayGroup.show()

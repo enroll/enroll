@@ -1,59 +1,65 @@
-.container.dashboard
-  = render 'dashboard/dashboard_menu', course: @course
+.container.course-dashboard
+  = render 'header'
 
-  .centered-box.course-review
-    - if @course.starts_at.present?
-      - if !@course.future?
-        .alert.alert-error
-          Start date of the course must be in the future.
-      - elsif @course.too_soon?
-        .alert.alert-error
-          The course is scheduled to begin in just
-          %strong== #{@course.days_until_start} days.
-          You can publish it, but it may be easier to find enough students if you schedule your course at least two weeks from now.
-
-
-    %h1 Publish course
-
-    Publishing will make the course public and you won't be able to change these details:
-
-    %table.course-details
-      %tr
-        %th Price:
-        %td= course_price_text(@course)
-      %tr
-        %th Start date:
-        %td
+  .content.row
+    .sidebar.col-sm-4
+      = render 'sidebar'        
+    .main.col-sm-8
+      .course-review.form-section
+        - if @course.published?
+          Course is already published!
+        - elsif @course.all_steps_finished?
           - if @course.starts_at.present?
-            = long_date(@course.starts_at)
-          - else
-            = missing_label
-      %tr
-        %th End date:
-        %td
-          - if @course.ends_at.present?
-            = long_date(@course.ends_at)
-          - else
-            = missing_label
-      %tr
-        %th Location:
-        %td
-          - if @course.location.present?
-            = @course.location
-          - else
-            = missing_label
-      %tr
-        %th Minimum students:
-        %td
-          - if @course.min_seats.present?
-            = @course.min_seats
-          - else
-            = missing_label   
-      %tr
-        %th URL:
-        %td= landing_page_url(@course.url)
+            - if !@course.future?
+              .alert.alert-error.inverted
+                Start date of the course must be in the future.
+            - elsif @course.too_soon?
+              .alert.alert-error.inverted
+                The course is scheduled to begin in just
+                %strong== #{@course.days_until_start} days.
+                You can publish it, but it may be easier to find enough students if you schedule your course at least two weeks from now.
 
-    .actions
-      - if @course.ready_to_publish?
-        = link_to "Publish", publish_dashboard_course_path(@course), class: 'btn btn-primary btn-large'
-      = link_to "Change details", edit_dashboard_course_path(@course), class: 'btn btn-large btn-default'
+          %h2 Publish course
+          %p Publishing will make the course public and you won't be able to change these details:
+          %table.course-details
+            %tr
+              %th Price:
+              %td= course_price_text(@course)
+            %tr
+              %th Start date:
+              %td
+                - if @course.starts_at.present?
+                  = long_date(@course.starts_at)
+                - else
+                  = missing_label
+            - if @course.ends_at
+              %tr
+                %th End date:
+                %td
+                  - if @course.ends_at.present?
+                    = long_date(@course.ends_at)
+                  - else
+                    = missing_label
+            %tr
+              %th Location:
+              %td
+                - if @course.location.present?
+                  = @course.location
+                - else
+                  = missing_label
+            %tr
+              %th Minimum students:
+              %td
+                - if @course.min_seats.present?
+                  = @course.min_seats
+                - else
+                  = missing_label   
+            %tr
+              %th URL:
+              %td= landing_page_url(@course.url)
+
+          .actions
+            - if @course.all_steps_finished? && @course.future?
+              = link_to "Publish", publish_dashboard_course_path(@course), class: 'btn btn-primary btn-large'
+        - else
+          Looks like your course isn't ready yet! Finish all steps, then publish your course.

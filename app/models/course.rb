@@ -212,7 +212,7 @@ class Course < ActiveRecord::Base
   def set_default_values_if_nil
     self.min_seats ||= 5
     self.max_seats ||= 10
-    self.price_per_seat_in_cents ||= 10000
+    # self.price_per_seat_in_cents ||= 10000
     self.build_location unless self.location
     self.description = DEFAULT_DESCRIPTION unless self.description.present?
   end
@@ -259,19 +259,50 @@ class Course < ActiveRecord::Base
     !published?
   end
 
-  def ready_to_publish?
-    dates_present? &&
-      starts_at > Date.today &&
-      location.present?
-  end
-
-  def dates_present?
-    starts_at.present? && ends_at.present?
-  end
-
   def publish!
-    self.published_at = Time.zone.now
-    self.save!
+    if self.starts_at > Time.zone.now
+      self.published_at = Time.zone.now
+      self.save!
+
+      true
+    else
+      false
+    end
+  end
+
+  # Finishing steps of the course
+
+  def step_finished?(step)
+    required = {
+      details: [:name, :url],
+      dates: [:starts_at],
+      location: ['location.name'],
+      pricing: [:price_per_seat_in_cents],
+      landing_page: [:has_landing_page?]
+    }
+
+    required[step].all? { |p| self.value_for_key_path(p).present? }
+  end
+
+  def all_steps_finished?
+    steps = [:details, :dates, :location, :pricing, :landing_page]
+    steps.all? { |s| step_finished?(s) }
+  end
+
+  def has_landing_page?
+    self.description && self.description != DEFAULT_DESCRIPTION
+  end
+
+  def value_for_key_path(path)
+    keys = path.to_s.split('.')
+
+    object = self
+    keys.each do |key|
+      object = object.send(key)
+      return nil unless object
+    end
+
+    object
   end
 
   private
