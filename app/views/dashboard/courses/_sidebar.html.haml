@@ -1,27 +1,32 @@
-%h4
-  %a.actions{href: '#'}
-    Hide
-  %div
-    %i.icon-feather
-    Create
+.task-list.create
+  %h4
+    %a.actions.toggle{href: '#'}
+      Hide
+    %div
+      %i.icon-feather
+      Create
 
-%ul.list.tasks
-  = dashboard_check_link_step('Change details', 'details', @course.step_finished?(:details))
-  = dashboard_check_link_step('Select date', 'dates', @course.step_finished?(:dates))
-  = dashboard_check_link_step('Select location', 'location', @course.step_finished?(:location))
-  = dashboard_check_link_step('Set pricing', 'pricing', @course.step_finished?(:pricing))
-  = dashboard_check_link_step('Design landing page', 'page', @course.step_finished?(:landing_page))
-  = dashboard_check_link('Go live', {controller: 'dashboard/courses', action: 'review'}, @course.published?)
+  %ul.list.tasks.target
+    = dashboard_check_link_step('Change details', 'details', @course.step_finished?(:details))
+    = dashboard_check_link_step('Select date', 'dates', @course.step_finished?(:dates))
+    = dashboard_check_link_step('Select location', 'location', @course.step_finished?(:location))
+    = dashboard_check_link_step('Set pricing', 'pricing', @course.step_finished?(:pricing))
+    = dashboard_check_link_step('Design landing page', 'page', @course.step_finished?(:landing_page))
+    = dashboard_check_link('Go live', {controller: 'dashboard/courses', action: 'review'}, @course.published?)
 
-%h4
-  %a.actions{href: '#'}
-    Hide
-  %div
-    %i.icon-suitcase
-    Manage
+.task-list.manage
+  %h4
+    %a.actions.toggle{href: '#'}
+      Hide
+    %div
+      %i.icon-suitcase
+      Manage
 
-%ul.list
+  %ul.list.target
+    = dashboard_menu_link(dashboard_course_path(@course), 'Promote', 'rocket', 'courses', 'show')
+    = dashboard_menu_link(dashboard_course_path(@course), 'Teach', 'graduation-cap', 'courses', 'teach')
+    = dashboard_menu_link(dashboard_course_path(@course), 'Accept payment', 'credit-card', 'payment_settings', 'edit')
 
-  = dashboard_menu_link(dashboard_course_path(@course), 'Promote', 'rocket', 'courses', 'show')
-  = dashboard_menu_link(dashboard_course_path(@course), 'Teach', 'graduation-cap', 'courses', 'teach')
-  = dashboard_menu_link(dashboard_course_path(@course), 'Accept payment', 'credit-card', 'payment_settings', 'edit')
+:coffeescript
+  new CollapsibleList(el: '.task-list.create', id: 'create')
+  new CollapsibleList(el: '.task-list.manage', id: 'manage')
