@@ -3,7 +3,7 @@
     Hide
   %div
     %i.icon-feather
-    Creating course
+    Create
 
 %ul.tasks
   = dashboard_check_link_step('Change details', 'details', @course.step_finished?(:details))
@@ -11,3 +11,10 @@
   = dashboard_check_link_step('Select location', 'location', @course.step_finished?(:location))
   = dashboard_check_link_step('Set pricing', 'pricing', @course.step_finished?(:pricing))
   = dashboard_check_link_step('Design landing page', 'page', @course.step_finished?(:landing_page))
+
+%h4
+  %a.actions{href: '#'}
+    Hide
+  %div
+    %i.icon-suitcase
+    Manage
