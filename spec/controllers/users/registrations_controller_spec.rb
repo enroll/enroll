@@ -33,7 +33,7 @@ describe Users::RegistrationsController do
       it "redirects to the manage course page" do
         post :create, user: user_attributes
         response.should be_redirect
-        response.should redirect_to(edit_course_path(Course.last))
+        response.should redirect_to(edit_dashboard_course_path(Course.last))
       end
     end
 
