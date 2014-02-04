@@ -199,23 +199,3 @@ form.form.small-labels {
 .datepicker table tr td.today.active {
   color: #fff !important;
 }
-
-.form-section {
-  // padding-top: 15px;
-  background: #fff;
-  padding: 20px;
-  border: 1px solid $gray-light;
-  border-right: none;
-  border-left: none;
-  // @include box-shadow(0 2px 1px rgba(0,0,0,0.1));
-  margin-bottom: 10px;
-  margin-left: -20px;
-  margin-right: -30px;
-
-  &:nth-child(even) {
-    // background: #fbf8f8;
-  }
-
-  &:last-child {
-  }
-}

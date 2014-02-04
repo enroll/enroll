@@ -14,19 +14,22 @@
     = dashboard_check_link_step('Design landing page', 'page', @course.step_finished?(:landing_page))
     = dashboard_check_link('Go live', {controller: 'dashboard/courses', action: 'review'}, @course.published?)
 
-.task-list.manage
-  %h4
-    %a.actions.toggle{href: '#'}
-      Hide
-    %div
-      %i.icon-suitcase
-      Manage
-
-  %ul.list.target
-    = dashboard_menu_link(dashboard_course_path(@course), 'Promote', 'rocket', 'courses', 'show')
-    = dashboard_menu_link(dashboard_course_path(@course), 'Teach', 'graduation-cap', 'courses', 'teach')
-    = dashboard_menu_link(dashboard_course_path(@course), 'Accept payment', 'credit-card', 'payment_settings', 'edit')
-
 :coffeescript
   new CollapsibleList(el: '.task-list.create', id: 'create')
-  new CollapsibleList(el: '.task-list.manage', id: 'manage')
+
+- if @course.published?
+  .task-list.manage
+    %h4
+      %a.actions.toggle{href: '#'}
+        Hide
+      %div
+        %i.icon-suitcase
+        Manage
+
+    %ul.list.target
+      = dashboard_menu_link(dashboard_course_path(@course), 'Promote', 'rocket', 'courses', 'show')
+      = dashboard_menu_link(dashboard_course_path(@course), 'Teach', 'graduation-cap', 'courses', 'teach')
+      = dashboard_menu_link(dashboard_course_path(@course), 'Accept payment', 'credit-card', 'payment_settings', 'edit')
+
+  :coffeescript
+    new CollapsibleList(el: '.task-list.manage', id: 'manage')
