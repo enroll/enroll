@@ -148,6 +148,7 @@ body {
       &.active {
         background: #fff;
         border-left: 5px solid $primary1;
+        padding-left: 15px;
         a {
           @include retina('check-active', 'png', 17px, 17px);
           color: $primary1;
