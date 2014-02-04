@@ -212,7 +212,7 @@ class Course < ActiveRecord::Base
   def set_default_values_if_nil
     self.min_seats ||= 5
     self.max_seats ||= 10
-    self.price_per_seat_in_cents ||= 10000
+    # self.price_per_seat_in_cents ||= 10000
     self.build_location unless self.location
     self.description = DEFAULT_DESCRIPTION unless self.description.present?
   end

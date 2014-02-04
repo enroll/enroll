@@ -26,7 +26,7 @@ class Dashboard::CoursesController < ApplicationController
   end
 
   def edit
-    @course.build_location unless @course.location
+    @course.set_default_values_if_nil
   end
 
   def update
