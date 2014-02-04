@@ -1,6 +1,6 @@
 .course-schedule
   .form-section
-    %h2.bordered.offset Location
+    %h2 Location
 
     = form.simple_fields_for(:location) do |location|
       = location.input :name, label: 'Venue name'
