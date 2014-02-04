@@ -87,11 +87,12 @@ body {
   }
 
   .main {
-    // padding-left: 30px;
+    padding-right: 30px;
   }
 
   .sidebar {
     border-right: 1px solid #dadde1;
+    min-height: 500px;
 
     // Sidebar title
     h4 {
