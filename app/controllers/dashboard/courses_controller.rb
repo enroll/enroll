@@ -58,6 +58,5 @@ class Dashboard::CoursesController < ApplicationController
   end
 
   def update_steps_for_dashboard
-    @steps = @steps.reject { |s| s[:id] == 'page' }
   end
 end

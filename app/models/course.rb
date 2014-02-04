@@ -281,10 +281,15 @@ class Course < ActiveRecord::Base
       details: [:name, :url],
       dates: [:starts_at, :ends_at],
       location: ['location.name'],
-      pricing: [:price_per_seat_in_cents]
+      pricing: [:price_per_seat_in_cents],
+      landing_page: [:has_landing_page?]
     }
 
     required[step].all? { |p| self.value_for_key_path(p).present? }
+  end
+
+  def has_landing_page?
+    self.description && self.description != DEFAULT_DESCRIPTION
   end
 
   def value_for_key_path(path)

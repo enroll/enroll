@@ -24,6 +24,7 @@ module CoursesEditingConcern
   def current_step
     @steps ||= STEPS
     step = @steps.find { |s| s[:id] == params[:step] }
+    step
   end
 
   
