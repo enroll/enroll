@@ -5,7 +5,7 @@ Enroll::Application.routes.draw do
 
   mount Resque::Server, :at => '/resque'
 
-  resources :courses do
+  resources :courses, only: [:index, :show, :preview] do
     resources :reservations
     resources :students, only: [:index]
 

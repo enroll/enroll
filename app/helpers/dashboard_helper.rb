@@ -22,7 +22,8 @@ module DashboardHelper
     # url_options[:action] = @course.id ? 'edit' : 'new'
 
     content_tag :li, :class => klasses.join(' ') do
-      link_to title, url_options
+      url = @course.id ? url_options : ''
+      link_to title, url
     end
   end
 
