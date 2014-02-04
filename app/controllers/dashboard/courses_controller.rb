@@ -47,7 +47,7 @@ class Dashboard::CoursesController < ApplicationController
       if next_step
         redirect_to_next_step
       else
-        redirect_to edit_dashboard_course_path(@course, :step => params[:step])
+        redirect_to review_dashboard_course_path(@course)
       end
     else
       render :edit
