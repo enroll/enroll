@@ -6,7 +6,7 @@
     Creating course
 
 %ul.tasks
-  = dashboard_check_link_step('Change details', 'details', false)
-  = dashboard_check_link_step('Select date', 'dates', false)
-  = dashboard_check_link_step('Select location', 'location', false)
-  = dashboard_check_link_step('Set pricing', 'pricing', false)
+  = dashboard_check_link_step('Change details', 'details', @course.step_finished?(:details))
+  = dashboard_check_link_step('Select date', 'dates', @course.step_finished?(:dates))
+  = dashboard_check_link_step('Select location', 'location', @course.step_finished?(:location))
+  = dashboard_check_link_step('Set pricing', 'pricing', @course.step_finished?(:pricing))

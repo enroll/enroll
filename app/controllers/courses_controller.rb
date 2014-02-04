@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
   end
 
   def new
-    @course = Course.new
+    redirect_to new_dashboard_course_path
   end
 
   def create

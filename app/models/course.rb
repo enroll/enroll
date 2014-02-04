@@ -274,6 +274,30 @@ class Course < ActiveRecord::Base
     self.save!
   end
 
+  # Finishing steps of the course
+
+  def step_finished?(step)
+    required = {
+      details: [:name, :url],
+      dates: [:starts_at, :ends_at],
+      location: ['location.name'],
+      pricing: [:price_per_seat_in_cents]
+    }
+
+    required[step].all? { |p| self.value_for_key_path(p).present? }
+  end
+
+  def value_for_key_path(path)
+    keys = path.to_s.split('.')
+
+    object = self
+    keys.each do |key|
+      object = object.send(key)
+    end
+
+    object
+  end
+
   private
 
   # temporary

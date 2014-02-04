@@ -54,6 +54,10 @@ body {
       top: -1px;
       left: 1px;
     }
+
+    &:active {
+      @include gradient-vertical(#f6f6f6, #fff);
+    }
   }
 
   a.number {
@@ -141,6 +145,13 @@ body {
           @include retina('check-active', 'png', 17px, 17px);
           color: $primary1;
         }
+      }
+
+      &.active.checked {
+        a {
+          @include retina('check-active-checked', 'png', 17px, 17px);
+          color: $primary1;
+        } 
       }
     }
   }
