@@ -10,6 +10,8 @@ body {
 }
 
 .course-dashboard {
+  background: #f9f9f9;
+
   .header {
     background: #fff;
     @include box-shadow(0 2px 1px rgba(0,0,0,0.1));
@@ -135,8 +137,8 @@ body {
 
       &.checked {
         a {
-          @include retina('check-checked', 'png', 17px, 17px);
-          color: #abb8ca;
+          @include retina('check-checked-2', 'png', 17px, 17px);
+          // color: #abb8ca;
         }
       }
 
