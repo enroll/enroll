@@ -16,7 +16,7 @@ body {
   @include box-shadow(0 2px 10px rgba(0,0,0,0.1));
   margin-bottom: 50px;
 
-  .header {
+  .header.course {
     background: #fff;
     @include box-shadow(0 2px 1px rgba(0,0,0,0.1));
     // margin: 0;
