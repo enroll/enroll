@@ -147,13 +147,13 @@ body {
         padding-left: 15px;
 
         a {
-          color: $primary1;
+          color: $primary1 !important;
         }
       }
     }
   }
 
-  ul.tasks {
+  ul.list.tasks {
 
     margin-bottom: 30px;
 
@@ -182,6 +182,16 @@ body {
           @include retina('check-active-checked', 'png', 17px, 17px);
           color: $primary1;
         } 
+      }
+    }
+
+    &.finished {
+      li.checked a {
+        @include retina('check-checked', 'png', 17px, 17px);
+        color: #abb8ca;
+      }
+      li.checked.active a {
+        @include retina('check-active-checked', 'png', 17px, 17px);
       }
     }
   }
