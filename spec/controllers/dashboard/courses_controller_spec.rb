@@ -1,10 +1,19 @@
 require "spec_helper"
 
 describe Dashboard::CoursesController do
+  let(:user) { create(:user) }
   before { sign_in(user) }
 
+  describe "#new" do
+    render_views
+    
+    it "returns ok" do
+      get :new, step: 'details'
+      response.should be_ok
+    end
+  end
+
   describe "#update" do
-    let(:user) { create(:user) }
     let(:course) { create(:course, instructor: user, price_per_seat_in_cents: 2000) }
 
     it "saves the price" do
