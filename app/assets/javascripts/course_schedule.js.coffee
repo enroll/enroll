@@ -104,10 +104,15 @@ class window.CourseSchedule extends Spine.Controller
     @storeSchedulesByDays()
 
     startVal = @$courseStartField.val()
+    endVal = @$courseEndField.val()
     if startVal == ''
       return @$courseSchedule.hide()
+
     start = @parseDate(startVal)
-    end = @parseDate(@$courseEndField.val())
+    if endVal == ''
+      end = @parseDate(startVal)
+    else
+      end = @parseDate(endVal)
 
     days = []
 
@@ -126,7 +131,7 @@ class window.CourseSchedule extends Spine.Controller
       days.push(day)
               
       newDate = start.setDate(start.getDate() + 1)
-      start = new Date(newDate);
+      start = new Date(newDate)
     
     @render(days)
 
