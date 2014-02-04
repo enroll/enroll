@@ -260,8 +260,14 @@ class Course < ActiveRecord::Base
   end
 
   def publish!
-    self.published_at = Time.zone.now
-    self.save!
+    if self.starts_at > Time.zone.now
+      self.published_at = Time.zone.now
+      self.save!
+
+      true
+    else
+      false
+    end
   end
 
   # Finishing steps of the course
@@ -269,7 +275,7 @@ class Course < ActiveRecord::Base
   def step_finished?(step)
     required = {
       details: [:name, :url],
-      dates: [:starts_at, :ends_at],
+      dates: [:starts_at],
       location: ['location.name'],
       pricing: [:price_per_seat_in_cents],
       landing_page: [:has_landing_page?]

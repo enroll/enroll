@@ -34,7 +34,9 @@ class Dashboard::CoursesController < ApplicationController
   end
 
   def publish
-    @course.publish!
+    unless @course.publish!
+      flash[:error] = "Cannot publish course with date in the past"
+    end
     redirect_to dashboard_course_path(@course, published: 1)
   end
 

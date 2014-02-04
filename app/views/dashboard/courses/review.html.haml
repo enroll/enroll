@@ -6,13 +6,9 @@
       = render 'sidebar'        
     .main.col-sm-8
       .course-review.form-section
-        %h2 Publish course
-
         - if @course.published?
           Course is already published!
         - elsif @course.all_steps_finished?
-          Publishing will make the course public and you won't be able to change these details:
-
           - if @course.starts_at.present?
             - if !@course.future?
               .alert.alert-error.inverted
@@ -23,6 +19,8 @@
                 %strong== #{@course.days_until_start} days.
                 You can publish it, but it may be easier to find enough students if you schedule your course at least two weeks from now.
 
+          %h2 Publish course
+          %p Publishing will make the course public and you won't be able to change these details:
           %table.course-details
             %tr
               %th Price:
@@ -34,13 +32,14 @@
                   = long_date(@course.starts_at)
                 - else
                   = missing_label
-            %tr
-              %th End date:
-              %td
-                - if @course.ends_at.present?
-                  = long_date(@course.ends_at)
-                - else
-                  = missing_label
+            - if @course.ends_at
+              %tr
+                %th End date:
+                %td
+                  - if @course.ends_at.present?
+                    = long_date(@course.ends_at)
+                  - else
+                    = missing_label
             %tr
               %th Location:
               %td
@@ -60,7 +59,7 @@
               %td= landing_page_url(@course.url)
 
           .actions
-            - if @course.all_steps_finished?
+            - if @course.all_steps_finished? && @course.future?
               = link_to "Publish", publish_dashboard_course_path(@course), class: 'btn btn-primary btn-large'
         - else
           Looks like your course isn't ready yet! Finish all steps, then publish your course.
