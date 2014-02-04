@@ -8,7 +8,7 @@ describe 'CourseSchedule', ->
       ' <input id="course_starts_at" />' +
       ' <div class="form-group course_ends_at"><input id="course_ends_at" /></div>' +
       ' <div class="course-schedule"></div>' +
-      ' <a class="multi-day" href="#">multi</a>'
+      ' <div class="form-group multi-day"><a class="multi-day" href="#">multi</a></div>'
       '</div>'
     ).appendTo('body')
 
@@ -48,6 +48,9 @@ describe 'CourseSchedule', ->
       $el.find('#course_ends_at').val('2014-05-10')
       schedule = new CourseSchedule(el: $el, schedules: [])
       $el.find('.form-group.course_ends_at').is(':visible').should.be.true
+
+      # Also, hides the link
+      $el.find('div.multi-day').is(':visible').should.be.false
 
     it 'shows end date form group after clicking the link', ->
       $el.find('a.multi-day').trigger('click')
