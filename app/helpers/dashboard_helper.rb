@@ -20,6 +20,7 @@ module DashboardHelper
     klasses << 'checked' if is_checked
 
     # url_options[:action] = @course.id ? 'edit' : 'new'
+    url_options[:id] = @course.id
 
     content_tag :li, :class => klasses.join(' ') do
       url = @course.id ? url_options : ''
@@ -33,7 +34,7 @@ module DashboardHelper
     dashboard_check_link title, {
       controller: 'dashboard/courses',
       action: action,
-      step: step,
+      step: step
     }, checked
   end
 
