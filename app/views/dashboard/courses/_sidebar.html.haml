@@ -6,7 +6,7 @@
       %i.icon-feather
       Create
 
-  %ul.list.tasks.target{class: @course.published? ? 'finished' : ''}
+  %ul.list.tasks.target{class: @course.published? ? 'disabled' : ''}
     = dashboard_check_link_step('Change details', 'details', @course.step_finished?(:details))
     = dashboard_check_link_step('Select date', 'dates', @course.step_finished?(:dates))
     = dashboard_check_link_step('Select location', 'location', @course.step_finished?(:location))
@@ -17,19 +17,17 @@
 :coffeescript
   new CollapsibleList(el: '.task-list.create', id: 'create')
 
-- if @course.published?
-  .task-list.manage
-    %h4
-      %a.actions.toggle{href: '#'}
-        Hide
-      %div
-        %i.icon-suitcase
-        Manage
+.task-list.manage
+  %h4
+    %a.actions.toggle{href: '#'}
+      Hide
+    %div
+      %i.icon-suitcase
+      Manage
 
-    %ul.list.target
-      = dashboard_menu_link(dashboard_course_path(@course), 'Promote', 'rocket', 'courses', 'show')
-      = dashboard_menu_link(dashboard_course_path(@course), 'Teach', 'graduation-cap', 'courses', 'teach')
-      = dashboard_menu_link(dashboard_course_path(@course), 'Accept payment', 'credit-card', 'payment_settings', 'edit')
+  %ul.list.target{class: !@course.published? ? 'disabled' : ''}
+    = dashboard_menu_link(dashboard_course_path(@course), 'Promote', 'rocket', 'courses', 'show')
+    = dashboard_menu_link(dashboard_course_path(@course), 'Teach', 'graduation-cap', 'courses', 'teach')
 
   :coffeescript
     new CollapsibleList(el: '.task-list.manage', id: 'manage')

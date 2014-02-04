@@ -24,7 +24,7 @@ body {
     padding: 30px 15px;
 
     .title {
-      padding-left: 15px;
+      margin-left: 50px;
     }
 
     h1 {
@@ -44,7 +44,6 @@ body {
       padding: 2px 5px 0px 5px;
       font-size: 12px;
       @include border-radius(3px);
-      margin-left: 10px;
       margin-top: -1px;
 
       &.live {
@@ -52,6 +51,10 @@ body {
         border-color: $success;
       }
     }
+  }
+
+  div.back-wrapper {
+    margin-top: 10px;
   }
 
   a.back-button {
@@ -71,13 +74,17 @@ body {
     }
   }
 
+  .numbers {
+    text-align: right;
+  }
+
   a.number {
     $border: lighten($primary1, 15%);
     border: 1px solid $border;
     display: inline-block;
     @include border-radius(3px);
     strong, span {
-      padding: 5px 15px;
+      padding: 5px 10px;
       display: inline-block;
     }
     strong {
@@ -87,6 +94,7 @@ body {
     }
     span {
       font-size: 14px;
+      padding: 5px 8px 5px 5px;
     }
   }
 
@@ -153,6 +161,14 @@ body {
         }
       }
     }
+
+    &.disabled {
+      li a {
+        color: #abb8ca;
+      }
+      li.checked.active a {
+      }
+    }
   }
 
   ul.list.tasks {
@@ -187,10 +203,9 @@ body {
       }
     }
 
-    &.finished {
+    &.disabled {
       li.checked a {
         @include retina('check-checked', 'png', 17px, 17px);
-        color: #abb8ca;
       }
       li.checked.active a {
         @include retina('check-active-checked', 'png', 17px, 17px);
