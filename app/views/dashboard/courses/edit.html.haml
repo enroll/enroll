@@ -9,4 +9,6 @@
         = render "courses/form_header", :form => form
         = render "courses/form_#{current_step[:id]}", :form => form
         .form-actions
-          = form.button(:submit, "Save", class: 'btn btn-primary btn-large')
+          = form.button(:submit, "Save & Next", class: 'btn btn-primary btn-large')
+          - if next_step && current_step[:id] != "details"
+            = link_to "Skip for now", url_for(step: next_step[:id]), class: 'btn btn-large btn-default'
