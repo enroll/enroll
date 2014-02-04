@@ -11,6 +11,8 @@ body {
 
 .course-dashboard {
   background: #f9f9f9;
+  @include border-radius(0 0 5px 5px);
+  @include box-shadow(0 2px 10px rgba(0,0,0,0.1));
 
   .header {
     background: #fff;
@@ -42,6 +44,11 @@ body {
       @include border-radius(3px);
       margin-left: 10px;
       margin-top: -1px;
+
+      &.live {
+        color: $success;
+        border-color: $success;
+      }
     }
   }
 

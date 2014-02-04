@@ -259,16 +259,6 @@ class Course < ActiveRecord::Base
     !published?
   end
 
-  def ready_to_publish?
-    dates_present? &&
-      starts_at > Date.today &&
-      location.present?
-  end
-
-  def dates_present?
-    starts_at.present? && ends_at.present?
-  end
-
   def publish!
     self.published_at = Time.zone.now
     self.save!
@@ -288,6 +278,11 @@ class Course < ActiveRecord::Base
     required[step].all? { |p| self.value_for_key_path(p).present? }
   end
 
+  def all_steps_finished?
+    steps = [:details, :dates, :location, :pricing, :landing_page]
+    steps.all? { |s| step_finished?(s) }
+  end
+
   def has_landing_page?
     self.description && self.description != DEFAULT_DESCRIPTION
   end
@@ -298,6 +293,7 @@ class Course < ActiveRecord::Base
     object = self
     keys.each do |key|
       object = object.send(key)
+      return nil unless object
     end
 
     object

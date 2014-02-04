@@ -8,6 +8,8 @@
       %h1.pull-left= @course.name
       - if @course.draft?
         .pull-left.draft Draft
+      - else
+        .pull-left.draft.live Live
 
       - if @course.url
         %a.link{href: landing_page_url(@course.url), target: '_blank'}= landing_page_url(@course.url)
