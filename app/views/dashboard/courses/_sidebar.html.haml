@@ -5,7 +5,7 @@
     %i.icon-feather
     Create
 
-%ul.tasks
+%ul.list.tasks
   = dashboard_check_link_step('Change details', 'details', @course.step_finished?(:details))
   = dashboard_check_link_step('Select date', 'dates', @course.step_finished?(:dates))
   = dashboard_check_link_step('Select location', 'location', @course.step_finished?(:location))
@@ -19,3 +19,9 @@
   %div
     %i.icon-suitcase
     Manage
+
+%ul.list
+
+  = dashboard_menu_link(dashboard_course_path(@course), 'Promote', 'rocket', 'courses', 'show')
+  = dashboard_menu_link(dashboard_course_path(@course), 'Teach', 'graduation-cap', 'courses', 'teach')
+  = dashboard_menu_link(dashboard_course_path(@course), 'Accept payment', 'credit-card', 'payment_settings', 'edit')
