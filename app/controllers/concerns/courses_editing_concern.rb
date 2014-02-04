@@ -3,7 +3,8 @@ module CoursesEditingConcern
 
   STEPS = [
     {id: 'details', label: 'Details'},
-    {id: 'dates_location', label: 'Dates & Location'},
+    {id: 'dates', label: 'Dates'},
+    {id: 'location', label: 'Location'},
     {id: 'pricing', label: 'Pricing'},
     {id: 'page', label: 'Landing page'}
   ]

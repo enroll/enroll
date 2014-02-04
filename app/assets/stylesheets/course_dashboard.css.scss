@@ -3,7 +3,7 @@
 @import '_colors';
 @import 'bootstrap/mixins';
 
-$background1: #f9f9f9;
+$background1: #e4e7ec;
 
 body {
   background: $background1;
@@ -81,13 +81,17 @@ body {
   }
 
   .sidebar, .main {
-    padding-top: 20px;
+    padding-top: 30px;
     padding-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .main {
+    // padding-left: 30px;
   }
 
   .sidebar {
     border-right: 1px solid #dadde1;
-    padding-top: 40px;
 
     // Sidebar title
     h4 {
@@ -141,6 +145,6 @@ body {
   }
 
   .course-form {
-    margin-top: 15px;
+    margin-top: 0;
   }
 }
