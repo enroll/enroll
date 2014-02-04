@@ -1,6 +1,7 @@
 @import '_mixins';
 @import '_colors';
 @import 'bootstrap/variables';
+@import 'bootstrap/mixins';
 
 $padding: 20px;
 $layout-width: 850px;
@@ -116,6 +117,9 @@ ul.navbar-nav {
   // padding-right: $padding;
   box-sizing: border-box;
   background: #fcfcfc;
+  margin-bottom: 50px;
+  @include border-radius(0 0 5px 5px);
+  @include box-shadow(0 2px 10px rgba(0,0,0,0.1));
 }
 
 #footer {

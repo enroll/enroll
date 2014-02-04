@@ -103,6 +103,7 @@ form.form {
 
   .form-actions {
     margin-left: $label-total-width;
+    margin-top: 20px;
   }
 
   span.help-block {
@@ -201,14 +202,18 @@ form.form.small-labels {
 
 .form-section {
   // padding-top: 15px;
-  padding-bottom: 15px;
-  // border-bottom: 1px solid $gray-light;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid $gray-light;
+  // @include box-shadow(0 2px 1px rgba(0,0,0,0.1));
+  margin-bottom: 10px;
+  margin-left: -21px;
+  margin-right: -32px;
 
   &:nth-child(even) {
     // background: #fbf8f8;
   }
 
   &:last-child {
-    border-bottom: none;
   }
 }
