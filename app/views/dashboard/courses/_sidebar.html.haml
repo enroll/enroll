@@ -1,6 +1,12 @@
+%h4
+  %a.actions{href: '#'}
+    Hide
+  %div
+    %i.icon-feather
+    Creating course
+
 %ul.tasks
-  %li.checked
-    %a{href: edit_dashboard_course_path(@course, step: 'details')} Change details
-  = dashboard_check_link('Select date', {controller: 'dashboard/courses', action: 'edit', step: 'dates_location'}, false)
-  %li
-    %a Select location
+  = dashboard_check_link_step('Change details', 'details', false)
+  = dashboard_check_link_step('Select date', 'dates_location', false)
+  = dashboard_check_link_step('Select location', 'dates_location', false)
+  = dashboard_check_link_step('Set pricing', 'pricing', false)

@@ -3,6 +3,12 @@
 @import '_colors';
 @import 'bootstrap/mixins';
 
+$background1: #f9f9f9;
+
+body {
+  background: $background1;
+}
+
 .course-dashboard {
   .header {
     background: #fff;
@@ -82,6 +88,25 @@
   .sidebar {
     border-right: 1px solid #dadde1;
     padding-top: 40px;
+
+    // Sidebar title
+    h4 {
+      $sidebar-title: #d3dae3;
+      text-transform: uppercase;
+      color: $sidebar-title;
+      text-shadow: 0 1px 0 #fff;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      margin-top: 0;
+
+      .actions {
+        display: block;
+        float: right;
+        color: $sidebar-title;
+        margin-top: 0;
+      }
+    }
   }
 
   ul.tasks {

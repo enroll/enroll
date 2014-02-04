@@ -15,8 +15,18 @@ module DashboardHelper
 
   def dashboard_check_link(title, url_options, checked)
     klasses = []
-    raise url_options.to_a.inspect
-    raise params.to_a.inspect
-    # content_tag :li, :class => 
+    is_active = url_options.all? { |option, value| params[option] == value }
+    klasses << 'active' if is_active
+    content_tag :li, :class => klasses.join(' ') do
+      link_to title, url_options
+    end
+  end
+
+  def dashboard_check_link_step(title, step, checked)
+    dashboard_check_link title, {
+      controller: 'dashboard/courses',
+      action: 'edit',
+      step: step
+    }, checked
   end
 end
