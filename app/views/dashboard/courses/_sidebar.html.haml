@@ -26,9 +26,9 @@
       Manage
 
   %ul.list.target{class: !@course.published? ? 'disabled' : ''}
-    = dashboard_menu_link(dashboard_course_path(@course), 'Promote', 'rocket', 'courses', 'show')
-    = dashboard_menu_link(dashboard_course_students_path(@course), 'Students', 'users', 'students', 'index')
-    = dashboard_menu_link(dashboard_course_path(@course), 'Teach', 'graduation-cap', 'courses', 'teach')
+    = dashboard_menu_link(@course.id ? dashboard_course_path(@course) : '', 'Promote', 'rocket', 'courses', 'show')
+    = dashboard_menu_link(@course.id ? dashboard_course_students_path(@course) : '', 'Students', 'users', 'students', 'index')
+    = dashboard_menu_link(@course.id ? dashboard_course_path(@course) : '', 'Teach', 'graduation-cap', 'courses', 'teach')
     = dashboard_menu_link(edit_payment_settings_path, 'Get paid', 'credit-card', 'payment_settings', 'edit')
 
   :coffeescript
