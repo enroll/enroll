@@ -18,6 +18,9 @@ class Dashboard::CoursesController < ApplicationController
   end
 
   def show
+    if @course.draft?
+      return redirect_to edit_dashboard_course_path(@course, step: 'details')
+    end
     @events = Event.grouped_by_date_and_type(course: @course)
     mixpanel_track_event 'Dashboard'
   end
