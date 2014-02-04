@@ -1,8 +1,0 @@
-%h1 Activity stream
-
-.event-list
-  - for date, events in @events
-    %h3= date
-    %ul
-      - for event in events
-        %li{:class => event.event_type}= event

@@ -4,6 +4,7 @@
 @import 'bootstrap/mixins';
 
 $background1: #e4e7ec;
+$gray1: #c5cad6;
 
 body {
   background: $background1;
@@ -196,6 +197,20 @@ body {
     }
   }
 
+  // Activity
+
+  ul.list.activity {
+    color: $gray1;
+
+    li {
+      padding-left: 30px;
+
+      &.student_enrolled {
+        color: $primary1;
+      }
+    }
+  }
+
   .course-form {
     margin-top: 0;
   }
@@ -223,7 +238,7 @@ body {
   h5 {
     font-size: 12px;
     font-weight: 400;
-    color: #c5cad6;
+    color: $gray1;
     margin-bottom: 5px;
     &:first-child {
       margin-top: -5px;

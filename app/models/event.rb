@@ -14,9 +14,9 @@ class Event < ActiveRecord::Base
 
   def to_s
     if event_type == COURSE_CREATED
-      "Course created"
+      "The course was created."
     elsif event_type == PAGE_VISITED
-      "#{pluralize(self.count, 'student')} visited landing page."
+      "#{pluralize(self.count, 'student')} visited the course page."
     elsif event_type == STUDENT_ENROLLED
       "#{pluralize(self.count, 'student')} enrolled!"
     else

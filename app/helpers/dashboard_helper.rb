@@ -32,4 +32,26 @@ module DashboardHelper
       step: step,
     }, checked
   end
+
+  def activity_date_format(date)
+    if date.to_date == Date.today
+      "Today"
+    elsif date.to_date == Date.yesterday
+      "Yesterday"
+    else
+      date.strftime("%a, %b #{date.day.ordinalize}")
+    end
+  end
+
+  def icon_for_event_type(type)
+    icons = {
+      Event::COURSE_CREATED => 'paper-plane',
+      Event::PAGE_VISITED => 'user',
+      Event::STUDENT_ENROLLED => 'feather'
+    }
+
+    icon = icons[type]
+    html = '<i class="icon icon-%s"></i>' % [icon]
+    html.html_safe
+  end
 end
