@@ -2,9 +2,9 @@
   %h1.tc.offset My courses
 
   .row
-    - if @courses_teaching.empty? && @courses_studying.empty?
+    - if @courses_teaching.empty?
       .tc.actions
-        %p You don't have any courses. Why not teach one?
+        %p Why not teach a course?
         .offset
           %a.btn.btn-primary.btn-large{href: new_dashboard_course_path} Create a course
 
