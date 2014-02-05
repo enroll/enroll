@@ -1,7 +1,7 @@
 - content_for :head do
   = facebook_og_meta_tags(@course)
 
-- unless @preview
+- if !@preview && instructor_logged_in?(@course)
   %a.landing-button.dashboard{href: dashboard_course_path(@course)}
     %i.icon-line-graph
     Go to Dashboard
