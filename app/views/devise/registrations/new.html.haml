@@ -1,11 +1,11 @@
 .container.course-dashboard
-  %h1.tc.offset Sign up
+  %h1.offset.form-offset Sign up
 
 
   = simple_form_for @user, url: registration_path(:user), html: {class: "form"} do |f|
     = f.simple_fields_for @course do |c|
-      = c.input :name, required: false, autofocus: true, label: "Course Name", input_html: {autocomplete: 'off'}
-      = f.input :email, input_html: {autocomplete: 'off'}
-      = f.input :password
+      = c.input :name, required: false, autofocus: true, label: "Course Name", input_html: {autocomplete: 'off', class: 'medium'}
+      = f.input :email, input_html: {autocomplete: 'off', class: 'medium'}
+      = f.input :password, input_html: {class: 'medium'}
       .form-actions
         = f.button :submit, "Sign Up", class: "btn btn-primary"
