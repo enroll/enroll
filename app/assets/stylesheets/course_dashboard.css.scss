@@ -16,6 +16,7 @@ body {
   @include box-shadow(0 2px 10px rgba(0,0,0,0.1));
   margin-bottom: 50px;
   padding-bottom: 20px;
+  overflow: hidden;
 
   .header.course {
     background: #fff;
@@ -117,6 +118,8 @@ body {
   .sidebar {
     border-right: 1px solid #dadde1;
     min-height: 500px;
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
 
     // Sidebar title
     h4 {
