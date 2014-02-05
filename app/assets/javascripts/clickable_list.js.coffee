@@ -4,5 +4,7 @@ class window.ClickableList extends Spine.Controller
 
   clickAction: (ev) ->
     ev.preventDefault()
-    href = $(ev.currentTarget).find('a').attr('href')
+    $target = $(ev.currentTarget)
+    return if $target.hasClass('header')
+    href = $target.find('a').attr('href')
     window.location = href
