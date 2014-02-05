@@ -34,6 +34,7 @@ class Course < ActiveRecord::Base
 
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
+  attr_accessor :pricing
 
   accepts_nested_attributes_for :schedules
 

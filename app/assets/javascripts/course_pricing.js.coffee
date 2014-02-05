@@ -1,11 +1,15 @@
 class window.CoursePricing extends Spine.Controller
   elements:
+    # Sections
+    '.pricing-details-section': '$pricingDetailsSection'
+
     # Fields
     '#course_price_per_seat_in_dollars': '$cost'
     '#course_min_seats': '$minSeats'
     '#course_max_seats': '$maxSeats'
-    'label#for-profit': '$forProfitLabel'
-    'label#for-fun': '$forFunLabel'
+    'label#for-profit input': '$forProfitRadio'
+    'label#for-fun input': '$forFunRadio'
+    'tr.course_price_per_seat_in_dollars': '$coursePriceRow'
 
     # Calculator
     '#revenue-calculator': '$calculator'
@@ -30,6 +34,13 @@ class window.CoursePricing extends Spine.Controller
     else
       @selectProfitAction()
 
+    if !@isFilledIn
+      @$pricingDetailsSection.hide()
+      @$forFunRadio.attr('checked', false)
+      @$forProfitRadio.attr('checked', false)
+
+    
+
   bindChangeEvent: (el) ->
     @$(el).on 'propertychange input', @updateCourseCalculator
 
@@ -38,9 +49,10 @@ class window.CoursePricing extends Spine.Controller
     $('.free-text').remove()
     @$cost.parent().append("<strong class='free-text'>FREE</strong>")
     @$calculator.hide()
+    @$coursePriceRow.hide()
+    @$pricingDetailsSection.show()
 
-    @$forFunLabel.addClass('active')
-    @$forProfitLabel.removeClass('active')
+    @$forFunRadio.attr('checked', true)
 
   selectProfitAction: ->
     if @$cost.val() == ''
@@ -49,9 +61,10 @@ class window.CoursePricing extends Spine.Controller
     $('.free-text').remove()
     @$calculator.show()
     @updateCourseCalculator()
+    @$coursePriceRow.show()
+    @$pricingDetailsSection.show()
 
-    @$forFunLabel.removeClass('active')
-    @$forProfitLabel.addClass('active')
+    @$forProfitRadio.attr('checked', true)
 
   # Updating calculator
 

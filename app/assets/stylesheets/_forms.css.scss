@@ -29,6 +29,16 @@ form.form {
     color: $gray-dark;
   }
 
+  label.radio {
+    padding-left: 25px;
+    input {
+      width: inherit;
+      height: inherit;
+      margin-top: 1px;
+      border: none;
+    }
+  }
+
   .controls {
     margin-left: $label-total-width;
     position: relative;
@@ -45,6 +55,11 @@ form.form {
     height: auto;
     background: transparent;
     background: rgba(255, 255, 255, 0.5);
+
+    &.radio_buttons {
+      background: none;
+      @include box-shadow(none);
+    }
 
     &:focus {
       border: 1px solid $gray-medium;
