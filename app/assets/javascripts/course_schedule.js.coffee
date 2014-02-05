@@ -3,7 +3,7 @@ template = JST['templates/course_schedule']
 DPGlobal = $.fn.datepicker.DPGlobal
 
 SHORT_FORMAT = 'yyyy/mm/dd'
-LONG_FORMAT = 'D, M dd yyyy'
+LONG_FORMAT = 'D, M dd, yyyy'
 
 class window.CourseSchedule extends Spine.Controller
   elements:
