@@ -7,7 +7,8 @@
         %p You don't have any courses. Why not teach one?
         .offset
           %a.btn.btn-primary.btn-large{href: new_dashboard_course_path} Create a course
-    - else
+
+    - unless @courses_teaching.empty?
       %div{class: @courses_studying.empty? ? 'col-sm-12' : 'col-sm-6'}
         %ul.course-list.teaching
           %li.header

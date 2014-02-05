@@ -3,10 +3,11 @@
     %strong
       %i.icon-briefcase
       = course.name
-      - if course.draft?
-        %span.label.label-warning.mini.caps.inverted Draft
-      - else
-        %span.label.label-success.mini.caps Live
+      - if instructor_logged_in?(course)
+        - if course.draft?
+          %span.label.label-warning.mini.caps.inverted Draft
+        - else
+          %span.label.label-success.mini.caps Live
     .actions
       = yield(course)
     %br/
