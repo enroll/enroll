@@ -1,21 +1,22 @@
 .container.course-dashboard
-  %h1.tc.offset My Courses
+  %h1.tc.offset My courses
 
   .row
-    .col-sm-6
+    %div{class: @courses_studying.empty? ? 'col-sm-12' : 'col-sm-6'}
       %ul.course-list
         %li.header
           %strong Teaching
           .actions
-            %a{:href => new_dashboard_course_path}
+            %a.highlight{:href => new_dashboard_course_path}
               %i.icon-circled-plus
               Create
         = yrender "courses_list", courses: @courses_teaching do |course|
-          = link_to "Manage &rsaquo;".html_safe, dashboard_course_path(course), :class => 'btn btn-primary small'
+          = link_to "Manage &rsaquo;".html_safe, dashboard_course_path(course), :class => 'btn btn-primary small inverted'
 
-    .col-sm-6
-      %ul.course-list
-        %li.header
-          %strong Attending
-        = yrender "courses_list", courses: @courses_studying do |course|
-          = link_to "Open &rsaquo;".html_safe, landing_page_path(course.url), :class => 'btn btn-primary small'
+    - unless @courses_studying.empty?
+      .col-sm-6
+        %ul.course-list
+          %li.header
+            %strong Attending
+          = yrender "courses_list", courses: @courses_studying do |course|
+            = link_to "Open &rsaquo;".html_safe, landing_page_path(course.url), :class => 'btn btn-primary small'

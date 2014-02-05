@@ -9,9 +9,9 @@
         %h1
           = @course.name
           - if @course.draft?
-            %span.draft Draft
+            %span.label.label-warning.mini.caps.inverted Draft
           - else
-            %span.draft.live Live
+            %span.label.label-success.mini.caps.inverted Live
 
         - if @course.url.present?
           %a.link{href: landing_page_url(@course.url), target: '_blank'}= landing_page_url(@course.url)

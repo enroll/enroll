@@ -20,6 +20,17 @@
   background: $primary1;
   border: none;
   font-weight: 400;
+
+  &.inverted {
+    background: transparent;
+    border: 1px solid $primary1;
+    color: $primary1;
+
+    &:hover {
+      background: $primary1;
+      color: #fff;
+    }
+  }
 }
 
 .btn-default {
@@ -75,8 +86,31 @@
     @include border-radius(3px);
   }
 
+  &.inverted {
+    padding: 2px 5px 1px 5px;
+    font-size: 12px;
+  }
+
+  &.caps {
+    text-transform: uppercase;
+  }
+
   &.label-warning {
     background: $warning;
+
+    &.inverted {
+      background: transparent;
+      border: 1px dashed $warning;
+      color: $warning;
+    }
+  }
+
+  &.label-sucess {
+    &.inverted {
+      background: transparent;
+      border: 1px dashed $success;
+      color: $success; 
+    }
   }
 
   &.label-error {

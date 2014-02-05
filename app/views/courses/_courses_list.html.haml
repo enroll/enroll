@@ -4,7 +4,9 @@
       %i.icon-briefcase
       = course.name
       - if course.draft?
-        %span.label.label-warning.mini D
+        %span.label.label-warning.mini.caps.inverted Draft
+      - else
+        %span.label.label-success.mini.caps Live
     .actions
       = yield(course)
     %br/

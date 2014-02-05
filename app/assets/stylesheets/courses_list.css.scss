@@ -18,13 +18,21 @@ ul.course-list {
 
   li {
     @include clearfix();
-    // margin-bottom: 
+    border-bottom: 1px solid $border-color;
     padding: 10px 25px;
+    
+    &:not(.header) {
+      cursor: pointer;
+    }
+
+    &:not(.header):hover {
+      background: #fafafa;
+    }
 
     .actions {
       float: right;
       margin-top: -1px;
-      padding-top: 10px;
+      padding-top: 8px;
     }
 
     em {
@@ -46,14 +54,6 @@ ul.course-list {
       font-size: 12px;
     }
 
-    a {
-      color: $gray-medium;
-      &:hover {
-        text-decoration: none;
-        color: $primary1;
-      }
-    }
-
 
     .actions {
       padding-top: 0;
@@ -63,10 +63,6 @@ ul.course-list {
   li.empty {
     text-align: center;
     color: $gray-medium;
-  }
-
-  li:nth-child(2) {
-    padding-top: 20px;
   }
 
   li:last-child {
