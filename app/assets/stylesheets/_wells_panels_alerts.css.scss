@@ -71,6 +71,12 @@
     }
   }
 
+  &.alert-info {
+    background: transparent;
+    border: 1px dashed $primary1;
+    color: $primary1;
+  }
+
   .btn {
     color: #fff;
     border: 1px solid #fff;

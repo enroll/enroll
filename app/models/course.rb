@@ -153,6 +153,15 @@ class Course < ActiveRecord::Base
     ends_at.try(:strftime, "%l:%M %p %Z")
   end
 
+  def date_range
+    return "unknown date" unless starts_at && ends_at
+    if starts_at.to_date == ends_at.to_date
+      starts_at.strftime('%a, %B %e, %Y')
+    else
+      "#{starts_at.strftime('%a, %B %e, %Y')} - #{ends_at.strftime('%a, %B %e, %Y')}"
+    end
+  end
+
   def free?
     price_per_seat_in_cents.blank? || price_per_seat_in_cents == 0
   end
