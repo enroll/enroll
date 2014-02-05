@@ -55,8 +55,10 @@ class window.CoursePricing extends Spine.Controller
     @$forFunRadio.attr('checked', true)
 
   selectProfitAction: ->
-    if @$cost.val() == ''
-      @$cost.val(199)
+    if @$cost.val() == '' || @$cost.val() == '0'
+      @$cost.val(10)
+    if @$minSeats.val() == '' || @$minSeats.val() == '0'
+      @$minSeats.val(2)
     @$cost.show()
     $('.free-text').remove()
     @$calculator.show()
