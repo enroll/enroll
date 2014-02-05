@@ -1,9 +1,9 @@
 .container.course-dashboard
   .row
-    %h1.tc.offset Sign in
+    %h1.offset.form-offset Sign in
 
     = simple_form_for :user, url: session_path(:user), html: {class: 'form'} do |f|
-      = f.input :email, required: false, autofocus: true, label: 'E-mail:', input_html: {autocomplete: 'off'}
-      = f.input :password, :required => false, label: 'Password:'
+      = f.input :email, required: false, autofocus: true, label: 'E-mail:', input_html: {autocomplete: 'off', class: 'medium'}
+      = f.input :password, :required => false, label: 'Password:', input_html: {class: 'medium'}
       .form-actions
         = f.button :submit, "Sign in", class: 'btn btn-primary'
