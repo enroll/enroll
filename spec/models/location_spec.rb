@@ -5,7 +5,7 @@ describe Location do
 
   it { should have_many(:courses) }
 
-  it { should validate_presence_of(:name) }
+  # it { should validate_presence_of(:name) }
 
   describe "zip_and_state" do
     it "returns the correct value based on values present" do
