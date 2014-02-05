@@ -28,5 +28,7 @@ module Enroll
     config.autoload_paths +=  %W( #{config.root}/lib
                                   #{config.root}/app/jobs
                                   #{config.root}/app/presenters )
+    
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end
 end
