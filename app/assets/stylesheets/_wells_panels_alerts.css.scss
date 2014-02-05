@@ -26,6 +26,11 @@
   margin: auto;
 }
 
+.offset {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
 .alert {
   @include border-radius(3px);
   width: 100%;
