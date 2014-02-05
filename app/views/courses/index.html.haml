@@ -13,7 +13,7 @@
           %li.header
             %strong Teaching
             .actions
-              %a.highlight{:href => new_dashboard_course_path}
+              %a.btn.btn-primary{:href => new_dashboard_course_path}
                 %i.icon-circled-plus
                 Create
           = yrender "courses_list", courses: @courses_teaching do |course|
