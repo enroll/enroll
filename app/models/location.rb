@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   has_many :courses, dependent: :destroy
 
-  validates :name, presence: true
+  # validates :name, presence: true
 
   def as_json(options = {})
     {
