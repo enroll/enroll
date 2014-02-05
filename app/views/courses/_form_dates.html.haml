@@ -4,8 +4,8 @@
   
     %h2 Dates
 
-    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y-%m-%d')}, required: true, label: "Start date", disabled: form.object.published?
-    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y-%m-%d')}, required: true, label: "End date", disabled: form.object.published?
+    = form.input :starts_at, as: :string, input_html: {class: 'datepicker small', value: form.object.starts_at.try(:strftime, '%Y/%m/%d')}, required: true, label: "Start date", disabled: form.object.published?
+    = form.input :ends_at, as: :string, input_html: {class: 'datepicker small', value: form.object.ends_at.try(:strftime, '%Y/%m/%d')}, required: true, label: "End date", disabled: form.object.published?
     .form-group.multi-day
       .controls
         %a.multi-day{href: '#'} Is this a multi-day course?

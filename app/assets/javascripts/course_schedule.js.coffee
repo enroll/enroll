@@ -2,6 +2,9 @@ template = JST['templates/course_schedule']
 
 DPGlobal = $.fn.datepicker.DPGlobal
 
+SHORT_FORMAT = 'yyyy/mm/dd'
+LONG_FORMAT = 'D, M dd yyyy'
+
 class window.CourseSchedule extends Spine.Controller
   elements:
     'input#course_starts_at': '$courseStartField'
@@ -43,8 +46,10 @@ class window.CourseSchedule extends Spine.Controller
       @switchToSingleDay()
 
   setupDatepicker: ->
-    @format = 'yyyy-mm-dd'
+    @format = SHORT_FORMAT
     @parsedFormat = DPGlobal.parseFormat(@format)
+    @longFormat = LONG_FORMAT
+    @parsedLongFormat = DPGlobal.parseFormat(@longFormat)
     options =
       format: @format
       todayHighlight: false
@@ -59,6 +64,9 @@ class window.CourseSchedule extends Spine.Controller
 
   formatDate: (date) ->
     DPGlobal.formatDate(date, @parsedFormat, 'en')
+
+  longFormatDate: (date) ->
+    DPGlobal.formatDate(date, @parsedLongFormat, 'en')
 
   dateToIdentifier: (date) ->
     month = date.getMonth() + 1
@@ -121,7 +129,7 @@ class window.CourseSchedule extends Spine.Controller
       day = 
         date: start
         identifier: identifier
-        label: @formatDate(start)
+        label: @longFormatDate(start)
         
       if @schedulesByDays[identifier]
         schedule = @schedulesByDays[identifier]
