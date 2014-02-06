@@ -6,7 +6,7 @@ set :branch, ENV['BRANCH'] || 'master'
 set :ssh_options, {forward_agent: true}
 set :log_level, :debug
 set :linked_files, %w{config/database.yml}
-set :linked_dirs, ["tmp/pids", "log"]
+set :linked_dirs, ["tmp/pids", "log", "public/system"]
 set :test_log, "log/capistrano.test.log"
 
 require 'tinder'
