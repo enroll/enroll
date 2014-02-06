@@ -1,0 +1,16 @@
+.container.course-dashboard
+  = render 'dashboard/courses/header'
+
+  .content.row
+    .sidebar.col-sm-4
+      = render 'dashboard/courses/sidebar'
+    .main.col-sm-8
+      %h2 Add resource
+
+      = simple_form_for([:dashboard, @course, @resource], :html => {:class => "form stacked"}) do |f|
+        = f.error_notification
+        .form-section
+          = f.input :name
+          = f.input :description, as: :text
+        .form-actions
+          = f.button(:submit, "Save", class: 'btn btn-primary btn-large')

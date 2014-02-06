@@ -24,6 +24,7 @@ Enroll::Application.routes.draw do
         get :publish
       end
       resources :students, only: [:index]
+      resources :resources
       resource :payment_settings, only: [:edit, :update]
     end
     resources :landing_pages

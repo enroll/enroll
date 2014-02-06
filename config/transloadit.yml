@@ -1,0 +1,15 @@
+development:
+  <<: *production
+
+staging:
+  <<: *production
+
+production: &production
+  jquery_sdk_version: 'latest'
+  auth:
+    key     : '918bc7f08ea211e3baea2f00495a4dca'
+    secret  : '22adb32ed5afbc612ec52b4550f04b3d8ffde986'
+    duration: 1800 # 30 minute validity period for signed upload forms
+
+  templates:
+    s3_store: 'd95b4d508f7211e3837b57e2891496ed'

@@ -31,6 +31,7 @@ gem 'state_machine',  '1.2.0'
 gem 'stringex'
 gem 'stripe',         '1.8.3'
 gem 'tilt-jade'
+gem 'transloadit-rails', '1.1.1'
 gem 'unicorn'
 gem 'uglifier',       '>= 1.3.0'
 # ^- remember to keep this in alphabetical order

@@ -1,0 +1,20 @@
+.container.course-dashboard
+  = render 'dashboard/courses/header'
+
+  .content.row
+    .sidebar.col-sm-4
+      = render 'dashboard/courses/sidebar'
+    .main.col-sm-8
+      %ul.item-list
+        %li.header
+          %strong Resources
+          .actions
+            %a.btn.btn-primary{:href => new_dashboard_course_resource_path(@course)}
+              %i.icon-circled-plus
+              Add
+        - @resources.each do |resource|
+          %li
+            %strong
+              %i.icon-newspaper
+              = resource.name
+            %em= resource.description

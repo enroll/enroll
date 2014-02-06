@@ -20,7 +20,16 @@ class ApplicationController < ActionController::Base
     self.class.to_s.split("::").first.downcase
   end
 
+  # Courses
+
+  def find_course_as_instructor_by_course_id!
+    @course = current_user.courses_as_instructor.find(params[:course_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
+  end
+
   # Mixpanel
+
   def mixpanel
     return nil unless Enroll.mixpanel_token
 
