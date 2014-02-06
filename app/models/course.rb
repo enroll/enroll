@@ -34,6 +34,7 @@ class Course < ActiveRecord::Base
 
   # temporary while we figure out what db columns we want...
   attr_accessor :motivation, :audience
+  attr_accessor :pricing
 
   accepts_nested_attributes_for :schedules
 
@@ -151,6 +152,15 @@ class Course < ActiveRecord::Base
 
   def end_time
     ends_at.try(:strftime, "%l:%M %p %Z")
+  end
+
+  def date_range
+    return "unknown date" unless starts_at && ends_at
+    if starts_at.to_date == ends_at.to_date
+      starts_at.strftime('%a, %B %e, %Y')
+    else
+      "#{starts_at.strftime('%a, %B %e, %Y')} - #{ends_at.strftime('%a, %B %e, %Y')}"
+    end
   end
 
   def free?

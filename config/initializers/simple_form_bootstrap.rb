@@ -24,7 +24,7 @@ SimpleForm.setup do |config|
   config.wrappers 'pricing-block', tag: 'tr', class: '', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
-    b.wrapper tag: 'td' do |ba|
+    b.wrapper tag: 'td', class: 'table-label' do |ba|
       ba.use :label
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     end

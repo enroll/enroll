@@ -7,3 +7,6 @@
       = f.input :password, :required => false, label: 'Password:', input_html: {class: 'medium'}
       .form-actions
         = f.button :submit, "Sign in", class: 'btn btn-primary'
+
+        .extra-actions
+          = link_to 'Did you forget your password?', restore_account_path

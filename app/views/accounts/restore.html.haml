@@ -1,0 +1,13 @@
+.container.course-dashboard
+  %h1.offset.form-offset Restore password
+
+  = simple_form_for :user, url: restore_account_path, html: {class: 'form'} do |f|
+    %p.form-offset Please enter your email, and we'll email you link for resetting your password.
+
+    = f.input :email, required: false, autofocus: true, label: 'E-mail:', input_html: {autocomplete: 'off', class: 'medium'}
+
+    .form-actions
+      = f.button :submit, "Restore", class: 'btn btn-primary'
+
+      .extra-actions
+        = link_to 'Back', new_user_session_path

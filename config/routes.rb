@@ -35,6 +35,8 @@ Enroll::Application.routes.draw do
 
   resource :account, only: [:edit, :update] do
     # resources :courses
+    get :restore
+    post :restore
   end
 
   resource :payment_settings, only: [:edit, :update]

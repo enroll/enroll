@@ -7,6 +7,10 @@
       = simple_form_for(@reservation, :url => course_reservations_path, html: {class: 'form stacked small-labels'}) do |f|
         = f.input_field :stripe_token, :as => :hidden
 
+        - if @course.paid?
+          .alert.alert-info
+            = "You're about to enroll for <strong>#{@course.name}</strong> which takes place <strong>#{@course.date_range}</strong>. You will be charged <strong>#{course_price_text(@course)}</strong>.".html_safe
+
         %h2 Personal Info
 
         = simple_fields_for(@user) do |uf|
