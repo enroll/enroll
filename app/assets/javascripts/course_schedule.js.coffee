@@ -98,14 +98,21 @@ class window.CourseSchedule extends Spine.Controller
   # Changing any date
 
   changeDateAction: ->
+    # If there's no end date, copy from start date
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
 
+    # If end date is before start date, set end date to start date
     if @$courseEndField.val() != ''
       start = @parseDate(@$courseStartField.val())
       end = @parseDate(@$courseEndField.val())
       if end < start
         @$courseEndField.val(@$courseStartField.val())
+
+    # If we're in the single day mode, end date should follow start date
+    if !@isMultiDay && @$courseStartField.val() != @$courseEndField.val()
+      @$courseEndField.val(@$courseStartField.val())
+    
 
     @updateDays()
 
@@ -172,9 +179,11 @@ class window.CourseSchedule extends Spine.Controller
     @switchToMultiDay()
 
   switchToMultiDay: ->
+    @isMultiDay = true
     @$courseEndGroup.show()
     @$multiDayGroup.hide()
 
   switchToSingleDay: ->
+    @isMultiDay = false
     @$courseEndGroup.hide()
     @$multiDayGroup.show()

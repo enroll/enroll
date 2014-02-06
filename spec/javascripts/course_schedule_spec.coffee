@@ -60,3 +60,10 @@ describe 'CourseSchedule', ->
     it 'shows end date form group after clicking the link', ->
       $el.find('a.multi-day').trigger('click')
       $el.find('.form-group.course_ends_at').is(':visible').should.be.true
+
+    it 'changing the starting date will also change the end date in single day mode', ->
+      $el.find('#course_starts_at').val('2014-01-10')
+      $el.find('#course_ends_at').val('2014-01-10')
+      schedule = new CourseSchedule(el: $el, schedules: [])
+      $el.find('#course_starts_at').val('2014-01-01').trigger('changeDate')
+      $el.find('#course_ends_at').val().should.equal('2014-01-01')
