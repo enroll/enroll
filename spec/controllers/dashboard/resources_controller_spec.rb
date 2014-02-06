@@ -20,13 +20,51 @@ describe Dashboard::ResourcesController do
   describe "#create" do
     it "creates the resource" do
       expect {
-        post :create, course_id: course.id, resource: {name: 'foo', description: 'bar', s3_url: '123'}
+        post :create, course_id: course.id, 
+                      resource: {name: 'foo', description: 'bar'}, 
+                      transloadit: transloadit_params
       }.to change{Resource.count}.by(1)
+
       Resource.last.tap { |r|
         r.name.should == 'foo'
         r.description.should == 'bar'
-        r.s3_url.should == '123'
       }
     end
+
+    it "on success from transloadit, saves the s3_url and assembly_id" do
+      post :create, course_id: course.id, 
+                    resource: {name: 'foo', description: 'bar'}, 
+                    transloadit: transloadit_params
+
+      resource = Resource.last
+      resource.s3_url.should == "some-url"
+      resource.transloadit_assembly_id.should == "some-id"
+      response.should redirect_to(dashboard_course_resources_path(course))
+    end
+
+    it "on upload failure renders new" do
+      post :create, course_id: course.id,
+                    resource: {name: 'foo', description: 'bar'}, 
+                    transloadit: transloadit_failing_params
+
+      response.should be_ok
+      response.should render_template('new')
+    end
+  end
+
+  def transloadit_params
+    {
+      ok: "ASSEMBLY_COMPLETED", 
+      assembly_id: "some-id",
+      results: {
+        ":original" => [{
+          url: "some-url"
+        }]
+      }
+    }.to_json
+  end
+
+  def transloadit_failing_params
+    {error: "INVALID_FILE_META_DATA"}.to_json
   end
 end

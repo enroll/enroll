@@ -1,9 +1,3 @@
-development:
-  <<: *production
-
-staging:
-  <<: *production
-
 production: &production
   jquery_sdk_version: 'latest'
   auth:
@@ -13,3 +7,9 @@ production: &production
 
   templates:
     s3_store: 'd95b4d508f7211e3837b57e2891496ed'
+
+development:
+  <<: *production
+
+staging:
+  <<: *production

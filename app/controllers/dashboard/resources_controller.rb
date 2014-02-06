@@ -13,13 +13,16 @@ class Dashboard::ResourcesController < ApplicationController
   end
 
   def create
-    @resource = Resource.new(resource_params)
-    @resource.course = @course
-
-    if !@resource.s3_url
+    transloadit_response = params[:transloadit]
+    unless transloadit_response && transloadit_response[:ok]
       flash.now[:error] = "File upload failed"
       return render 'new'
     end
+
+    @resource = Resource.new(resource_params)
+    @resource.course = @course
+    @resource.s3_url = transloadit_response[:results][":original"].first[:url]
+    @resource.transloadit_assembly_id = transloadit_response[:assembly_id]
 
     if @resource.save
       redirect_to dashboard_course_resources_path(@course)
