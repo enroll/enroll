@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :index]
   before_filter :find_course_as_instructor!, only: [:edit, :update]
   before_filter :find_course_by_url!, only: [:show, :preview]
 
