@@ -17,7 +17,7 @@ form.form {
   max-width: $max-width;
 
   label {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
   }
 
@@ -123,6 +123,13 @@ form.form {
   .form-actions {
     margin-left: $label-total-width;
     margin-top: 20px;
+  }
+
+  .extra-actions {
+    display: inline-block;
+    padding-left: 10px;
+    position: relative;
+    top: 2px;
   }
 
   span.help-block {
