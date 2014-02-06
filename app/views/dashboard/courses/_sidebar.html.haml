@@ -29,7 +29,7 @@
     = dashboard_menu_link(@course.id ? dashboard_course_path(@course) : '', 'Promote', 'rocket', 'courses', 'show')
     = dashboard_menu_link(@course.id ? dashboard_course_students_path(@course) : '', 'Students', 'users', 'students', 'index')
     = dashboard_menu_link(@course.id ? dashboard_course_path(@course) : '', 'Teach', 'graduation-cap', 'courses', 'teach')
-    = dashboard_menu_link(edit_dashboard_course_payment_settings_path(@course), 'Get paid', 'credit-card', 'payment_settings', 'edit')
+    = dashboard_menu_link(@course.id ? edit_dashboard_course_payment_settings_path(@course) : '', 'Get paid', 'credit-card', 'payment_settings', 'edit')
 
   :coffeescript
     new CollapsibleList(el: '.task-list.manage', id: 'manage')
