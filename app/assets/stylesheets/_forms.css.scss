@@ -3,7 +3,7 @@
 @import 'bootstrap/mixins';
 
 @mixin inner-shadow {
-  @include box-shadow(inset 0 1px 3px rgba(0,0,0,.2));
+  @include box-shadow(inset 0 1px 3px rgba(0,0,0,.1));
 }
 
 form.form {
@@ -46,7 +46,7 @@ form.form {
 
   .form-control {
     @include border-radius(0);
-    border: 1px solid $gray-medium;
+    border: 1px solid lighten($gray-medium, 17%);
     @include inner-shadow();
     padding: 7px $input-padding-sides;
     color: $text1;
@@ -146,6 +146,10 @@ form.form {
     text-align: left;
     padding-left: $label-total-width;
     padding-bottom: 7px;
+  }
+
+  h2.form-break {
+    margin-top: 30px;
   }
 
   // Errors

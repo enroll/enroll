@@ -156,10 +156,11 @@ class Course < ActiveRecord::Base
 
   def date_range
     return "unknown date" unless starts_at && ends_at
+    format = '%a,&nbsp;%B&nbsp;%e,&nbsp;%Y'
     if starts_at.to_date == ends_at.to_date
-      starts_at.strftime('%a, %B %e, %Y')
+      starts_at.strftime(format)
     else
-      "#{starts_at.strftime('%a, %B %e, %Y')} - #{ends_at.strftime('%a, %B %e, %Y')}"
+      "#{starts_at.strftime(format)} - #{ends_at.strftime(format)}"
     end
   end
 

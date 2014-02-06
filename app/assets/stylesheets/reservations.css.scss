@@ -16,8 +16,7 @@ form#new_reservation {
   }
 
   .form-actions {
-    border-top: 1px solid $gray-medium-light;
-    padding-top: 15px;
+    // padding-top: 15px;
   }
 
   .spinner {
@@ -48,6 +47,25 @@ form#new_reservation {
   }
 }
 
+input#reservation_card_number {
+  @include retina('payment-card', 'png', 16px, 16px);
+  background-repeat: no-repeat;
+  background-position: 10px 10px;
+  padding-left: 35px;
+}
+
+input#reservation_card_code {
+  @include retina('payment-lock', 'png', 16px, 16px);
+  background-repeat: no-repeat;
+  background-position: 10px 10px;
+  padding-left: 35px;
+}
+
+.powered-stripe {
+  display: block;
+  margin-top: 10px;
+}
+
 // Welcome page
 
 .welcome-to-course {
@@ -58,3 +76,4 @@ form#new_reservation {
     margin-bottom: 50px;
   }
 }
+
