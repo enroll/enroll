@@ -2,6 +2,9 @@ template = JST['templates/course_schedule']
 
 DPGlobal = $.fn.datepicker.DPGlobal
 
+SHORT_FORMAT = 'yyyy/mm/dd'
+LONG_FORMAT = 'D, M dd, yyyy'
+
 class window.CourseSchedule extends Spine.Controller
   elements:
     'input#course_starts_at': '$courseStartField'
@@ -43,8 +46,10 @@ class window.CourseSchedule extends Spine.Controller
       @switchToSingleDay()
 
   setupDatepicker: ->
-    @format = 'yyyy-mm-dd'
+    @format = SHORT_FORMAT
     @parsedFormat = DPGlobal.parseFormat(@format)
+    @longFormat = LONG_FORMAT
+    @parsedLongFormat = DPGlobal.parseFormat(@longFormat)
     options =
       format: @format
       todayHighlight: false
@@ -60,10 +65,16 @@ class window.CourseSchedule extends Spine.Controller
   formatDate: (date) ->
     DPGlobal.formatDate(date, @parsedFormat, 'en')
 
+  longFormatDate: (date) ->
+    DPGlobal.formatDate(date, @parsedLongFormat, 'en')
+
   dateToIdentifier: (date) ->
-    month = date.getMonth() + 1
+    month = date.getUTCMonth() + 1
     month = "0#{month}" if month <= 9
-    "#{date.getFullYear()}-#{month}-#{date.getDate()}"
+    day = date.getUTCDate()
+    day = "0#{day}" if day <= 9
+
+    "#{date.getUTCFullYear()}-#{month}-#{day}"
 
   # Changing campaign end date
 
@@ -87,14 +98,21 @@ class window.CourseSchedule extends Spine.Controller
   # Changing any date
 
   changeDateAction: ->
+    # If there's no end date, copy from start date
     if @$courseEndField.val() == ''
       @$courseEndField.val(@$courseStartField.val())
 
+    # If end date is before start date, set end date to start date
     if @$courseEndField.val() != ''
       start = @parseDate(@$courseStartField.val())
       end = @parseDate(@$courseEndField.val())
       if end < start
         @$courseEndField.val(@$courseStartField.val())
+
+    # If we're in the single day mode, end date should follow start date
+    if !@isMultiDay && @$courseStartField.val() != @$courseEndField.val()
+      @$courseEndField.val(@$courseStartField.val())
+    
 
     @updateDays()
 
@@ -121,7 +139,7 @@ class window.CourseSchedule extends Spine.Controller
       day = 
         date: start
         identifier: identifier
-        label: @formatDate(start)
+        label: @longFormatDate(start)
         
       if @schedulesByDays[identifier]
         schedule = @schedulesByDays[identifier]
@@ -161,9 +179,11 @@ class window.CourseSchedule extends Spine.Controller
     @switchToMultiDay()
 
   switchToMultiDay: ->
+    @isMultiDay = true
     @$courseEndGroup.show()
     @$multiDayGroup.hide()
 
   switchToSingleDay: ->
+    @isMultiDay = false
     @$courseEndGroup.hide()
     @$multiDayGroup.show()
