@@ -69,9 +69,12 @@ class window.CourseSchedule extends Spine.Controller
     DPGlobal.formatDate(date, @parsedLongFormat, 'en')
 
   dateToIdentifier: (date) ->
-    month = date.getMonth() + 1
+    month = date.getUTCMonth() + 1
     month = "0#{month}" if month <= 9
-    "#{date.getFullYear()}-#{month}-#{date.getDate()}"
+    day = date.getUTCDate()
+    day = "0#{day}" if day <= 9
+
+    "#{date.getUTCFullYear()}-#{month}-#{day}"
 
   # Changing campaign end date
 

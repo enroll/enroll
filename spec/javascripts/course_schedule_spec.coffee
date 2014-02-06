@@ -33,6 +33,11 @@ describe 'CourseSchedule', ->
     $el.find('#course_starts_at').val('2014-01-15').trigger('changeDate')
     $el.find('#course_ends_at').val().should.equal('2014-01-15')
 
+  it 'sets up identifier with proper date', ->
+    $el.find('#course_starts_at').val('2014-01-01').trigger('changeDate')
+    $el.find('input[type=hidden]').length.should.equal(1)
+    $el.find('input[type=hidden]').val().should.equal('2014-01-01')
+
   describe 'multi day', ->
     it 'hides end date form group by when no dates are set', ->
       $el.find('.form-group.course_ends_at').is(':visible').should.be.false
