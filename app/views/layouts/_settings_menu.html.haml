@@ -7,11 +7,6 @@
           = current_user.display_title
         %span.caret
       %ul.dropdown-menu{role: "menu"}
-        - if current_user.instructor?
-          %li
-            %a{href: edit_payment_settings_path}
-              %span.glyphicon.glyphicon-usd
-              %span Payment settings
         %li
           %a{href: edit_account_path}
             %span.glyphicon.glyphicon-user

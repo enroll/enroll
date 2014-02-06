@@ -1,7 +1,8 @@
 require 'spec_helper'
 
-describe PaymentSettingsController do
+describe Dashboard::PaymentSettingsController do
   let(:user) { create(:user) }
+  let(:course) { create(:course, instructor: user) }
 
   describe 'GET edit' do
     before(:each) do
@@ -9,13 +10,13 @@ describe PaymentSettingsController do
     end
 
     it 'renders the edit page' do
-      get :edit
+      get :edit, course_id: course.id
       response.should be_success
       response.should render_template('edit')
     end
 
     it 'edits the current user' do
-      get :edit
+      get :edit, course_id: course.id
       assigns[:user].should == user
     end
 
@@ -25,7 +26,7 @@ describe PaymentSettingsController do
       end
 
       it 'redirects the user to the login page' do
-        get :edit
+        get :edit, course_id: course.id
         response.should be_redirect
         response.should redirect_to(new_user_session_path)
       end
@@ -46,18 +47,18 @@ describe PaymentSettingsController do
           'stripe_bank_account_token' => 'tok_u5dg20Gra'
         })
 
-        put :update, user: payment_settings_params
+        put :update, course_id: course.id, user: payment_settings_params
       end
 
       it 'redirects to the edit page' do
-        put :update, user: payment_settings_params
+        put :update, course_id: course.id, user: payment_settings_params
 
         response.should be_redirect
-        response.should redirect_to(edit_payment_settings_path)
+        response.should redirect_to(edit_dashboard_course_payment_settings_path(course))
       end
 
       it 'displays a success message' do
-        put :update, user: payment_settings_params
+        put :update, course_id: course.id, user: payment_settings_params
         flash[:success].should_not be_blank
       end
     end
@@ -66,7 +67,7 @@ describe PaymentSettingsController do
       before(:each) do
         sign_in user
         User.any_instance.stubs(:save_payment_settings!).returns(false)
-        put :update, user: payment_settings_params
+        put :update, course_id: course.id, user: payment_settings_params
       end
 
       it 're-renders the form' do
@@ -80,7 +81,7 @@ describe PaymentSettingsController do
 
     context 'when not logged in' do
       it 'redirects the user to the login page' do
-        put :update, user: payment_settings_params
+        put :update, course_id: course.id, user: payment_settings_params
         response.should be_redirect
         response.should redirect_to(new_user_session_path)
       end

@@ -1,0 +1,8 @@
+.container.course-dashboard
+  = simple_form_for(@user, url: account_path, html: { class: 'form' }) do |f|
+    = f.error_notification
+    %h1.offset Account details
+    .form-section
+      = f.input :email
+    .form-actions
+      = f.button :submit, 'Save', class: 'btn btn-primary'

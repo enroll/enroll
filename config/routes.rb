@@ -24,6 +24,7 @@ Enroll::Application.routes.draw do
         get :publish
       end
       resources :students, only: [:index]
+      resource :payment_settings, only: [:edit, :update]
     end
     resources :landing_pages
   end
@@ -40,7 +41,6 @@ Enroll::Application.routes.draw do
   end
   resources :avatars
 
-  resource :payment_settings, only: [:edit, :update]
 
   get '/go/:url', to: 'courses#show', as: :landing_page
 

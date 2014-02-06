@@ -54,7 +54,7 @@ form.form {
     font-size: $font-size;
     height: auto;
     background: transparent;
-    background: rgba(255, 255, 255, 0.5);
+    background: #fff;
     // max-width: $max-width - 200;
 
     &.radio_buttons, &.file {
@@ -103,7 +103,7 @@ form.form {
 
     &::-webkit-input-placeholder {
       font-weight: 300;
-      color: $gray-medium-light;
+      color: lighten($gray-medium, 15%);
     }
   }
 

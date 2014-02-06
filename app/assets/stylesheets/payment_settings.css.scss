@@ -1,0 +1,10 @@
+@import '_mixins';
+
+h2.bank-account {
+  @include retina('icon-bank', 'png', 26px, 24px);
+  background-repeat: no-repeat;
+  padding-top: 6px;
+  padding-bottom: 7px;
+  padding-left: 35px;
+
+}
