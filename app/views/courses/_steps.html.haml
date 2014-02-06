@@ -1,3 +1,0 @@
-- for step in @steps
-  %li{:class => step[:id] == current_step[:id] ? 'active' : ''}
-    = link_to_if action_name == "edit", step[:label], :step => step[:id]

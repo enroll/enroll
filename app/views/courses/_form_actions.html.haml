@@ -1,7 +1,0 @@
-.form-actions
-  - if next_step
-    = form.button(:submit, "Next: #{next_step[:label]}", class: 'btn btn-primary btn-large')
-    - if current_step[:id] != "details"
-      = link_to "Skip for now", url_for(step: next_step[:id]), class: 'btn btn-large btn-default'
-  - else
-    = form.button(:submit, "Finish", class: 'btn btn-primary btn-large')

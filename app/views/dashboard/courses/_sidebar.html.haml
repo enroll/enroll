@@ -10,8 +10,8 @@
     = dashboard_check_link_step('Change details', 'details', @course.step_finished?(:details))
     = dashboard_check_link_step('Select date', 'dates', @course.step_finished?(:dates))
     = dashboard_check_link_step('Select location', 'location', @course.step_finished?(:location))
-    = dashboard_check_link_step('Set pricing', 'pricing', @course.step_finished?(:pricing))
-    = dashboard_check_link_step('Design landing page', 'page', @course.step_finished?(:landing_page))
+    = dashboard_check_link_step('Set seats & pricing', 'pricing', @course.step_finished?(:pricing))
+    = dashboard_check_link_step('Design course page', 'page', @course.step_finished?(:landing_page))
     = dashboard_check_link('Go live', {controller: 'dashboard/courses', action: 'review'}, @course.published?)
 
 :coffeescript

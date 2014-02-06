@@ -2,11 +2,11 @@ module CoursesEditingConcern
   extend ActiveSupport::Concern
 
   STEPS = [
-    {id: 'details', label: 'Details'},
-    {id: 'dates', label: 'Dates'},
-    {id: 'location', label: 'Location'},
-    {id: 'pricing', label: 'Pricing'},
-    {id: 'page', label: 'Landing page'}
+    {id: 'details'},
+    {id: 'dates'},
+    {id: 'location'},
+    {id: 'pricing'},
+    {id: 'page'}
   ]
 
   included do
