@@ -1,0 +1,17 @@
+= render 'shared/stripe'
+.container.course-dashboard
+  = render 'dashboard/courses/header'
+
+  .content.row
+    .sidebar.col-sm-4
+      = render 'dashboard/courses/sidebar'        
+    .main.col-sm-8
+      = simple_form_for(@user, url: dashboard_course_payment_settings_path(@course), html: { class: 'form stacked edit_payment_settings' }) do |f|
+        = f.error_notification
+        = f.hidden_field "stripe_bank_account_token"
+        %h2 Bank Account Details
+        .form-section
+          = f.input :name
+          = f.input :account_number
+          = f.input :routing_number
+        = f.button :submit, 'Save', class: 'btn btn-primary btn-large'
