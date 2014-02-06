@@ -81,6 +81,7 @@ body.landing-page, div.landing-page-preview {
   padding: 30px;
   padding-top: 40px;
   padding-bottom: 40px;
+  margin-bottom: 80px;
   background: #fff;
 
   position: relative;
@@ -194,6 +195,7 @@ html {
     height: 100%;
     z-index: 1000;
     display: block;
+    overflow: scroll;
 
     &.preview {
       &.offscreen {
