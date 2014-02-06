@@ -38,6 +38,7 @@ Enroll::Application.routes.draw do
     get :restore
     post :restore
   end
+  resources :avatars
 
   resource :payment_settings, only: [:edit, :update]
 

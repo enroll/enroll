@@ -1,0 +1,11 @@
+.container.course-dashboard
+  %h1.offset.form-offset Change photo
+
+  = simple_form_for(@user, url: avatars_path, method: 'post', html: { class: 'form' }) do |f|
+    = f.error_notification
+
+    .form-section
+      = f.input :avatar, label: 'File'
+
+    .form-actions
+      = f.button :submit, 'Save', class: 'btn btn-primary'
