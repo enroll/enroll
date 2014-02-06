@@ -1,11 +1,9 @@
 .course-pricing
-  %small
-    .btn-group{"data-toggle" => "buttons"}
-      %label#for-profit.btn.btn-info.active
-        %input#for-profit{name: "options", type: "radio"}/
-        Paid
-      %label#for-fun.btn.btn-info
-        %input#for-fun{name: "options", type: "radio"}/
-        Free
+  %label#for-fun.radio
+    %input.radio_buttons.form-control{name: 'pricing', type: 'radio'}
+    Free
+  %label#for-profit.radio
+    %input.radio_buttons.form-control{name: 'pricing', type: 'radio'}
+    Paid
 
   %input#course_price_per_seat_in_dollars

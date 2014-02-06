@@ -1,11 +1,15 @@
 class window.CoursePricing extends Spine.Controller
   elements:
+    # Sections
+    '.pricing-details-section': '$pricingDetailsSection'
+
     # Fields
     '#course_price_per_seat_in_dollars': '$cost'
     '#course_min_seats': '$minSeats'
     '#course_max_seats': '$maxSeats'
-    'label#for-profit': '$forProfitLabel'
-    'label#for-fun': '$forFunLabel'
+    'label#for-profit input': '$forProfitRadio'
+    'label#for-fun input': '$forFunRadio'
+    'tr.course_price_per_seat_in_dollars': '$coursePriceRow'
 
     # Calculator
     '#revenue-calculator': '$calculator'
@@ -26,32 +30,51 @@ class window.CoursePricing extends Spine.Controller
     @updateCourseCalculator()
 
     if @isFree
-      @selectFunAction()
+      @selectFun()
     else
-      @selectProfitAction()
+      @selectProfit()
+
+    if !@isFilledIn
+      @$pricingDetailsSection.hide()
+      @$forFunRadio.attr('checked', false)
+      @$forProfitRadio.attr('checked', false)
+
+    
 
   bindChangeEvent: (el) ->
     @$(el).on 'propertychange input', @updateCourseCalculator
 
   selectFunAction: ->
+    return if @isDisabled
+    @selectFun()
+
+  selectFun: ->
     @$cost.val(0).hide()
     $('.free-text').remove()
     @$cost.parent().append("<strong class='free-text'>FREE</strong>")
     @$calculator.hide()
+    @$coursePriceRow.hide()
+    @$pricingDetailsSection.show()
 
-    @$forFunLabel.addClass('active')
-    @$forProfitLabel.removeClass('active')
+    @$forFunRadio.attr('checked', true)
 
   selectProfitAction: ->
-    if @$cost.val() == ''
-      @$cost.val(199)
+    return if @isDisabled
+    @selectProfit()
+
+  selectProfit: ->
+    if @$cost.val() == '' || @$cost.val() == '0'
+      @$cost.val(10)
+    if @$minSeats.val() == '' || @$minSeats.val() == '0'
+      @$minSeats.val(2)
     @$cost.show()
     $('.free-text').remove()
     @$calculator.show()
     @updateCourseCalculator()
+    @$coursePriceRow.show()
+    @$pricingDetailsSection.show()
 
-    @$forFunLabel.removeClass('active')
-    @$forProfitLabel.addClass('active')
+    @$forProfitRadio.attr('checked', true)
 
   # Updating calculator
 

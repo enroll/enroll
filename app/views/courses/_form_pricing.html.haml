@@ -2,19 +2,18 @@
   .form-section
     %h2 Pricing
 
-    - if form.object.draft?
-      %small
-        .btn-group{"data-toggle" => "buttons"}
-          %label#for-profit.btn.btn-info.active
-            %input#for-profit{name: "options", type: "radio"}/
-            Paid
-          %label#for-fun.btn.btn-info
-            %input#for-fun{name: "options", type: "radio"}/
-            Free
+    %label#for-fun.radio
+      %input.radio_buttons.form-control{name: 'pricing', type: 'radio', disabled: form.object.published?}
+      Free
+    %label#for-profit.radio
+      %input.radio_buttons.form-control{name: 'pricing', type: 'radio', disabled: form.object.published?}
+      Paid
+
+  .form-section.pricing-details-section
     %table
-      = form.input :min_seats, label: 'Minimum number of seats', wrapper: 'pricing-block', hint: "If fewer than this number of people sign up, you're not on the hook to teach. <span class='seats-help' data-toggle='tooltip'> What's this mean?</span>".html_safe, disabled: form.object.published?
+      = form.input :min_seats, label: 'Minimum number of seats', wrapper: 'pricing-block', hint: "If fewer than this number of people sign up, you're not on the hook to teach. <span class='seats-help' data-toggle='tooltip'>What does this mean?</span>".html_safe, disabled: form.object.published?
       = form.input :max_seats, label: 'Maximum number of seats', wrapper: 'pricing-block', hint: "The most people you can fit in the room, or the most you want to teach to."
-      = form.input :price_per_seat_in_dollars, label: 'Cost per seat', wrapper: 'pricing-block', disabled: form.object.published?
+      = form.input :price_per_seat_in_dollars, label: 'Cost per seat ($)', wrapper: 'pricing-block', disabled: form.object.published?
 
   #revenue-calculator.well.form-section
     %table.table.text-right
@@ -56,7 +55,7 @@
               %span.max-seat-revenue $2,985
 
   :coffeescript
-    new CoursePricing(el: '.course-pricing', isFree: #{form.object.free?})
+    new CoursePricing(el: '.course-pricing', isFree: #{form.object.free?}, isFilledIn: #{form.object.step_finished?(:pricing)}, isDisabled: #{form.object.published?})
     $('.seats-help').tooltip({
       placement: "bottom",
       title: 'You will have up to one week before the course is held to sign up the minimum number of seats or the course will not be run.  If you want run the course no matter what, set the minimum number of seats to 0.'
