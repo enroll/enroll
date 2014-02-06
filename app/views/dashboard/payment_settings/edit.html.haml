@@ -9,9 +9,14 @@
       = simple_form_for(@user, url: dashboard_course_payment_settings_path(@course), html: { class: 'form stacked edit_payment_settings' }) do |f|
         = f.error_notification
         = f.hidden_field "stripe_bank_account_token"
-        %h2 Bank Account Details
+        %h2.bank-account Link your bank account
         .form-section
-          = f.input :name
-          = f.input :account_number
-          = f.input :routing_number
+          = f.input :routing_number, placeholder: 'bottom left of check, 9 digits'
+          = f.input :account_number, placeholder: 'bottom center of check'
+          = f.input :name, placeholder: 'name on account' 
+          .pull-right
+            %a.powered-stripe{href: 'http://stripe.com', target: '_blank'}
+              = image_tag 'powered-stripe.png', width: 120, height: 27
+          %p.hint We don't store your bank account credentials on our servers.
+          
         = f.button :submit, 'Save', class: 'btn btn-primary btn-large'

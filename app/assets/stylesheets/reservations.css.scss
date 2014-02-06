@@ -7,14 +7,16 @@
   margin-top: 8px;
 }
 
-form#new_reservation {
+form.form {
   .hint {
     color: $gray-medium;
     padding-top: 10px;
-    padding-left: 10px;
+    // padding-left: 10px;
     font-size: 12px;
   }
+}
 
+form#new_reservation {
   .form-actions {
     // padding-top: 15px;
   }
