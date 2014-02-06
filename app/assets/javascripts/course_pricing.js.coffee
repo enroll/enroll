@@ -30,9 +30,9 @@ class window.CoursePricing extends Spine.Controller
     @updateCourseCalculator()
 
     if @isFree
-      @selectFunAction()
+      @selectFun()
     else
-      @selectProfitAction()
+      @selectProfit()
 
     if !@isFilledIn
       @$pricingDetailsSection.hide()
@@ -45,6 +45,10 @@ class window.CoursePricing extends Spine.Controller
     @$(el).on 'propertychange input', @updateCourseCalculator
 
   selectFunAction: ->
+    return if @isDisabled
+    @selectFun()
+
+  selectFun: ->
     @$cost.val(0).hide()
     $('.free-text').remove()
     @$cost.parent().append("<strong class='free-text'>FREE</strong>")
@@ -55,6 +59,10 @@ class window.CoursePricing extends Spine.Controller
     @$forFunRadio.attr('checked', true)
 
   selectProfitAction: ->
+    return if @isDisabled
+    @selectProfit()
+
+  selectProfit: ->
     if @$cost.val() == '' || @$cost.val() == '0'
       @$cost.val(10)
     if @$minSeats.val() == '' || @$minSeats.val() == '0'

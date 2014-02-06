@@ -3,10 +3,10 @@
     %h2 Pricing
 
     %label#for-fun.radio
-      %input.radio_buttons.form-control{name: 'pricing', type: 'radio'}
+      %input.radio_buttons.form-control{name: 'pricing', type: 'radio', disabled: form.object.published?}
       Free
     %label#for-profit.radio
-      %input.radio_buttons.form-control{name: 'pricing', type: 'radio'}
+      %input.radio_buttons.form-control{name: 'pricing', type: 'radio', disabled: form.object.published?}
       Paid
 
   .form-section.pricing-details-section
@@ -55,7 +55,7 @@
               %span.max-seat-revenue $2,985
 
   :coffeescript
-    new CoursePricing(el: '.course-pricing', isFree: #{form.object.free?}, isFilledIn: #{form.object.step_finished?(:pricing)})
+    new CoursePricing(el: '.course-pricing', isFree: #{form.object.free?}, isFilledIn: #{form.object.step_finished?(:pricing)}, isDisabled: #{form.object.published?})
     $('.seats-help').tooltip({
       placement: "bottom",
       title: 'You will have up to one week before the course is held to sign up the minimum number of seats or the course will not be run.  If you want run the course no matter what, set the minimum number of seats to 0.'
