@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
     foreign_key: :instructor_id, dependent: :destroy
   has_many :events
 
+  has_attached_file :avatar, :styles => { :large => "240x240>", :medium => "120x120#", :thumb => "60x60#" }, :default_url => "/assets/avatar_:style_missing.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   def courses
     (courses_as_instructor + courses_as_student).uniq
   end

@@ -14,7 +14,7 @@ form.form {
   $max-width: 600px;
   $font-size: 14px;
 
-  max-width: $max-width;
+  // max-width: $max-width;
 
   label {
     font-size: 13px;
@@ -55,10 +55,12 @@ form.form {
     height: auto;
     background: transparent;
     background: rgba(255, 255, 255, 0.5);
+    // max-width: $max-width - 200;
 
-    &.radio_buttons {
+    &.radio_buttons, &.file {
       background: none;
       @include box-shadow(none);
+      border: none;
     }
 
     &:focus {

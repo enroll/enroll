@@ -2,7 +2,7 @@
   %ul#settings-menu.nav.navbar-nav.pull-right
     %li
       %a.navbar-btn.user-dropdown.dropdown-toggle{href: '#', "data-toggle" => "dropdown"}
-        = gravatar_for(current_user.email, class: 'img-rounded', size: 30)
+        = image_tag current_user.avatar.url(:thumb), class: 'img-rounded', width: 30
         %span.title
           = current_user.display_title
         %span.caret
@@ -11,11 +11,15 @@
           %li
             %a{href: edit_payment_settings_path}
               %span.glyphicon.glyphicon-usd
-              %span Payment Settings
+              %span Payment settings
         %li
           %a{href: edit_account_path}
             %span.glyphicon.glyphicon-user
-            Personal Info
+            Personal info
+        %li
+          %a{href: new_avatar_path}
+            %i.icon-camera
+            Change photo
         %li
           %a{href: destroy_user_session_path, "data-method" => "delete", rel: "nofollow"}
             %span.glyphicon.glyphicon-remove
