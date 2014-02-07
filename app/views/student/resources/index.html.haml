@@ -1,0 +1,20 @@
+.container.course-dashboard
+  = render 'student/header'
+
+  .content.row
+    .sidebar.col-sm-4
+      = render 'student/sidebar'
+    .main.col-sm-8
+      %h2 Resources
+      %ul.item-list
+        - @resources.each do |resource|
+          %li
+            .actions
+              %a.btn.btn-primary.small.inverted{href: resource.s3_url}
+                %i.icon-download
+                Download
+            %strong
+              %i.icon-newspaper
+              = resource.name
+              %br/
+              %em= resource.description

@@ -23,6 +23,11 @@ ul.item-list {
     
     &:not(.header) {
       cursor: pointer;
+
+      strong {
+        // display: block;
+        // padding-top: 10px;
+      }
     }
 
     .actions {
@@ -62,7 +67,7 @@ ul.item-list {
   }
 
   li:last-child {
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
   }
 
 
