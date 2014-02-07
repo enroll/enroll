@@ -49,7 +49,7 @@ strong.dark {
   font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-a {
+@mixin link() {
   color: $primary1;
 
   &:hover {
@@ -60,4 +60,8 @@ a {
   &.highlight {
     color: $primary1;
   }
+}
+
+a {
+  @include link();
 }

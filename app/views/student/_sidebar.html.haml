@@ -1,0 +1,7 @@
+%h4
+  %i.icon-graduation-cap
+  Course
+
+%ul.list
+  = dashboard_menu_link(student_course_path(@course), 'Info', 'address', 'courses', 'show')
+  = dashboard_menu_link(student_course_resources_path(@course), 'Resources', 'archive', 'resources', 'index')

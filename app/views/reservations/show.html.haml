@@ -6,9 +6,9 @@
     .enrolled
       %p You have been enrolled for this course.
 
-      %a.btn.btn-primary.btn-large{href: landing_page_path(@course.url)}
-        %i.icon-chevron-left
-        Back to course
+      %a.btn.btn-primary.btn-large{href: student_course_path(@course)}
+        Go to dashboard
+        %i.icon-chevron-right
 
     .tc
       %p Tell your friends:

@@ -28,6 +28,12 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def find_course_as_student_by_id!
+    @course = current_user.courses_as_student.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
+  end
+
   # Mixpanel
 
   def mixpanel

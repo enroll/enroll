@@ -53,6 +53,16 @@ body {
         border-color: $success;
       }
     }
+
+    .link {
+      @include link();
+    }
+
+    &.one-line {
+      .title {
+        padding-top: 10px;
+      }
+    }
   }
 
   div.back-wrapper {

@@ -25,10 +25,6 @@ ul.item-list {
       cursor: pointer;
     }
 
-    &:not(.header):hover {
-      background: #fafafa;
-    }
-
     .actions {
       float: right;
       margin-top: -1px;
