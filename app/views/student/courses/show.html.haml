@@ -1,8 +1,23 @@
-.container.course-dashboard
+.container.course-dashboard.student-dashboard
   = render 'student/header'
 
   .content.row
     .sidebar.col-sm-4
       = render 'student/sidebar'        
     .main.col-sm-8
-      hello
+      .form-section.row
+        .col-sm-6
+          %h2 Schedule
+
+          = render 'courses/course_schedule'
+
+          %a{href: calendar_student_course_path(@course, format: 'ics')}
+            %i.icon-calendar
+            Open in calendar
+
+        .col-sm-6
+          %h2 Location
+          = @course.location.to_full_s
+
+      .form-section.course-content
+        %p!= @markdown.render(@course.description || "")

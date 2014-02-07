@@ -25,12 +25,20 @@ class CourseSchedule < ActiveRecord::Base
     self[:starts_at] = str_to_midnight_seconds(value)
   end
 
+  def starts_at_time
+    Time.parse(date.to_s + " " + starts_at)
+  end
+
   def ends_at
     midnight_seconds_to_str(self[:ends_at])
   end
 
   def ends_at=(value)
     self[:ends_at] = str_to_midnight_seconds(value)
+  end
+
+  def ends_at_time
+    Time.parse(date.to_s + " " + ends_at)
   end
 
   def range_str

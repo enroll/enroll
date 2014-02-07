@@ -30,6 +30,10 @@ class Location < ActiveRecord::Base
     [address, address_2].select(&:present?).join(", ")
   end
 
+  def to_calendar_s
+    [address_1_and_2, city_and_zip_and_state].select(&:present?).join(", ")
+  end
+
   def to_full_s
     s = []
 

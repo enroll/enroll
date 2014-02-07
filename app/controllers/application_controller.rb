@@ -85,4 +85,10 @@ class ApplicationController < ActionController::Base
       id
     end
   end
+
+  # Markdown
+
+  def setup_markdown
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+  end
 end

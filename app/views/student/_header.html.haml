@@ -7,6 +7,8 @@
     .title
       %h1= @course.name
       %span.link= @course.date_range.html_safe
+      %span.link•
+      %a.link{href: course_short_url(@course), target: '_blank'} Course page &rsaquo;
 
   .col-sm-3.numbers
     %a.number

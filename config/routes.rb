@@ -35,6 +35,10 @@ Enroll::Application.routes.draw do
   namespace :student do
     resources :courses do
       resources :resources
+
+      member do
+        get :calendar
+      end
     end
   end
 

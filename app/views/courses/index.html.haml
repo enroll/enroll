@@ -29,7 +29,7 @@
           %li.header
             %strong Attending
           = yrender "courses_list", courses: @courses_studying do |course|
-            = link_to "Open &rsaquo;".html_safe, landing_page_path(course.url), :class => 'btn btn-primary small'
+            = link_to "Open &rsaquo;".html_safe, student_course_path(course), :class => 'btn btn-primary small'
 
       :coffeescript
         new ClickableList(el: '.item-list.attending')

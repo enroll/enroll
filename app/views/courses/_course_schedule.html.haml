@@ -1,0 +1,5 @@
+%table.schedule
+  - @course.schedules.each do |sch|
+    %tr
+      %th= short_date(sch.date)
+      %td= sch.range_str
