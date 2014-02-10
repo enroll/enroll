@@ -24,6 +24,7 @@
 #= require modernizr.custom.18921.js
 #= require retina_tag
 #= require magnific-popup
+#= require jquery.form
 
 
 #= require_tree ./templates

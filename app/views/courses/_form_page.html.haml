@@ -2,11 +2,20 @@
   %h2 Course page
 
   .form-section
-    .pull-right.actions.h1
-      %a.preview.btn.btn-success{:href => '#'} Preview
+    / .pull-right.actions.h1
+    /   
+
+    .cover-image.tc
+      %div.buttons
+        %a.btn.btn-default.inverted Add cover image
+      %div.buttons
+        %a.preview.btn.btn-primary.small{:href => '#'} Preview
 
     .form-group.wide
-      = form.label :image, 'Cover image'
+      = form.simple_fields_for :cover_image do |f|
+        = f.label :image, 'Cover image'
+        .controls
+          = f.input_field :file, as: :file
 
     .form-group.wide
       = form.label :description, 'Page content'

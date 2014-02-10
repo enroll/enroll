@@ -1,4 +1,5 @@
 @import '_colors';
+@import '_mixins';
 @import 'bootstrap/mixins';
 
 .new-course {
@@ -102,5 +103,21 @@ form.step-pricing, form.step-page {
   }
   strong {
 
+  }
+}
+
+// Cover image
+
+.landing-page-fields .cover-image {
+  height: 121px;
+  @include retina('admin-cover-default', 'jpg', 565px, 122px);
+  margin-top: -20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-bottom: 15px;
+  padding-top: 25px;
+
+  .buttons {
+    margin-bottom: 10px;
   }
 }
