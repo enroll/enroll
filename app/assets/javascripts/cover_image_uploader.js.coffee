@@ -1,6 +1,6 @@
 class window.CoverImageUploader extends Spine.Controller
   events:
-    'change input#course_cover_image_file': 'uploadAction'
+    'change input#course_cover_image_image': 'uploadAction'
 
   constructor: ->
     super
