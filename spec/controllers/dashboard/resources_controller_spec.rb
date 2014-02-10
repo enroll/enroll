@@ -50,6 +50,14 @@ describe Dashboard::ResourcesController do
       response.should be_ok
       response.should render_template('new')
     end
+
+    it "renders new if response from translaodit is empty" do
+      post :create, course_id: course.id,
+                    resource: {name: 'foo', description: 'bar'},
+                    transloadit: transloadit_empty_params
+      response.should be_ok
+      response.should render_template('new')
+    end
   end
 
   def transloadit_params
@@ -61,6 +69,14 @@ describe Dashboard::ResourcesController do
           url: "some-url"
         }]
       }
+    }.to_json
+  end
+
+  def transloadit_empty_params
+    {
+      ok: 'ASSEMBLY_COMPLETED',
+      assembly_id: 'some-id',
+      results: {}
     }.to_json
   end
 

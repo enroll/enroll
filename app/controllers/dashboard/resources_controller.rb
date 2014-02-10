@@ -13,14 +13,14 @@ class Dashboard::ResourcesController < ApplicationController
   end
 
   def create
-    transloadit_response = params[:transloadit]
-    unless transloadit_response && transloadit_response[:ok]
+    @resource = Resource.new(resource_params)
+    @resource.course = @course
+    
+    unless transloadit_response && transloadit_response[:ok] && !transloadit_response[:results].empty?
       flash.now[:error] = "File upload failed"
       return render 'new'
     end
 
-    @resource = Resource.new(resource_params)
-    @resource.course = @course
     @resource.s3_url = transloadit_response[:results][":original"].first[:url]
     @resource.transloadit_assembly_id = transloadit_response[:assembly_id]
 
@@ -35,6 +35,10 @@ class Dashboard::ResourcesController < ApplicationController
 
   def resource_params
     params.require(:resource).permit(:name, :description, :s3_url)
+  end
+
+  def transloadit_response
+    params[:transloadit]
   end
 
 end
