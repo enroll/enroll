@@ -6,7 +6,7 @@ class Admin::EmailsController < ApplicationController
   end
 
   def new
-    @available_events = ["Initial Marketing Email"]
+    @available_events = ["Marketing Email #2", "Initial Marketing Email"]
   end
 
   def create
