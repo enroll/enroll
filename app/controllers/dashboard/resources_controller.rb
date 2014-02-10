@@ -31,6 +31,14 @@ class Dashboard::ResourcesController < ApplicationController
     end
   end
 
+  def destroy
+    resource = @course.resources.find(params[:id])
+    resource.delete
+
+    flash[:notice] = "Resource was deleted"
+    redirect_to dashboard_course_resources_path(@course)
+  end
+
   protected
 
   def resource_params

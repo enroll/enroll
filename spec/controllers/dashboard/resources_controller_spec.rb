@@ -60,6 +60,15 @@ describe Dashboard::ResourcesController do
     end
   end
 
+  describe "#destroy" do
+    it "deletes resource" do
+      resource # create resource
+      expect {
+        delete :destroy, course_id: course.id, id: resource.id
+      }.to change{Resource.count}.by(-1)
+    end
+  end
+
   def transloadit_params
     {
       ok: "ASSEMBLY_COMPLETED", 

@@ -44,6 +44,15 @@ ul.item-list {
     }
   }
 
+  li.one-line {
+    padding-top: 20px;
+    padding-bottom: 0;
+
+    .actions {
+      margin-top: -12px;
+    }
+  }
+
   li.header {
     color: $gray-medium;
     border-bottom: 1px solid $border-color;
