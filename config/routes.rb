@@ -1,11 +1,6 @@
 require 'resque/server'
 
 Enroll::Application.routes.draw do
-  # Don't use www because of https cert being issued for enroll.io
-  constraints subdomain: 'www' do
-    get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
-  end
-  
   devise_for :users, :controllers => { :registrations => "users/registrations" }
 
   mount Resque::Server, :at => '/resque'
@@ -65,4 +60,9 @@ Enroll::Application.routes.draw do
   get '/about', to: 'welcome#about', as: :about_page
 
   root 'welcome#index'
+
+  # Don't use www because of https cert being issued for enroll.io
+  constraints subdomain: 'www' do
+    get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
+  end
 end
