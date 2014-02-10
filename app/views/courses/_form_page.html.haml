@@ -1,10 +1,15 @@
 .landing-page-fields
+  %h2 Course page
+
   .form-section
     .pull-right.actions.h1
       %a.preview.btn.btn-success{:href => '#'} Preview
 
     .form-group.wide
-      %h2 Page content
+      = form.label :image, 'Cover image'
+
+    .form-group.wide
+      = form.label :description, 'Page content'
       .controls
         = form.input_field :description, label: 'Page', class: 'large'
       %p.help-block
