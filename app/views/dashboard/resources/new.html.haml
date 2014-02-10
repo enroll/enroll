@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag 'http://assets.transloadit.com/js/jquery.transloadit2-latest.js'
+
 .container.course-dashboard
   = render 'dashboard/courses/header'
 
@@ -10,11 +13,24 @@
       = simple_form_for([:dashboard, @course, @resource], :html => { :id => "upload", :class => "form stacked"}) do |f|
         = f.error_notification
         = transloadit :s3_store
-        .form-section
+        .form-section.select
+          %label#radio-link.radio
+            %input.radio_buttons.form-control{type: 'radio', name: 'resource[resource_type]', value: 'link', checked: @resource.link?}
+            Link
+          %label#radio-file.radio
+            %input.radio_buttons.form-control{type: 'radio', name: 'resource[resource_type]', value: 'file', checked: @resource.file?}
+            File
+
+        .form-section.file-resource
           = f.input :name
           = f.input :description, as: :text
-          = f.file_field :file
+          = f.input :file, as: :file
+        .form-section.link-resource
+          = f.input :name
+          = f.input :description, as: :text
+          = f.input :link, required: true
         .form-actions
           = f.button(:submit, "Save", class: 'btn btn-primary btn-large')
 
-      = transloadit_jquerify :upload, :wait => true
+:coffeescript
+  new ResourceForm(el: 'form#upload')

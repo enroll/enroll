@@ -16,13 +16,10 @@ class Dashboard::ResourcesController < ApplicationController
     @resource = Resource.new(resource_params)
     @resource.course = @course
     
-    unless transloadit_response && transloadit_response[:ok] && !transloadit_response[:results].empty?
+    if @resource.file? && !handle_transloadit_upload
       flash.now[:error] = "File upload failed"
       return render 'new'
     end
-
-    @resource.s3_url = transloadit_response[:results][":original"].first[:url]
-    @resource.transloadit_assembly_id = transloadit_response[:assembly_id]
 
     if @resource.save
       flash[:notice] = "Resource was added"
@@ -43,11 +40,22 @@ class Dashboard::ResourcesController < ApplicationController
   protected
 
   def resource_params
-    params.require(:resource).permit(:name, :description, :s3_url)
+    params.require(:resource).permit(:name, :description, :s3_url, :resource_type, :link)
   end
 
   def transloadit_response
     params[:transloadit]
+  end
+
+  def handle_transloadit_upload
+    unless transloadit_response && transloadit_response[:ok] && !transloadit_response[:results].empty?
+      return false
+    end
+
+    @resource.s3_url = transloadit_response[:results][":original"].first[:url]
+    @resource.transloadit_assembly_id = transloadit_response[:assembly_id]
+
+    true
   end
 
 end

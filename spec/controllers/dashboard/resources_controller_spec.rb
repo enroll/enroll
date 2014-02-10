@@ -21,7 +21,7 @@ describe Dashboard::ResourcesController do
     it "creates the resource" do
       expect {
         post :create, course_id: course.id, 
-                      resource: {name: 'foo', description: 'bar'}, 
+                      resource: resource_file_params, 
                       transloadit: transloadit_params
       }.to change{Resource.count}.by(1)
 
@@ -33,7 +33,7 @@ describe Dashboard::ResourcesController do
 
     it "on success from transloadit, saves the s3_url and assembly_id" do
       post :create, course_id: course.id, 
-                    resource: {name: 'foo', description: 'bar'}, 
+                    resource: resource_file_params, 
                     transloadit: transloadit_params
 
       resource = Resource.last
@@ -44,7 +44,7 @@ describe Dashboard::ResourcesController do
 
     it "on upload failure renders new" do
       post :create, course_id: course.id,
-                    resource: {name: 'foo', description: 'bar'}, 
+                    resource: resource_file_params, 
                     transloadit: transloadit_failing_params
 
       response.should be_ok
@@ -53,10 +53,22 @@ describe Dashboard::ResourcesController do
 
     it "renders new if response from translaodit is empty" do
       post :create, course_id: course.id,
-                    resource: {name: 'foo', description: 'bar'},
+                    resource: resource_file_params,
                     transloadit: transloadit_empty_params
       response.should be_ok
       response.should render_template('new')
+    end
+
+    it "creates a link resource" do
+      expect {
+        delete :create, course_id: course.id, resource: resource_link_params
+      }.to change{Resource.count}.by(1)
+      Resource.last.tap { |r|
+        r.name.should == 'foo'
+        r.description.should == 'bar'
+        r.link.should == 'http://foo.bar'
+        r.should be_link
+      }
     end
   end
 
@@ -91,5 +103,13 @@ describe Dashboard::ResourcesController do
 
   def transloadit_failing_params
     {error: "INVALID_FILE_META_DATA"}.to_json
+  end
+
+  def resource_file_params
+    {name: 'foo', description: 'bar', resource_type: 'file'}
+  end
+
+  def resource_link_params
+    {name: 'foo', description: 'bar', link: 'http://foo.bar', resource_type: 'link'}
   end
 end
