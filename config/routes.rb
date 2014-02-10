@@ -29,6 +29,7 @@ Enroll::Application.routes.draw do
       resource :payment_settings, only: [:edit, :update]
     end
     resources :landing_pages
+    resources :cover_images
   end
 
   # Student dashbaord

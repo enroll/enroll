@@ -32,5 +32,6 @@
     previewPath: #{preview_course_path(@course).to_json}
   )
   new CoverImageUploader(
-    el: '.cover-image'
+    el: '.cover-image',
+    imagesPath: '#{dashboard_cover_images_path}'
   )

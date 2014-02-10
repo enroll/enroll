@@ -9,7 +9,14 @@ class window.CoverImageUploader extends Spine.Controller
     ev.preventDefault()
 
     $form = @$el.parents('form:first')
+    methodInput = $form.find('input[name=_method]')
+    methodInput.detach()
 
-    $form.ajaxSubmit({
-      url: '/cover_images'
-    })
+    $form.attr('action', @imagesPath)
+    $form.submit()
+
+    # $form.ajaxSubmit({
+    #   url: @imagesPath
+    # })
+
+    $form.append(methodInput)

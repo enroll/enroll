@@ -8,6 +8,7 @@ class Course < ActiveRecord::Base
   has_many :events
   has_many :schedules, class_name: 'CourseSchedule'
   has_many :resources
+  has_many :cover_images
 
   belongs_to :location
   belongs_to :instructor, class_name: 'User'
