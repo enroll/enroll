@@ -12,6 +12,7 @@ class Admin::PostsController < ApplicationController
 
   def create
     @post = BlogPost.new(post_params)
+    @post.author = current_user
 
     if @post.save
       @post.publish!
@@ -27,6 +28,7 @@ class Admin::PostsController < ApplicationController
 
   def update
     @post = BlogPost.find(params[:id])
+    @post.author ||= current_user
 
     if @post.update_attributes(post_params)
       redirect_to admin_posts_path

@@ -1,4 +1,7 @@
 .top-bar.container
   %a.logo{href: root_path}
     %span Logo
-  %a.sign-in.btn.btn-transparent Sign in
+  - if params[:controller] == 'welcome' && params[:action] == 'index'
+    %a.sign-in.btn.btn-transparent Sign in
+  - else
+    %a.btn.btn-transparent{href: new_user_session_path} Sign in
