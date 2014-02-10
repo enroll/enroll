@@ -10,9 +10,12 @@ describe ReservationsController do
 
   before do
     sign_in user
+    create(:schedule, course: course)
   end
 
   context "GET new" do
+    render_views
+
     it "renders the new page" do
       get :new, course_id: course.to_param
       response.should be_success

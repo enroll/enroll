@@ -16,6 +16,7 @@ Enroll::Application.routes.draw do
   get '/courses/new/:step', to: 'courses#new', as: :new_course_step
   get '/courses/:id/edit/:step', to: 'courses#edit', as: :edit_course_step
 
+  # Teacher dashboard
   namespace :dashboard do
     resources :courses do
       member do
@@ -24,9 +25,21 @@ Enroll::Application.routes.draw do
         get :publish
       end
       resources :students, only: [:index]
+      resources :resources
       resource :payment_settings, only: [:edit, :update]
     end
     resources :landing_pages
+  end
+
+  # Student dashbaord
+  namespace :student do
+    resources :courses do
+      resources :resources
+
+      member do
+        get :calendar
+      end
+    end
   end
 
   namespace :admin do

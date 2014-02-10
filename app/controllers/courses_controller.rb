@@ -27,10 +27,6 @@ class CoursesController < ApplicationController
 
   protected
 
-  def setup_markdown
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
-  end
-
   def redirect_to_next_step
     if next_step
       redirect_to edit_course_step_path(@course, :step => next_step[:id])

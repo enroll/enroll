@@ -2,7 +2,7 @@
 @import '_colors';
 @import '_mixins';
 
-ul.course-list {
+ul.item-list {
   $border-color: $gray-medium-light;
   background: #fff;
 
@@ -23,10 +23,11 @@ ul.course-list {
     
     &:not(.header) {
       cursor: pointer;
-    }
 
-    &:not(.header):hover {
-      background: #fafafa;
+      strong {
+        // display: block;
+        // padding-top: 10px;
+      }
     }
 
     .actions {
@@ -40,6 +41,15 @@ ul.course-list {
       padding-left: 20px;
       color: $gray-medium;
       font-size: 13px;
+    }
+  }
+
+  li.one-line {
+    padding-top: 20px;
+    padding-bottom: 0;
+
+    .actions {
+      margin-top: -12px;
     }
   }
 
@@ -66,7 +76,7 @@ ul.course-list {
   }
 
   li:last-child {
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
   }
 
 

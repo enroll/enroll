@@ -33,6 +33,19 @@
   }
 }
 
+.btn-error {
+  &.inverted {
+    background: transparent;
+    border: 1px solid $error;
+    color: $error;
+
+    &:hover {
+      background: $error;
+      color: #fff;
+    }
+  }
+}
+
 .btn-default {
   background: $gray-light;
   color: $gray-dark;

@@ -1,6 +1,7 @@
 module DashboardHelper
   def dashboard_menu_link(path, label, icon, controller, action, &block)
-    klass = if controller_name == controller && action_name == action
+    current_action = action ? action_name : nil
+    klass = if controller_name == controller && current_action == action
       'active'
     else
       ''

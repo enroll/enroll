@@ -1,0 +1,16 @@
+.header.course.row
+  .col-sm-9
+    .pull-left.back-wrapper
+      %a.back-button{href: courses_path}
+        %i.icon-reply
+
+    .title
+      %h1= @course.name
+      %span.link= @course.date_range.html_safe
+      %span.link•
+      %a.link{href: course_short_url(@course), target: '_blank'} Course page &rsaquo;
+
+  .col-sm-3.numbers
+    %a.number
+      %strong= days_until_start(@course)
+      %span Days left

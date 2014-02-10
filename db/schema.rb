@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206154149) do
+ActiveRecord::Schema.define(version: 20140210151957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,18 @@ ActiveRecord::Schema.define(version: 20140206154149) do
 
   add_index "reservations", ["course_id"], name: "index_reservations_on_course_id", using: :btree
   add_index "reservations", ["student_id"], name: "index_reservations_on_student_id", using: :btree
+
+  create_table "resources", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "s3_url"
+    t.string   "transloadit_assembly_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+    t.string   "resource_type"
+    t.string   "link"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

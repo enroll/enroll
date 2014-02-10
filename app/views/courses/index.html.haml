@@ -10,7 +10,7 @@
 
     - unless @courses_teaching.empty?
       %div{class: @courses_studying.empty? ? 'col-sm-12' : 'col-sm-6'}
-        %ul.course-list.teaching
+        %ul.item-list.teaching
           %li.header
             %strong Teaching
             .actions
@@ -21,15 +21,15 @@
             = link_to "Manage &rsaquo;".html_safe, dashboard_course_path(course), :class => 'btn btn-primary small inverted'
 
     :coffeescript
-      new ClickableList(el: '.course-list.teaching')
+      new ClickableList(el: '.item-list.teaching')
 
     - unless @courses_studying.empty?
       %div{class: @courses_teaching.empty? ? 'col-sm-12' : 'col-sm-6'}
-        %ul.course-list.attending
+        %ul.item-list.attending
           %li.header
             %strong Attending
           = yrender "courses_list", courses: @courses_studying do |course|
-            = link_to "Open &rsaquo;".html_safe, landing_page_path(course.url), :class => 'btn btn-primary small'
+            = link_to "Open &rsaquo;".html_safe, student_course_path(course), :class => 'btn btn-primary small'
 
       :coffeescript
-        new ClickableList(el: '.course-list.attending')
+        new ClickableList(el: '.item-list.attending')

@@ -24,10 +24,25 @@ FactoryGirl.define do
     student
   end
 
+  factory :schedule, class: CourseSchedule do
+    course
+    date Date.today
+  end
+
   factory :location do
     name "The Corner Pub"
   end
 
+  factory :resource do
+    name "MyString"
+    description "MyString"
+    s3_url "MyString"
+    transloadit_assembly_id "MyString"
+  end
+
+  factory :event do
+  end
+  
   factory :payout do
     amount_in_cents 15000 # $150 USD
     description 'How to raise seed funding'

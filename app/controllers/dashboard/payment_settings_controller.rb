@@ -24,9 +24,4 @@ class Dashboard::PaymentSettingsController < ApplicationController
     params.require(:user).permit(:name, :stripe_bank_account_token)
   end
 
-  def find_course_as_instructor_by_course_id!
-    @course = current_user.courses_as_instructor.find(params[:course_id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
-  end
 end

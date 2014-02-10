@@ -28,6 +28,8 @@
   %ul.list.target{class: !@course.published? ? 'disabled' : ''}
     = dashboard_menu_link(@course.id ? dashboard_course_path(@course) : '', 'Promote', 'rocket', 'courses', 'show')
     = dashboard_menu_link(@course.id ? dashboard_course_students_path(@course) : '', 'Students', 'users', 'students', 'index')
+    = dashboard_menu_link(@course.id ? dashboard_course_resources_path(@course) : '', 'Resources', 'archive', 'resources', nil) do
+      %span.count= @course.resources.count
     = dashboard_menu_link(@course.id ? dashboard_course_path(@course) : '', 'Teach', 'graduation-cap', 'courses', 'teach')
     = dashboard_menu_link(@course.id ? edit_dashboard_course_payment_settings_path(@course) : '', 'Get paid', 'credit-card', 'payment_settings', 'edit')
 

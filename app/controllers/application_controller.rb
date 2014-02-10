@@ -20,7 +20,30 @@ class ApplicationController < ActionController::Base
     self.class.to_s.split("::").first.downcase
   end
 
+  # Courses
+
+  def find_course_as_instructor_by_course_id!
+    @course = current_user.courses_as_instructor.find(params[:course_id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
+  end
+
+  def find_course_as_student!(id)
+    @course = current_user.courses_as_student.find(id)
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path
+  end
+
+  def find_course_as_student_by_id!
+    find_course_as_student!(params[:id])
+  end
+
+  def find_course_as_student_by_course_id!
+    find_course_as_student!(params[:course_id])
+  end
+
   # Mixpanel
+
   def mixpanel
     return nil unless Enroll.mixpanel_token
 
@@ -69,5 +92,11 @@ class ApplicationController < ActionController::Base
       cookies.permanent[:visitor_id] = id
       id
     end
+  end
+
+  # Markdown
+
+  def setup_markdown
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
   end
 end

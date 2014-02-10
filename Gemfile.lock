@@ -121,6 +121,7 @@ GEM
     hike (1.2.3)
     http_parser.rb (0.5.3)
     i18n (0.6.9)
+    icalendar (1.5.0)
     jade-js-source (0.28.0)
     jbuilder (1.0.2)
       activesupport (>= 3.0.0)
@@ -311,6 +312,12 @@ GEM
       multi_json (~> 1.7)
       twitter-stream (~> 0.1)
     tins (0.13.1)
+    transloadit (1.1.1)
+      multi_json
+      rest-client
+    transloadit-rails (1.1.1)
+      railties (>= 3)
+      transloadit (>= 1.1.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -359,6 +366,7 @@ DEPENDENCIES
   guard-rspec
   guard-shell
   haml (~> 4.0.3)
+  icalendar
   jbuilder (~> 1.0.1)
   jquery-rails
   kitty
@@ -390,6 +398,7 @@ DEPENDENCIES
   tilt-jade
   timecop
   tinder (= 1.9.3)
+  transloadit-rails (= 1.1.1)
   uglifier (>= 1.3.0)
   unicorn
   vcr

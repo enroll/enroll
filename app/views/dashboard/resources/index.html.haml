@@ -1,0 +1,17 @@
+.container.course-dashboard
+  = render 'dashboard/courses/header'
+
+  .content.row
+    .sidebar.col-sm-4
+      = render 'dashboard/courses/sidebar'
+    .main.col-sm-8
+      %ul.item-list
+        %li.header
+          %strong Resources
+          .actions
+            %a.btn.btn-primary{:href => new_dashboard_course_resource_path(@course)}
+              %i.icon-circled-plus
+              Add
+        - @resources.each do |resource|
+          = yrender 'dashboard/resources/resource', resource: resource do
+            = link_to '<i class="icon-cross"></i> Delete'.html_safe, dashboard_course_resource_path(@course, resource), confirm: 'Are you sure you want to delete this resource?', method: 'delete', class: 'btn btn-error small inverted'

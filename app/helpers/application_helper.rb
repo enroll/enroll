@@ -19,7 +19,7 @@ module ApplicationHelper
 
   def short_date(date)
     return nil unless date
-    date.strftime("%a, %b #{date.day.ordinalize}")
+    date.strftime("%a,&nbsp;%b&nbsp;#{date.day.ordinalize}").html_safe
   end
 
   def long_date(date)

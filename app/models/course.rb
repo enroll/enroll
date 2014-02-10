@@ -7,6 +7,7 @@ class Course < ActiveRecord::Base
   has_many :students, through: :reservations, class_name: 'User'
   has_many :events
   has_many :schedules, class_name: 'CourseSchedule'
+  has_many :resources
 
   belongs_to :location
   belongs_to :instructor, class_name: 'User'

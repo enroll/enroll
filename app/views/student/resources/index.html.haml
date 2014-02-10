@@ -1,0 +1,12 @@
+.container.course-dashboard
+  = render 'student/header'
+
+  .content.row
+    .sidebar.col-sm-4
+      = render 'student/sidebar'
+    .main.col-sm-8
+      %h2 Resources
+      %ul.item-list
+        - @resources.each do |resource|
+          = yrender 'dashboard/resources/resource', resource: resource do
+            / nothing
