@@ -1,0 +1,16 @@
+%li{class: resource.description.present? ? '' : 'one-line'}
+  .actions
+    - if resource.file?
+      %a.btn.btn-primary.small.inverted{href: resource.s3_url, target: '_blank'}
+        %i.icon-download
+        Download
+    - elsif resource.link?
+      %a.btn.btn-primary.small.inverted{href: resource.link, target: '_blank'}
+        Open
+        %i.icon-chevron-right
+    = yield
+  %strong
+    %i{class: resource.file? ? 'icon-newspaper' : 'icon-network'}
+    = resource.name
+  %br/
+  %em= resource.description

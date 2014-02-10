@@ -13,14 +13,5 @@
               %i.icon-circled-plus
               Add
         - @resources.each do |resource|
-          %li{class: resource.description.present? ? '' : 'one-line'}
-            .actions
-              %a.btn.btn-primary.small.inverted{href: resource.s3_url}
-                %i.icon-download
-                Download
-              = link_to '<i class="icon-cross"></i> Delete'.html_safe, dashboard_course_resource_path(@course, resource), confirm: 'Are you sure you want to delete this resource?', method: 'delete', class: 'btn btn-error small inverted'
-            %strong
-              %i.icon-newspaper
-              = resource.name
-            %br/
-            %em= resource.description
+          = yrender 'dashboard/resources/resource', resource: resource do
+            = link_to '<i class="icon-cross"></i> Delete'.html_safe, dashboard_course_resource_path(@course, resource), confirm: 'Are you sure you want to delete this resource?', method: 'delete', class: 'btn btn-error small inverted'
