@@ -14,6 +14,7 @@ class Admin::PostsController < ApplicationController
     @post = BlogPost.new(post_params)
 
     if @post.save
+      @post.publish!
       redirect_to admin_posts_path
     else
       render 'new'

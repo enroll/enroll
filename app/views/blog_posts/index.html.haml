@@ -1,0 +1,14 @@
+- content_for :navigation do
+  // nothing
+
+#welcome.small
+  .head
+    = render 'welcome/top_bar'
+
+  .container
+    - @posts.each do |post|
+      %h3.tl
+        %a{href: blog_post_path(post.url)}= "#{post.title} &rsaquo;".html_safe
+      %p!= @markdown.render(post.intro || "")
+
+  = render "layouts/footer"
