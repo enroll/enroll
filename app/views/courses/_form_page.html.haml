@@ -6,16 +6,12 @@
     /   
 
     .cover-image.tc
-      %div.buttons
-        %a.btn.btn-default.inverted Add cover image
-      %div.buttons
-        %a.preview.btn.btn-primary.small{:href => '#'} Preview
-
-    .form-group.wide
       = form.simple_fields_for :cover_image do |f|
-        = f.label :image, 'Cover image'
-        .controls
+        %div.buttons
           = f.input_field :file, as: :file
+          %a.btn.btn-default.inverted Add cover image
+        %div.buttons
+          %a.preview.btn.btn-primary.small{:href => '#'} Preview          
 
     .form-group.wide
       = form.label :description, 'Page content'
@@ -34,4 +30,7 @@
     el: '.landing-page-fields',
     course: #{@course.to_json},
     previewPath: #{preview_course_path(@course).to_json}
+  )
+  new CoverImageUploader(
+    el: '.cover-image'
   )

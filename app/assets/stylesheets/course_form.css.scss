@@ -119,5 +119,14 @@ form.step-pricing, form.step-page {
 
   .buttons {
     margin-bottom: 10px;
+    position: relative;
+  }
+
+  input#course_cover_image_file {
+    position: absolute;
+    opacity: 0;
+    width: 200px;
+    left: 50%;
+    margin-left: -100px;
   }
 }
