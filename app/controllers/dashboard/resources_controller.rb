@@ -25,6 +25,7 @@ class Dashboard::ResourcesController < ApplicationController
     @resource.transloadit_assembly_id = transloadit_response[:assembly_id]
 
     if @resource.save
+      flash[:notice] = "Resource was added"
       redirect_to dashboard_course_resources_path(@course)
     else
       render 'new'

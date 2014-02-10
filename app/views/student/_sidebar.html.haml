@@ -4,4 +4,5 @@
 
 %ul.list
   = dashboard_menu_link(student_course_path(@course), 'Info', 'address', 'courses', 'show')
-  = dashboard_menu_link(student_course_resources_path(@course), 'Resources', 'archive', 'resources', 'index')
+  = dashboard_menu_link(student_course_resources_path(@course), 'Resources', 'archive', 'resources', 'index') do
+    %span.count= @course.resources.count
