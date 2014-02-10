@@ -40,7 +40,7 @@
     %i.icon-calendar
 
   - if @course.schedules.present?
-    = render 'course_schedule'
+    = render 'courses/course_schedule'
   - else
     .tc= long_date(@course.starts_at)
 

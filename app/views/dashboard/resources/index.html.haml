@@ -14,6 +14,13 @@
               Add
         - @resources.each do |resource|
           %li
+            .actions
+              %a.btn.btn-primary.small.inverted{href: resource.s3_url}
+                %i.icon-download
+                Download
+              %a.btn.btn-primary.small.inverted{href: resource.s3_url}
+                %i.icon-cross
+                Delete
             %strong
               %i.icon-newspaper
               = resource.name

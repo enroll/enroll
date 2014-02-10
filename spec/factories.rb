@@ -24,6 +24,11 @@ FactoryGirl.define do
     student
   end
 
+  factory :schedule, class: CourseSchedule do
+    course
+    date Date.today
+  end
+
   factory :location do
     name "The Corner Pub"
   end
