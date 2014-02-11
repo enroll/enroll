@@ -39,6 +39,10 @@ GEM
     angularjs-rails (1.2.10)
     arel (4.0.2)
     atomic (1.1.14)
+    aws-sdk (1.34.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     bootstrap-sass (3.1.0.0)
       sass (~> 3.2)
@@ -149,6 +153,7 @@ GEM
     metaclass (0.0.2)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.5.2)
     minitest (4.7.5)
     mixpanel (4.1.1)
       escape
@@ -162,6 +167,8 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
     paperclip (4.0.0)
       activemodel (>= 3.0.0)
@@ -348,6 +355,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  aws-sdk
   bootstrap-sass (~> 3.1.0)
   capistrano
   capistrano-bundler
