@@ -5,16 +5,16 @@ production: &production
   secret_access_key: BSkZVg7XIPpyIRVJu6CXJmD+jklnjqQLMupvfLIV
 
 staging:
+  <<: *production
   bucket: 
     cover_images: enroll-staging-cover-images
-  <<: *production
 
 development:
+  <<: *production
   bucket: 
     cover_images: enroll-development-cover-images
-  <<: *production
 
 test:
+  <<: *production
   bucket: 
     cover_images: enroll-test-cover-images
-  <<: *production

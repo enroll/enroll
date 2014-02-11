@@ -31,14 +31,5 @@ module Enroll
                                   #{config.root}/app/presenters )
     
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
-
-    config.paperclip_defaults = {
-      :storage => :s3,
-      :s3_credentials => {
-        :bucket => Enroll.s3_config["bucket"]["cover_images"],
-        :access_key_id => Enroll.s3_config["access_key_id"],
-        :secret_access_key => Enroll.s3_config["secret_access_key"]
-      }
-    }
   end
 end

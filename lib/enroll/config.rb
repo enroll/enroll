@@ -41,7 +41,6 @@ module Enroll
     # Amazon S3
     def s3_config
       @s3_config ||= YAML.load_file(Rails.root.join('config', 's3.yml').to_s)[Rails.env]
-      @s3_config ||= @s3_config
     end
   end
 end
