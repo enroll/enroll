@@ -13,7 +13,8 @@ class CoverImage < ActiveRecord::Base
 
   def as_json(options={})
     {
-      admin: image.url(:admin)
+      admin: image.url(:admin),
+      background: image.url(:background)
     }
   end
 end

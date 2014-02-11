@@ -70,7 +70,8 @@ class window.LandingPagePreview extends Spine.Controller
     # Load from server at this point
     data = @$el.parents('form:first').find('textarea, input[type=text]').serialize()
     $.post @previewPath, data, (res) =>
-      @$previewContent.html(res)
+      @$previewContent.html(res.preview)
+      @$previewContent.css('background-image', "url(#{res.cover_image.background})")
 
   # Cancelling
 

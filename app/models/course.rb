@@ -320,7 +320,11 @@ class Course < ActiveRecord::Base
 
   def cover_image(size)
     return nil if cover_images.count == 0
-    cover_images.order('created_at desc').first.image.url(size)
+    cover_image_object.image.url(size)
+  end
+
+  def cover_image_object
+    cover_images.order('created_at desc').first
   end
 
   private

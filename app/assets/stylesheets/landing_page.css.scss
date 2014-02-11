@@ -4,6 +4,8 @@
 @import 'bootstrap/mixins';
 @import 'layout_design';
 
+$course-header: $welcome-color;
+
 body.landing-page, div.landing-page-preview {
   @include body-width(844px);
   
@@ -18,13 +20,20 @@ body.landing-page, div.landing-page-preview {
     // background: rgba(255,255,255,0.15);
     border-bottom: 1px solid rgba(255,255,255,0.2);
 
+    a.navbar-brand {
+      // @include retina('logo-header', 'png', 70px, 16px);
+      @include retina('welcome-logo', 'png', 71px, 16px);
+    }
+
     .navbar-inner {
+      color: $course-header;
       a.navbar-btn {
         background: transparent;
+        color: $course-header;
 
         .caret {
-          border-top-color: #fff;
-          border-bottom-color: #fff;
+          border-top-color: $course-header;
+          border-bottom-color: $course-header;
         }
       }
     }
@@ -35,17 +44,17 @@ body.landing-page, div.landing-page-preview {
   .course-title {
     width: 100%;
     padding-top: 20px;
-    color: #fff;
+    color: $course-header;
 
     h2 {
       text-align: center;
       font-size: 50px;
-      color: #fff;
+      color: $course-header;
       @include font1();
       font-weight: 100;
 
       a {
-        color: #fff;
+        color: $course-header;
         &:hover {
           text-decoration: none;
         }
@@ -83,6 +92,7 @@ body.landing-page, div.landing-page-preview {
   padding-bottom: 40px;
   margin-bottom: 80px;
   background: #fff;
+  @include box-shadow(0 2px 20px rgba(0,0,0,0.2));
 
   position: relative;
   a.draft-ribbon {
