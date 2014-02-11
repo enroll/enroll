@@ -31,4 +31,5 @@ class window.CoverImageUploader extends Spine.Controller
     
 
   setAdminImage: (image) ->
+    return unless image
     @$el.css('background-image', "url(#{image})")

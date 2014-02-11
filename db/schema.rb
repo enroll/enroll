@@ -16,17 +16,6 @@ ActiveRecord::Schema.define(version: 20140210221951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "blog_posts", force: true do |t|
-    t.string   "title"
-    t.string   "content"
-    t.integer  "author_id"
-    t.datetime "published_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "url"
-    t.string   "intro"
-  end
-
   create_table "course_schedules", force: true do |t|
     t.integer "course_id"
     t.date    "date"

@@ -19,6 +19,11 @@ FactoryGirl.define do
     instructor factory: :instructor
   end
 
+  factory :cover_image do
+    course
+    image File.open(Rails.root.join('spec', 'fixtures', 'unicorn.jpg'))
+  end
+
   factory :reservation do
     course
     student
