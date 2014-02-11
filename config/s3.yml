@@ -1,0 +1,20 @@
+production: &production
+  bucket: 
+    cover_images: enroll-production-cover-images
+  access_key_id: AKIAJTT6JHW5AYO2TO7Q
+  secret_access_key: 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
+
+staging:
+  bucket: 
+    cover_images: enroll-staging-cover-images
+  <<: *production
+
+development:
+  bucket: 
+    cover_images: enroll-development-cover-images
+  <<: *production
+
+test:
+  bucket: 
+    cover_images: enroll-test-cover-images
+  <<: *production

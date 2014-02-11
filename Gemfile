@@ -7,6 +7,7 @@ gem 'rails', '~> 4.0.0'
 
 # Standard gems
 gem 'angularjs-rails'
+gem 'aws-sdk'
 gem 'coffee-rails',   '~> 4.0.0'
 gem 'devise',         '~> 3.0.1'
 gem 'dotenv-rails'
