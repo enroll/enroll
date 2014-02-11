@@ -318,6 +318,10 @@ class Course < ActiveRecord::Base
     object
   end
 
+  def cover_image
+    cover_images.order('created_at desc').first
+  end
+
   private
 
   # temporary

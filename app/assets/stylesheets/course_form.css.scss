@@ -111,6 +111,7 @@ form.step-pricing, form.step-page {
 .landing-page-fields .cover-image {
   height: 121px;
   @include retina('admin-cover-default', 'jpg', 565px, 122px);
+  background-size: cover;
   margin-top: -20px;
   margin-left: -20px;
   margin-right: -20px;
@@ -120,6 +121,10 @@ form.step-pricing, form.step-page {
   .buttons {
     margin-bottom: 10px;
     position: relative;
+  }
+
+  .add-cover-button {
+    background: #fff;
   }
 
   input#course_cover_image_image {

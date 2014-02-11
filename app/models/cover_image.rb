@@ -10,4 +10,10 @@ class CoverImage < ActiveRecord::Base
                     :default_url => "/images/:style/missing.png",
                     :processors => [:thumbnail, :backgroundize]
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+  def as_json(options={})
+    {
+      admin: image.url(:admin)
+    }
+  end
 end

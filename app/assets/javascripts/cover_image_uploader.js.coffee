@@ -5,6 +5,8 @@ class window.CoverImageUploader extends Spine.Controller
   constructor: ->
     super
 
+    @setAdminImage(@currentImage)
+
   uploadAction: (ev) ->
     ev.preventDefault()
 
@@ -12,11 +14,21 @@ class window.CoverImageUploader extends Spine.Controller
     methodInput = $form.find('input[name=_method]')
     methodInput.detach()
 
-    $form.attr('action', @imagesPath)
-    $form.submit()
+    # $form.attr('action', @imagesPath)
+    # $form.submit()
 
-    # $form.ajaxSubmit({
-    #   url: @imagesPath
-    # })
+    $form.ajaxSubmit({
+      url: @imagesPath
+      success: @didUpload
+    })
 
     $form.append(methodInput)
+
+  didUpload: (result) =>
+    console.log result
+
+    @setAdminImage(result.admin)
+    
+
+  setAdminImage: (image) ->
+    @$el.css('background-image', "url(#{image})")

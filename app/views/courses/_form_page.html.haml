@@ -9,7 +9,7 @@
       = form.simple_fields_for :cover_image do |f|
         %div.buttons
           = f.input_field :image, as: :file
-          %a.btn.btn-default.inverted Add cover image
+          %a.btn.btn-default.inverted.add-cover-button Add cover image
         %div.buttons
           %a.preview.btn.btn-primary.small{:href => '#'} Preview          
 
@@ -33,5 +33,6 @@
   )
   new CoverImageUploader(
     el: '.cover-image',
-    imagesPath: '#{dashboard_cover_images_path(course_id: @course.id)}'
+    imagesPath: '#{dashboard_cover_images_path(course_id: @course.id)}',
+    currentImage: '#{@course.cover_image.image.url(:admin)}'
   )

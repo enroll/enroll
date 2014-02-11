@@ -8,7 +8,7 @@ class Dashboard::CoverImagesController < ApplicationController
     image.course = @course
     image.save!
 
-    raise image.inspect
+    render json: image
   end
 
   protected
