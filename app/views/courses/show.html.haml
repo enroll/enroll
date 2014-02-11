@@ -1,6 +1,10 @@
 - content_for :head do
   = facebook_og_meta_tags(@course)
 
+- if @course.cover_image(:background)
+  - content_for :custom_body_style do
+    = "background-image: url(#{@course.cover_image(:background)})"
+
 - if !@preview && instructor_logged_in?(@course)
   %a.landing-button.dashboard{href: dashboard_course_path(@course)}
     %i.icon-line-graph
