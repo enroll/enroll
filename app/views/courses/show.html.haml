@@ -20,6 +20,9 @@
       - else
         %a.draft-ribbon
 
+    - if @course.cover_image?
+      .course-cover-image{style: "background-image: url(#{@course.cover_image(:main)})"}
+
     .col-sm-8
       %p!= @markdown.render(@course.description || "")
     .course-sidebar.col-sm-4
