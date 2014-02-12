@@ -7,6 +7,7 @@
 
     .cover-image.tc
       = form.simple_fields_for :cover_image do |f|
+        %div.spinner
         %div.buttons
           = f.input_field :image, as: :file
           %a.btn.btn-default.inverted.add-cover-button Change cover image

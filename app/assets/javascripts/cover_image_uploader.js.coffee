@@ -2,6 +2,9 @@ class window.CoverImageUploader extends Spine.Controller
   events:
     'change input#course_cover_image_image': 'uploadAction'
 
+  elements:
+    '.spinner': '$spinner'
+
   constructor: ->
     super
 
@@ -14,8 +17,6 @@ class window.CoverImageUploader extends Spine.Controller
     methodInput = $form.find('input[name=_method]')
     methodInput.detach()
 
-    # $form.attr('action', @imagesPath)
-    # $form.submit()
 
     $form.ajaxSubmit({
       url: @imagesPath

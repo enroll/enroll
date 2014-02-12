@@ -16,7 +16,9 @@ class CoverImage < ActiveRecord::Base
                       bucket: Enroll.s3_config["bucket"]["cover_images"],
                       access_key_id: Enroll.s3_config["access_key_id"],
                       secret_access_key: Enroll.s3_config["secret_access_key"]
-                    }
+                    },
+                    url: ':s3_domain_url',
+                    path: "/:class/:id_:basename.:style.:extension"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
