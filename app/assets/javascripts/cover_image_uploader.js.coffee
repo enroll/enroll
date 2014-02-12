@@ -4,19 +4,23 @@ class window.CoverImageUploader extends Spine.Controller
 
   elements:
     '.spinner': '$spinner'
+    '.buttons': '$buttons'
 
   constructor: ->
     super
 
+    @$spinner.hide()
     @setAdminImage(@currentImage)
 
   uploadAction: (ev) ->
     ev.preventDefault()
 
+    @setAdminImage(@defaultImage)
+    @showSpinner()
+
     $form = @$el.parents('form:first')
     methodInput = $form.find('input[name=_method]')
     methodInput.detach()
-
 
     $form.ajaxSubmit({
       url: @imagesPath
@@ -26,11 +30,18 @@ class window.CoverImageUploader extends Spine.Controller
     $form.append(methodInput)
 
   didUpload: (result) =>
-    console.log result
-
+    @hideSpinner()
     @setAdminImage(result.admin)
     
 
   setAdminImage: (image) ->
     return unless image
     @$el.css('background-image', "url(#{image})")
+
+  showSpinner: ->
+    @$buttons.hide()
+    @$spinner.spin(SPINNER_WELCOME).show()
+
+  hideSpinner: ->
+    @$buttons.show()
+    @$spinner.hide()
