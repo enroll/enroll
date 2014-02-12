@@ -680,7 +680,7 @@ describe Course do
       course.cover_image(:admin).tap { |url|
         url.should_not be_nil
         url.should be_a(String)
-        url.should match(/system/)
+        url.should include('enroll-test-cover-images.s3.amazonaws.com')
       }
     end
   end
