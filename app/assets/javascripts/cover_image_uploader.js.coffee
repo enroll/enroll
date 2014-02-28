@@ -6,6 +6,7 @@ class window.CoverImageUploader extends Spine.Controller
   events:
     'change input#course_cover_image_image': 'uploadAction'
     'click .save-dragging': 'saveAction'
+    'click a.delete-button': 'deleteAction'
 
   elements:
     '.spinner': '$spinner'
@@ -40,12 +41,12 @@ class window.CoverImageUploader extends Spine.Controller
         @$draggingButtons.hide()
         @$el.removeClass('dragging')
 
-    @on 'currentImage:change', ->
-      if @currentImage
+    @on 'adminImageId:change', ->
+      if @adminImageId
         @$deleteButton.show()
       else
         @$deleteButton.hide()
-    @trigger('currentImage:change')
+    @trigger('adminImageId:change')
 
       
     @state = READY
@@ -76,6 +77,7 @@ class window.CoverImageUploader extends Spine.Controller
     @trigger('state:change')
 
     @adminImageId = result.id
+    @trigger('adminImageId:change')
     @setAdminImage(result.admin)
     
   saveAction: (e) ->
@@ -87,14 +89,11 @@ class window.CoverImageUploader extends Spine.Controller
     data = "cover_image[offset_admin_px]=#{top}"
     path = @updatePath.replace(':id', @adminImageId)
 
-    console.log 'heres the path', path
-
     $.ajax({url: path, type: 'PUT', data: data})
 
     @state = READY
     @trigger('state:change')
     @$el.data('draggingDisabled', true)
-
 
   setAdminImage: (image) ->
     return unless image
@@ -110,3 +109,11 @@ class window.CoverImageUploader extends Spine.Controller
   hideSpinner: ->
     @$defaultButtons.show()
     @$spinner.hide()
+
+  # Deleting
+
+  deleteAction: ->
+    @adminImageId = null
+    @adminImagePath = null
+    @trigger('adminImageId:change')
+    @setAdminImage(@defaultImage)
