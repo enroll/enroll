@@ -29,7 +29,9 @@
   $.fn.backgroundDraggable = function(options) {
     var options = $.extend({}, $.fn.backgroundDraggable.defaults, options)
 
+
     return this.each(function() {
+      var $this = $(this);
       var img;
       var setupImage = function() {
         var $this = $(this)
@@ -57,7 +59,7 @@
       setupImage.bind(this)();
 
       $this.on('backgroundImageChanged', function() {
-
+        setupImage.bind(this)();
       });
 
       $this.on('mousedown.dbg touchstart.dbg', function(e) {

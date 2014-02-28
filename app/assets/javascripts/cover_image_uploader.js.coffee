@@ -15,6 +15,8 @@ class window.CoverImageUploader extends Spine.Controller
   constructor: ->
     super
 
+    @setAdminImage(@currentImage)
+
     @on 'state:change', ->
       if @state == READY
         @$defaultButtons.show()
@@ -30,7 +32,7 @@ class window.CoverImageUploader extends Spine.Controller
         @$draggingButtons.show()
         @$el.addClass('dragging')
         @$el.data('draggingDisabled', false);
-        @$el.backgroundDraggable({axis: 'y'})
+        @$el.backgroundDraggable({axis: 'y', bound: true})
       else
         @$draggingButtons.hide()
         @$el.removeClass('dragging')
@@ -38,8 +40,6 @@ class window.CoverImageUploader extends Spine.Controller
       
     @state = DRAGGING
     @trigger('state:change')
-
-    @setAdminImage(@currentImage)
     
 
   uploadAction: (ev) ->
@@ -79,6 +79,7 @@ class window.CoverImageUploader extends Spine.Controller
     return unless image
     @$el.css('background-image', "url(#{image})")
     @$el.css('background-position', '0 0')
+    @$el.trigger('backgroundImageChanged')
 
   hideSpinner: ->
     @$defaultButtons.show()
