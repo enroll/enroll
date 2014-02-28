@@ -3,8 +3,8 @@ class CoverImage < ActiveRecord::Base
 
   has_attached_file :image,
                     styles: {
-                      main: {geometry: "1688x384#"},
-                      admin: {geometry: "1130x242#"},
+                      main: {geometry: "1688x9999>"},
+                      admin: {geometry: "1130x9999>"},
                       background: {geometry: "2168x1626#", background: true}
                     },
                     default_url: "/images/:style/missing.png",
