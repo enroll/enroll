@@ -1,8 +1,10 @@
 class Dashboard::CoverImagesController < ApplicationController
-  before_filter :find_course_as_instructor_by_course_id!, except: [:update]
+  before_filter :find_course_as_instructor_by_course_id!, except: [:update, :destroy]
 
   def create
     puts "Creating the cover image"
+
+    @course.cover_images.delete_all
 
     image = CoverImage.new(cover_image_params)
     image.course = @course
@@ -14,6 +16,12 @@ class Dashboard::CoverImagesController < ApplicationController
   def update
     image = CoverImage.find(params[:id])
     image.update_attributes!(params.require(:cover_image).permit(:offset_admin_px))
+    render nothing: true
+  end
+
+  def destroy
+    image = CoverImage.find(params[:id])
+    image.delete
     render nothing: true
   end
 

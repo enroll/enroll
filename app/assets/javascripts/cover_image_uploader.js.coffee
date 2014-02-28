@@ -113,6 +113,9 @@ class window.CoverImageUploader extends Spine.Controller
   # Deleting
 
   deleteAction: ->
+    path = @updatePath.replace(':id', @adminImageId)
+    $.ajax({url: path, type: 'DELETE'})
+
     @adminImageId = null
     @adminImagePath = null
     @trigger('adminImageId:change')
