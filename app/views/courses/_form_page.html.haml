@@ -13,12 +13,15 @@
             = f.input_field :image, as: :file
             %a.btn.btn-default.inverted.cover-button.add-cover-button Change cover image
           .buttons
-            %a.preview.btn.btn-primary.small.preview-button{:href => '#'} Preview          
+            %a.preview.btn.btn-primary.small.preview-button{:href => '#'} Preview
         .dragging-buttons
           .buttons
             %a.btn.btn-default.inverted.cover-button Drag image to position
           .buttons
             %a.btn.btn-primary.small.preview-button.save-dragging{:href => '#'} Save
+        %a.delete-button{href: '#'}
+          %i.icon-circled-cross
+          Delete cover image
 
     .form-group.wide
       = form.label :description, 'Page content'

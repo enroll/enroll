@@ -12,6 +12,7 @@ class window.CoverImageUploader extends Spine.Controller
     '.default-buttons': '$defaultButtons'
     '.dragging-buttons': '$draggingButtons'
     '#course_cover_image_offset_admin_px': '$offsetInput'
+    'a.delete-button': '$deleteButton'
 
   constructor: ->
     super
@@ -38,6 +39,13 @@ class window.CoverImageUploader extends Spine.Controller
       else
         @$draggingButtons.hide()
         @$el.removeClass('dragging')
+
+    @on 'currentImage:change', ->
+      if @currentImage
+        @$deleteButton.show()
+      else
+        @$deleteButton.hide()
+    @trigger('currentImage:change')
 
       
     @state = READY

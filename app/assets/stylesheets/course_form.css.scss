@@ -117,6 +117,7 @@ form.step-pricing, form.step-page {
   margin-right: -20px;
   margin-bottom: 15px;
   padding-top: 25px;
+  position: relative;
 
   &.dragging {
     cursor: move;
@@ -151,5 +152,14 @@ form.step-pricing, form.step-page {
     width: 200px;
     left: 50%;
     margin-left: -100px;
+  }
+
+  a.delete-button {
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+    text-align: right;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
   }
 }
