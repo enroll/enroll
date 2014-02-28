@@ -41,6 +41,9 @@
   new CoverImageUploader(
     el: '.cover-image',
     imagesPath: '#{dashboard_cover_images_path(course_id: @course.id)}',
+    updatePath: #{dashboard_cover_image_path(':id').to_json},
     currentImage: #{@course.cover_image(:admin).to_json},
-    defaultImage: #{asset_url('admin-cover-default.jpg').to_json}
+    currentOffset: #{@course.cover_images.last.try(:offset_admin_px).to_json},
+    defaultImage: #{asset_url('admin-cover-default.jpg').to_json},
+    adminImageId: #{@course.cover_images.last.try(:id).to_json}
   )

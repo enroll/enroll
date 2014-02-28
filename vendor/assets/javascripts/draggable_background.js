@@ -49,8 +49,8 @@
         if (options.bound) {
           var i = new Image
           i.onload = function() {
-            img.width = i.width
-            img.height = i.height
+            img.width = i.width/2
+            img.height = i.height/2
           }
           i.src = src[1]
         }

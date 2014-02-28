@@ -1,4 +1,7 @@
 class CoverImage < ActiveRecord::Base
+  ADMIN_HEIGHT = 242
+  MAIN_HEIGHT = 384
+
   belongs_to :course
 
   has_attached_file :image,
@@ -24,8 +27,23 @@ class CoverImage < ActiveRecord::Base
 
   def as_json(options={})
     {
+      id: id,
       admin: image.url(:admin),
       background: image.url(:background)
     }
+  end
+
+  def offset_admin_px=(value)
+    self.offset = value.to_f / ADMIN_HEIGHT.to_f
+  end
+
+  def offset_admin_px
+    return 0 unless self.offset
+    (self.offset * ADMIN_HEIGHT).to_i
+  end
+
+  def offset_main_px
+    return 0 unless self.offset
+    (self.offset * MAIN_HEIGHT).to_i
   end
 end

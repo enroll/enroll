@@ -1,5 +1,5 @@
 class Dashboard::CoverImagesController < ApplicationController
-  before_filter :find_course_as_instructor_by_course_id!
+  before_filter :find_course_as_instructor_by_course_id!, except: [:update]
 
   def create
     puts "Creating the cover image"
@@ -9,6 +9,12 @@ class Dashboard::CoverImagesController < ApplicationController
     image.save!
 
     render json: image
+  end
+
+  def update
+    image = CoverImage.find(params[:id])
+    image.update_attributes!(params.require(:cover_image).permit(:offset_admin_px))
+    render nothing: true
   end
 
   protected

@@ -21,7 +21,7 @@
         %a.draft-ribbon
 
     - if @course.cover_image?
-      .course-cover-image{style: "background-image: url(#{@course.cover_image(:main)})"}
+      .course-cover-image{style: cover_image_style(@course)}
 
     .col-sm-8
       %p!= @markdown.render(@course.description || "")

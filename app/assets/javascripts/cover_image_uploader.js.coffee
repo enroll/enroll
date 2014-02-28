@@ -11,11 +11,13 @@ class window.CoverImageUploader extends Spine.Controller
     '.spinner': '$spinner'
     '.default-buttons': '$defaultButtons'
     '.dragging-buttons': '$draggingButtons'
+    '#course_cover_image_offset_admin_px': '$offsetInput'
 
   constructor: ->
     super
 
     @setAdminImage(@currentImage)
+    @setOffset(@currentOffset)
 
     @on 'state:change', ->
       if @state == READY
@@ -38,7 +40,7 @@ class window.CoverImageUploader extends Spine.Controller
         @$el.removeClass('dragging')
 
       
-    @state = DRAGGING
+    @state = READY
     @trigger('state:change')
     
 
@@ -65,21 +67,37 @@ class window.CoverImageUploader extends Spine.Controller
     @state = DRAGGING
     @trigger('state:change')
 
+    @adminImageId = result.id
     @setAdminImage(result.admin)
     
   saveAction: (e) ->
     e.preventDefault()
 
+    pos = @$el.css('background-position').match(/(-?\d+).*?\s(-?\d+)/) || []
+    top = parseInt(pos[2])
+
+    data = "cover_image[offset_admin_px]=#{top}"
+    path = @updatePath.replace(':id', @adminImageId)
+
+    console.log 'heres the path', path
+
+    $.ajax({url: path, type: 'PUT', data: data})
+
     @state = READY
     @trigger('state:change')
-    # @$el.data('draggingDisabled', true)
+    @$el.data('draggingDisabled', true)
 
 
   setAdminImage: (image) ->
     return unless image
+    @adminImagePath = image
     @$el.css('background-image', "url(#{image})")
     @$el.css('background-position', '0 0')
     @$el.trigger('backgroundImageChanged')
+
+  setOffset: (offset) ->
+    return unless offset
+    @$el.css('background-position', "0 #{offset}px")
 
   hideSpinner: ->
     @$defaultButtons.show()
