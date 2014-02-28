@@ -1,22 +1,54 @@
 class window.CoverImageUploader extends Spine.Controller
+  READY = 'ready'
+  UPLOADING = 'uploading'
+  DRAGGING = 'dragging'
+
   events:
     'change input#course_cover_image_image': 'uploadAction'
+    'click .save-dragging': 'saveAction'
 
   elements:
     '.spinner': '$spinner'
-    '.buttons': '$buttons'
+    '.default-buttons': '$defaultButtons'
+    '.dragging-buttons': '$draggingButtons'
 
   constructor: ->
     super
 
-    @$spinner.hide()
+    @on 'state:change', ->
+      if @state == READY
+        @$defaultButtons.show()
+      else
+        @$defaultButtons.hide()
+
+      if @state == UPLOADING
+        @$spinner.spin(SPINNER_WELCOME).show()
+      else
+        @$spinner.hide()
+
+      if @state == DRAGGING
+        @$draggingButtons.show()
+        @$el.addClass('dragging')
+        @$el.data('draggingDisabled', false);
+        @$el.backgroundDraggable({axis: 'y'})
+      else
+        @$draggingButtons.hide()
+        @$el.removeClass('dragging')
+
+      
+    @state = DRAGGING
+    @trigger('state:change')
+
     @setAdminImage(@currentImage)
+    
 
   uploadAction: (ev) ->
     ev.preventDefault()
 
     @setAdminImage(@defaultImage)
-    @showSpinner()
+
+    @state = UPLOADING
+    @trigger('state:change')
 
     $form = @$el.parents('form:first')
     methodInput = $form.find('input[name=_method]')
@@ -30,18 +62,24 @@ class window.CoverImageUploader extends Spine.Controller
     $form.append(methodInput)
 
   didUpload: (result) =>
-    @hideSpinner()
+    @state = DRAGGING
+    @trigger('state:change')
+
     @setAdminImage(result.admin)
     
+  saveAction: (e) ->
+    e.preventDefault()
+
+    @state = READY
+    @trigger('state:change')
+    # @$el.data('draggingDisabled', true)
+
 
   setAdminImage: (image) ->
     return unless image
     @$el.css('background-image', "url(#{image})")
-
-  showSpinner: ->
-    @$buttons.hide()
-    @$spinner.spin(SPINNER_WELCOME).show()
+    @$el.css('background-position', '0 0')
 
   hideSpinner: ->
-    @$buttons.show()
+    @$defaultButtons.show()
     @$spinner.hide()

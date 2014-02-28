@@ -8,11 +8,17 @@
     .cover-image.tc
       = form.simple_fields_for :cover_image do |f|
         %div.spinner
-        %div.buttons
-          = f.input_field :image, as: :file
-          %a.btn.btn-default.inverted.add-cover-button Change cover image
-        %div.buttons
-          %a.preview.btn.btn-primary.small.preview-button{:href => '#'} Preview          
+        .default-buttons
+          .buttons
+            = f.input_field :image, as: :file
+            %a.btn.btn-default.inverted.cover-button.add-cover-button Change cover image
+          .buttons
+            %a.preview.btn.btn-primary.small.preview-button{:href => '#'} Preview          
+        .dragging-buttons
+          .buttons
+            %a.btn.btn-default.inverted.cover-button Drag image to position
+          .buttons
+            %a.btn.btn-primary.small.preview-button.save-dragging{:href => '#'} Save
 
     .form-group.wide
       = form.label :description, 'Page content'

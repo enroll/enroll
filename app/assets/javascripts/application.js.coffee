@@ -25,6 +25,7 @@
 #= require retina_tag
 #= require magnific-popup
 #= require jquery.form
+#= require draggable_background
 
 
 #= require_tree ./templates
