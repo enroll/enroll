@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210203630) do
+ActiveRecord::Schema.define(version: 20140305225719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
-    t.string   "content"
+    t.text     "content"
     t.integer  "author_id"
     t.datetime "published_at"
     t.datetime "created_at"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 20140210203630) do
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
   add_index "courses", ["url"], name: "index_courses_on_url", using: :btree
+
+  create_table "cover_images", force: true do |t|
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.string   "event_type"
