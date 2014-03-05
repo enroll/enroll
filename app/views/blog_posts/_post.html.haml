@@ -5,5 +5,5 @@
       by
       %strong= post.author
     on
-    Feb 2th
+    = long_date(post.published_at)
   != @markdown.render(content || "")

@@ -3,7 +3,6 @@ class BlogPost < ActiveRecord::Base
   belongs_to :author, class_name: 'User'
 
   def publish!
-    self.published_at = Time.now
     self.save!
   end
 end
