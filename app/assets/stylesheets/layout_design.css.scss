@@ -6,20 +6,18 @@
 $padding: 20px;
 $layout-width: 850px;
 
-@mixin body-width($width) {
-  .navbar-inner {
-    max-width: $width;
-  }
-  .container {
-    max-width: $width;
-  }
-  .alert {
-    max-width: $width;
-  }
-}
-
 body {
-  @include body-width($layout-width);
+  .navbar-inner, .alert {
+    @media (min-width: $screen-sm-min) {
+      width: $container-sm;
+    }
+    @media (min-width: $screen-md-min) {
+      width: $container-md;
+    }
+    @media (min-width: $screen-lg-min) {
+      width: $container-lg;
+    }
+  }
 }
 
 // Nav Bar

@@ -7,8 +7,6 @@
 $course-header: $welcome-color;
 
 body.landing-page, div.landing-page-preview {
-  @include body-width(844px);
-  
   background: #eaebec;
 
   nav.navbar {
