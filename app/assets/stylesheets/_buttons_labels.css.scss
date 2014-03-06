@@ -21,6 +21,10 @@
   border: none;
   font-weight: 400;
 
+  &:hover {
+    background: darken($primary1, 5%);
+  }
+
   &.inverted {
     background: transparent;
     border: 1px solid $primary1;
