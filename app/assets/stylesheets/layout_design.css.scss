@@ -6,7 +6,7 @@
 $padding: 20px;
 $layout-width: 850px;
 
-body {
+body:not(.landing-page) {
   .navbar-inner, .alert {
     @media (min-width: $screen-sm-min) {
       width: $container-sm;
