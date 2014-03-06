@@ -13,5 +13,7 @@
         %h3.tl
           %a.text{href: blog_post_path(post.url)}= "#{post.title} &rsaquo;".html_safe
         = render 'post', post: post, content: post.intro
+        - if post.content
+          %a.text{href: blog_post_path(post.url)} Read more...
 
   = render "welcome/footer"
