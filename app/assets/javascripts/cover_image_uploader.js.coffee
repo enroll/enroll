@@ -7,6 +7,7 @@ class window.CoverImageUploader extends Spine.Controller
     'change input#course_cover_image_image': 'uploadAction'
     'click .save-dragging': 'saveAction'
     'click a.delete-button': 'deleteAction'
+    'click a.reposition-button': 'repositionAction'
 
   elements:
     '.spinner': '$spinner'
@@ -14,6 +15,7 @@ class window.CoverImageUploader extends Spine.Controller
     '.dragging-buttons': '$draggingButtons'
     '#course_cover_image_offset_admin_px': '$offsetInput'
     'a.delete-button': '$deleteButton'
+    'a.reposition-button': '$repositionButton'
 
   constructor: ->
     super
@@ -44,11 +46,13 @@ class window.CoverImageUploader extends Spine.Controller
     @on 'adminImageId:change', ->
       if @adminImageId
         @$deleteButton.show()
+        @$repositionButton.show()
       else
         @$deleteButton.hide()
+        @$repositionButton.hide()
+
     @trigger('adminImageId:change')
 
-      
     @state = READY
     @trigger('state:change')
     
@@ -120,3 +124,7 @@ class window.CoverImageUploader extends Spine.Controller
     @adminImagePath = null
     @trigger('adminImageId:change')
     @setAdminImage(@defaultImage)
+
+  repositionAction: ->
+    @state = DRAGGING
+    @trigger('state:change')

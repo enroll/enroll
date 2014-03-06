@@ -154,12 +154,15 @@ form.step-pricing, form.step-page {
     margin-left: -100px;
   }
 
-  a.delete-button {
-    color: #fff;
+  div.text-buttons {
     text-shadow: 0 1px 0 #000;
     text-align: right;
     position: absolute;
     bottom: 5px;
     right: 5px;
+
+    a {
+      color: #fff;
+    }
   }
 }

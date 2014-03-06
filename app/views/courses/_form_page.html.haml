@@ -19,9 +19,13 @@
             %a.btn.btn-default.inverted.cover-button Drag image to position
           .buttons
             %a.btn.btn-primary.small.preview-button.save-dragging{:href => '#'} Save
-        %a.delete-button{href: '#'}
-          %i.icon-circled-cross
-          Delete cover image
+        .text-buttons
+          %a.delete-button{href: '#'}
+            %i.icon-circled-cross
+            Delete cover image
+          %a.reposition-button{href: '#'}
+            %i.icon-arrow-combo
+            Reposition
 
     .form-group.wide
       = form.label :description, 'Page content'
