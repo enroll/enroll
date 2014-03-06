@@ -41,6 +41,11 @@ body.landing-page, div.landing-page-preview {
   @media (min-width: 850px) {
     width: 850px !important;
   }
+
+  nav.navbar {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
 }
 
 .course-header {
@@ -89,7 +94,7 @@ body.landing-page, div.landing-page-preview {
 }
 
 .course-content {
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 30px;
   padding-top: 40px;
   padding-bottom: 40px;
