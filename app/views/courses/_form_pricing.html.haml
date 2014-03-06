@@ -44,15 +44,25 @@
             %span.pull-left ×
             %span.ticket-price $199
         %tr
-          %td Revenue
+          %td Fees
+          %td  
+          %td
+            %span.pull-left - 
+            %span.enroll-fees $99.50
+          %td
+          %td
+            %span.pull-left -
+            %span.enroll-fees $298.50
+        %tr
+          %td Profit
           %td  
           %td.border-top
             %strong
-              %span.min-seat-revenue $995
+              %span.min-seat-revenue $895.50
           %td  
           %td.border-top
             %strong
-              %span.max-seat-revenue $2,985
+              %span.max-seat-revenue $2,686.50
 
   :coffeescript
     new CoursePricing(el: '.course-pricing', isFree: #{form.object.free?}, isFilledIn: #{form.object.step_finished?(:pricing)}, isDisabled: #{form.object.published?})
