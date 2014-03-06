@@ -37,6 +37,10 @@ body.landing-page, div.landing-page-preview {
 .container.landing-page {
   background: #fff;
   border: 1px solid #dcdee0;
+
+  @media (min-width: 850px) {
+    width: 850px !important;
+  }
 }
 
 .course-header {
