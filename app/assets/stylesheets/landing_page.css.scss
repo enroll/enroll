@@ -166,7 +166,7 @@ body.landing-page, div.landing-page-preview {
   position: absolute;
   position: fixed;
   z-index: 1000;
-  top: 5px;
+  top: 20px;
   left: 50%;
   margin-left: -$width/2;
   border: 1px solid darken($color1, 10);
@@ -177,20 +177,17 @@ body.landing-page, div.landing-page-preview {
   padding: 10px 0;
   cursor: pointer;
   margin-top: -5px;
-  @include border-radius(0 0 4px 4px);
-  @include box-shadow(0 1px 1px rgba(0,0,0,0.2));
 
   &.exit {
     background: $color1;
   }
 
   &.dashboard {
-    background: $warning;
+    background: #f35e24;
     border: none;
-    text-shadow: 0 1px 0 darken($warning, 20);
 
     &:active {
-      background: darken($warning, 15);
+      background: darken(#f35e24, 10);
       border: none;
     }
   }
