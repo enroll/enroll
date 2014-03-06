@@ -1,0 +1,9 @@
+%div.tex
+  .author
+    Published
+    - if post.author
+      by
+      %strong= post.author
+    on
+    = long_date(post.published_at)
+  != @markdown.render(content || "")

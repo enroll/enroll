@@ -1,0 +1,9 @@
+= simple_form_for @post, url: @post.new_record? ? admin_posts_path : admin_post_path(@post), html: {class: 'form stacked'} do |f|
+  .form-section
+    = f.input :title
+    = f.input :intro, as: :text
+    = f.input :content, as: :text, input_html: {class: 'large'}
+    = f.input :published_at, as: :date
+
+  .form-actions
+    = f.button(:submit, 'Publish', class: 'btn btn-primary btn-large')

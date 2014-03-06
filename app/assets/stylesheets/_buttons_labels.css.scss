@@ -50,6 +50,17 @@
   background: $gray-light;
   color: $gray-dark;
   border: none;
+
+  &.inverted {
+    color: #000;
+    border: 1px solid #000;
+    background: transparent;
+
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
+  }
 }
 
 .btn-info {
