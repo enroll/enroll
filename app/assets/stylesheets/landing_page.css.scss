@@ -115,15 +115,25 @@ body.landing-page, div.landing-page-preview {
 
   h1:not(.centered) {
     margin: 0;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 300;
     text-align: left;
+    // color: $primary1;
+  }
+
+  h1.main {
+    font-weight: 100;
+    color: $primary1;
+    font-size: 36px;
+    margin-top: 7px;
   }
 
   p {
     margin-top: 15px;
     margin-bottom: 15px;
-    color: $gray-medium-dark;
+    font-weight: 200;
+    font-size: 14px;
+    // color: $gray-medium-dark;
   }
 }
 
@@ -132,7 +142,7 @@ body.landing-page, div.landing-page-preview {
   margin-left: -35px;
   margin-right: -35px;
   margin-top: -40px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
   background-size: cover;
 }

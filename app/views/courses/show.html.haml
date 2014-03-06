@@ -23,6 +23,7 @@
       .course-cover-image{style: cover_image_style(@course)}
 
     .col-sm-8
+      %h1.main= @course.name
       %p!= @markdown.render(@course.description || "")
     .course-sidebar.col-sm-4
       = render 'courses/course_landing_sidebar', enroll_button: true
