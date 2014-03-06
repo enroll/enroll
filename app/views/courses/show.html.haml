@@ -1,17 +1,16 @@
 - content_for :head do
   = facebook_og_meta_tags(@course)
 
-- if @course.cover_image(:background)
-  - content_for :custom_body_style do
-    = "background-image: url(#{@course.cover_image(:background)})"
+- content_for :navigation do
+  / nothing
 
-- if !@preview && instructor_logged_in?(@course)
-  %a.landing-button.dashboard{href: dashboard_course_path(@course)}
-    %i.icon-line-graph
-    Go to Dashboard
+/ - if !@preview && instructor_logged_in?(@course)
+/   %a.landing-button.dashboard{href: dashboard_course_path(@course)}
+/     %i.icon-line-graph
+/     Go to Dashboard
 
 .container.landing-page
-  = render 'courses/course_landing_header'
+  = render 'layouts/navigation'
 
   .course-content.row
     - if @course.draft?

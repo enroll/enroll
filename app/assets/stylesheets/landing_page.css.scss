@@ -9,11 +9,7 @@ $course-header: $welcome-color;
 body.landing-page, div.landing-page-preview {
   @include body-width(844px);
   
-  @include retina('landing-background', 'jpg', 1084px, 850px);
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover !important;
-  background-attachment: fixed;
+  background: #eaebec;
 
   nav.navbar {
     background: transparent;
@@ -38,6 +34,11 @@ body.landing-page, div.landing-page-preview {
       }
     }
   }
+}
+
+.container.landing-page {
+  background: #fff;
+  border: 1px solid #dcdee0;
 }
 
 .course-header {
@@ -92,7 +93,6 @@ body.landing-page, div.landing-page-preview {
   padding-bottom: 40px;
   margin-bottom: 80px;
   background: #fff;
-  @include box-shadow(0 5px 25px rgba(0,0,0,0.15));
 
   position: relative;
   a.draft-ribbon {
@@ -121,8 +121,8 @@ body.landing-page, div.landing-page-preview {
 
 .course-cover-image {
   height: 192px;
-  margin-left: -30px;
-  margin-right: -30px;
+  margin-left: -35px;
+  margin-right: -35px;
   margin-top: -40px;
   margin-bottom: 20px;
 

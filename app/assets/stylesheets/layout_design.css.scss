@@ -54,6 +54,11 @@ nav.navbar {
         text-decoration: none;
       }
     }
+
+    img.img-rounded {
+      @include border-radius(50%);
+    }
+
     // Dropdowns in the navbar
     a.user-dropdown {
       padding: 0;
