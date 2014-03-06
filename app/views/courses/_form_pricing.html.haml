@@ -44,17 +44,9 @@
             %span.pull-left ×
             %span.ticket-price $199
         %tr
-          %td Fees
-          %td  
           %td
-            %span.pull-left - 
-            %span.enroll-fees $99.50
-          %td
-          %td
-            %span.pull-left -
-            %span.enroll-fees $298.50
-        %tr
-          %td Profit
+            Profit
+            %abbr *
           %td  
           %td.border-top
             %strong
@@ -63,6 +55,10 @@
           %td.border-top
             %strong
               %span.max-seat-revenue $2,686.50
+
+    %p.small.pull-right
+      %abbr *
+      Enroll takes a 10% cut of ticket sales.
 
   :coffeescript
     new CoursePricing(el: '.course-pricing', isFree: #{form.object.free?}, isFilledIn: #{form.object.step_finished?(:pricing)}, isDisabled: #{form.object.published?})
