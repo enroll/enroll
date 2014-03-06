@@ -109,12 +109,11 @@ form.step-pricing, form.step-page {
 // Cover image
 
 .landing-page-fields .cover-image {
+  max-width: 565px;
+  width: 565px;
   height: 121px;
   @include retina('admin-cover-default', 'jpg', 565px, auto);
   background-size: cover;
-  margin-top: -20px;
-  margin-left: -20px;
-  margin-right: -20px;
   margin-bottom: 15px;
   padding-top: 25px;
   position: relative;
