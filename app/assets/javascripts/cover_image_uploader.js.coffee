@@ -13,6 +13,7 @@ class window.CoverImageUploader extends Spine.Controller
     '.cover-image': '$coverImage'
     '.spinner': '$spinner'
     '.add-cover-button, .reposition-button, .delete-button': '$defaultButtons'
+    '.add-cover-button': '$changeButton'
     '.save-dragging': '$draggingButtons'
     '#course_cover_image_offset_admin_px': '$offsetInput'
     'a.delete-button': '$deleteButton'
@@ -49,6 +50,13 @@ class window.CoverImageUploader extends Spine.Controller
       else
         @$deleteButton.hide()
         @$repositionButton.hide()
+
+      # Change button
+      if @adminImageId
+        @$changeButton.text('Change')
+      else
+        @$changeButton.text('Add cover image') 
+      
 
     @state = READY
     @trigger('state:change')
