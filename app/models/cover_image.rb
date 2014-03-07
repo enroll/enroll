@@ -12,14 +12,8 @@ class CoverImage < ActiveRecord::Base
                     },
                     default_url: "/images/:style/missing.png",
                     processors: [:thumbnail, :backgroundize],
-                    # These are here, because calling Enroll.s3_config
-                    # doesn't work from application.rb.
                     storage: 's3',
-                    s3_credentials: {
-                      bucket: Enroll.s3_config["bucket"]["cover_images"],
-                      access_key_id: Enroll.s3_config["access_key_id"],
-                      secret_access_key: Enroll.s3_config["secret_access_key"]
-                    },
+                    s3_credentials: Enroll.s3_config_for('cover_images'),
                     url: ':s3_domain_url',
                     path: "/:class/:id_:basename.:style.:extension"
 

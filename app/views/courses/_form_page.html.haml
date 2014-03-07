@@ -29,6 +29,9 @@
         = visual_select form.object, :color, form: form, collection: Course::COLORS, class: 'color-select' do |color|
           .color{style: "background-color: #{color[:id]}"}
 
+    .form-section
+      = form.input :logo, label: 'Logo'
+
     .form-group.wide
       = form.label :description, 'Page content'
       .controls

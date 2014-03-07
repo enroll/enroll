@@ -11,7 +11,7 @@
 
 .container.landing-page
   - if !@preview
-    = render 'layouts/navigation'
+    = render 'layouts/navigation', logo: @course.logo
 
   .course-content.row
     - if @course.draft?

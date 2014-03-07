@@ -42,6 +42,14 @@ module Enroll
     def s3_config
       @s3_config ||= YAML.load_file(Rails.root.join('config', 's3.yml').to_s)[Rails.env]
     end
+
+    def s3_config_for(bucket)
+      {
+        bucket: Enroll.s3_config["bucket"][bucket],
+        access_key_id: Enroll.s3_config["access_key_id"],
+        secret_access_key: Enroll.s3_config["secret_access_key"]
+      }
+    end
   end
 end
 

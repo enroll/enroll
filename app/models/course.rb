@@ -46,6 +46,16 @@ class Course < ActiveRecord::Base
 
   accepts_nested_attributes_for :schedules
 
+  has_attached_file :logo,
+                    styles: {logo: "320x40>"},
+                    default_url: "/images/:style/missing-logo.png",
+                    storage: 's3',
+                    s3_credentials: Enroll.s3_config_for('logos'),
+                    url: ':s3_domain_url',
+                    path: "/:class/:id_:basename.:style.:extension"
+  validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
+  raise Enroll.s3_config_for('logos').inspect
+
   def self.fail_campaigns
     # This marks campaigns that haven't reached the minimum number of seats by
     # their campaign ending time as failed, and notifies students and instructors
