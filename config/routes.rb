@@ -45,6 +45,7 @@ Enroll::Application.routes.draw do
 
   namespace :admin do
     resources :emails
+    resources :posts
   end
   get '/admin', to: 'admin/emails#index'
 
@@ -59,6 +60,9 @@ Enroll::Application.routes.draw do
   get '/go/:url', to: 'courses#show', as: :landing_page
 
   get '/about', to: 'welcome#about', as: :about_page
+
+  get '/blog', to: 'blog_posts#index', as: :blog_posts
+  get '/blog/:id', to: 'blog_posts#show', as: :blog_post
 
   root 'welcome#index'
 end

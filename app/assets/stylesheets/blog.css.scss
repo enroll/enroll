@@ -1,0 +1,61 @@
+@import 'welcome';
+
+div#welcome.blog {
+  font-size: 14px;
+
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    color: $welcome-color;
+  }
+
+  .post {
+    margin-bottom: 30px;
+  }
+
+  .actions {
+    margin-top: 30px;
+  }
+
+  .author {
+    margin-bottom: 10px;
+
+    strong {
+      font-weight: normal;
+      color: $welcome-color;
+    }
+  }
+
+  div.text {
+    font-size: 14px;
+    color: darken($welcome-color2, 20%);
+    width: 70%;
+    text-align: justify;
+    
+    &, p, ul, li {
+      line-height: 1.5;
+    }
+
+    > p {
+      margin-bottom: 20px;
+    }
+
+    blockquote {
+      width: 70%;
+    }
+  }
+
+  a.text {
+    color: #000;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

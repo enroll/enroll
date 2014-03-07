@@ -1,0 +1,15 @@
+- content_for :navigation do
+  // nothing
+
+#welcome.small.blog
+  .head
+    = render 'welcome/top_bar'
+
+  .container
+    %h2= @post.title
+    = render 'post', post: @post, content: @post.content
+
+    .actions
+      = link_to '&lsaquo; Back'.html_safe, blog_posts_path, class: 'btn btn-default inverted'
+
+  = render "welcome/footer"

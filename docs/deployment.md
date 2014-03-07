@@ -42,7 +42,9 @@ The code we're running on our Janky CI server lives here:
 
 ### Jenkins
 
-Jenkins is set up at http://162.216.17.171
+Jenkins is set up at http://ci.enroll.io or http://162.216.17.171, hosted on Linode.
+
+username: `jenkins`
 
 ### Hubot
 

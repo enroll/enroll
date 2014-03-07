@@ -1,0 +1,29 @@
+= render 'admin/env'
+
+.container.course-dashboard
+  %h1 Posts
+
+  .pull-right.actions
+    %a.btn.btn-primary{href: new_admin_post_path}
+      %i.icon-plus
+      Create
+
+  %br/
+  %br/
+
+  %table.table
+    %tr
+      %th{width: 120} Created at
+      %th{width: 120} Published at
+      %th Title
+      %th{width: 200} Actions
+
+    - @posts.each do |post|
+      %tr
+        %td= short_date(post.created_at)
+        %td= short_date(post.published_at)
+        %td
+          = link_to post.title, blog_post_path(post.url)
+        %td
+          = link_to 'Edit', edit_admin_post_path(post), class: 'btn btn-primary inverted small'
+          = link_to 'Destroy', admin_post_path(post), method: 'delete', class: 'btn btn-error inverted small', confirm: 'Fo sho?'
