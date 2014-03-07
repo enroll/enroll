@@ -32,8 +32,22 @@ div#welcome.blog {
   }
 
   div.text {
-    font-size: 16px;
-    color: darken($welcome-color2, 15%);
+    font-size: 14px;
+    color: darken($welcome-color2, 20%);
+    width: 70%;
+    text-align: justify;
+    
+    &, p, ul, li {
+      line-height: 1.5;
+    }
+
+    > p {
+      margin-bottom: 20px;
+    }
+
+    blockquote {
+      width: 70%;
+    }
   }
 
   a.text {

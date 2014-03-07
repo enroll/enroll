@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140305225719) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.float    "offset"
   end
 
   create_table "events", force: true do |t|
