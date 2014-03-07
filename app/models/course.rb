@@ -2,7 +2,8 @@ class Course < ActiveRecord::Base
   DEFAULT_DESCRIPTION = [["About the course", "Basic details here..."], ["Prerequisites", "Things students should know..."], ["Syllabus", "Roadmap of the course..."]].map { |t| "# #{t[0]}\n\n#{t[1]}"}.join("\n\n")
   COLORS = [
     {id: '#4191ff', label: 'Blue'},
-    {id: '#F03328', label: 'Red'}
+    {id: '#f03328', label: 'Red'},
+    {id: '#28a60b', label: 'Green'}
   ]
 
   acts_as_url :name

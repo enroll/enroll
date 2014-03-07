@@ -5,12 +5,12 @@
   - if enrolled_for?(@course)
     %a.btn.btn-primary.btn-large.disabled Already enrolled
   - elsif @course.draft?
-    = course_reservation_link(@course, disabled: true)
+    = course_reservation_link(@course, disabled: true, style: course_background_style)
   - else
     - if !@course.starts_at
       %a.btn.btn-primary.btn-large.disabled Date unknown
     - elsif @course.future?
-      = course_reservation_link(@course)
+      = course_reservation_link(@course, style: course_background_style)
     - elsif @course.campaign_failed?
       %a.btn.btn-primary.btn-large.disabled Course not funded
     - else
@@ -22,7 +22,7 @@
 
 %hr/
   
-.course-stats.row
+.course-stats.row{style: course_text_style}
   .col-sm-4
     %strong= @course.reservations.count
     %small Enrolled
