@@ -49,7 +49,6 @@ class CoverImage < ActiveRecord::Base
 
   def offset_main_percent
     return 0 unless self.offset
-    # raise self.offset.inspect
-    (self.offset * 100).to_i
+    (self.offset.abs * 100).to_i
   end
 end
