@@ -16,7 +16,7 @@
     - else
       %a.btn.btn-primary.btn-large.disabled Course complete
 - else
-  %a.btn.btn-primary.btn-large{href: landing_page_path(@course.url)}
+  %a.btn.btn-primary.btn-large{href: landing_page_path(@course.url), style: course_background_style}
     %i.icon-chevron-left
     Back to course
 

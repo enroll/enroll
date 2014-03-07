@@ -6,4 +6,11 @@ module StylingHelper
   def course_background_style
     "background-color: #{@course.color}"
   end
+
+  def logo_style(logo)
+    if !logo.blank?
+      "background-image: url(#{logo.url(:logo)}); background-size: auto;"  
+    end
+    
+  end
 end

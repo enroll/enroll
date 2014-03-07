@@ -47,8 +47,7 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :schedules
 
   has_attached_file :logo,
-                    styles: {logo: "320x40>"},
-                    default_url: "/images/:style/missing-logo.png",
+                    styles: {logo: "320x30>"},
                     storage: 's3',
                     s3_credentials: Enroll.s3_config_for('logos'),
                     url: ':s3_domain_url',
