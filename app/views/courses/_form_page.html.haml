@@ -64,7 +64,7 @@
   )
   new LogoUploader(
     el: '.logo-upload',
-    updatePath: #{course_path(@course).to_json},
+    deletePath: #{destroy_logo_dashboard_course_path(@course).to_json},
     object: #{@course.to_json},
     form: 'form.course-form',
     field: '#course_logo',

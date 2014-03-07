@@ -256,7 +256,7 @@ class Course < ActiveRecord::Base
   end
 
   def logo_json
-    return nil unless logo
+    return nil unless logo_file_name
     logo.url(:logo)
   end
 

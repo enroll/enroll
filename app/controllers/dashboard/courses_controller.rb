@@ -1,6 +1,6 @@
 class Dashboard::CoursesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share, :review, :publish]
+  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share, :review, :publish, :destroy_logo]
 
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
@@ -38,6 +38,12 @@ class Dashboard::CoursesController < ApplicationController
       flash[:error] = "Cannot publish course with date in the past"
     end
     redirect_to dashboard_course_path(@course, published: 1)
+  end
+
+  def destroy_logo
+    @course.logo = nil
+    @course.save!
+    render nothing: true
   end
 
   protected

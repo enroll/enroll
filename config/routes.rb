@@ -23,6 +23,7 @@ Enroll::Application.routes.draw do
         get :share
         get :review
         get :publish
+        post :destroy_logo
       end
       resources :students, only: [:index]
       resources :resources

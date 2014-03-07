@@ -45,8 +45,6 @@ class window.LogoUploader extends Spine.Controller
       @$deleteButton.show()
     else
       @$deleteButton.hide()
-    
-    
 
   uploadAction: (e) =>
     e.preventDefault()
@@ -67,8 +65,7 @@ class window.LogoUploader extends Spine.Controller
 
     # Reset the upload field to prevent
     # uploading twice
-    @$field.replaceWith(@$field = @$field.clone(true))
-    @$field.change(@uploadAction)
+    @resetField()
 
   didFail: =>
     @isUploading = false
@@ -82,3 +79,10 @@ class window.LogoUploader extends Spine.Controller
     e.preventDefault()
     @object = null
     @update()
+
+    $.post(@deletePath)
+    @resetField()
+
+  resetField: ->
+    @$field.replaceWith(@$field = @$field.clone(true))
+    @$field.change(@uploadAction)
