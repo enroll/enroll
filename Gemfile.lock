@@ -71,6 +71,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    commonjs (0.2.7)
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
     devise (3.0.4)
@@ -137,8 +138,11 @@ GEM
     kitty (0.0.4)
     launchy (2.4.2)
       addressable (~> 2.3)
+    less (2.5.0)
+      commonjs (~> 0.2.7)
     letter_opener (1.2.0)
       launchy (~> 2.2)
+    libv8 (3.16.14.3)
     listen (2.4.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -215,6 +219,7 @@ GEM
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
+    ref (1.0.5)
     resque (1.24.1)
       mono_logger (~> 1.0)
       multi_json (~> 1.0)
@@ -294,6 +299,9 @@ GEM
       railties (>= 3.2.5, < 5)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -374,6 +382,7 @@ DEPENDENCIES
   jbuilder (~> 1.0.1)
   jquery-rails
   kitty
+  less
   letter_opener
   mail_gate (= 1.1.2)
   mixpanel
@@ -398,6 +407,7 @@ DEPENDENCIES
   stringex
   stripe (= 1.8.3)
   teaspoon
+  therubyracer
   tilt-jade
   timecop
   tinder (= 1.9.3)

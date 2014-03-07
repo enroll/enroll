@@ -24,6 +24,12 @@
             Delete
 
     .form-group.wide
+      = form.label :color, 'Color scheme'
+      .controls
+        = visual_select form.object, :color, form: form, collection: Course::COLORS, class: 'color-select' do |color|
+          .color{style: "background-color: #{color[:id]}"}
+
+    .form-group.wide
       = form.label :description, 'Page content'
       .controls
         = form.input_field :description, label: 'Page', class: 'large'

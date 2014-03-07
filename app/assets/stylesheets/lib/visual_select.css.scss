@@ -1,0 +1,22 @@
+@import '_mixins';
+@import 'bootstrap/mixins';
+@import '_colors';
+
+.choices {
+  @include clearfix();
+
+  $color: #333;
+
+  .choice {
+    border: 1px solid lighten($color, 60%);
+    padding: 3px;
+    @include border-radius(3px);
+    float: left;
+    margin-right: 10px;
+  }
+
+  .choice.selected {
+    // background: lighten($primary1, 20%);
+    border: 1px solid $color;
+  }
+}
