@@ -15,3 +15,8 @@ window.SPINNER_WELCOME = $.extend(window.SPINNER_WELCOME, SPINNER_DEFAULT, {
   width: 4
   trail: 25
 })
+
+window.SPINNER_SMALL = $.extend(window.SPINNER_SMALL, SPINNER_DEFAULT, {
+  radius: 6
+  length: 7  
+})

@@ -29,8 +29,11 @@
         = visual_select form.object, :color, form: form, collection: Course::COLORS, class: 'color-select' do |color|
           .color{style: "background-color: #{color[:id]}"}
 
-    .form-section
+    .form-section.logo-upload
       = form.input :logo, label: 'Logo'
+      %a.delete{href: '#'}
+        %i.icon-circled-cross
+        Delete
 
     .form-group.wide
       = form.label :description, 'Page content'
@@ -58,4 +61,12 @@
     currentOffset: #{@course.cover_images.last.try(:offset_admin_px).to_json},
     defaultImage: #{asset_url('admin-cover-default.jpg').to_json},
     adminImageId: #{@course.cover_images.last.try(:id).to_json}
+  )
+  new LogoUploader(
+    el: '.logo-upload',
+    updatePath: #{course_path(@course).to_json},
+    object: #{@course.to_json},
+    form: 'form.course-form',
+    field: '#course_logo',
+    previewAttribute: 'logo'
   )

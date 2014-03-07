@@ -43,12 +43,19 @@ class Dashboard::CoursesController < ApplicationController
   protected
 
   def create_update
+    # raise course_params.inspect
     if @course.update_attributes(course_params)
-      if next_step
-        redirect_to_next_step
-      else
-        redirect_to review_dashboard_course_path(@course)
+      respond_to do |format|
+        format.html {
+          if next_step
+            redirect_to_next_step
+          else
+            redirect_to review_dashboard_course_path(@course)
+          end    
+        }
+        format.json { render json: @course }
       end
+      
     else
       render :edit
     end

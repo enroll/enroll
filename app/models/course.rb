@@ -54,7 +54,6 @@ class Course < ActiveRecord::Base
                     url: ':s3_domain_url',
                     path: "/:class/:id_:basename.:style.:extension"
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
-  raise Enroll.s3_config_for('logos').inspect
 
   def self.fail_campaigns
     # This marks campaigns that haven't reached the minimum number of seats by
@@ -251,8 +250,14 @@ class Course < ActiveRecord::Base
       name: name,
       location: location || {},
       date: starts_at.try(:strftime, "%B %e, %Y"),
-      description: description
+      description: description,
+      logo: logo_json
     }
+  end
+
+  def logo_json
+    return nil unless logo
+    logo.url(:logo)
   end
 
   def instructor_paid?
