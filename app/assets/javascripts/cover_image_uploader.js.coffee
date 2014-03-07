@@ -10,9 +10,10 @@ class window.CoverImageUploader extends Spine.Controller
     'click a.reposition-button': 'repositionAction'
 
   elements:
+    '.cover-image': '$coverImage'
     '.spinner': '$spinner'
-    '.default-buttons': '$defaultButtons'
-    '.dragging-buttons': '$draggingButtons'
+    '.add-cover-button, .reposition-button, .delete-button': '$defaultButtons'
+    '.save-dragging': '$draggingButtons'
     '#course_cover_image_offset_admin_px': '$offsetInput'
     'a.delete-button': '$deleteButton'
     'a.reposition-button': '$repositionButton'
@@ -26,8 +27,6 @@ class window.CoverImageUploader extends Spine.Controller
     @on 'state:change', ->
       if @state == READY
         @$defaultButtons.show()
-      else
-        @$defaultButtons.hide()
 
       if @state == UPLOADING
         @$spinner.spin(SPINNER_WELCOME).show()
@@ -36,12 +35,12 @@ class window.CoverImageUploader extends Spine.Controller
 
       if @state == DRAGGING
         @$draggingButtons.show()
-        @$el.addClass('dragging')
-        @$el.data('draggingDisabled', false);
-        @$el.backgroundDraggable({axis: 'y', bound: true})
+        @$coverImage.addClass('dragging')
+        @$coverImage.data('draggingDisabled', false);
+        @$coverImage.backgroundDraggable({axis: 'y', bound: true})
       else
         @$draggingButtons.hide()
-        @$el.removeClass('dragging')
+        @$coverImage.removeClass('dragging')
 
     @on 'adminImageId:change', ->
       if @adminImageId
@@ -51,10 +50,9 @@ class window.CoverImageUploader extends Spine.Controller
         @$deleteButton.hide()
         @$repositionButton.hide()
 
-    @trigger('adminImageId:change')
-
     @state = READY
     @trigger('state:change')
+    @trigger('adminImageId:change')
     
 
   uploadAction: (ev) ->
@@ -65,7 +63,7 @@ class window.CoverImageUploader extends Spine.Controller
     @state = UPLOADING
     @trigger('state:change')
 
-    $form = @$el.parents('form:first')
+    $form = @$coverImage.parents('form:first')
     methodInput = $form.find('input[name=_method]')
     methodInput.detach()
 
@@ -87,7 +85,7 @@ class window.CoverImageUploader extends Spine.Controller
   saveAction: (e) ->
     e.preventDefault()
 
-    pos = @$el.css('background-position').match(/(-?\d+).*?\s(-?\d+)/) || []
+    pos = @$coverImage.css('background-position').match(/(-?\d+).*?\s(-?\d+)/) || []
     top = parseInt(pos[2])
 
     data = "cover_image[offset_admin_px]=#{top}"
@@ -97,18 +95,18 @@ class window.CoverImageUploader extends Spine.Controller
 
     @state = READY
     @trigger('state:change')
-    @$el.data('draggingDisabled', true)
+    @$coverImage.data('draggingDisabled', true)
 
   setAdminImage: (image) ->
     return unless image
     @adminImagePath = image
-    @$el.css('background-image', "url(#{image})")
-    @$el.css('background-position', '0 0')
-    @$el.trigger('backgroundImageChanged')
+    @$coverImage.css('background-image', "url(#{image})")
+    @$coverImage.css('background-position', '0 0')
+    @$coverImage.trigger('backgroundImageChanged')
 
   setOffset: (offset) ->
     return unless offset
-    @$el.css('background-position', "0 #{offset}px")
+    @$coverImage.css('background-position', "0 #{offset}px")
 
   hideSpinner: ->
     @$defaultButtons.show()

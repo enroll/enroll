@@ -1,4 +1,6 @@
 .landing-page-fields
+  .pull-right.actions
+    %a.preview.btn.btn-primary.preview-button{:href => '#'} Preview
   %h2 Course page
 
   .form-section
@@ -6,27 +8,20 @@
     /   
 
     = form.label :cover_image, 'Cover image'
-    .cover-image.tc
+    .cover-image-wrapper
       = form.simple_fields_for :cover_image do |f|
-        %div.spinner
-        .default-buttons
-          .buttons
+        .cover-image.tc 
+          %div.spinner
+              
+        .cover-image-buttons
+          %a.cover-button.primary.save-dragging{:href => '#'} Save
+          .upload-button-wrapper
             = f.input_field :image, as: :file
-            %a.btn.btn-default.inverted.cover-button.add-cover-button Change cover image
-          .buttons
-            %a.preview.btn.btn-primary.small.preview-button{:href => '#'} Preview
-        .dragging-buttons
-          .buttons
-            %a.btn.btn-default.inverted.cover-button Drag image to position
-          .buttons
-            %a.btn.btn-primary.small.preview-button.save-dragging{:href => '#'} Save
-        .text-buttons
-          %a.delete-button{href: '#'}
-            %i.icon-circled-cross
-            Delete cover image
-          %a.reposition-button{href: '#'}
-            %i.icon-arrow-combo
+            %a.cover-button.add-cover-button Change
+          %a.cover-button.reposition-button{href: '#'}
             Reposition
+          %a.cover-button.delete-button{href: '#'}
+            Delete
 
     .form-group.wide
       = form.label :description, 'Page content'
@@ -47,7 +42,7 @@
     previewPath: #{preview_course_path(@course).to_json}
   )
   new CoverImageUploader(
-    el: '.cover-image',
+    el: '.cover-image-wrapper',
     imagesPath: '#{dashboard_cover_images_path(course_id: @course.id)}',
     updatePath: #{dashboard_cover_image_path(':id').to_json},
     currentImage: #{@course.cover_image(:admin).to_json},
