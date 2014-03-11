@@ -3,6 +3,7 @@ ESCAPE_KEY = 27
 class window.LandingPagePreview extends Spine.Controller
   events:
     'click a.preview': 'previewAction'
+    'click .color-select .choice': 'didChangeColor'
 
   elements:
     '#course_description': '$description'
@@ -83,3 +84,10 @@ class window.LandingPagePreview extends Spine.Controller
     setTimeout =>
       @$wrapper.hide()
     , 300
+
+  # Changing the color
+
+  didChangeColor: ->
+    $form = @$el.parents('form:first')
+
+    $form.ajaxSubmit(dataType: 'json')
