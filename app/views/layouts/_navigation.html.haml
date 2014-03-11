@@ -1,16 +1,10 @@
 %nav.navbar.navbar-static-top.navbar-inverse
   .navbar-inner
     .navbar-header
-      %button.navbar-toggle{type:"button", "data-toggle" => "collapse", "data-target" => ".navbar-ex1-collapse"}
-        %span.sr-only
-          Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
       = link_to "enroll", @logo ? '' : root_path, class: 'navbar-brand', style: logo_style(@logo)
 
     - if !@preview
-      .collapse.navbar-collapse.navbar-ex1-collapse
+      .clearfix
         - if user_signed_in?
           /= render 'layouts/course_chooser'
           = render 'layouts/settings_menu'

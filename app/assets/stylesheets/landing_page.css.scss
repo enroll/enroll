@@ -14,7 +14,7 @@ body.landing-page, div.landing-page-preview {
     background: #fff;
     border-bottom: 1px solid #dee1e4;
     margin-bottom: 20px;
-    height: 65px;
+    min-height: 65px;
     padding-top: 10px;
 
     a.navbar-brand {
@@ -186,6 +186,10 @@ body.landing-page, div.landing-page-preview {
   padding: 10px 0;
   cursor: pointer;
   margin-top: -5px;
+
+  @media (max-width: $screen-sm-min) {
+    display: none;
+  }
 
   &.exit {
     background: $color1;
