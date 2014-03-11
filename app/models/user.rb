@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def display_title
-    email
+    name || email
   end
 
   def reservation_for_course(course)
