@@ -1,0 +1,14 @@
+.course-header
+  .course-title{style: course_text_style}
+    %h2
+      %a{href: landing_page_path(@course.url), style: course_text_style}= @course.name
+    .row
+      .col-sm-6
+        %em.location
+          %i.icon-map
+          = @course.location
+      .col-sm-6
+        %em.date
+          %i.icon-calendar
+          = long_date(@course.starts_at)
+    / %h3= @course.tagline

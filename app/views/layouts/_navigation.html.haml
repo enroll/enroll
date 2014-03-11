@@ -7,7 +7,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "enroll", (defined?(logo) && !logo.blank?) ? '' : root_path, class: 'navbar-brand', style: logo_style(defined?(logo) ? logo : nil)
+      = link_to "enroll", @logo ? '' : root_path, class: 'navbar-brand', style: logo_style(@logo)
 
     - if !@preview
       .collapse.navbar-collapse.navbar-ex1-collapse

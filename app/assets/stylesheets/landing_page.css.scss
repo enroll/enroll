@@ -56,12 +56,13 @@ body.landing-page, div.landing-page-preview {
     width: 100%;
     padding-top: 20px;
     color: $course-header;
+    margin-bottom: 40px;
+    margin-top: 10px;
 
     h2 {
       text-align: center;
       font-size: 50px;
       color: $course-header;
-      @include font1();
       font-weight: 100;
 
       a {
