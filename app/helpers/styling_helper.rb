@@ -9,7 +9,7 @@ module StylingHelper
 
   def logo_style(logo)
     if !logo.blank?
-      "background-image: url(#{logo.url(:logo)}); background-size: auto; background-position: 0 0;"  
+      "background-image: url(#{logo.url(:logo)}); background-size: contain; background-position: 0 0;"  
     end
     
   end
