@@ -60,6 +60,8 @@ class window.LandingPagePreview extends Spine.Controller
       @$exitButton.fadeIn(250)
     , 10
 
+    $(document.body).css({overflow: 'hidden'})
+
     @updatePreview()
 
   renderLoading: ->
@@ -80,6 +82,8 @@ class window.LandingPagePreview extends Spine.Controller
 
     @$previewContent.addClass('offscreen')
     @$exitButton.fadeOut(50)
+
+    $(document.body).css({overflow: 'auto'})
 
     setTimeout =>
       @$wrapper.hide()

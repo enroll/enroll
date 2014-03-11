@@ -10,8 +10,7 @@
     Go to Dashboard
 
 .container.landing-page
-  - if !@preview
-    = render 'layouts/navigation', logo: @course.logo
+  = render 'layouts/navigation', logo: @course.logo, disable_user: true
 
   .course-content.row
     - if @course.draft?
