@@ -9,16 +9,23 @@
         %span.icon-bar
       = link_to "enroll", root_path, class: 'navbar-brand', style: logo_style(defined?(logo) ? logo : nil)
 
-    - if !defined?(disable_user)
+    - if !@preview
       .collapse.navbar-collapse.navbar-ex1-collapse
         - if user_signed_in?
           /= render 'layouts/course_chooser'
           = render 'layouts/settings_menu'
         - else
-          %ul#sign-up-or-in.nav.navbar-nav
-            %li
-              %a.navbar-btn.btn-log-in{href: new_user_session_path}
-                Log In
-            %li
-              %a.navbar-btn.btn-sign-up{href: new_user_registration_path}
-                Sign Up
+          - if defined?(logo)
+            %ul#sign-up-or-in.nav.navbar-nav
+              %li
+                %a.navbar-btn.btn-log-in{href: new_user_session_path}
+                  Using Enroll?
+                  %u Log In
+          - else
+            %ul#sign-up-or-in.nav.navbar-nav
+              %li
+                %a.navbar-btn.btn-log-in{href: new_user_session_path}
+                  Log In
+              %li
+                %a.navbar-btn.btn-sign-up{href: new_user_registration_path}
+                  Sign Up
