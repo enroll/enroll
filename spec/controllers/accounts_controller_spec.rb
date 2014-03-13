@@ -36,11 +36,15 @@ describe AccountsController do
     context 'when successful' do
       before(:each) do
         sign_in user
-        put :update, user: { email: 'updatedemail@example.com' }
+        put :update, user: { email: 'updatedemail@example.com', name: 'Johnny Boy' }
       end
 
-      it 'updates the current user settings' do
+      it 'updates the current user email' do
         user.reload.email.should == 'updatedemail@example.com'
+      end
+
+      it 'updates the current user name' do
+        user.reload.name.should == 'Johnny Boy'
       end
 
       it 'redirects to the edit page' do
