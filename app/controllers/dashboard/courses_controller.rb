@@ -52,6 +52,7 @@ class Dashboard::CoursesController < ApplicationController
     else
       render :edit
     end
+    mixpanel_track_event current_step_mixpanel_event
   end
 
   def redirect_to_next_step

@@ -2,15 +2,16 @@ module CoursesEditingConcern
   extend ActiveSupport::Concern
 
   STEPS = [
-    {id: 'details'},
-    {id: 'dates'},
-    {id: 'location'},
-    {id: 'pricing'},
-    {id: 'page'}
+    {id: 'details', mixpanel_event: 'Edit Course Details'},
+    {id: 'dates', mixpanel_event: 'Edit Course Dates'},
+    {id: 'location', mixpanel_event: 'Edit Course Location'},
+    {id: 'pricing', mixpanel_event: 'Edit Course Pricing'},
+    {id: 'page', mixpanel_event: 'Edit Course Landing Page'}
   ]
 
   included do
     helper_method :current_step
+    helper_method :current_step_mixpanel_event
     helper_method :next_step
   end
 
@@ -27,7 +28,10 @@ module CoursesEditingConcern
     step
   end
 
-  
+  def current_step_mixpanel_event
+    current_step[:mixpanel_event]
+  end
+
   def next_step
     index = @steps.index(current_step)
     @steps[index + 1]
