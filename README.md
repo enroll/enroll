@@ -9,10 +9,10 @@ Enroll
 
 ### Documentation
 
-- [Overview](https://github.com/jessmartin/workshop-platform/blob/master/docs/overview.md)
-- [Product Story](https://github.com/jessmartin/workshop-platform/blob/master/docs/features.md)
-- [Competition](https://github.com/jessmartin/workshop-platform/blob/master/docs/competition.md)
-- [Potential Customers](https://github.com/jessmartin/workshop-platform/blob/master/docs/customers.md)
-- [User Stories](https://trello.com/board/workshop-platform/51b06b4d6024b43523001cf2) (Trello)
-- [Deployment and CI](https://github.com/jessmartin/workshop-platform/blob/master/docs/deployment.md)
-- [Paying Instructors](https://github.com/jessmartin/workshop-platform/blob/master/docs/paying_instructors.md)
+- [Overview](https://github.com/enroll/enroll/blob/master/docs/overview.md)
+- [Product Story](https://github.com/enroll/enroll/blob/master/docs/features.md)
+- [Competition](https://github.com/enroll/enroll/blob/master/docs/competition.md)
+- [Potential Customers](https://github.com/enroll/enroll/blob/master/docs/customers.md)
+- [User Stories](https://trello.com/b/vKPGr2jm/enroll-io-wip) (Trello)
+- [Deployment and CI](https://github.com/enroll/enroll/blob/master/docs/deployment.md)
+- [Paying Instructors](https://github.com/enroll/enroll/blob/master/docs/paying_instructors.md)
