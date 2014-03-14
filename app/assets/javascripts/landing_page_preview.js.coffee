@@ -7,6 +7,7 @@ class window.LandingPagePreview extends Spine.Controller
 
   elements:
     '#course_description': '$description'
+    '.actions-spinner': '$spinner'
 
   constructor: ->
     super
@@ -35,7 +36,6 @@ class window.LandingPagePreview extends Spine.Controller
 
       @$wrapper.append(@$previewContent)
 
-    @renderLoading()
     @$previewContent
 
   buildExitButton: ->
@@ -64,15 +64,12 @@ class window.LandingPagePreview extends Spine.Controller
 
     @updatePreview()
 
-  renderLoading: ->
-    # Renders template that contains "loading text" to entertain user while we
-    # wait for Ajax to finish.
-    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
-
   updatePreview: ->
     # Load from server at this point
     data = @$el.parents('form:first').find('textarea, input[type=text]').serialize()
+    @$spinner.spin(SPINNER_XS).show()
     $.post @previewPath, data, (res) =>
+      @$spinner.hide()
       @$previewContent.html(res.preview)
 
   # Cancelling

@@ -89,6 +89,13 @@
 
 .actions {
   margin-top: -10px;
+  position: relative;
+
+  .actions-spinner {
+    position: absolute;
+    left: -20px;
+    top: 50%;
+  }
 }
 
 .btn-large {

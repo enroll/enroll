@@ -20,3 +20,9 @@ window.SPINNER_SMALL = $.extend(window.SPINNER_SMALL, SPINNER_DEFAULT, {
   radius: 6
   length: 7  
 })
+
+window.SPINNER_XS = $.extend(window.SPINNER_XS, SPINNER_DEFAULT, {
+  radius: 4
+  length: 5  
+  lines: 11
+})
