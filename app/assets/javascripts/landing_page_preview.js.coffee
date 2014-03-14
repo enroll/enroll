@@ -54,14 +54,6 @@ class window.LandingPagePreview extends Spine.Controller
   previewAction: ->
     @isActive = true
 
-    @$wrapper.show()
-    setTimeout =>
-      @$previewContent.removeClass('offscreen')
-      @$exitButton.fadeIn(250)
-    , 10
-
-    $(document.body).css({overflow: 'hidden'})
-
     @updatePreview()
 
   updatePreview: ->
@@ -70,6 +62,13 @@ class window.LandingPagePreview extends Spine.Controller
     @$spinner.spin(SPINNER_XS).show()
     $.post @previewPath, data, (res) =>
       @$spinner.hide()
+      @$wrapper.show()
+      setTimeout =>
+        @$previewContent.removeClass('offscreen')
+        @$exitButton.fadeIn(250)
+      , 10
+
+      $(document.body).css({overflow: 'hidden'})
       @$previewContent.html(res.preview)
 
   # Cancelling
@@ -80,11 +79,10 @@ class window.LandingPagePreview extends Spine.Controller
     @$previewContent.addClass('offscreen')
     @$exitButton.fadeOut(50)
 
-    $(document.body).css({overflow: 'auto'})
-
     setTimeout =>
       @$wrapper.hide()
-    , 300
+      $(document.body).css({overflow: 'auto'})
+    , 550
 
   # Changing the color
 

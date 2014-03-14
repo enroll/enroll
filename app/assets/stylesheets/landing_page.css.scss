@@ -257,7 +257,7 @@ html {
 html.cssanimations.csstransforms {
   .viewport {
     &.preview {
-      @include transition-transform(0.25s);
+      @include transition-transform(0.5s);
       @include translate(0, 45px);
       display: block;
       &.offscreen {
