@@ -1,4 +1,5 @@
 @import '_colors';
+@import '_mixins';
 @import 'bootstrap/mixins';
 
 .new-course {
@@ -103,4 +104,113 @@ form.step-pricing, form.step-page {
   strong {
 
   }
+}
+
+// Cover image
+
+.landing-page-fields .cover-image {
+  max-width: 565px;
+  width: 565px;
+  height: 121px;
+  @include retina('admin-cover-default', 'jpg', 565px, auto);
+  background-size: cover;
+  margin-bottom: 0;
+  padding-top: 25px;
+  position: relative;
+
+  &.dragging {
+    cursor: move;
+  }
+
+  .buttons {
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .cover-button {
+    background: rgba(255, 255, 255, 0.8);
+
+    &:hover {
+      color: #000;
+    }
+  }
+
+  .preview-button {
+    border: 1px solid #fff;
+  }
+
+  .spinner {
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  input#course_cover_image_image {
+    position: absolute;
+    opacity: 0;
+    width: 200px;
+    left: 50%;
+    margin-left: -100px;
+  }
+
+  div.text-buttons {
+    text-shadow: 0 1px 0 #000;
+    text-align: right;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.landing-page-fields .cover-image-buttons {
+  max-width: 565px;
+  width: 565px;
+
+  background: #e8ebef;
+  margin-top: 0;
+  margin-bottom: 20px;
+
+  .upload-button-wrapper {
+    display: inline-block;
+    position: relative;
+
+    input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: 7px 15px 7px 15px;
+    border-right: 1px solid #fff;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 0 #fff;
+
+    &.primary {
+      background: $primary1;
+      color: #fff;
+      text-shadow: none;
+    }
+  }
+}
+
+.landing-page-fields .color-select .color {
+  width: 25px;
+  height: 25px;
+}
+
+.logo-upload .spinner {
+  margin-left: 30px;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  padding-top: 10px;
 }

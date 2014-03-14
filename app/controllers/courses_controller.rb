@@ -22,7 +22,10 @@ class CoursesController < ApplicationController
   def preview
     @course.attributes = course_params
     @preview = true
-    render 'show', layout: false
+    render json: {
+      preview: render_to_string('show', layout: false),
+      cover_image: @course.cover_image_object
+    }
   end
 
   protected

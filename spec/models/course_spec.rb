@@ -667,4 +667,21 @@ describe Course do
       course.reload.published?.should == true
     end
   end
+
+  describe "#cover_image" do 
+    it "returns nil if there is no cover image" do
+      course.cover_images.to_a.should == []
+      course.cover_image(:admin).should be_nil
+    end
+
+    it "returns url for image" do
+      image = create(:cover_image, course: course)
+      image.image.should_not be_nil
+      course.cover_image(:admin).tap { |url|
+        url.should_not be_nil
+        url.should be_a(String)
+        url.should include('enroll-test-cover-images.s3.amazonaws.com')
+      }
+    end
+  end
 end

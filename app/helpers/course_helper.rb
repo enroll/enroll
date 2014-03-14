@@ -32,7 +32,7 @@ module CourseHelper
       klasses += ' disabled'
       path = '#'
     end
-    link_to "Enroll - #{course_price_text(course)}", path, :class => klasses
+    link_to "Enroll - #{course_price_text(course)}", path, :class => klasses, :style => options[:style]
   end
 
   def course_price_text(course)

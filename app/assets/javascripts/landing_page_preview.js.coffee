@@ -3,9 +3,11 @@ ESCAPE_KEY = 27
 class window.LandingPagePreview extends Spine.Controller
   events:
     'click a.preview': 'previewAction'
+    'click .color-select .choice': 'didChangeColor'
 
   elements:
     '#course_description': '$description'
+    '.actions-spinner': '$spinner'
 
   constructor: ->
     super
@@ -34,7 +36,6 @@ class window.LandingPagePreview extends Spine.Controller
 
       @$wrapper.append(@$previewContent)
 
-    @renderLoading()
     @$previewContent
 
   buildExitButton: ->
@@ -53,24 +54,22 @@ class window.LandingPagePreview extends Spine.Controller
   previewAction: ->
     @isActive = true
 
-    @$wrapper.show()
-    setTimeout =>
-      @$previewContent.removeClass('offscreen')
-      @$exitButton.fadeIn(250)
-    , 10
-
     @updatePreview()
-
-  renderLoading: ->
-    # Renders template that contains "loading text" to entertain user while we
-    # wait for Ajax to finish.
-    @$previewContent.html(JST['templates/landing_page_preview'](course: @course))
 
   updatePreview: ->
     # Load from server at this point
     data = @$el.parents('form:first').find('textarea, input[type=text]').serialize()
+    @$spinner.spin(SPINNER_XS).show()
     $.post @previewPath, data, (res) =>
-      @$previewContent.html(res)
+      @$spinner.hide()
+      @$wrapper.show()
+      setTimeout =>
+        @$previewContent.removeClass('offscreen')
+        @$exitButton.fadeIn(250)
+      , 10
+
+      $(document.body).css({overflow: 'hidden'})
+      @$previewContent.html(res.preview)
 
   # Cancelling
 
@@ -82,4 +81,12 @@ class window.LandingPagePreview extends Spine.Controller
 
     setTimeout =>
       @$wrapper.hide()
-    , 300
+      $(document.body).css({overflow: 'auto'})
+    , 550
+
+  # Changing the color
+
+  didChangeColor: ->
+    $form = @$el.parents('form:first')
+
+    $form.ajaxSubmit(dataType: 'json')

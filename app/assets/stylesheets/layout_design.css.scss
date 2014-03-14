@@ -6,20 +6,18 @@
 $padding: 20px;
 $layout-width: 850px;
 
-@mixin body-width($width) {
-  .navbar-inner {
-    max-width: $width;
+body:not(.landing-page) {
+  .navbar-inner, .alert {
+    @media (min-width: $screen-sm-min) {
+      width: $container-sm;
+    }
+    @media (min-width: $screen-md-min) {
+      width: $container-md;
+    }
+    @media (min-width: $screen-lg-min) {
+      width: $container-lg;
+    }
   }
-  .container {
-    max-width: $width;
-  }
-  .alert {
-    max-width: $width;
-  }
-}
-
-body {
-  @include body-width($layout-width);
 }
 
 // Nav Bar
@@ -30,7 +28,7 @@ nav.navbar {
   background-repeat: repeat-x;
   border: none;
   margin-bottom: 0;
-  height: 45px;
+  height: auto;
   min-height: 45px;
   .navbar-inner {
     padding-left: $padding;
@@ -54,6 +52,11 @@ nav.navbar {
         text-decoration: none;
       }
     }
+
+    img.img-rounded {
+      @include border-radius(50%);
+    }
+
     // Dropdowns in the navbar
     a.user-dropdown {
       padding: 0;
@@ -81,10 +84,22 @@ nav.navbar {
       background-position: 0 6px;
       background-repeat: no-repeat;
       display: block;
-      width: 100px;
+      width: 250px;
       height: 30px;
       margin-top: 10px;
       text-indent: -9999px;
+    }
+  }
+
+  @media (max-width: $screen-sm-min) {
+    a.navbar-brand {
+      width: 100% !important;
+      background-position: center center !important;
+    }
+
+    ul.navbar-nav {
+      float: none !important;
+      text-align: center;
     }
   }
 }
@@ -94,6 +109,7 @@ nav.navbar {
 
 ul.navbar-nav {
     float: right;
+    margin-top: 5px;
 }
 
 .navbar-collapse.in, .navbar-collapse.collapsing {

@@ -1,23 +1,25 @@
 %nav.navbar.navbar-static-top.navbar-inverse
   .navbar-inner
     .navbar-header
-      %button.navbar-toggle{type:"button", "data-toggle" => "collapse", "data-target" => ".navbar-ex1-collapse"}
-        %span.sr-only
-          Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to "enroll", root_path, :class => 'navbar-brand'
+      = link_to "enroll", @logo ? '' : root_path, class: 'navbar-brand', style: logo_style(@logo)
 
-    .collapse.navbar-collapse.navbar-ex1-collapse
-      - if user_signed_in?
-        /= render 'layouts/course_chooser'
-        = render 'layouts/settings_menu'
-      - else
-        %ul#sign-up-or-in.nav.navbar-nav
-          %li
-            %a.navbar-btn.btn-log-in{href: new_user_session_path}
-              Log In
-          %li
-            %a.navbar-btn.btn-sign-up{href: new_user_registration_path}
-              Sign Up
+    - if !@preview
+      .clearfix
+        - if user_signed_in?
+          /= render 'layouts/course_chooser'
+          = render 'layouts/settings_menu'
+        - else
+          - if @logo
+            %ul#sign-up-or-in.nav.navbar-nav
+              %li
+                %a.navbar-btn.btn-log-in{href: new_user_session_path}
+                  Using Enroll?
+                  %u Log In
+          - else
+            %ul#sign-up-or-in.nav.navbar-nav
+              %li
+                %a.navbar-btn.btn-log-in{href: new_user_session_path}
+                  Log In
+              %li
+                %a.navbar-btn.btn-sign-up{href: new_user_registration_path}
+                  Sign Up

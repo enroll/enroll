@@ -1,7 +1,7 @@
 !!!
 %html{lang: "en"}
   = render 'layouts/head'
-  %body{class: body_classes}
+  %body{class: body_classes, style: yield(:custom_body_style).strip}
     - if content_for?(:navigation)
       = yield(:navigation)
     - else

@@ -1,5 +1,10 @@
 class Course < ActiveRecord::Base
   DEFAULT_DESCRIPTION = [["About the course", "Basic details here..."], ["Prerequisites", "Things students should know..."], ["Syllabus", "Roadmap of the course..."]].map { |t| "# #{t[0]}\n\n#{t[1]}"}.join("\n\n")
+  COLORS = [
+    {id: '#4191ff', label: 'Blue'},
+    {id: '#f03328', label: 'Red'},
+    {id: '#28a60b', label: 'Green'}
+  ]
 
   acts_as_url :name
 
@@ -8,6 +13,7 @@ class Course < ActiveRecord::Base
   has_many :events
   has_many :schedules, class_name: 'CourseSchedule'
   has_many :resources
+  has_many :cover_images
 
   belongs_to :location
   belongs_to :instructor, class_name: 'User'
@@ -30,6 +36,7 @@ class Course < ActiveRecord::Base
   after_save :set_defaults
   after_create :send_course_created_notification
   before_save :revert_locked_fields_if_published
+  before_save :set_default_color
 
   delegate :instructor_payout_amount, to: CashRegister
 
@@ -38,6 +45,14 @@ class Course < ActiveRecord::Base
   attr_accessor :pricing
 
   accepts_nested_attributes_for :schedules
+
+  has_attached_file :logo,
+                    styles: {logo: "320x30>"},
+                    storage: 's3',
+                    s3_credentials: Enroll.s3_config_for('logos'),
+                    url: ':s3_domain_url',
+                    path: "/:class/:id_:basename.:style.:extension"
+  validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
   def self.fail_campaigns
     # This marks campaigns that haven't reached the minimum number of seats by
@@ -234,8 +249,14 @@ class Course < ActiveRecord::Base
       name: name,
       location: location || {},
       date: starts_at.try(:strftime, "%B %e, %Y"),
-      description: description
+      description: description,
+      logo: logo_json
     }
+  end
+
+  def logo_json
+    return nil unless logo_file_name
+    logo.url(:logo)
   end
 
   def instructor_paid?
@@ -317,6 +338,19 @@ class Course < ActiveRecord::Base
     object
   end
 
+  def cover_image(size)
+    return nil if cover_images.count == 0
+    cover_image_object.image.url(size)
+  end
+
+  def cover_image_object
+    cover_images.order('created_at desc').first
+  end
+
+  def cover_image?
+    !!cover_image_object
+  end
+
   private
 
   # temporary
@@ -331,6 +365,12 @@ class Course < ActiveRecord::Base
       self.starts_at = self.starts_at_was
       self.ends_at = self.ends_at_was
       self.url = self.url_was
+    end
+  end
+
+  def set_default_color
+    if !self.color
+      self.color = COLORS[0][:id]
     end
   end
 

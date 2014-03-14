@@ -21,6 +21,10 @@
   border: none;
   font-weight: 400;
 
+  &:hover {
+    background: darken($primary1, 5%);
+  }
+
   &.inverted {
     background: transparent;
     border: 1px solid $primary1;
@@ -85,6 +89,13 @@
 
 .actions {
   margin-top: -10px;
+  position: relative;
+
+  .actions-spinner {
+    position: absolute;
+    left: -20px;
+    top: 50%;
+  }
 }
 
 .btn-large {

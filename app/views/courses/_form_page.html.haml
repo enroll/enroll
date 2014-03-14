@@ -1,10 +1,43 @@
 .landing-page-fields
+  .pull-right.actions
+    .actions-spinner
+    %a.preview.btn.btn-primary.preview-button{:href => '#'} Preview
+  %h2 Course page
+
   .form-section
-    .pull-right.actions.h1
-      %a.preview.btn.btn-success{:href => '#'} Preview
+    / .pull-right.actions.h1
+    /   
+
+    = form.label :cover_image, 'Cover image'
+    .cover-image-wrapper
+      = form.simple_fields_for :cover_image do |f|
+        .cover-image.tc 
+          %div.spinner
+              
+        .cover-image-buttons
+          %a.cover-button.primary.save-dragging{:href => '#'} Save
+          .upload-button-wrapper
+            = f.input_field :image, as: :file
+            %a.cover-button.add-cover-button Change
+          %a.cover-button.reposition-button{href: '#'}
+            Reposition
+          %a.cover-button.delete-button{href: '#'}
+            Delete
 
     .form-group.wide
-      %h2 Page content
+      = form.label :color, 'Color scheme'
+      .controls
+        = visual_select form.object, :color, form: form, collection: Course::COLORS, class: 'color-select' do |color|
+          .color{style: "background-color: #{color[:id]}"}
+
+    .form-section.logo-upload
+      = form.input :logo, label: 'Logo'
+      %a.delete{href: '#'}
+        %i.icon-circled-cross
+        Delete
+
+    .form-group.wide
+      = form.label :description, 'Page content'
       .controls
         = form.input_field :description, label: 'Page', class: 'large'
       %p.help-block
@@ -20,4 +53,21 @@
     el: '.landing-page-fields',
     course: #{@course.to_json},
     previewPath: #{preview_course_path(@course).to_json}
+  )
+  new CoverImageUploader(
+    el: '.cover-image-wrapper',
+    imagesPath: '#{dashboard_cover_images_path(course_id: @course.id)}',
+    updatePath: #{dashboard_cover_image_path(':id').to_json},
+    currentImage: #{@course.cover_image(:admin).to_json},
+    currentOffset: #{@course.cover_images.last.try(:offset_admin_px).to_json},
+    defaultImage: #{asset_url('admin-cover-default.jpg').to_json},
+    adminImageId: #{@course.cover_images.last.try(:id).to_json}
+  )
+  new LogoUploader(
+    el: '.logo-upload',
+    deletePath: #{destroy_logo_dashboard_course_path(@course).to_json},
+    object: #{@course.to_json},
+    form: 'form.course-form',
+    field: '#course_logo',
+    previewAttribute: 'logo'
   )

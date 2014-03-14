@@ -1,6 +1,6 @@
 class Dashboard::CoursesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share, :review, :publish]
+  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share, :review, :publish, :destroy_logo]
 
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
@@ -40,15 +40,28 @@ class Dashboard::CoursesController < ApplicationController
     redirect_to dashboard_course_path(@course, published: 1)
   end
 
+  def destroy_logo
+    @course.logo = nil
+    @course.save!
+    render nothing: true
+  end
+
   protected
 
   def create_update
+    # raise course_params.inspect
     if @course.update_attributes(course_params)
-      if next_step
-        redirect_to_next_step
-      else
-        redirect_to review_dashboard_course_path(@course)
+      respond_to do |format|
+        format.html {
+          if next_step
+            redirect_to_next_step
+          else
+            redirect_to review_dashboard_course_path(@course)
+          end    
+        }
+        format.json { render json: @course }
       end
+      
     else
       render :edit
     end

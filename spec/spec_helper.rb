@@ -23,6 +23,7 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
   c.debug_logger = File.open('log/vcr.log', 'w')
   c.ignore_hosts 'api.mixpanel.com'
+  c.ignore_hosts 'enroll-test-cover-images.s3.amazonaws.com'
 end
 
 RSpec.configure do |config|

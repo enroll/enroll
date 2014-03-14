@@ -6,15 +6,21 @@
     %i.icon-line-graph
     Go to Dashboard
 
-.container.landing-page
-  = render 'courses/course_landing_header'
+- if @preview
+  = render 'layouts/navigation'
 
+= render 'course_landing_header'
+
+.container.landing-page
   .course-content.row
     - if @course.draft?
       - if instructor_logged_in?(@course)
         %a.draft-ribbon{href: dashboard_course_path(@course)}
       - else
         %a.draft-ribbon
+
+    - if @course.cover_image?
+      .course-cover-image{style: cover_image_style(@course)}
 
     .col-sm-8
       %p!= @markdown.render(@course.description || "")

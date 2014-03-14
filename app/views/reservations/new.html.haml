@@ -1,65 +1,74 @@
 = render 'shared/stripe'
 
+- content_for :navigation do
+  / nothing
+
 .container.landing-page
-  = render 'courses/course_landing_header'
+  = render 'layouts/navigation', logo: @course.logo
+
   .course-content.row
-    .col-sm-8
-      = simple_form_for(@reservation, :url => course_reservations_path, html: {class: 'form stacked small-labels'}) do |f|
-        = f.input_field :stripe_token, :as => :hidden
+    - if @course.cover_image?
+      .course-cover-image{style: cover_image_style(@course)}
+      %h1.main{style: course_text_style}= @course.name
 
-        - if @course.paid?
-          .alert.alert-info.tj
-            = "You're about to enroll for <strong>#{@course.name}</strong> which takes place <strong>#{@course.date_range}</strong>. The price is <strong>#{course_price_text(@course)}</strong>.".html_safe
-            .hint
-            - if @course.paid?
-              - if @course.min_seats > 0 && @course.reservations.count >= @course.min_seats
-                This course has met requirement for minimum seats and will take place. You will be charged immediately.
-              - elsif @course.min_seats > 0
-                The course will only take place if
-                %strong= "you and " + (@course.min_seats - (@course.reservations.count+1)).to_s + " more students"
-                enroll. You will be charged once this minimum enrollment is met.
-              - else
-                Your credit card will be charged immediately.
+    .row
+      .col-sm-8
+        = simple_form_for(@reservation, :url => course_reservations_path, html: {class: 'form stacked small-labels'}) do |f|
+          = f.input_field :stripe_token, :as => :hidden
 
-        %h2 Personal Info
+          - if @course.paid?
+            .alert.alert-info.tj
+              = "You're about to enroll for <strong>#{@course.name}</strong> which takes place <strong>#{@course.date_range}</strong>. The price is <strong>#{course_price_text(@course)}</strong>.".html_safe
+              .hint
+              - if @course.paid?
+                - if @course.min_seats > 0 && @course.reservations.count >= @course.min_seats
+                  This course has met requirement for minimum seats and will take place. You will be charged immediately.
+                - elsif @course.min_seats > 0
+                  The course will only take place if
+                  %strong= "you and " + (@course.min_seats - (@course.reservations.count+1)).to_s + " more students"
+                  enroll. You will be charged once this minimum enrollment is met.
+                - else
+                  Your credit card will be charged immediately.
 
-        = simple_fields_for(@user) do |uf|
-          = uf.input :name, required: true
-          = uf.input :email, required: true, disabled: !!current_user
-          - unless current_user
-            = uf.input :password, label: 'Memorable password', required: true
+          %h2 Personal Info
 
-        - if @course.paid?
-          %h2.form-break Payment Details
+          = simple_fields_for(@user) do |uf|
+            = uf.input :name, required: true
+            = uf.input :email, required: true, disabled: !!current_user
+            - unless current_user
+              = uf.input :password, label: 'Memorable password', required: true
 
-          .card-error-message
-          %div.form-group
-            = f.label :card_number, :label => 'Card number', :required => true
-            = f.input_field :card_number, :name => nil, :"data-stripe" => "number", :value => nil
+          - if @course.paid?
+            %h2.form-break Payment Details
 
-          .row
-            .form-group.col-sm-4.card-code
-              = f.label :card_code, :label => 'Security code', :required => true
-              = f.input_field :card_code, :name => nil, :"data-stripe" => "cvc", :class => "small", :value => nil
+            .card-error-message
+            %div.form-group
+              = f.label :card_number, :label => 'Card number', :required => true
+              = f.input_field :card_number, :name => nil, :"data-stripe" => "number", :value => nil
 
-            .form-group.col-sm-8.card-month
-              = f.label :card_month, :label => 'Card Expiration', :required => true
-              %div
-                = select_month Date.today, {add_month_numbers: true}, {name: nil, id: "card_month", :"data-stripe" => "exp_month"}
-                = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year", :"data-stripe" => "exp_year"}
+            .row
+              .form-group.col-sm-4.card-code
+                = f.label :card_code, :label => 'Security code', :required => true
+                = f.input_field :card_code, :name => nil, :"data-stripe" => "cvc", :class => "small", :value => nil
 
-        .form-actions
-          .clearfix
-            .pull-left
-              = f.submit("Enroll - #{course_price_text(@course)}", class: 'btn btn-primary btn-large')
-            .pull-left
-              .spinner
-            .pull-right
-              %a.powered-stripe{href: 'http://stripe.com', target: '_blank'}
-                = image_tag 'powered-stripe.png', width: 120, height: 27
+              .form-group.col-sm-8.card-month
+                = f.label :card_month, :label => 'Card Expiration', :required => true
+                %div
+                  = select_month Date.today, {add_month_numbers: true}, {name: nil, id: "card_month", :"data-stripe" => "exp_month"}
+                  = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year", :"data-stripe" => "exp_year"}
 
-    .course-sidebar.col-sm-4
-      = render 'courses/course_landing_sidebar', enroll_button: false
+          .form-actions
+            .clearfix
+              .pull-left
+                = f.submit("Enroll - #{course_price_text(@course)}", class: 'btn btn-primary btn-large', style: course_background_style)
+              .pull-left
+                .spinner
+              .pull-right
+                %a.powered-stripe{href: 'http://stripe.com', target: '_blank'}
+                  = image_tag 'powered-stripe.png', width: 120, height: 27
+
+      .course-sidebar.col-sm-4
+        = render 'courses/course_landing_sidebar', enroll_button: false
 
 :coffeescript
   new ReservationForm(el: '#new_reservation', stripeEnabled: #{@course.paid?})

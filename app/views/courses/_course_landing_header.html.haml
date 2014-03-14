@@ -1,8 +1,8 @@
 .course-header
-  .course-title
+  .course-title{style: course_text_style}
     %h2
-      %a{href: landing_page_path(@course.url)}= @course.name
-    .row
+      %a{href: landing_page_path(@course.url), style: course_text_style}= @course.name
+    .clearfix
       .col-sm-6
         %em.location
           %i.icon-map

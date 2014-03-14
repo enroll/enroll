@@ -23,12 +23,14 @@ Enroll::Application.routes.draw do
         get :share
         get :review
         get :publish
+        post :destroy_logo
       end
       resources :students, only: [:index]
       resources :resources
       resource :payment_settings, only: [:edit, :update]
     end
     resources :landing_pages
+    resources :cover_images
   end
 
   # Student dashbaord
