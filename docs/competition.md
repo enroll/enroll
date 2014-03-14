@@ -49,3 +49,8 @@
 - Nicely designed, but the workshop view pages could use a little more
   oomph
 
+**Enterprise Competition**
+
+- http://www.abcsignup.com/
+- http://www.exitcertified.com/
+
