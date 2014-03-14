@@ -89,8 +89,14 @@ class window.CoursePricing extends Spine.Controller
     @$calculatorMaxSeats.text(maxSeats)
     @$calculatorTicketPrice.text("$#{cost}")
 
-    minRevenue = parseFloat(minSeats * cost).toFixed(2)
-    maxRevenue = parseFloat(maxSeats * cost).toFixed(2)
+    fee = parseFloat(cost * 0.1).toFixed(2)
+    if isNaN fee
+      fee = parseFloat(0).toFixed(2)
+    minFees = parseFloat(fee * minSeats).toFixed(2)
+    maxFees = parseFloat(fee * maxSeats).toFixed(2)
+
+    minRevenue = parseFloat((minSeats * cost) - minFees).toFixed(2)
+    maxRevenue = parseFloat((maxSeats * cost) - maxFees).toFixed(2)
 
     if isNaN minRevenue
       $(".min-seat-revenue").text "$0"
