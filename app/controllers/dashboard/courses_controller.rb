@@ -38,6 +38,8 @@ class Dashboard::CoursesController < ApplicationController
       flash[:error] = "Cannot publish course with date in the past"
     end
     redirect_to dashboard_course_path(@course, published: 1)
+
+    mixpanel_track_event 'Publish Course'
   end
 
   def destroy_logo
@@ -65,6 +67,7 @@ class Dashboard::CoursesController < ApplicationController
     else
       render :edit
     end
+    mixpanel_track_event current_step_mixpanel_event
   end
 
   def redirect_to_next_step
