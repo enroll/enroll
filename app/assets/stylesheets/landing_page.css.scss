@@ -141,9 +141,14 @@ body.landing-page, div.landing-page-preview {
   p {
     margin-top: 15px;
     margin-bottom: 15px;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 14px;
     // color: $gray-medium-dark;
+  }
+
+  ul li {
+    font-weight: 400;
+    font-size: 14px;
   }
 }
 
