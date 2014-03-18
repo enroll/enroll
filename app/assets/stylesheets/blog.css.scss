@@ -1,4 +1,5 @@
 @import 'welcome';
+@import '_mixins';
 
 div#welcome.blog {
   font-size: 14px;
@@ -47,6 +48,19 @@ div#welcome.blog {
 
     blockquote {
       width: 70%;
+    }
+
+    img {
+      border: 10px solid #fafaf8;
+      @include border-radius(3px);
+      margin-top: 15px;
+      margin-left: 15px;
+      display: block;
+      @include transition(-webkit-transform 0.2s linear);
+
+      &:hover {
+        @include scale(1.2);
+      }
     }
   }
 

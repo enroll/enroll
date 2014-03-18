@@ -23,6 +23,20 @@
           transform: $transform;
 }
 
+@mixin scale($factor) {
+  -webkit-transform: scale($factor);
+  -moz-transform:    scale($factor);
+  -ms-transform:     scale($factor);
+  -o-transform:      scale($factor);
+}
+
+@mixin transition($transition) {
+  -webkit-transition: $transition;  
+  -moz-transition:    $transition;
+  -ms-transition:     $transition; 
+  -o-transition:      $transition;  
+}
+
 .tc {
   text-align: center;
 }
