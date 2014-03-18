@@ -3,7 +3,7 @@ class BlogPostsController < ApplicationController
   before_filter { add_body_class 'welcome' }
 
   def index
-    @posts = BlogPost.order(:published_at)
+    @posts = BlogPost.order('published_at desc')
   end
 
   def show
