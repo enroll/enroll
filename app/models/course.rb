@@ -284,6 +284,10 @@ class Course < ActiveRecord::Base
     super(value)
   end
 
+  def visible_schedules
+    schedules.where('NOT is_skipped')
+  end
+
   def published?
     !!published_at
   end
