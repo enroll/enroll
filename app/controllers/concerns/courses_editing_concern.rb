@@ -48,7 +48,7 @@ module CoursesEditingConcern
         :name, :address, :address_2, :city, :state, :zip, :phone
       ],
       schedules_attributes: [
-        :date, :starts_at, :ends_at
+        :date, :starts_at, :ends_at, :is_skipped
       ]
     )
   end

@@ -92,6 +92,23 @@ form.step-pricing, form.step-page {
   }
 }
 
+// Schedule
+
+.form-group.day.skipped {
+  label.control-label {
+    color: $gray-light;
+  }
+
+  input.form-control.time-select {
+    background: $gray-light-light;
+  }
+}
+
+form.form label.skip {
+  font-weight: normal;
+  color: $gray-dark;
+}
+
 // Campaign end
 
 .campaign-end-notice {

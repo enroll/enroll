@@ -2,7 +2,7 @@ class CourseSchedule < ActiveRecord::Base
   belongs_to :course, inverse_of: :schedules
 
   validates :course_id, presence: true
-  validates :date, presence: true
+  # validates :date, presence: true
   # validates :starts_at, presence: true
   # validates :ends_at, presence: true
 
@@ -13,7 +13,8 @@ class CourseSchedule < ActiveRecord::Base
       identifier: date,
       label: date,
       starts_at: starts_at,
-      ends_at: ends_at
+      ends_at: ends_at,
+      is_skipped: is_skipped
     }
   end
 

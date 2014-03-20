@@ -1,10 +1,15 @@
 h2 Schedule
 
 each day in days
-  .form-group.day.clearfix
+  .form-group.day.clearfix(class=day.isSkipped ? 'skipped' : '')
     label.control-label= day.label
     .controls
       input.date(type="hidden", value=day.identifier, name="course[schedules_attributes][][date]")
-      input.form-control.mini.start.time-select(type="text", placeholder="Start time", name="course[schedules_attributes][][starts_at]", value=day.startsAt)
+      input.form-control.mini.start.time-select(type="text", placeholder="Start time", name="course[schedules_attributes][][starts_at]", value=day.startsAt, disabled=day.isSkipped ? 'disabled' : undefined)
       &nbsp;-&nbsp;
-      input.form-control.mini.end.time-select(placeholder="End time", name="course[schedules_attributes][][ends_at]", value=day.endsAt)
+      input.form-control.mini.end.time-select(placeholder="End time", name="course[schedules_attributes][][ends_at]", value=day.endsAt, disabled=day.isSkipped ? 'disabled' : undefined)
+      &nbsp;&nbsp;&nbsp;
+      //- input(type="hidden", name="course[schedules_attributes][][is_skipped]", value='0')
+      input(type="checkbox", id=day.checkboxId, name="course[schedules_attributes][][is_skipped]", value='1', checked=day.isSkipped ? 'checked' : undefined)
+      &nbsp;
+      label.skip(for=day.checkboxId) Skip this day
