@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307101721) do
+ActiveRecord::Schema.define(version: 20140320060005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140307101721) do
     t.date    "date"
     t.integer "starts_at"
     t.integer "ends_at"
+    t.boolean "is_skipped", default: false
   end
 
   create_table "courses", force: true do |t|

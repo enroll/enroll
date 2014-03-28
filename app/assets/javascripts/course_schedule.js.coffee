@@ -19,6 +19,7 @@ class window.CourseSchedule extends Spine.Controller
     'changeDate input#course_ends_at': 'changeDateAction'
     'keyup input#course_ends_at': 'changeDateAction'
     'click a.multi-day': 'multiDayAction'
+    'change :checkbox': 'checkSkipAction'
 
   constructor: ->
     super
@@ -37,6 +38,7 @@ class window.CourseSchedule extends Spine.Controller
       @schedulesByDays[day.identifier] =
         startsAt: day.starts_at
         endsAt: day.ends_at
+        isSkipped: day.is_skipped
 
     @updateDays()
 
@@ -112,11 +114,13 @@ class window.CourseSchedule extends Spine.Controller
     # If we're in the single day mode, end date should follow start date
     if !@isMultiDay && @$courseStartField.val() != @$courseEndField.val()
       @$courseEndField.val(@$courseStartField.val())
-    
 
     @updateDays()
 
     @changeCampaignEndDate()
+
+  checkSkipAction: ->
+    @updateDays()
 
   updateDays: ->
     @storeSchedulesByDays()
@@ -139,18 +143,20 @@ class window.CourseSchedule extends Spine.Controller
       day = 
         date: start
         identifier: identifier
+        checkboxId: "skip-#{identifier}"
         label: @longFormatDate(start)
         
       if @schedulesByDays[identifier]
         schedule = @schedulesByDays[identifier]
         day.startsAt = schedule.startsAt
         day.endsAt = schedule.endsAt
+        day.isSkipped = schedule.isSkipped
 
       days.push(day)
               
       newDate = start.setDate(start.getDate() + 1)
       start = new Date(newDate)
-    
+
     @render(days)
 
   storeSchedulesByDays: ->
@@ -160,13 +166,14 @@ class window.CourseSchedule extends Spine.Controller
       date = $row.find('input.date').val()
       startsAt = $row.find('input.start').val()
       endsAt = $row.find('input.end').val()
-      @schedulesByDays[date] = {startsAt: startsAt, endsAt, endsAt}
+      skip = $row.find(':checkbox').is(':checked')
+      @schedulesByDays[date] = {startsAt: startsAt, endsAt: endsAt, isSkipped: skip}
 
   render: (days) ->
     if days.length == 0
       @$courseSchedule.hide()
       return
-      
+
     @$courseSchedule.html(template(days: days)).show()
     @$courseSchedule.find('input.start.time-select').timepicker(scrollDefaultTime: '9:00am')
     @$courseSchedule.find('input.end.time-select').timepicker(scrollDefaultTime: '4:00pm')

@@ -59,7 +59,7 @@ class Dashboard::CoursesController < ApplicationController
             redirect_to_next_step
           else
             redirect_to review_dashboard_course_path(@course)
-          end    
+          end
         }
         format.json { render json: @course }
       end
