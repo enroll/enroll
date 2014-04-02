@@ -2,12 +2,6 @@
   %h1.tc.offset My courses
 
   .row
-    - if @courses_teaching.empty?
-      .tc.actions
-        %p Why not teach a course?
-        .offset
-          %a.btn.btn-primary.btn-large{href: new_dashboard_course_path} Create a course
-
     - unless @courses_teaching.empty?
       %div{class: @courses_studying.empty? ? 'col-sm-12' : 'col-sm-6'}
         %ul.item-list.teaching
@@ -30,6 +24,11 @@
             %strong Attending
           = yrender "courses_list", courses: @courses_studying do |course|
             = link_to "Open &rsaquo;".html_safe, student_course_path(course), :class => 'btn btn-primary small'
+
+    - if @courses_teaching.empty?
+      .tc.actions
+        %p Why not teach a course?
+        %a.btn.btn-primary.btn-large{href: new_dashboard_course_path} Teach a course
 
       :coffeescript
         new ClickableList(el: '.item-list.attending')
