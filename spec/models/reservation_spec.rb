@@ -86,6 +86,13 @@ describe Reservation do
 
       reservation.send_enrollment_notification!
     end
+
+    it "notifies the student that they enrolled" do
+      StudentMailer.expects(:enrolled).
+        with(reservation).returns(mock 'mail', :deliver => true)
+
+      reservation.send_enrollment_notification!
+    end
   end
 
   context "#check_campaign_success" do

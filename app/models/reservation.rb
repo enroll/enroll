@@ -27,6 +27,7 @@ class Reservation < ActiveRecord::Base
 
   def send_enrollment_notification!
     InstructorMailer.student_enrolled(self).deliver
+    StudentMailer.enrolled(self).deliver
   end
 
   def check_campaign_success
