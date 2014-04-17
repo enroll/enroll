@@ -36,6 +36,12 @@
         %i.icon-circled-cross
         Delete
 
+    .form-section.instructor-photo-upload
+      = form.input :instructor_photo, label: 'Instructor Photo'
+      %a.delete{href: '#'}
+        %i.icon-circled-cross
+        Delete
+
     .form-group.wide
       = form.label :description, 'Page content'
       .controls
@@ -70,4 +76,12 @@
     form: 'form.course-form',
     field: '#course_logo',
     previewAttribute: 'logo'
+  )
+  new InstructorPhotoUploader(
+    el: '.instructor-photo-upload',
+    deletePath: #{destroy_logo_dashboard_course_path(@course).to_json},
+    object: #{@course.to_json},
+    form: 'form.course-form',
+    field: '#course_instructor_photo',
+    previewAttribute: 'full'
   )

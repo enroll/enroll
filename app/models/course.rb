@@ -54,6 +54,14 @@ class Course < ActiveRecord::Base
                     path: "/:class/:id_:basename.:style.:extension"
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
+  has_attached_file :instructor_photo,
+                    styles: {full: "240x240>"},
+                    storage: 's3',
+                    s3_credentials: Enroll.s3_config_for('instructor-photos'),
+                    url: ':s3_domain_url',
+                    path: "/:class/:id_:basename.:style.:extension"
+  validates_attachment_content_type :instructor_photo, :content_type => /\Aimage\/.*\Z/
+
   def self.fail_campaigns
     # This marks campaigns that haven't reached the minimum number of seats by
     # their campaign ending time as failed, and notifies students and instructors
@@ -250,13 +258,19 @@ class Course < ActiveRecord::Base
       location: location || {},
       date: starts_at.try(:strftime, "%B %e, %Y"),
       description: description,
-      logo: logo_json
+      logo: logo_json,
+      instructor_photo: instructor_photo_json
     }
   end
 
   def logo_json
     return nil unless logo_file_name
     logo.url(:logo)
+  end
+
+  def instructor_photo_json
+    return nil unless instructor_photo_file_name
+    instructor_photo.url(:full)
   end
 
   def instructor_paid?
