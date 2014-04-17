@@ -55,7 +55,7 @@ class Course < ActiveRecord::Base
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 
   has_attached_file :instructor_photo,
-                    styles: {full: "240x240>"},
+                    styles: {full: "240x240#"},
                     storage: 's3',
                     s3_credentials: Enroll.s3_config_for('instructor-photos'),
                     url: ':s3_domain_url',

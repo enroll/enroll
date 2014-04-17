@@ -24,6 +24,7 @@ Enroll::Application.routes.draw do
         get :review
         get :publish
         post :destroy_logo
+        post :destroy_instructor_photo
       end
       resources :students, only: [:index]
       resources :resources

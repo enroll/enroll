@@ -1,6 +1,6 @@
 class Dashboard::CoursesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share, :review, :publish, :destroy_logo]
+  before_filter :find_course_as_instructor!, only: [:show, :edit, :update, :share, :review, :publish, :destroy_logo, :destroy_instructor_photo]
 
   include CoursesEditingConcern
   before_filter :prepare_steps, only: [:new, :edit, :create, :update]
@@ -44,6 +44,12 @@ class Dashboard::CoursesController < ApplicationController
 
   def destroy_logo
     @course.logo = nil
+    @course.save!
+    render nothing: true
+  end
+
+  def destroy_instructor_photo
+    @course.instructor_photo = nil
     @course.save!
     render nothing: true
   end

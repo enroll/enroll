@@ -79,7 +79,7 @@
   )
   new InstructorPhotoUploader(
     el: '.instructor-photo-upload',
-    deletePath: #{destroy_logo_dashboard_course_path(@course).to_json},
+    deletePath: #{destroy_instructor_photo_dashboard_course_path(@course).to_json},
     object: #{@course.to_json},
     form: 'form.course-form',
     field: '#course_instructor_photo',
