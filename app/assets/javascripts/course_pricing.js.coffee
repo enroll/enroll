@@ -65,7 +65,7 @@ class window.CoursePricing extends Spine.Controller
   selectProfit: ->
     if @$cost.val() == '' || @$cost.val() == '0'
       @$cost.val(10)
-    if @$minSeats.val() == '' || @$minSeats.val() == '0'
+    if @$minSeats.val() == ''
       @$minSeats.val(2)
     @$cost.show()
     $('.free-text').remove()

@@ -276,7 +276,9 @@ html.cssanimations.csstransforms {
 
 // Statistics
 
-.course-stats {
+table.course-stats {
+  width: 100%;
+
   strong, small {
     display: block;
     text-align: center;
