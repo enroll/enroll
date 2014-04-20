@@ -57,7 +57,10 @@ class ReservationsController < ApplicationController
   private
 
   def require_course!
-    unless @course = Course.find(params[:course_id])
+    @course = Course.find(params[:course_id])
+    @logo = @course.logo_if_present
+
+    unless @course
       flash[:error] = "Couldn't find the course you were looking for"
       return redirect_to root_url
     end

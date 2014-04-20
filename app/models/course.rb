@@ -254,6 +254,12 @@ class Course < ActiveRecord::Base
     }
   end
 
+  def logo_if_present
+    if logo && !logo.blank?
+      logo
+    end
+  end
+
   def logo_json
     return nil unless logo_file_name
     logo.url(:logo)

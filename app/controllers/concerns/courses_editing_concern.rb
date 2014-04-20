@@ -66,8 +66,6 @@ module CoursesEditingConcern
       Course.find(params[:id])
     end
 
-    if @course.logo && !@course.logo.blank?
-      @logo = @course.logo
-    end
+    @logo = @course.logo_if_present
   end
 end
