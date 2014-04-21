@@ -5,7 +5,6 @@ require 'rspec/rails'
 require 'rspec/instafail'
 require 'vcr'
 require 'email_spec'
-require 'vcr'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
