@@ -1,15 +1,11 @@
 = render 'shared/stripe'
 
-- content_for :navigation do
-  / nothing
+= render 'courses/course_landing_header'
 
 .container.landing-page
-  = render 'layouts/navigation', logo: @course.logo
-
   .course-content.row
     - if @course.cover_image?
       .course-cover-image{style: cover_image_style(@course)}
-      %h1.main.centered{style: course_text_style}= @course.name
 
     .row
       .col-sm-8

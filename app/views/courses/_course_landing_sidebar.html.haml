@@ -22,16 +22,18 @@
 
 %hr/
   
-.course-stats.row{style: course_text_style}
-  .col-sm-4
-    %strong= @course.reservations.count
-    %small Enrolled
-  .col-sm-4
-    %strong= reservations_needed(@course)
-    %small Needed
-  .col-sm-4
-    %strong= @course.max_seats || "?"
-    %small Capacity
+%table.course-stats{style: course_text_style}
+  %tr
+    %td
+      %strong= @course.reservations.count
+      %small Enrolled
+    - if reservations_needed(@course) > 0
+      %td
+        %strong= reservations_needed(@course)
+        %small Needed
+    %td
+      %strong= @course.max_seats || "?"
+      %small Capacity
 
 %hr/
 
