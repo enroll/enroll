@@ -19,12 +19,14 @@
             %thead
               %th
               %th Name
+              %th Email
               %th Enrolled
               %th
             %tbody
               - @course.students.each do |student|
                 %tr
                   %td= gravatar_for(student.email, class: 'img-rounded', size: 38)
+                  %td= student.display_title
                   %td= student.email
                   %td= activity_date_format(student.reservation_for_course(@course).created_at)
                   %td
