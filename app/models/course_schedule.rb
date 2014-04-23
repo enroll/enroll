@@ -28,6 +28,8 @@ class CourseSchedule < ActiveRecord::Base
 
   def starts_at_time
     Time.parse(date.to_s + " " + starts_at)
+  rescue
+    nil
   end
 
   def ends_at
@@ -40,6 +42,8 @@ class CourseSchedule < ActiveRecord::Base
 
   def ends_at_time
     Time.parse(date.to_s + " " + ends_at)
+  rescue
+    nil
   end
 
   def range_str

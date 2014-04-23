@@ -205,7 +205,7 @@ class Course < ActiveRecord::Base
     first_day = starts_at.to_date
     first_schedule = schedules.where("date = ?", first_day).first
 
-    if first_schedule
+    if first_schedule && first_schedule.starts_at_time
       start_time = first_schedule.starts_at_time
       return Time.zone.now <= start_time
     else
