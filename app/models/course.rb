@@ -202,7 +202,15 @@ class Course < ActiveRecord::Base
   end
 
   def future?
-    Time.zone.now < starts_at
+    first_day = starts_at.to_date
+    first_schedule = schedules.where("date = ?", first_day).first
+
+    if first_schedule && first_schedule.starts_at_time
+      start_time = first_schedule.starts_at_time
+      return Time.zone.now <= start_time
+    else
+      return Date.today <= first_day
+    end
   end
 
   def past?
