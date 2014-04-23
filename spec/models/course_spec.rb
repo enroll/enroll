@@ -516,14 +516,37 @@ describe Course do
   end
 
   describe "#future?" do
-    it "returns true if course start date is in the future" do
-      course.starts_at = Time.now + 1.hour
-      course.should be_future
+    context "has NO time schedule" do
+      it "returns true if the start day is today" do
+        course.starts_at = Date.today
+        course.should be_future
+      end
+
+      it "returns false if the start day is yesterday" do
+        course.starts_at = Date.today - 1.day
+        course.should_not be_future
+      end
     end
 
-    it "returns false if course start date is in the past" do
-      course.starts_at = Time.now - 1.hour
-      course.should_not be_future
+    context "has a time schedule" do
+      before do
+        course.starts_at = "2014-04-23"
+        course.save!
+        course.schedules_attributes = [{"date"=>"2014-04-23", "starts_at"=>"8:30am", "ends_at"=>"4:30pm"}]
+        course.save!
+      end
+
+      it "returns true if starts in one minute" do
+        Timecop.freeze(Time.new(2014, 4, 23, 8, 29))
+        course.should be_future
+        Timecop.return
+      end
+
+      it "returns false if started a minute ago" do
+        Timecop.freeze(Time.new(2014, 4, 23, 8, 31))
+        course.should_not be_future
+        Timecop.return
+      end
     end
   end
 
