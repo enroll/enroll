@@ -14,8 +14,7 @@
     - elsif @course.campaign_failed?
       %a.btn.btn-primary.btn-large.disabled Course not funded
     - else
-      = course_reservation_link(@course, style: course_background_style)
-      / %a.btn.btn-primary.btn-large.disabled{style: course_background_style} Course complete
+      %a.btn.btn-primary.btn-large.disabled{style: course_background_style} Course complete
 - else
   %a.btn.btn-primary.btn-large{href: landing_page_path(@course.url), style: course_background_style}
     %i.icon-chevron-left
