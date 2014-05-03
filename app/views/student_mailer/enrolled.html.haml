@@ -8,7 +8,7 @@
 
 %p
   The course is coming up on
-  = @course.starts_at.to_s
+  = @course.starts_at.strftime("%B %e, %Y")
   = "."
 
 %p
