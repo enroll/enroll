@@ -33,4 +33,14 @@ class StudentMailer < ActionMailer::Base
       :from     => enroll_noreply,
       :subject  => "[#{@course.url_or_short_name}] Course needs your help!"
   end
+
+  def enrolled(reservation)
+    @student    = reservation.student
+    @course     = reservation.course
+
+    mail \
+      :to       => @student.email,
+      :from     => enroll_noreply,
+      :subject  => "[#{@course.url_or_short_name}] You're enrolled!"
+  end
 end

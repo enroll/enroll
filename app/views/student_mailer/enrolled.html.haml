@@ -1,0 +1,17 @@
+%p
+  Get ready to learn!
+
+%p
+  You've enrolled in 
+  = link_to @course.name, @course
+  = "."
+
+%p
+  The course is coming up on
+  = @course.starts_at.strftime("%B %e, %Y")
+  = "."
+
+%p
+  All the best!
+  %br
+  Team Enroll
